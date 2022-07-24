@@ -1,18 +1,74 @@
-
-
-/* *******************Dashboard****************** */
-
-.dashboard-container{
-    height: 100vh;
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
-.sidebar-container{
-    width: 150px;
-    height: 100vh;
-    border: 1px solid black;
+a{
+    text-decoration: none!important;
 }
-.dashboard-pages{
-    height: 100vh;
-    margin-left: 150px;
-    border: 1px solid black;
+hr{
+    margin: 0px!important;
+    padding: 0px!important;
 }
-/* *******************Dashboard****************** */
+
+/* //////////////////////////Sidebar////////////////////// */
+
+.main-container{
+    display: flex;
+
+}
+main{
+    padding: 20px;
+    background: rgb(236, 230, 230);
+    
+}
+.sidebar{
+    background: rgb(0, 7, 61);
+    color: white;
+    height: 100vh;
+    /* min-width: 250px; */
+}
+.top-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 10px;
+}
+.logo{
+    height: 35px;
+    width: 50px;
+}
+.bars{
+    font-size: 16px;
+}
+.sidebar-link{
+    display: flex;
+    gap: 10px;
+    color: white;
+    padding: 5px 10px;
+    border-right: 4px solid transparent;
+    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    
+}
+.sidebar-link:hover,
+.active{
+    display: flex;
+    gap: 10px;
+    color: white;
+    padding: 5px 10px;
+    border-right: 4px solid white;
+    transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    background: rgb(45, 51, 89);
+}
+
+.link-text{
+    white-space: nowrap;
+    font-size: 16px;
+}
+.icon{
+    font-size: 16px;
+}
+.routes{
+    margin-top: 10px;
+}
+/* //////////////////////////Sidebar////////////////////// */

@@ -10,13 +10,15 @@ function App() {
   return (
     <div className="container-flude">
       <Routes>
-        <Route path="/" element={ <DashboardLyout/> } >
-        <Route index element={<DashboardHome />} />
-        <Route path="dashboard_home" element={ <DashboardHome /> } />
+        <Route path="/" element={<DashboardLyout />} >
+          <Route index element={<DashboardHome />} />
+          <Route path="/dashboard_home" element={<DashboardHome />} />
+          <Route path="/signin" element={<SignIn />} />
         </Route>
-        <Route path="/signin" element={ <SignIn/> } />
-        <Route path="sign" element={ <SignUp/> } />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         
+
       </Routes>
     </div>
   );
