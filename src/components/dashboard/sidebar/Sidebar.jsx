@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { motion } from "framer-motion"
 import { NavLink, Outlet } from 'react-router-dom'
-import { FaHome, FaBars, FaPlus, FaMinus, FaCloudflare, 
-  FaDeezer, FaStore, FaAws, FaJsfiddle } 
-from 'react-icons/fa';
-import { MdManageAccounts, MdOutlineInventory, MdOutlineSummarize, MdOutlineReportProblem  } from 'react-icons/md';
+import {
+  FaHome, FaBars, FaPlus, FaMinus, FaCloudflare,
+  FaDeezer, FaStore, FaAws, FaJsfiddle
+}
+  from 'react-icons/fa';
+import { MdManageAccounts, MdOutlineInventory, MdOutlineSummarize, MdOutlineReportProblem } from 'react-icons/md';
 import { SiMicrosoftazure } from 'react-icons/si';
 import { FcDataConfiguration } from 'react-icons/fc';
+import TopBar from '../header/TopBar';
 
 
 
@@ -133,25 +136,25 @@ const Sidebar = () => {
                 <React.Fragment key={index}>
                   {
                     route.name == 'Inventory' ?
-                    <div>
-                    <span className='sidebar-link '>
-                      {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
-                      <div onClick={handleInventoryToggle} className='sidebar-link-dropdown'>
-                        {isOpen && <motion.div variants={ShowAnimation}
-                          initial='hidden'
-                          animate='show'
-                          esit='hidden'
-                          className="link-text ">{route.name}</motion.div>
-                        }
-                        {inventoryToggle ? <FaMinus className='sidebar-link-dropdown-icon' /> :
-                          <FaPlus className='sidebar-link-dropdown-icon' />
-                        }
-                      </div>
-                    </span>
+                      <div>
+                        <span className='sidebar-link '>
+                          {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
+                          <div onClick={handleInventoryToggle} className='sidebar-link-dropdown'>
+                            {isOpen && <motion.div variants={ShowAnimation}
+                              initial='hidden'
+                              animate='show'
+                              esit='hidden'
+                              className="link-text ">{route.name}</motion.div>
+                            }
+                            {inventoryToggle ? <FaMinus className='sidebar-link-dropdown-icon' /> :
+                              <FaPlus className='sidebar-link-dropdown-icon' />
+                            }
+                          </div>
+                        </span>
                         {Inventory.map((inventory, index) => {
                           return (
                             <React.Fragment key={index}>
-                             { inventoryToggle &&<NavLink to={inventory.path} className='sidebar-link inventory'>
+                              {inventoryToggle && <NavLink to={inventory.path} className='sidebar-link inventory'>
                                 <div className="icon">{inventory.icon}</div>
                                 {isOpen && <motion.div variants={ShowAnimation}
                                   initial='hidden'
@@ -212,7 +215,10 @@ const Sidebar = () => {
             }
           </section>
         </motion.div>
-        <main style={isOpen ? mainWidthToggleShow : mainWidthToggleHidden}><Outlet /></main>
+        <main style={isOpen ? mainWidthToggleShow : mainWidthToggleHidden}>
+          <TopBar />
+          <div className='dashboard-pages'> <Outlet /></div>
+        </main>
       </div>
 
 
