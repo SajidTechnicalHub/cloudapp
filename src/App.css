@@ -37,17 +37,20 @@ main{
 .logo{
     height: 35px;
     width: 50px;
+    margin-left: -5px ;
 }
 .bars{
     font-size: 16px;
+    cursor: pointer;
 }
 .sidebar-link{
     display: flex;
     gap: 10px;
     color: white;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border-right: 4px solid transparent;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    align-items: center;
     
 }
 .sidebar-link:hover,
@@ -55,20 +58,37 @@ main{
     display: flex;
     gap: 10px;
     color: white;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border-right: 4px solid white;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     background: rgb(45, 51, 89);
+    align-items: center;
 }
+
 
 .link-text{
     white-space: nowrap;
     font-size: 16px;
 }
 .icon{
-    font-size: 16px;
+    font-size: 18px;
+    
 }
 .routes{
     margin-top: 10px;
+}
+.inventory{
+    padding-left: 20px!important;
+    
+}
+.sidebar-link-dropdown{
+    width: 200px;
+    display: flex;
+    justify-content: space-between!important;
+    align-items: center;
+    /* gap: 20px; */
+}
+.sidebar-link-dropdown-icon{
+    cursor: pointer;
 }
 /* //////////////////////////Sidebar////////////////////// */
