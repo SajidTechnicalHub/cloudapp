@@ -26,7 +26,7 @@ main{
     padding: 20px;
 }
 .sidebar{
-    background: rgb(0, 7, 61);
+    background: #071330;
     color: white;
     height: 100vh;
     /* min-width: 250px; */
@@ -95,6 +95,33 @@ main{
 .sidebar-link-dropdown-icon{
     cursor: pointer;
 }
+/* ***********************Mobile View**************************** */
+.mobile-main-container{
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+.mobile-top-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 15px 10px;
+    background: #071330;
+}
+.mobile-bars{
+    color: white;
+}
+.mobile-sidebar{
+    background: #071330;
+    color: white;
+    height: calc(100vh - 50px);
+    position: fixed;
+    top: 50px;
+    left: 0;
+    scroll-behavior: auto;
+}
+/* ***********************Mobile View**************************** */
+
 /* //////////////////////////Sidebar////////////////////// */
 
 /* //////////////////////////Top-Bar////////////////////// */
@@ -125,6 +152,22 @@ main{
     color: black;
     cursor: pointer;
     font-size: 24px;
+}
+@media(max-width:992px){
+    .topbar-container{
+        flex-direction: column!important;
+        line-height: 18px;
+        gap: 5px;
+        margin-bottom: 15px;
+    }
+    .topbar-heading-text{
+        font-size: 16px;
+        color: blue;
+    }
+    .topbar-subheading-text{
+        font-size: 16px;
+        color: grey;
+    }
 }
 
 /* //////////////////////////Top-Bar////////////////////// */

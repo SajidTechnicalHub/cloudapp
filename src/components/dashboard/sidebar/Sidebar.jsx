@@ -9,7 +9,9 @@ import {
 import { MdManageAccounts, MdOutlineInventory, MdOutlineSummarize, MdOutlineReportProblem } from 'react-icons/md';
 import { SiMicrosoftazure } from 'react-icons/si';
 import { FcDataConfiguration } from 'react-icons/fc';
+import { CgClose } from 'react-icons/cg';
 import TopBar from '../header/TopBar';
+import useWindowDimensions from '../../useWindowDimensions';
 
 
 
@@ -79,8 +81,10 @@ const mainWidthToggleShow = {
   width: 'calc(100vw - 230px)',
 }
 const Sidebar = () => {
+  const { height, width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(true)
 
+// console.log(width)
   const [insightsToggle, setInsightsToggle] = useState(false)
   const [inventoryToggle, setInventoryToggle] = useState(false)
 
@@ -106,121 +110,268 @@ const Sidebar = () => {
     }
   }
 
+  //////////////Mobile View////////////////////
+  const [mobileView, setMobileView] = useState(false)
+  const [mobileWidth, setMobileWidth] = useState(width)
+
+  const handleMobileView =()=> setMobileView(!mobileView)
+
+  const mobileViewDashboar = {
+    width: 'calc(100vw )',
+  }
+ 
+  //////////////Mobile View////////////////////
+
   return (
     <>
-      <div className="main-container">
+      {mobileWidth >= 700 ?
+     
+        <div className="main-container">
 
-        <motion.div animate={{
-          width: isOpen ? '230px' : '50px', transition: {
-            duration: 0.5,
-            type: 'spring',
-            damping: 10,
+          <motion.div animate={{
+            width: isOpen ? '230px' : '50px', transition: {
+              duration: 0.5,
+              type: 'spring',
+              damping: 10,
 
-          }
-        }} className='sidebar'>
+            }
+          }} className='sidebar'>
 
-          <div className="top-section">
-            {isOpen && <motion.img src='./logo.png' variants={ShowAnimation}
-              initial='hidden'
-              animate='show'
-              esit='hidden'
-              className='logo' alt=''></motion.img>}
-            <div className="bars">
-              <FaBars onClick={toggle} />
+            <div className="top-section">
+              {isOpen && <motion.img src='./logo.png' variants={ShowAnimation}
+                initial='hidden'
+                animate='show'
+                esit='hidden'
+                className='logo' alt=''></motion.img>}
+              <div className="bars">
+                <FaBars onClick={toggle} />
+              </div>
             </div>
-          </div>
-          <hr />
-          <section className='routes'>
-            {routes.map((route, index) => {
-              return (
-                <React.Fragment key={index}>
-                  {
-                    route.name == 'Inventory' ?
-                      <div>
-                        <span className='sidebar-link '>
-                          {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
-                          <div onClick={handleInventoryToggle} className='sidebar-link-dropdown'>
-                            {isOpen && <motion.div variants={ShowAnimation}
-                              initial='hidden'
-                              animate='show'
-                              esit='hidden'
-                              className="link-text ">{route.name}</motion.div>
-                            }
-                            {inventoryToggle ? <FaMinus className='sidebar-link-dropdown-icon' /> :
-                              <FaPlus className='sidebar-link-dropdown-icon' />
-                            }
-                          </div>
-                        </span>
-                        {Inventory.map((inventory, index) => {
-                          return (
-                            <React.Fragment key={index}>
-                              {inventoryToggle && <NavLink to={inventory.path} className='sidebar-link inventory'>
-                                <div className="icon">{inventory.icon}</div>
-                                {isOpen && <motion.div variants={ShowAnimation}
-                                  initial='hidden'
-                                  animate='show'
-                                  esit='hidden'
-                                  className="link-text">{inventory.name}</motion.div>}
-                              </NavLink>}
-                            </React.Fragment>
-                          )
-                        })}</div> :
-                      route.name == 'Insights' ?
+            <hr />
+            <section className='routes'>
+              {routes.map((route, index) => {
+                return (
+                  <React.Fragment key={index}>
+                    {
+                      route.name == 'Inventory' ?
                         <div>
                           <span className='sidebar-link '>
-                            {isOpen && <div onClick={handleInsightsToggle} className="icon">{route.icon}</div>}
-                            <div onClick={handleInsightsToggle} className='sidebar-link-dropdown'>
+                            {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
+                            <div onClick={handleInventoryToggle} className='sidebar-link-dropdown'>
                               {isOpen && <motion.div variants={ShowAnimation}
                                 initial='hidden'
                                 animate='show'
                                 esit='hidden'
                                 className="link-text ">{route.name}</motion.div>
                               }
-                              {insightsToggle ? <FaMinus className='sidebar-link-dropdown-icon' /> :
+                              {inventoryToggle ? <FaMinus className='sidebar-link-dropdown-icon' /> :
                                 <FaPlus className='sidebar-link-dropdown-icon' />
                               }
                             </div>
                           </span>
-                          {Insights.map((insights, index) => {
-
+                          {Inventory.map((inventory, index) => {
                             return (
                               <React.Fragment key={index}>
-
-                                {insightsToggle && <NavLink to={insights.path} className='sidebar-link inventory'>
-                                  <div className="icon">{insights.icon}</div>
+                                {inventoryToggle && <NavLink to={inventory.path} className='sidebar-link inventory'>
+                                  <div className="icon">{inventory.icon}</div>
                                   {isOpen && <motion.div variants={ShowAnimation}
                                     initial='hidden'
                                     animate='show'
                                     esit='hidden'
-                                    className="link-text">{insights.name}</motion.div>}
+                                    className="link-text">{inventory.name}</motion.div>}
                                 </NavLink>}
                               </React.Fragment>
                             )
                           })}</div> :
+                        route.name == 'Insights' ?
+                          <div>
+                            <span className='sidebar-link '>
+                              {isOpen && <div onClick={handleInsightsToggle} className="icon">{route.icon}</div>}
+                              <div onClick={handleInsightsToggle} className='sidebar-link-dropdown'>
+                                {isOpen && <motion.div variants={ShowAnimation}
+                                  initial='hidden'
+                                  animate='show'
+                                  esit='hidden'
+                                  className="link-text ">{route.name}</motion.div>
+                                }
+                                {insightsToggle ? <FaMinus className='sidebar-link-dropdown-icon' /> :
+                                  <FaPlus className='sidebar-link-dropdown-icon' />
+                                }
+                              </div>
+                            </span>
+                            {Insights.map((insights, index) => {
 
-                        <NavLink to={route.path} className='sidebar-link '>
-                          <div className="icon">{route.icon}</div>
-                          {isOpen && <motion.div variants={ShowAnimation}
-                            initial='hidden'
-                            animate='show'
-                            esit='hidden'
-                            className="link-text">{route.name}</motion.div>}
+                              return (
+                                <React.Fragment key={index}>
 
-                        </NavLink>
-                  }
-                </React.Fragment>
-              )
-            })
+                                  {insightsToggle && <NavLink to={insights.path} className='sidebar-link inventory'>
+                                    <div className="icon">{insights.icon}</div>
+                                    {isOpen && <motion.div variants={ShowAnimation}
+                                      initial='hidden'
+                                      animate='show'
+                                      esit='hidden'
+                                      className="link-text">{insights.name}</motion.div>}
+                                  </NavLink>}
+                                </React.Fragment>
+                              )
+                            })}</div> :
+
+                          <NavLink to={route.path} className='sidebar-link '>
+                            <div className="icon">{route.icon}</div>
+                            {isOpen && <motion.div variants={ShowAnimation}
+                              initial='hidden'
+                              animate='show'
+                              esit='hidden'
+                              className="link-text">{route.name}</motion.div>}
+
+                          </NavLink>
+                    }
+                  </React.Fragment>
+                )
+              })
+
+              }
+            </section>
+          </motion.div>
+
+
+
+          <main style={isOpen ? mainWidthToggleShow : mainWidthToggleHidden}>
+            <TopBar />
+            <div className='dashboard-pages'> <Outlet /></div>
+          </main>
+
+        </div> :
+
+        /////////////// Disply on Mobile View///////////////////////
+        <div className="mobile-main-container">
+
+          <div className="mobile-top-section">
+            {isOpen && <motion.img src='./logo.png' variants={ShowAnimation}
+              initial='hidden'
+              animate='show'
+              esit='hidden'
+              className='logo' alt=''></motion.img>}
+            <div className="mobile-bars">
+              {mobileView ?<CgClose  onClick={handleMobileView} />:
+              <FaBars onClick={handleMobileView} />}
+            </div>
+          </div>
+          <hr />
+          {mobileView&&<motion.div animate={{
+            width: isOpen ? '230px' : '50px', transition: {
+              duration: 0.5,
+              type: 'spring',
+              damping: 10,
 
             }
-          </section>
-        </motion.div>
-        <main style={isOpen ? mainWidthToggleShow : mainWidthToggleHidden}>
-          <TopBar />
-          <div className='dashboard-pages'> <Outlet /></div>
-        </main>
-      </div>
+          }} className='mobile-sidebar'>
 
+            {/* <div className="mobile-top-section">
+              {isOpen && <motion.img src='./logo.png' variants={ShowAnimation}
+                initial='hidden'
+                animate='show'
+                esit='hidden'
+                className='logo' alt=''></motion.img>}
+              <div className="bars">
+                <FaBars onClick={handleMobileView} />
+              </div>
+            </div>
+            <hr /> */}
+            <section className='routes'>
+              {routes.map((route, index) => {
+                return (
+                  <React.Fragment key={index}>
+                    {
+                      route.name == 'Inventory' ?
+                        <div>
+                          <span className='sidebar-link '>
+                            {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
+                            <div onClick={handleInventoryToggle} className='sidebar-link-dropdown'>
+                              {isOpen && <motion.div variants={ShowAnimation}
+                                initial='hidden'
+                                animate='show'
+                                esit='hidden'
+                                className="link-text ">{route.name}</motion.div>
+                              }
+                              {inventoryToggle ? <FaMinus className='sidebar-link-dropdown-icon' /> :
+                                <FaPlus className='sidebar-link-dropdown-icon' />
+                              }
+                            </div>
+                          </span>
+                          {Inventory.map((inventory, index) => {
+                            return (
+                              <React.Fragment key={index}>
+                                {inventoryToggle && <NavLink to={inventory.path} className='sidebar-link inventory'>
+                                  <div className="icon">{inventory.icon}</div>
+                                  {isOpen && <motion.div variants={ShowAnimation}
+                                    initial='hidden'
+                                    animate='show'
+                                    esit='hidden'
+                                    className="link-text">{inventory.name}</motion.div>}
+                                </NavLink>}
+                              </React.Fragment>
+                            )
+                          })}</div> :
+                        route.name == 'Insights' ?
+                          <div>
+                            <span className='sidebar-link '>
+                              {isOpen && <div onClick={handleInsightsToggle} className="icon">{route.icon}</div>}
+                              <div onClick={handleInsightsToggle} className='sidebar-link-dropdown'>
+                                {isOpen && <motion.div variants={ShowAnimation}
+                                  initial='hidden'
+                                  animate='show'
+                                  esit='hidden'
+                                  className="link-text ">{route.name}</motion.div>
+                                }
+                                {insightsToggle ? <FaMinus className='sidebar-link-dropdown-icon' /> :
+                                  <FaPlus className='sidebar-link-dropdown-icon' />
+                                }
+                              </div>
+                            </span>
+                            {Insights.map((insights, index) => {
+
+                              return (
+                                <React.Fragment key={index}>
+
+                                  {insightsToggle && <NavLink to={insights.path} className='sidebar-link inventory'>
+                                    <div className="icon">{insights.icon}</div>
+                                    {isOpen && <motion.div variants={ShowAnimation}
+                                      initial='hidden'
+                                      animate='show'
+                                      esit='hidden'
+                                      className="link-text">{insights.name}</motion.div>}
+                                  </NavLink>}
+                                </React.Fragment>
+                              )
+                            })}</div> :
+
+                          <NavLink to={route.path} className='sidebar-link '>
+                            <div className="icon">{route.icon}</div>
+                            {isOpen && <motion.div variants={ShowAnimation}
+                              initial='hidden'
+                              animate='show'
+                              esit='hidden'
+                              className="link-text">{route.name}</motion.div>}
+
+                          </NavLink>
+                    }
+                  </React.Fragment>
+                )
+              })
+
+              }
+            </section>
+          </motion.div>}
+
+          <main style={mobileViewDashboar}>
+            <TopBar />
+            <div className='dashboard-pages'> <Outlet /></div>
+          </main>
+
+        </div>
+        /////////////// Disply on Mobile View///////////////////////
+      }
 
     </>
   )
