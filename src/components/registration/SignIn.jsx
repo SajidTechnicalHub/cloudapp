@@ -77,7 +77,7 @@ const SignIn = () => {
             <div className='form-buttom-block'>
               <span className='checkbox-field-label'>Don't have an Account?</span>
               <div className='sign-up-block'>
-                <a href="#" className='sign-up-underline'>Sign up and try it free</a>
+                <a href="#" className='a-underline'>Sign up and try it free</a>
                 <a href="#"><BiArrowBack/>Back To Home</a>
               </div>
             </div>

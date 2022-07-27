@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 
 
-const ForgotPassword = () => {
+const VarificationCode = () => {
 
-    const [btnStatus,  setBtnStatus] = useState(true)
+    const [btnStatus,  setBtnStatus] = useState(false)
 
     const [user, setUser] = useState({
-        email: '',
+       code: '',
     })
     const InputEvent = (e) => {
         const { name, value } = e.target;
@@ -15,14 +15,19 @@ const ForgotPassword = () => {
             return { ...user, [name]: value }
         })
 
+        if(user.code != '' && user.code.length == 5){
+            setBtnStatus(true)
+        }else{
+            setBtnStatus(false)
+        }
     }
     const SubmitEvent = (e) => {
         e.preventDefault()
 
-        setBtnStatus(false) // check send email btn status
+        
 
         setUser({
-            email: '',
+            code: '',
         })
 
 
@@ -39,30 +44,35 @@ const ForgotPassword = () => {
                 <div className="form-right-container">
                     <div className="signin-form-block">
                         <div className="form-top-container">
-                            <img src="./email.png" className='form-logo-img' alt="" />
-                            <span className='form-top-email-info'>Enter the email address to get the verification code to reset your Cloud Insights account password.</span>
-                            <span className='form-top-code-info'>You'll receive an email at your email address that contains your 6-digit verification code.</span>
+                            <img src="./lock.jpg" className='form-logo-img' alt="" />
+                            <br />
+                            <span className='form-top-email-info'>Enter the verification code to reset your Cloud Insights account password.</span>
+                            <span className='form-top-code-info'>You'll receive an email that contains your 6-digit verification code.</span>
                         </div>
                         <form onSubmit={SubmitEvent} className='sign-in-form'>
                             <div className="input-field-block ">
-                                <label htmlFor="email" className="input-field-label">Email<span className='estaric'>*</span></label>
-                                <input type="email"
-                                    name="email"
-                                    value={user.email}
+                                <label htmlFor="code" className="input-field-label">Varification Code<span className='estaric'>*</span></label>
+                                <input type="code"
+                                    name="code"
+                                    value={user.code}
                                     onChange={InputEvent}
                                     required="required"
-                                    placeholder='Email Your Address'
+                                    placeholder='Enter Varification Code'
                                 />
 
                             </div>
                             
                             <div className="form-submit-field ">
-                                {btnStatus == true ?<button type='submit' className='form-submit-btn'>Sign In</button>:
-                                <button type='submit' className='form-submit-btn-status'>Sign In</button>}
+                                {btnStatus == true ?<button type='submit' className='code-varify-btn'>Sign In</button>:
+                                <button disabled type='submit' className='code-unvarify-btn'>Sign In</button>}
                             </div>
-
+                           
+                            
                         </form>
                         <div className='form-buttom-container'>
+                        <div className='form-buttom-block' style={{marginTop:'0px'}}>
+                        <a href="#" className='a-underline'>Didn't received it? Resend Code</a>
+                        </div>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>
                                     <a href="#"><BiArrowBack />Back To Home</a>
@@ -78,4 +88,4 @@ const ForgotPassword = () => {
     )
 }
 
-export default ForgotPassword
+export default VarificationCode
