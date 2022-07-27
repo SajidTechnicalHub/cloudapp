@@ -1,69 +1,92 @@
 import React, { useState } from 'react'
-
+import { BiArrowBack } from 'react-icons/bi';
+import {useNavigate} from "react-router-dom"
 
 const SignIn = () => {
-  const [inputData, setInputData] = useState('')
-  const [input, setInput] = useState({
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
     email: '',
     password: ''
   })
   const InputEvent = (e) => {
     const { name, value } = e.target;
-    setInput(() => {
-      return { ...input, [name]: value }
+    setUser(() => {
+      return { ...user, [name]: value }
     })
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
 
-    setInput({
+    setUser({
       email: '',
       password: ''
     })
 
-
+    navigate('/forgot_password')
 
   }
 
   return (
     <>
-      <div className='container-flue'>
-        <div className="row">
-          <div className="col-lg-6 signin-logo-container">
-            <img src="./logo.png" className='signin-logo' alt="" />
-          </div>
-          <div className="col-lg-6 signin-form-container">
-            <div className="signin-form-block">
-              <span className='signin-form-heading'> Cloud Cloud</span>
 
-              <form onSubmit={SubmitEvent} className=''>
-                <div className="mb-2 orm-field ">
-                  <label htmlFor="email" className="form-label">Email<span className='estaric'>*</span></label>
-                  <input type="email"
-                    name="eamil"
-                    value={input.email}
-                    onChange={InputEvent}
-                    required="required"
-                    placeholder='Email'
-                  />
+      <div className="form-container">
+        <div className="form-left-container">
+          <h1 className='form-right-heading'>Cloud Insights</h1>
+        </div>
+        <div className="form-right-container">
+          <div className="signin-form-block">
+            <span className='form-heading'> Cloud Cloud</span>
 
-                </div>
-                <div className="mb-2 form-field ">
-                  <label htmlFor="password" className="form-label">Password<span className='estaric'>*</span></label>
-                  <input type="password"
-                    name="password"
-                    value={input.password}
-                    onChange={InputEvent}
-                    required="required"
-                    placeholder='Password'
-                  />
+            <form onSubmit={SubmitEvent} className='sign-in-form'>
+              <div className="input-field-block ">
+                <label htmlFor="email" className="input-field-label">Email<span className='estaric'>*</span></label>
+                <input type="email"
+                  name="email"
+                  value={user.email}
+                  onChange={InputEvent}
+                  required="required"
+                  placeholder='Email Address'
+                />
 
-                </div>
-              </form>
+              </div>
+              <div className="input-field-block ">
+                <span className='password-forgot-label-container'>
+                  <label htmlFor="password" className="input-field-label">Password<span className='estaric'>*</span>
+                  </label>
+                  <a href='#'>Forgot Password?</a>
+                </span>
+                <input type="password"
+                  name="password"
+                  value={user.password}
+                  onChange={InputEvent}
+                  required="required"
+                  placeholder='Password'
+                />
+
+              </div>
+              <div className='checkbox-field-block'>
+                <input type="checkbox" className='checkbox-input-field' />
+                <span className='checkbox-field-label'>Remember me</span>
+              </div>
+              <div className="form-submit-field ">
+                <button type='submit' className='form-submit-btn'>Sign In</button>
+              </div>
+
+            </form>
+            <div className='form-buttom-container'>
+            <div className='form-buttom-block'>
+              <span className='checkbox-field-label'>Don't have an Account?</span>
+              <div className='sign-up-block'>
+                <a href="#" className='a-underline'>Sign up and try it free</a>
+                <a href="#"><BiArrowBack/>Back To Home</a>
+              </div>
             </div>
+            </div>
+
           </div>
         </div>
       </div>
+
     </>
   )
 }
