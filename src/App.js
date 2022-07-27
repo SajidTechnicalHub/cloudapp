@@ -11,7 +11,7 @@ import Reports from "./components/dashboard/insights/Reports";
 import AccountManagement from "./components/dashboard/accountManagement/AccountManagement";
 import Aws from "./components/dashboard/inventory/Aws";
 import Azur from "./components/dashboard/inventory/Azur";
-
+import ForgotPassword from "./components/registration/ForgotPassword";
 
 
 
@@ -33,7 +33,7 @@ function App() {
         </Route>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        
+        <Route path="/forgot_password" element={<ForgotPassword />} />
 
       </Routes>
     </div>
