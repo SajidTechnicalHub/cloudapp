@@ -14,6 +14,7 @@ import Azur from "./components/dashboard/inventory/Azur";
 import ForgotPassword from "./components/registration/ForgotPassword";
 import VarificationCode from "./components/registration/VarificationCode";
 import UpdatePassword from "./components/registration/UpdatePassword";
+import RequestSuccess from "./components/registration/RequestSucess";
 
 
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/forgot_password" element={<ForgotPassword />} />
         <Route path="/varification_code" element={<VarificationCode />} />
         <Route path="/update_password" element={<UpdatePassword />} />
+        <Route path="/request_success" element={<RequestSuccess />} />
 
       </Routes>
     </div>

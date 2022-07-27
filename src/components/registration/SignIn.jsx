@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
-
+import {useNavigate} from "react-router-dom"
 
 const SignIn = () => {
-
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -22,7 +22,7 @@ const SignIn = () => {
       password: ''
     })
 
-
+    navigate('/forgot_password')
 
   }
 

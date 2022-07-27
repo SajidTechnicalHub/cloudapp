@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
-
+import {useNavigate} from "react-router-dom"
 
 
 const UpdatePassword = () => {
-
+    const navigate = useNavigate();
     const [passwordMessage, setPasswordMessage] = useState('')
     const [passwordInfo, setPasswordInfo] = useState(false)
 
@@ -36,7 +36,7 @@ const UpdatePassword = () => {
             confirm_password: ''
         })
 
-
+        navigate('/request_success')
 
     }
 
@@ -100,7 +100,7 @@ const UpdatePassword = () => {
                                 </span>
                             </div>
                             <div className="form-submit-field ">
-                                <button type='submit' className='form-submit-btn'>Sign In</button>
+                                <button type='submit' className='form-submit-btn'>Update Password</button>
 
                             </div>
 

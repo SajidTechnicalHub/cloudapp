@@ -467,6 +467,16 @@ main{
     align-items: center;
     gap: 5px;
 }
+.request-submitted{
+    color: #05758a;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.form-logo-sucess{
+    width: 190px;
+    height: 190px;
+    margin-bottom: 20px;
+}
 
 /* //////////////////////////Update Password////////////////////// */
 

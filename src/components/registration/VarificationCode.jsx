@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
-
+import {useNavigate} from "react-router-dom"
 
 const VarificationCode = () => {
-
+    const navigate = useNavigate();
     const [btnStatus,  setBtnStatus] = useState(false)
 
     const [user, setUser] = useState({
@@ -30,7 +30,7 @@ const VarificationCode = () => {
             code: '',
         })
 
-
+        navigate('/update_password')
 
     }
 
@@ -64,7 +64,7 @@ const VarificationCode = () => {
                             
                             <div className="form-submit-field ">
                                 {btnStatus == true ?<button type='submit' className='code-varify-btn'>Sign In</button>:
-                                <button disabled type='submit' className='code-unvarify-btn'>Sign In</button>}
+                                <button disabled type='submit' className='code-unvarify-btn'>Verify</button>}
                             </div>
                            
                             

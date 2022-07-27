@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
+import {useNavigate} from "react-router-dom"
 
 
 const ForgotPassword = () => {
-
+    const navigate = useNavigate();
     const [btnStatus,  setBtnStatus] = useState(true)
 
     const [user, setUser] = useState({
@@ -25,7 +26,7 @@ const ForgotPassword = () => {
             email: '',
         })
 
-
+        navigate('/varification_code')
 
     }
 
@@ -58,7 +59,7 @@ const ForgotPassword = () => {
                             
                             <div className="form-submit-field ">
                                 {btnStatus == true ?<button type='submit' className='form-submit-btn'>Sign In</button>:
-                                <button type='submit' className='form-submit-btn-status'>Sign In</button>}
+                                <button type='submit' className='form-submit-btn-status'>Send Email</button>}
                             </div>
 
                         </form>
