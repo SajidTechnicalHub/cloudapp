@@ -13,6 +13,7 @@ import Aws from "./components/dashboard/inventory/Aws";
 import Azur from "./components/dashboard/inventory/Azur";
 import ForgotPassword from "./components/registration/ForgotPassword";
 import VarificationCode from "./components/registration/VarificationCode";
+import UpdatePassword from "./components/registration/UpdatePassword";
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot_password" element={<ForgotPassword />} />
         <Route path="/varification_code" element={<VarificationCode />} />
+        <Route path="/update_password" element={<UpdatePassword />} />
 
       </Routes>
     </div>
