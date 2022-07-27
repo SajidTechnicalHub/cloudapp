@@ -18,12 +18,15 @@ hr{
 
 }
 main{
-    padding: 20px;
+    /* padding: 0px 20px 20px 20px; */
     background: rgb(236, 230, 230);
     
 }
+.dashboard-pages{
+    padding: 20px;
+}
 .sidebar{
-    background: rgb(0, 7, 61);
+    background: #071330;
     color: white;
     height: 100vh;
     /* min-width: 250px; */
@@ -32,22 +35,26 @@ main{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 65px;
     padding: 15px 10px;
 }
 .logo{
     height: 35px;
     width: 50px;
+    margin-left: -5px ;
 }
 .bars{
     font-size: 16px;
+    cursor: pointer;
 }
 .sidebar-link{
     display: flex;
     gap: 10px;
     color: white;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border-right: 4px solid transparent;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    align-items: center;
     
 }
 .sidebar-link:hover,
@@ -55,20 +62,151 @@ main{
     display: flex;
     gap: 10px;
     color: white;
-    padding: 5px 10px;
+    padding: 10px 10px;
     border-right: 4px solid white;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     background: rgb(45, 51, 89);
+    align-items: center;
 }
+
 
 .link-text{
     white-space: nowrap;
     font-size: 16px;
 }
 .icon{
-    font-size: 16px;
+    font-size: 18px;
+    
 }
 .routes{
     margin-top: 10px;
 }
+.inventory{
+    padding-left: 20px!important;
+    
+}
+.sidebar-link-dropdown{
+    width: 200px;
+    display: flex;
+    justify-content: space-between!important;
+    align-items: center;
+    /* gap: 20px; */
+}
+.sidebar-link-dropdown-icon{
+    cursor: pointer;
+}
+/* ***********************Mobile View**************************** */
+.mobile-main-container{
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+.mobile-top-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 15px 10px;
+    background: #071330;
+}
+.mobile-bars{
+    color: white;
+}
+.mobile-sidebar{
+    background: #071330;
+    color: white;
+    height: calc(100vh - 50px);
+    position: fixed;
+    top: 50px;
+    left: 0;
+    scroll-behavior: auto;
+}
+/* ***********************Mobile View**************************** */
+
 /* //////////////////////////Sidebar////////////////////// */
+
+/* //////////////////////////Top-Bar////////////////////// */
+
+.topbar-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 66px;
+    padding: 15px;
+    color: white;
+}
+.topbar-heading-text{
+    font-size: 20px;
+    color: blue;
+}
+.topbar-subheading-text{
+    font-size: 20px;
+    color: grey;
+}
+.topbar-icons-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.topbar-icons{
+    color: black;
+    cursor: pointer;
+    font-size: 24px;
+}
+@media(max-width:992px){
+    .topbar-container{
+        flex-direction: column!important;
+        line-height: 18px;
+        gap: 5px;
+        margin-bottom: 15px;
+    }
+    .topbar-heading-text{
+        font-size: 16px;
+        color: blue;
+    }
+    .topbar-subheading-text{
+        font-size: 16px;
+        color: grey;
+    }
+}
+
+/* //////////////////////////Top-Bar////////////////////// */
+
+/* //////////////////////////Sign In////////////////////// */
+
+.signin-logo-container{
+    height: 100vh;
+    background: #003d48;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signin-logo{
+    height: 100px;
+    width: 400px;
+}
+.signin-form-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signin-form-block{
+    height: 400px;
+    width: 600px;
+    border: 1px solid black;
+    padding: 20px;
+}
+.signin-form-heading{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    color: #003d48;
+    margin-bottom: 20px;
+    
+}
+.estaric{
+    color: red;
+}
+/* //////////////////////////Sign In////////////////////// */
