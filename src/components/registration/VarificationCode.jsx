@@ -15,7 +15,7 @@ const VarificationCode = () => {
             return { ...user, [name]: value }
         })
 
-        if(user.code != '' && user.code.length == 5){
+        if(user.code != '' && user.code.length >= 5){
             setBtnStatus(true)
         }else{
             setBtnStatus(false)
@@ -57,6 +57,7 @@ const VarificationCode = () => {
                                     value={user.code}
                                     onChange={InputEvent}
                                     required="required"
+                                    autocomplete="off"
                                     placeholder='Enter Varification Code'
                                 />
 

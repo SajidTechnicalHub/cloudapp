@@ -40,6 +40,7 @@ function App() {
         <Route path="/varification_code" element={<VarificationCode />} />
         <Route path="/update_password" element={<UpdatePassword />} />
         <Route path="/request_success" element={<RequestSuccess />} />
+        
 
       </Routes>
     </div>

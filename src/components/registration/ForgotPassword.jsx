@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
-import {useNavigate} from "react-router-dom"
+import {useNavigate, Link} from "react-router-dom"
 
 
 const ForgotPassword = () => {
@@ -66,7 +66,7 @@ const ForgotPassword = () => {
                         <div className='form-buttom-container'>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>
-                                    <a href="#"><BiArrowBack />Back To Home</a>
+                                    <Link to="#"><BiArrowBack />Back To Home</Link>
                                 </div>
                             </div>
                         </div>
