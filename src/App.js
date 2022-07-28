@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="container-flude">
       <Routes>
-        <Route path="cloudapp" element={<DashboardLyout />} >
+        <Route path="/" element={<DashboardLyout />} >
           <Route index element={<Overview />} />
           {/* <Route path="/dashboard_home" element={<DashboardHome />} /> */}
           <Route path="/overview" element={<Overview />} />
