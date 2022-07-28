@@ -1,14 +1,12 @@
 import React from 'react'
 import TopBar from '../header/TopBar'
 
-const Overview = () => {
+const Azure = () => {
   return (
     <>
-    <TopBar subtitle='Overview' />
-    
+    <TopBar subtitle='Azure' />
     </>
-   
   )
 }
 
-export default Overview
+export default Azure

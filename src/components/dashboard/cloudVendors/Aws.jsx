@@ -1,8 +1,11 @@
 import React from 'react'
+import TopBar from '../header/TopBar'
 
 const Aws = () => {
   return (
-    <div>Aws</div>
+    <>
+    <TopBar subtitle='AWS' />
+    </>
   )
 }
 

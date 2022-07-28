@@ -1,14 +1,12 @@
 import React from 'react'
 import TopBar from '../header/TopBar'
 
-const Overview = () => {
+const Gcp = () => {
   return (
     <>
-    <TopBar subtitle='Overview' />
-    
+    <TopBar subtitle='GCP' />
     </>
-   
   )
 }
 
-export default Overview
+export default Gcp

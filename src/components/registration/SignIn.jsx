@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
-import {useNavigate} from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const SignIn = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState({
+  const defaultUserValues = {
     email: '',
     password: ''
-  })
+  }
+  const navigate = useNavigate();
+  const [user, setUser] = useState(defaultUserValues)
   const InputEvent = (e) => {
     const { name, value } = e.target;
     setUser(() => {
@@ -16,16 +17,10 @@ const SignIn = () => {
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
-
-    setUser({
-      email: '',
-      password: ''
-    })
-
+    useState(defaultUserValues)
     navigate('/forgot_password')
 
   }
-
   return (
     <>
 
@@ -74,13 +69,13 @@ const SignIn = () => {
 
             </form>
             <div className='form-buttom-container'>
-            <div className='form-buttom-block'>
-              <span className='checkbox-field-label'>Don't have an Account?</span>
-              <div className='sign-up-block'>
-                <a href="#" className='a-underline'>Sign up and try it free</a>
-                <a href="#"><BiArrowBack/>Back To Home</a>
+              <div className='form-buttom-block'>
+                <span className='checkbox-field-label'>Don't have an Account?</span>
+                <div className='sign-up-block'>
+                  <Link to="/signup" className='a-underline'>Sign up and try it free</Link>
+                  <a href="#"><BiArrowBack />Back To Home</a>
+                </div>
               </div>
-            </div>
             </div>
 
           </div>

@@ -5,20 +5,23 @@ import {FaAdversal} from 'react-icons/fa';
 
 
 
-const TopBar = () => {
+
+const TopBar = (props) => {
   return (
     <>
     <div className='topbar-container'>
         <div className="topbar-heading">
             <span className="topbar-heading-text">
-                Cloud-Insights Inventory <span className='topbar-subheading-text'> / Access Control Lists</span>
+                Cloud Insights: {props.subtitle}
             </span>
 
         </div>
         <div className="topbar-icons-block">
-            <GiInsectJaws className='topbar-icons'/>
-            <BiHelpCircle className='topbar-icons'/>
-            <FaAdversal className='topbar-icons'/>
+            <GiInsectJaws className='topbar-icons-3'/>
+            <BiHelpCircle className='topbar-icons-2'/>
+            <span className="topbar-icon-1">
+              <span className="topbar-icon-text">AS</span>
+            </span>
 
         </div>
     </div>

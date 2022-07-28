@@ -1,8 +1,11 @@
 import React from 'react'
+import TopBar from '../header/TopBar'
 
 const Summary = () => {
   return (
-    <div>Summary</div>
+    <>
+    <TopBar subtitle='Summary' />
+    </>
   )
 }
 
