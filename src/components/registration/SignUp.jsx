@@ -7,43 +7,32 @@ import { Link, useNavigate } from "react-router-dom"
 const SignUp = () => {
   const navigate = useNavigate();
   const [passwordInfo, setPasswordInfo] = useState(false)
-
-  const [user, setUser] = useState({
+  const defaultUserValues = {
     fname: '',
     lname: '',
     company_name: '',
     company_email: '',
     password: '',
     lname: ''
-  })
+  }
+  const [user, setUser] = useState(defaultUserValues)
   const InputEvent = (e) => {
     const { name, value } = e.target;
     setUser(() => {
       return { ...user, [name]: value }
     })
 
-    if(user.password == ''){
+    if (user.password == '') {
       setPasswordInfo(false)
-    }else{
+    } else {
       setPasswordInfo(true)
     }
-    
+
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
-
-
-    setUser({
-      fname: '',
-      lname: '',
-      company_name: '',
-      company_email: '',
-      password: '',
-      lname: ''
-    })
-
+    setUser(defaultUserValues)
     // navigate('/request_success')
-
   }
 
   return (
@@ -121,7 +110,7 @@ const SignUp = () => {
                 />
 
               </div>
-             
+
 
               <div className="input-field-block ">
                 <label htmlFor="password" className="input-field-label">Password<span className='estaric'>*</span></label>
@@ -137,12 +126,12 @@ const SignUp = () => {
               <div className='checkbox-field-block'>
                 <input type="checkbox" className='checkbox-input-field' />
                 <span className='form-privacy-policy'>
-                  <span>I've read agree to the </span> 
+                  <span>I've read agree to the </span>
                   <Link to='#' className='a-underline a-color'>Cloud Insights Privacy Policy</Link>
-                    <span> lanch and the </span>  
-                    <Link to='#' className='a-underline a-color'>Cloud Insights End User Agreement</Link>
-                    <span> lanch.</span>  
-                  </span>
+                  <span> lanch and the </span>
+                  <Link to='#' className='a-underline a-color'>Cloud Insights End User Agreement</Link>
+                  <span> lanch.</span>
+                </span>
               </div>
               <div className="form-submit-field ">
                 <button type='submit' className='form-submit-btn'>Sign Up</button>
