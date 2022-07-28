@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ const SignIn = () => {
             <div className='form-buttom-block'>
               <span className='checkbox-field-label'>Don't have an Account?</span>
               <div className='sign-up-block'>
-                <a href="#" className='a-underline'>Sign up and try it free</a>
+                <Link to="/signup" className='a-underline'>Sign up and try it free</Link>
                 <a href="#"><BiArrowBack/>Back To Home</a>
               </div>
             </div>

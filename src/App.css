@@ -24,14 +24,14 @@ hr{
 }
 main{
     /* padding: 0px 20px 20px 20px; */
-    background: rgb(236, 230, 230);
+    background: rgb(252, 249, 249);
     
 }
 .dashboard-pages{
     padding: 20px;
 }
 .sidebar{
-    background: #071330;
+    background: #003d48;
     color: white;
     height: 100vh;
     /* min-width: 250px; */
@@ -70,7 +70,7 @@ main{
     padding: 10px 10px;
     border-right: 4px solid white;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    background: rgb(45, 51, 89);
+    background: #144b55;
     align-items: center;
 }
 
@@ -100,6 +100,7 @@ main{
 .sidebar-link-dropdown-icon{
     cursor: pointer;
 }
+
 /* ***********************Mobile View**************************** */
 /* .mobile-main-container{
     display: flex;
@@ -135,45 +136,49 @@ main{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgb(234, 242, 245);
     height: 66px;
     padding: 15px;
     color: white;
 }
 .topbar-heading-text{
-    font-size: 20px;
-    color: blue;
-}
-.topbar-subheading-text{
-    font-size: 20px;
+    font-size: 16px;
     color: grey;
 }
+
 .topbar-icons-block{
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
-.topbar-icons{
+.topbar-icons-3{
     color: black;
     cursor: pointer;
     font-size: 24px;
 }
-@media(max-width:992px){
-    .topbar-container{
-        flex-direction: column!important;
-        line-height: 18px;
-        gap: 5px;
-        margin-bottom: 15px;
-    }
-    .topbar-heading-text{
-        font-size: 16px;
-        color: blue;
-    }
-    .topbar-subheading-text{
-        font-size: 16px;
-        color: grey;
-    }
+.topbar-icons-2{
+    color: blue;
+    cursor: pointer;
+    font-size: 24px;
 }
+.topbar-icon-1{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: orange;
+    color: white;
+    border-radius: 50%;
+}
+.topbar-icon-text{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 
 /* //////////////////////////Top-Bar////////////////////// */
 
@@ -508,7 +513,22 @@ main{
         color: #fff;
         
     }
+    .topbar-container{
+        flex-direction: column!important;
+        line-height: 18px;
+        gap: 5px;
+        margin-bottom: 15px;
+    }
+    .topbar-heading-text{
+        font-size: 16px;
+        color: blue;
+    }
+    .topbar-subheading-text{
+        font-size: 16px;
+        color: grey;
+    }
 }
+
 @media(max-width:350px){
  
     .input-field-block input{

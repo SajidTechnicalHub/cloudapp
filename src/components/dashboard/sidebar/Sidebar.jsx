@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { motion } from "framer-motion"
 import { NavLink, Outlet } from 'react-router-dom'
-import {
-  FaHome, FaBars, FaPlus, FaMinus, FaCloudflare,
-  FaDeezer, FaStore, FaAws, FaJsfiddle
-}
-  from 'react-icons/fa';
-import { MdManageAccounts, MdOutlineInventory, MdOutlineSummarize, MdOutlineReportProblem } from 'react-icons/md';
+import {FaGoogleDrive, FaBars, FaPlus, FaMinus, FaAws} from 'react-icons/fa';
+import { MdOutlineManageAccounts, MdDashboard, MdOutlineInventory } from 'react-icons/md';
 import { SiMicrosoftazure } from 'react-icons/si';
-import { FcDataConfiguration } from 'react-icons/fc';
+import { BsClouds } from 'react-icons/bs';
 import { CgClose } from 'react-icons/cg';
+import { BiCloudUpload } from 'react-icons/bi';
+import { TbReport } from 'react-icons/tb';
 import TopBar from '../header/TopBar';
 import useWindowDimensions from '../../useWindowDimensions';
 
@@ -18,59 +16,61 @@ import useWindowDimensions from '../../useWindowDimensions';
 
 const routes = [
   {
-    path: '/dashboard_home',
-    name: 'Cloud-Insights',
-    icon: <FaCloudflare />
-  },
-  {
     path: '/overview',
-    name: 'Overview',
-    icon: <FaDeezer />
-  },
-  {
-    path: '/inventory',
-    name: 'Inventory',
-    icon: <MdOutlineInventory />
-  },
-  {
-    path: '/insights',
-    name: 'Insights',
-    icon: <FaJsfiddle />
+    name: 'Dashboard',
+    icon: <MdDashboard />
   },
   {
     path: '/account-management',
-    name: 'Account Management',
-    icon: <MdManageAccounts />
+    name: 'Cloud Account Management',
+    icon: <MdOutlineManageAccounts />
   },
+  {
+    path: '',
+    name: 'Cloud Vendors',
+    icon: <BsClouds />
+  },
+  {
+    path: '',
+    name: 'Cloud Insights',
+    icon: <BiCloudUpload />
+  },
+  {
+    path: '/signin',
+    name: 'Sign In',
+    icon: <BiCloudUpload />
+  },
+  
 ]
-const Inventory = [
+const CloudVender = [
+  {
+    path: '/Azure',
+    name: 'Azure Inventory',
+    icon: <SiMicrosoftazure />
+  },
   {
     path: '/AWS',
-    name: 'AWS',
+    name: 'AWS Inventory',
     icon: <FaAws />
   },
   {
-    path: '/Azure',
-    name: 'Azure',
-    icon: <SiMicrosoftazure />
+    path: '/GCP',
+    name: 'GCP Inventory',
+    icon: <FaGoogleDrive />
   },
+  
 
 ]
-const Insights = [
+const CloudInsights = [
   {
     path: '/summary',
     name: 'Summary',
-    icon: <MdOutlineSummarize />
-  },
-  {
-    path: '/configuration',
-    name: 'Configuration',
-    icon: <FcDataConfiguration />
+    icon: <MdOutlineInventory />
   },
   {
     path: '/reports',
     name: 'Reports',
-    icon: <MdOutlineReportProblem />
+    icon: <TbReport/>
   },
 
 ]
@@ -129,7 +129,7 @@ const Sidebar = () => {
         <div className="main-container">
 
           <motion.div animate={{
-            width: isOpen ? '230px' : '50px', transition: {
+            width: isOpen ? '250px' : '50px', transition: {
               duration: 0.5,
               type: 'spring',
               damping: 10,
@@ -153,7 +153,7 @@ const Sidebar = () => {
                 return (
                   <React.Fragment key={index}>
                     {
-                      route.name == 'Inventory' ?
+                      route.name == 'Cloud Vendors' ?
                         <div>
                           <span className='sidebar-link '>
                             {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
@@ -169,7 +169,7 @@ const Sidebar = () => {
                               }
                             </div>
                           </span>
-                          {Inventory.map((inventory, index) => {
+                          {CloudVender.map((inventory, index) => {
                             return (
                               <React.Fragment key={index}>
                                 {inventoryToggle && <NavLink to={inventory.path} className='sidebar-link inventory'>
@@ -183,7 +183,7 @@ const Sidebar = () => {
                               </React.Fragment>
                             )
                           })}</div> :
-                        route.name == 'Insights' ?
+                        route.name == 'Cloud Insights' ?
                           <div>
                             <span className='sidebar-link '>
                               {isOpen && <div onClick={handleInsightsToggle} className="icon">{route.icon}</div>}
@@ -199,7 +199,7 @@ const Sidebar = () => {
                                 }
                               </div>
                             </span>
-                            {Insights.map((insights, index) => {
+                            {CloudInsights.map((insights, index) => {
 
                               return (
                                 <React.Fragment key={index}>
@@ -237,8 +237,8 @@ const Sidebar = () => {
 
 
           <main style={isOpen ? mainWidthToggleShow : mainWidthToggleHidden}>
-            <TopBar />
-            <div className='dashboard-pages'> <Outlet /></div>
+            {/* <TopBar /> */}
+             <Outlet />
           </main>
 
         </div> :
@@ -259,7 +259,7 @@ const Sidebar = () => {
           </div>
           <hr />
           {mobileView&&<motion.div animate={{
-            width: isOpen ? '230px' : '50px', transition: {
+            width: isOpen ? '250px' : '50px', transition: {
               duration: 0.5,
               type: 'spring',
               damping: 10,
@@ -283,7 +283,7 @@ const Sidebar = () => {
                 return (
                   <React.Fragment key={index}>
                     {
-                      route.name == 'Inventory' ?
+                      route.name == 'Cloud Vendors' ?
                         <div>
                           <span className='sidebar-link '>
                             {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
@@ -299,7 +299,7 @@ const Sidebar = () => {
                               }
                             </div>
                           </span>
-                          {Inventory.map((inventory, index) => {
+                          {CloudVender.map((inventory, index) => {
                             return (
                               <React.Fragment key={index}>
                                 {inventoryToggle && <NavLink to={inventory.path} className='sidebar-link inventory'>
@@ -313,7 +313,7 @@ const Sidebar = () => {
                               </React.Fragment>
                             )
                           })}</div> :
-                        route.name == 'Insights' ?
+                        route.name == 'Cloud Insights' ?
                           <div>
                             <span className='sidebar-link '>
                               {isOpen && <div onClick={handleInsightsToggle} className="icon">{route.icon}</div>}
@@ -329,7 +329,7 @@ const Sidebar = () => {
                                 }
                               </div>
                             </span>
-                            {Insights.map((insights, index) => {
+                            {CloudInsights.map((insights, index) => {
 
                               return (
                                 <React.Fragment key={index}>

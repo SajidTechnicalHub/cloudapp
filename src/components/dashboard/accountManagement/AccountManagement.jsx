@@ -1,8 +1,12 @@
 import React from 'react'
+import TopBar from '../header/TopBar'
 
 const AccountManagement = () => {
   return (
-    <div>AccountManagement</div>
+    <>
+    <TopBar subtitle='Cloud Account Management' />
+    </>
+    
   )
 }
 

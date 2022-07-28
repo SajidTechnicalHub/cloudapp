@@ -1,8 +1,11 @@
 import React from 'react'
+import TopBar from '../header/TopBar'
 
 const Reports = () => {
   return (
-    <div>Reports</div>
+    <>
+    <TopBar subtitle='Reports' />
+    </>
   )
 }
 

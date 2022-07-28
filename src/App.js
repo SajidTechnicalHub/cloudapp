@@ -5,16 +5,17 @@ import DashboardLyout from "./components/dashboard/dashboardLayout/DashboardLyou
 import SignIn from "./components/registration/SignIn";
 import SignUp from "./components/registration/SignUp";
 import Overview from "./components/dashboard/overview/Overview";
-import Summary from "./components/dashboard/insights/Summary";
-import Configuration from "./components/dashboard/insights/Configuration";
-import Reports from "./components/dashboard/insights/Reports";
+import Summary from "./components/dashboard/cloudInsights/Summary";
+import Reports from "./components/dashboard/cloudInsights/Reports";
 import AccountManagement from "./components/dashboard/accountManagement/AccountManagement";
-import Aws from "./components/dashboard/inventory/Aws";
-import Azur from "./components/dashboard/inventory/Azur";
+import Aws from './components/dashboard/cloudVendors/Aws'
+import Azure from './components/dashboard/cloudVendors/Azure'
+import Gcp from "./components/dashboard/cloudVendors/Gcp";
 import ForgotPassword from "./components/registration/ForgotPassword";
 import VarificationCode from "./components/registration/VarificationCode";
 import UpdatePassword from "./components/registration/UpdatePassword";
 import RequestSuccess from "./components/registration/RequestSucess";
+
 
 
 
@@ -23,13 +24,13 @@ function App() {
     <div className="container-flude">
       <Routes>
         <Route path="/" element={<DashboardLyout />} >
-          <Route index element={<DashboardHome />} />
-          <Route path="/dashboard_home" element={<DashboardHome />} />
+          <Route index element={<Overview />} />
+          {/* <Route path="/dashboard_home" element={<DashboardHome />} /> */}
           <Route path="/overview" element={<Overview />} />
           <Route path="/AWS" element={<Aws/>} />
-          <Route path="/Azure" element={<Azur/>} />
+          <Route path="/Azure" element={<Azure/>} />
+          <Route path="/GCP" element={<Gcp/>} />
           <Route path="/summary" element={<Summary/>} />
-          <Route path="/configuration" element={<Configuration/>} />
           <Route path="/reports" element={<Reports/>} />
           <Route path="/account-management" element={<AccountManagement/>} />
           

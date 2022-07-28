@@ -117,7 +117,7 @@ const SignUp = () => {
                   value={user.company_email}
                   onChange={InputEvent}
                   required="required"
-                  placeholder='Company Name'
+                  placeholder='Company Email'
                 />
 
               </div>
