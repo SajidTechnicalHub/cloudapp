@@ -22,7 +22,7 @@ import RequestSuccess from "./components/registration/RequestSucess";
 function App() {
   return (
     <div className="container-flude">
-      <SignIn />
+    
       <Routes>
         <Route path="/" element={<DashboardLyout />} >
           <Route index element={<Overview />} />
