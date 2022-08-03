@@ -16,12 +16,12 @@ import useWindowDimensions from '../../useWindowDimensions';
 
 const routes = [
   {
-    path: '/overview',
+    path: 'cloudapp/overview',
     name: 'Dashboard',
     icon: <MdDashboard />
   },
   {
-    path: '/account-management',
+    path: 'cloudapp/account-management',
     name: 'Cloud Account Management',
     icon: <MdOutlineManageAccounts />
   },
@@ -44,17 +44,17 @@ const routes = [
 ]
 const CloudVender = [
   {
-    path: '/Azure',
+    path: 'cloudapp/Azure',
     name: 'Azure Inventory',
     icon: <SiMicrosoftazure />
   },
   {
-    path: '/AWS',
+    path: 'cloudapp/AWS',
     name: 'AWS Inventory',
     icon: <FaAws />
   },
   {
-    path: '/GCP',
+    path: 'cloudapp/GCP',
     name: 'GCP Inventory',
     icon: <FaGoogleDrive />
   },
@@ -63,12 +63,12 @@ const CloudVender = [
 ]
 const CloudInsights = [
   {
-    path: '/summary',
+    path: 'cloudapp/summary',
     name: 'Summary',
     icon: <MdOutlineInventory />
   },
   {
-    path: '/reports',
+    path: 'cloudapp/reports',
     name: 'Reports',
     icon: <TbReport/>
   },
@@ -138,11 +138,11 @@ const Sidebar = () => {
           }} className='sidebar'>
 
             <div className="top-section">
-              {isOpen && <motion.img src='./logo.png' variants={ShowAnimation}
+              {isOpen && <motion.h1  variants={ShowAnimation}
                 initial='hidden'
                 animate='show'
                 esit='hidden'
-                className='logo' alt=''></motion.img>}
+                className='logo' >Cloud Insights</motion.h1>}
               <div className="bars">
                 <FaBars onClick={toggle} />
               </div>
@@ -247,11 +247,11 @@ const Sidebar = () => {
         <div className="mobile-main-container">
 
           <div className="mobile-top-section">
-            {isOpen && <motion.img src='./logo.png' variants={ShowAnimation}
+            {isOpen && <motion.h1  variants={ShowAnimation}
               initial='hidden'
               animate='show'
               esit='hidden'
-              className='logo' alt=''></motion.img>}
+              className='logo'>Cloud Insights</motion.h1>}
             <div className="mobile-bars">
               {mobileView ?<CgClose  onClick={handleMobileView} />:
               <FaBars onClick={handleMobileView} />}
@@ -266,18 +266,6 @@ const Sidebar = () => {
 
             }
           }} className='mobile-sidebar'>
-
-            {/* <div className="mobile-top-section">
-              {isOpen && <motion.img src='./logo.png' variants={ShowAnimation}
-                initial='hidden'
-                animate='show'
-                esit='hidden'
-                className='logo' alt=''></motion.img>}
-              <div className="bars">
-                <FaBars onClick={handleMobileView} />
-              </div>
-            </div>
-            <hr /> */}
             <section className='routes'>
               {routes.map((route, index) => {
                 return (
@@ -365,7 +353,7 @@ const Sidebar = () => {
           </motion.div>}
 
           <main style={mobileViewDashboar}>
-            <TopBar />
+           
             <div className='dashboard-pages'> <Outlet /></div>
           </main>
 

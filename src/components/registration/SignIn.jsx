@@ -9,6 +9,7 @@ const SignIn = () => {
   }
   const navigate = useNavigate();
   const [user, setUser] = useState(defaultUserValues)
+  
   const InputEvent = (e) => {
     const { name, value } = e.target;
     setUser(() => {
@@ -17,7 +18,7 @@ const SignIn = () => {
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
-    useState(defaultUserValues)
+    // useState(defaultUserValues)
     navigate('/forgot_password')
 
   }

@@ -57,7 +57,7 @@ const VarificationCode = () => {
                                     value={user.code}
                                     onChange={InputEvent}
                                     required="required"
-                                    autocomplete="off"
+                                    autoComplete="off"
                                     placeholder='Enter Varification Code'
                                 />
 

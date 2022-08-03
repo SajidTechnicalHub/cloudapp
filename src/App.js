@@ -24,16 +24,16 @@ function App() {
     <div className="container-flude">
     
       <Routes>
-        <Route path="/" element={<DashboardLyout />} >
+        <Route path="cloudapp" element={<DashboardLyout />} >
           <Route index element={<Overview />} />
           {/* <Route path="/dashboard_home" element={<DashboardHome />} /> */}
-          <Route path="/overview" element={<Overview />} />
-          <Route path="/AWS" element={<Aws/>} />
-          <Route path="/Azure" element={<Azure/>} />
-          <Route path="/GCP" element={<Gcp/>} />
-          <Route path="/summary" element={<Summary/>} />
-          <Route path="/reports" element={<Reports/>} />
-          <Route path="/account-management" element={<AccountManagement/>} />
+          <Route path="cloudapp/overview" element={<Overview />} />
+          <Route path="cloudapp/AWS" element={<Aws/>} />
+          <Route path="cloudapp/Azure" element={<Azure/>} />
+          <Route path="cloudapp/GCP" element={<Gcp/>} />
+          <Route path="cloudapp/summary" element={<Summary/>} />
+          <Route path="cloudapp/reports" element={<Reports/>} />
+          <Route path="cloudapp/account-management" element={<AccountManagement/>} />
           
         </Route>
         <Route path="/signin" element={<SignIn />} />

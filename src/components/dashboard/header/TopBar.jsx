@@ -1,5 +1,5 @@
 import React from 'react'
-import {BiHelpCircle} from 'react-icons/bi';
+import {BiHelpCircle, BiSupport} from 'react-icons/bi';
 import {GiInsectJaws} from 'react-icons/gi';
 import {FaAdversal} from 'react-icons/fa';
 
@@ -17,7 +17,7 @@ const TopBar = (props) => {
 
         </div>
         <div className="topbar-icons-block">
-            <GiInsectJaws className='topbar-icons-3'/>
+            <BiSupport className='topbar-icons-3'/>
             <BiHelpCircle className='topbar-icons-2'/>
             <span className="topbar-icon-1">
               <span className="topbar-icon-text">AS</span>
@@ -25,7 +25,7 @@ const TopBar = (props) => {
 
         </div>
     </div>
-    <hr />
+    <hr className='topbar-line' />
     </>  
   )
 }
