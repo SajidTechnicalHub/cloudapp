@@ -554,7 +554,7 @@ main{
 @media(max-width:992px){
     .form-container{
         flex-direction: column!important;
-    
+        padding: 5px;
     }
     
     .form-right-heading{   
@@ -563,9 +563,9 @@ main{
         
         
     }
-    /* .form-left-container{
-        display: none;
-    } */
+    .form-left-container{
+        display: none!important;
+    }
     .form-right-container{
        margin-top: 20px;
     }
@@ -597,13 +597,16 @@ main{
  
     .input-field-block input{
         padding: 5px;
-        width: 300px!important;
+        width: 295px!important;
         padding-left: 15px;
         
         
      }
+     .form-top-container{
+        width: 325px!important;
+     }
      .form-submit-field{
-        width: 313px;
+        width: 308px;
     }
     .form-buttom-block{
         width: 305px!important;
@@ -623,8 +626,8 @@ main{
     .password-info-container{
     
         position: absolute;
-        top: 400px;
-        left: 0px;
+        top: 180px;
+        left: 10px;
         
     }
 }
