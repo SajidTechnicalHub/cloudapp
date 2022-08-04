@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { Link, useNavigate } from "react-router-dom"
+import { AiOutlineClose } from 'react-icons/ai';
 
 
 const SignUp = () => {
@@ -22,17 +23,39 @@ const SignUp = () => {
       return { ...user, [name]: value }
     })
 
-    if (user.password == '') {
-      setPasswordInfo(false)
-    } else {
+    if (user.password.length <= 1) {
       setPasswordInfo(true)
     }
 
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
-    setUser(defaultUserValues)
-    // navigate('/request_success')
+
+    fetch("http://localhost:3001/signup", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          email: user.company_email,
+          password: user.password,
+        },
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log(res.headers.get("Authorization"));
+          localStorage.setItem("token", res.headers.get("Authorization"));
+          return res.json();
+        } else {
+          throw new Error(res);
+        }
+      })
+      .then((json) => console.dir(json))
+      .catch((err) => console.error(err));
+    // setUser(defaultUserValues)
+    navigate('/request_success')
   }
 
   return (
@@ -43,23 +66,26 @@ const SignUp = () => {
           <h1 className='form-right-heading'>Cloud Insights</h1>
         </div>
         <div className="form-right-container">
+          < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
           <div className="signin-form-block">
             <span className='form-heading'> Cloud Cloud Cloud</span>
             {passwordInfo && <div className="password-info-container">
+
+              <AiOutlineClose onClick={(e) => setPasswordInfo(false)} className='password-info-close-icon' />
               <span className="password-info-block">
-                <HiOutlineCheckCircle />
+                <HiOutlineCheckCircle className='password-info-icon' />
                 <span className='password-info'>Shoudl be atleast 8 character long.</span>
               </span>
               <span className="password-info-block">
-                <HiOutlineCheckCircle />
+                <HiOutlineCheckCircle className='password-info-icon' />
                 <span className='password-info'>Should contain atleast one special character.</span>
               </span>
               <span className="password-info-block">
-                <HiOutlineCheckCircle />
+                <HiOutlineCheckCircle className='password-info-icon' />
                 <span className='password-info'>Shoudl contain atleast uppercase.</span>
               </span>
               <span className="password-info-block">
-                <HiOutlineCheckCircle />
+                <HiOutlineCheckCircle className='password-info-icon' />
                 <span className='password-info'>Shoudl contain atleast one number.</span>
               </span>
             </div>}

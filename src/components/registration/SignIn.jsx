@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { Link, useNavigate } from "react-router-dom"
-
+import axios from 'axios';
 const SignIn = () => {
-  const defaultUserValues = {
+
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
     email: '',
     password: ''
-  }
-  const navigate = useNavigate();
-  const [user, setUser] = useState(defaultUserValues)
-  
+  })
+
   const InputEvent = (e) => {
     const { name, value } = e.target;
     setUser(() => {
@@ -18,7 +18,8 @@ const SignIn = () => {
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
-    // useState(defaultUserValues)
+    
+  
     navigate('/forgot_password')
 
   }

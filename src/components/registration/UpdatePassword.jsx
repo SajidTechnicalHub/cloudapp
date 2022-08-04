@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
 import {useNavigate} from "react-router-dom"
-
-
+import lockImg from '../images/lock.jpg'
+import { AiOutlineClose } from 'react-icons/ai';
 const UpdatePassword = () => {
     const navigate = useNavigate();
     const [passwordMessage, setPasswordMessage] = useState('')
@@ -19,7 +19,9 @@ const UpdatePassword = () => {
             return { ...user, [name]: value }
         })
 
-        setPasswordInfo(true)
+        if (user.password.length <= 1) {
+            setPasswordInfo(true)
+          }
     }
     const SubmitEvent = (e) => {
         e.preventDefault()
@@ -48,29 +50,31 @@ const UpdatePassword = () => {
                     <h1 className='form-right-heading'>Cloud Insights</h1>
                 </div>
                 <div className="form-right-container">
+                < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
                     <div className="signin-form-block">
                         <div className="form-top-container">
-                            <img src="./lock.jpg" className='form-logo-img' alt="" />
+                            <img src={lockImg} className='form-logo-img' alt="" />
                             <br />
                             <span className='update-password-heading'> Update your password</span>
                             <span className='form-top-email-info'>Create a new password for your Cloud insights account. So, you can login to your account.</span>
 
                         </div>
                         {passwordInfo && <div className="password-info-container">
+                        <AiOutlineClose onClick={(e)=>setPasswordInfo(false)} className='password-info-close-icon'/>
                             <span className="password-info-block">
-                                <HiOutlineCheckCircle />
+                                <HiOutlineCheckCircle className='password-info-icon' />
                                 <span className='password-info'>Shoudl be atleast 8 character long.</span>
                             </span>
                             <span className="password-info-block">
-                                <HiOutlineCheckCircle />
+                                <HiOutlineCheckCircle className='password-info-icon' />
                                 <span className='password-info'>Should contain atleast one special character.</span>
                             </span>
                             <span className="password-info-block">
-                                <HiOutlineCheckCircle />
+                                <HiOutlineCheckCircle className='password-info-icon' />
                                 <span className='password-info'>Shoudl contain atleast uppercase.</span>
                             </span>
                             <span className="password-info-block">
-                                <HiOutlineCheckCircle />
+                                <HiOutlineCheckCircle className='password-info-icon' />
                                 <span className='password-info'>Shoudl contain atleast one number.</span>
                             </span>
                         </div>}

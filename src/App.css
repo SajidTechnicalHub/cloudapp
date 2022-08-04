@@ -484,6 +484,8 @@ main{
     gap: 5px;
     margin-bottom: 10px;
     padding: 5px;
+    padding-top: 15px;
+    padding-right: 5px;
     position: absolute;
     top: 400px;
     left: 540px;
@@ -500,6 +502,10 @@ main{
     align-items: center;
     gap: 5px;
 }
+.password-info-icon{
+    min-height: 16px;
+    min-width: 16px;
+}
 .request-submitted{
     color: #05758a;
     font-size: 18px;
@@ -509,6 +515,36 @@ main{
     width: 190px;
     height: 190px;
     margin-bottom: 20px;
+}
+.password-info-close-icon{
+    font-size: 16px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+}
+.password-info-close-icon:hover{
+    font-size: 16px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: #003d48;
+    cursor: pointer;
+}
+.form-close-window-icon{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.form-close-window-icon:hover{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #003d48;
 }
 
 /* //////////////////////////Update Password////////////////////// */

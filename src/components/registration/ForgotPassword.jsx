@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import {useNavigate, Link} from "react-router-dom"
-
-
+import emailImg from '../images/email.png'
+import { AiOutlineClose } from 'react-icons/ai';
 const ForgotPassword = () => {
     const navigate = useNavigate();
     const [btnStatus,  setBtnStatus] = useState(true)
@@ -38,9 +38,10 @@ const ForgotPassword = () => {
                     <h1 className='form-right-heading'>Cloud Insights</h1>
                 </div>
                 <div className="form-right-container">
+                < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
                     <div className="signin-form-block">
                         <div className="form-top-container">
-                            <img src="./email.png" className='form-logo-img' alt="" />
+                            <img src={emailImg} className='form-logo-img' alt="" />
                             <span className='form-top-email-info'>Enter the email address to get the verification code to reset your Cloud Insights account password.</span>
                             <span className='form-top-code-info'>You'll receive an email at your email address that contains your 6-digit verification code.</span>
                         </div>

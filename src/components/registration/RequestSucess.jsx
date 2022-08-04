@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import {useNavigate} from "react-router-dom"
-
+import successImg from '../images/success-icon.png'
 const RequestSuccess = () => {
     const navigate = useNavigate();
     const SubmitEvent = (e) => {
@@ -18,7 +18,7 @@ const RequestSuccess = () => {
                 <div className="form-right-container">
                     <div className="signin-form-block">
                         <div className="form-top-container">
-                            <img src="./success-icon.png" className='form-logo-sucess' alt="" />
+                            <img src={successImg} className='form-logo-sucess' alt="" />
                             <span className='request-submitted' >Request Submitted Successfully</span>
                             <span className='form-top-code-info'>Your password has been updated successfully.</span>
                         </div>

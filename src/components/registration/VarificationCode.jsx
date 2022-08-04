@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import {useNavigate} from "react-router-dom"
+import lockImg from '../images/lock.jpg'
+import { AiOutlineClose } from 'react-icons/ai';
 
 const VarificationCode = () => {
     const navigate = useNavigate();
@@ -42,9 +44,10 @@ const VarificationCode = () => {
                     <h1 className='form-right-heading'>Cloud Insights</h1>
                 </div>
                 <div className="form-right-container">
+                    < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
                     <div className="signin-form-block">
                         <div className="form-top-container">
-                            <img src="./lock.jpg" className='form-logo-img' alt="" />
+                            <img src={lockImg} className='form-logo-img' alt="" />
                             <br />
                             <span className='form-top-email-info'>Enter the verification code to reset your Cloud Insights account password.</span>
                             <span className='form-top-code-info'>You'll receive an email that contains your 6-digit verification code.</span>
