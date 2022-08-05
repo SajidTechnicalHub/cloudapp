@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BiArrowBack } from 'react-icons/bi';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { Link, useNavigate } from "react-router-dom"
 import { AiOutlineClose } from 'react-icons/ai';
@@ -7,58 +6,70 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 const SignUp = () => {
   const navigate = useNavigate();
+
+  const [passwordLength, setPasswordLength] = useState('')
   const [passwordInfo, setPasswordInfo] = useState(false)
-  const defaultUserValues = {
+
+  const [user, setUser] = useState({
     fname: '',
     lname: '',
     company_name: '',
     company_email: '',
     password: '',
-    
-  }
-  const [user, setUser] = useState(defaultUserValues)
+
+  })
   const InputEvent = (e) => {
     const { name, value } = e.target;
     setUser(() => {
       return { ...user, [name]: value }
     })
 
-    if (user.password.length <= 1) {
+    if (user.password.length >= 1) {
       setPasswordInfo(true)
     }
-
+    console.log(user.password.length)
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
 
-    fetch("http://localhost:3001/signup", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          fname: user.fname,
-          lname: user.lname,
-          company_name: user.company_name,
-          email: user.company_email,
-          password: user.password,
+
+    if (user.password.length >= 8) {
+      setPasswordLength('')
+
+      fetch("http://localhost:3001/signup", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
         },
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          console.log(res.headers.get("Authorization"));
-          localStorage.setItem("token", res.headers.get("Authorization"));
-          return res.json();
-        } else {
-          throw new Error(res);
-        }
+        body: JSON.stringify({
+          user: {
+            fname: user.fname,
+            lname: user.lname,
+            company_name: user.company_name,
+            email: user.company_email,
+            password: user.password,
+          },
+        }),
       })
-      .then((json) => console.dir(json))
-      .catch((err) => console.error(err));
-    // setUser(defaultUserValues)
-    navigate('/request_success')
+        .then((res) => {
+          if (res.ok) {
+            console.log(res.headers.get("Authorization"));
+            localStorage.setItem("token", res.headers.get("Authorization"));
+            return res.json();
+          } else {
+            throw new Error(res);
+          }
+        })
+        .then((json) => console.dir(json))
+        .catch((err) => console.error(err));
+
+      navigate('/cloudapp')
+
+    } else {
+      setPasswordLength('Password must be contain atleast 8 characters.')
+    }
+
+
   }
 
   return (
@@ -77,7 +88,7 @@ const SignUp = () => {
               <AiOutlineClose onClick={(e) => setPasswordInfo(false)} className='password-info-close-icon' />
               <span className="password-info-block">
                 <HiOutlineCheckCircle className='password-info-icon' />
-                <span className='password-info'>Shoudl be atleast 8 character long.</span>
+                <span className='password-info'>Should be atleast 8 character long.</span>
               </span>
               <span className="password-info-block">
                 <HiOutlineCheckCircle className='password-info-icon' />
@@ -85,11 +96,11 @@ const SignUp = () => {
               </span>
               <span className="password-info-block">
                 <HiOutlineCheckCircle className='password-info-icon' />
-                <span className='password-info'>Shoudl contain atleast uppercase.</span>
+                <span className='password-info'>Should contain atleast uppercase.</span>
               </span>
               <span className="password-info-block">
                 <HiOutlineCheckCircle className='password-info-icon' />
-                <span className='password-info'>Shoudl contain atleast one number.</span>
+                <span className='password-info'>Should contain atleast one number.</span>
               </span>
             </div>}
             <form onSubmit={SubmitEvent} className='sign-in-form'>
@@ -150,7 +161,9 @@ const SignUp = () => {
                   required="required"
                   placeholder='Password'
                 />
-
+                <span className="password-message">
+                  {passwordLength}
+                </span>
               </div>
               <div className='checkbox-field-block'>
                 <input type="checkbox" className='checkbox-input-field' />

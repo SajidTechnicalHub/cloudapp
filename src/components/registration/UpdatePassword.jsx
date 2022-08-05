@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import lockImg from '../images/lock.jpg'
 import { AiOutlineClose } from 'react-icons/ai';
 const UpdatePassword = () => {
     const navigate = useNavigate();
     const [passwordMessage, setPasswordMessage] = useState('')
+    const [passwordLength, setPasswordLength] = useState('')
     const [passwordInfo, setPasswordInfo] = useState(false)
 
     const [user, setUser] = useState({
@@ -21,16 +22,10 @@ const UpdatePassword = () => {
 
         if (user.password.length <= 1) {
             setPasswordInfo(true)
-          }
+        }
     }
     const SubmitEvent = (e) => {
         e.preventDefault()
-
-        if (user.password == user.confirm_password) {
-            setPasswordMessage('')
-        } else {
-            setPasswordMessage('Password did not match!')
-        }
 
 
         setUser({
@@ -38,7 +33,23 @@ const UpdatePassword = () => {
             confirm_password: ''
         })
 
-        navigate('/request_success')
+        if (user.password == user.confirm_password) {
+            setPasswordMessage('')
+            navigate('/request_success')
+        } else {
+            setPasswordMessage('Password did not match!')
+        }
+
+        if (user.password.length >= 8) {
+            setPasswordLength('')
+
+        } else {
+            setPasswordLength('Password must be contain atleast 8 characters.')
+        }
+
+        if (user.password == user.confirm_password && user.password.length >= 8) {
+            navigate('/request_success')
+        }
 
     }
 
@@ -50,7 +61,7 @@ const UpdatePassword = () => {
                     <h1 className='form-right-heading'>Cloud Insights</h1>
                 </div>
                 <div className="form-right-container">
-                < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
+                    < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
                     <div className="signin-form-block">
                         <div className="form-top-container">
                             <img src={lockImg} className='form-logo-img' alt="" />
@@ -60,10 +71,10 @@ const UpdatePassword = () => {
 
                         </div>
                         {passwordInfo && <div className="password-info-container">
-                        <AiOutlineClose onClick={(e)=>setPasswordInfo(false)} className='password-info-close-icon'/>
+                            <AiOutlineClose onClick={(e) => setPasswordInfo(false)} className='password-info-close-icon' />
                             <span className="password-info-block">
                                 <HiOutlineCheckCircle className='password-info-icon' />
-                                <span className='password-info'>Shoudl be atleast 8 character long.</span>
+                                <span className='password-info'>Should be atleast 8 character long.</span>
                             </span>
                             <span className="password-info-block">
                                 <HiOutlineCheckCircle className='password-info-icon' />
@@ -71,11 +82,11 @@ const UpdatePassword = () => {
                             </span>
                             <span className="password-info-block">
                                 <HiOutlineCheckCircle className='password-info-icon' />
-                                <span className='password-info'>Shoudl contain atleast uppercase.</span>
+                                <span className='password-info'>Should contain atleast uppercase.</span>
                             </span>
                             <span className="password-info-block">
                                 <HiOutlineCheckCircle className='password-info-icon' />
-                                <span className='password-info'>Shoudl contain atleast one number.</span>
+                                <span className='password-info'>Should contain atleast one number.</span>
                             </span>
                         </div>}
                         <form onSubmit={SubmitEvent} className='sign-in-form'>
@@ -88,11 +99,14 @@ const UpdatePassword = () => {
                                     required="required"
                                     placeholder='Password'
                                 />
-
+                                <span className="password-message">
+                                    {passwordLength}
+                                </span>
                             </div>
+
                             <div className="input-field-block ">
                                 <label htmlFor="confirm_password" className="input-field-label">Confirm Password<span className='estaric'>*</span></label>
-                                <input type="confirm_password"
+                                <input type="password"
                                     name="confirm_password"
                                     value={user.confirm_password}
                                     onChange={InputEvent}
