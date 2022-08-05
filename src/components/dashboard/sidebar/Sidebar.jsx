@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from "framer-motion"
 import { NavLink, Outlet } from 'react-router-dom'
-import {FaGoogleDrive, FaBars, FaPlus, FaMinus, FaAws} from 'react-icons/fa';
+import { FaGoogleDrive, FaBars, FaPlus, FaMinus, FaAws } from 'react-icons/fa';
 import { MdOutlineManageAccounts, MdDashboard, MdOutlineInventory } from 'react-icons/md';
 import { SiMicrosoftazure } from 'react-icons/si';
 import { BsClouds } from 'react-icons/bs';
@@ -40,7 +40,8 @@ const routes = [
     name: 'Sign In',
     icon: <BiCloudUpload />
   },
-  
+
+
 ]
 const CloudVender = [
   {
@@ -58,7 +59,7 @@ const CloudVender = [
     name: 'GCP Inventory',
     icon: <FaGoogleDrive />
   },
-  
+
 
 ]
 const CloudInsights = [
@@ -70,7 +71,7 @@ const CloudInsights = [
   {
     path: 'cloudapp/reports',
     name: 'Reports',
-    icon: <TbReport/>
+    icon: <TbReport />
   },
 
 ]
@@ -84,7 +85,7 @@ const Sidebar = () => {
   const { height, width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(true)
 
-// console.log(width)
+  // console.log(width)
   const [insightsToggle, setInsightsToggle] = useState(false)
   const [inventoryToggle, setInventoryToggle] = useState(false)
 
@@ -114,18 +115,39 @@ const Sidebar = () => {
   const [mobileView, setMobileView] = useState(false)
   const [mobileWidth, setMobileWidth] = useState(width)
 
-  const handleMobileView =()=> setMobileView(!mobileView)
+  const handleMobileView = () => setMobileView(!mobileView)
 
   const mobileViewDashboar = {
     width: 'calc(100vw )',
   }
- 
+
   //////////////Mobile View////////////////////
+
+  const handleLogout = () => {
+    fetch("http://localhost:3001/logout", {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((json) => Promise.reject(json));
+        }
+      })
+      .then((json) => {
+        console.dir(json);
+      })
+      .catch((err) => console.error(err));
+  }
 
   return (
     <>
       {mobileWidth >= 700 ?
-     
+
         <div className="main-container">
 
           <motion.div animate={{
@@ -138,7 +160,7 @@ const Sidebar = () => {
           }} className='sidebar'>
 
             <div className="top-section">
-              {isOpen && <motion.h1  variants={ShowAnimation}
+              {isOpen && <motion.h1 variants={ShowAnimation}
                 initial='hidden'
                 animate='show'
                 esit='hidden'
@@ -225,20 +247,34 @@ const Sidebar = () => {
                               className="link-text">{route.name}</motion.div>}
 
                           </NavLink>
+
+
+
                     }
+
+                    
                   </React.Fragment>
                 )
               })
 
               }
             </section>
+            <NavLink to='' className='sidebar-link '>
+                      <div className="icon"></div>
+                      {isOpen && <motion.div variants={ShowAnimation}
+                        initial='hidden'
+                        animate='show'
+                        esit='hidden'
+                        className="link-text"><span onClick={(e) => handleLogout()}>Logout</span></motion.div>}
+
+                    </NavLink>
           </motion.div>
 
 
 
           <main style={isOpen ? mainWidthToggleShow : mainWidthToggleHidden}>
             {/* <TopBar /> */}
-             <Outlet />
+            <Outlet />
           </main>
 
         </div> :
@@ -247,18 +283,18 @@ const Sidebar = () => {
         <div className="mobile-main-container">
 
           <div className="mobile-top-section">
-            {isOpen && <motion.h1  variants={ShowAnimation}
+            {isOpen && <motion.h1 variants={ShowAnimation}
               initial='hidden'
               animate='show'
               esit='hidden'
               className='logo'>Cloud Insights</motion.h1>}
             <div className="mobile-bars">
-              {mobileView ?<CgClose  onClick={handleMobileView} />:
-              <FaBars onClick={handleMobileView} />}
+              {mobileView ? <CgClose onClick={handleMobileView} /> :
+                <FaBars onClick={handleMobileView} />}
             </div>
           </div>
           <hr />
-          {mobileView&&<motion.div animate={{
+          {mobileView && <motion.div animate={{
             width: isOpen ? '250px' : '50px', transition: {
               duration: 0.5,
               type: 'spring',
@@ -353,7 +389,7 @@ const Sidebar = () => {
           </motion.div>}
 
           <main style={mobileViewDashboar}>
-           
+
             <div className='dashboard-pages'> <Outlet /></div>
           </main>
 

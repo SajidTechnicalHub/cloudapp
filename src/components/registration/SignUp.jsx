@@ -14,7 +14,7 @@ const SignUp = () => {
     company_name: '',
     company_email: '',
     password: '',
-    lname: ''
+    
   }
   const [user, setUser] = useState(defaultUserValues)
   const InputEvent = (e) => {
@@ -38,6 +38,9 @@ const SignUp = () => {
       },
       body: JSON.stringify({
         user: {
+          fname: user.fname,
+          lname: user.lname,
+          company_name: user.company_name,
           email: user.company_email,
           password: user.password,
         },

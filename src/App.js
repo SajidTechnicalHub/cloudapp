@@ -15,7 +15,7 @@ import ForgotPassword from "./components/registration/ForgotPassword";
 import VarificationCode from "./components/registration/VarificationCode";
 import UpdatePassword from "./components/registration/UpdatePassword";
 import RequestSuccess from "./components/registration/RequestSucess";
-
+import SignInVarificationCode from "./components/registration/SignInVarificationCode";
 
 
 
@@ -37,6 +37,7 @@ function App() {
           
         </Route>
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/signin_varification_code" element={<SignInVarificationCode />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgot_password" element={<ForgotPassword />} />
         <Route path="/varification_code" element={<VarificationCode />} />

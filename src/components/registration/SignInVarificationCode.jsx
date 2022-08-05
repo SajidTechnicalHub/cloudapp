@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import lockImg from '../images/lock.jpg'
 import { AiOutlineClose } from 'react-icons/ai';
 
-const VarificationCode = () => {
+const SignInVarificationCode = () => {
     const navigate = useNavigate();
     const [btnStatus, setBtnStatus] = useState(false)
 
@@ -26,27 +26,13 @@ const VarificationCode = () => {
     const SubmitEvent = (e) => {
         e.preventDefault()
 
-        fetch("http://localhost:3001/private/test", {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: localStorage.getItem("token"),
-            },
-        })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                } else if (res.status == "401") {
-                    return res.text().then((text) => Promise.reject(text));
-                }
-            })
-            .then((json) => console.dir(json))
-            .catch((err) => console.error(err));
+        
 
         setUser({
             code: '',
         })
 
-        navigate('/update_password')
+        navigate('/forgot_password')
 
     }
 
@@ -63,7 +49,7 @@ const VarificationCode = () => {
                         <div className="form-top-container">
                             <img src={lockImg} className='form-logo-img' alt="" />
                             <br />
-                            <span className='form-top-email-info'>Enter the verification code to reset your Cloud Insights account password.</span>
+                            <span className='form-top-email-info'>Enter the verification code to sign in to your Cloud Insights account.</span>
                             <span className='form-top-code-info'>You'll receive an email that contains your 6-digit verification code.</span>
                         </div>
                         <form onSubmit={SubmitEvent} className='sign-in-form'>
@@ -106,4 +92,4 @@ const VarificationCode = () => {
     )
 }
 
-export default VarificationCode
+export default SignInVarificationCode

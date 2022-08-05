@@ -18,9 +18,47 @@ const SignIn = () => {
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
-    
-  
-    navigate('/forgot_password')
+    fetch("http://localhost:3001/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          email: "test@test.com",
+          password: "password",
+        },
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log(res.headers.get("Authorization"));
+          localStorage.setItem("token", res.headers.get("Authorization"));
+          return res.json();
+        } else {
+          return res.text().then((text) => Promise.reject(text));
+        }
+      })
+      .then((json) => console.dir(json))
+      .catch((err) => console.error(err));
+
+    // fetch("http://localhost:3001/private/test", {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: localStorage.getItem("token"),
+    //   },
+    // })
+    //   .then((res) => {
+    //     if (res.ok) {
+    //       return res.json();
+    //     } else if (res.status == "401") {
+    //       throw new Error("Unauthorized Request. Must be signed in.");
+    //     }
+    //   })
+    //   .then((json) => console.dir(json))
+    //   .catch((err) => console.error(err));
+
+    navigate('/signin_varification_code')
 
   }
   return (
@@ -50,7 +88,7 @@ const SignIn = () => {
                 <span className='password-forgot-label-container'>
                   <label htmlFor="password" className="input-field-label">Password<span className='estaric'>*</span>
                   </label>
-                  <a href='#'>Forgot Password?</a>
+                  <Link to='/forgot_password'>Forgot Password?</Link>
                 </span>
                 <input type="password"
                   name="password"
