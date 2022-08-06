@@ -3,12 +3,11 @@ import { motion } from "framer-motion"
 import { NavLink, Outlet } from 'react-router-dom'
 import { FaGoogleDrive, FaBars, FaPlus, FaMinus, FaAws } from 'react-icons/fa';
 import { MdOutlineManageAccounts, MdDashboard, MdOutlineInventory } from 'react-icons/md';
-import { SiMicrosoftazure } from 'react-icons/si';
+import { SiMicrosoftazure, SiGooglecloud } from 'react-icons/si';
 import { BsClouds } from 'react-icons/bs';
 import { CgClose } from 'react-icons/cg';
 import { BiCloudUpload } from 'react-icons/bi';
 import { TbReport } from 'react-icons/tb';
-import TopBar from '../header/TopBar';
 import useWindowDimensions from '../../useWindowDimensions';
 
 
@@ -57,7 +56,7 @@ const CloudVender = [
   {
     path: 'cloudapp/GCP',
     name: 'GCP Inventory',
-    icon: <FaGoogleDrive />
+    icon: <SiGooglecloud />
   },
 
 
@@ -175,7 +174,7 @@ const Sidebar = () => {
                 return (
                   <React.Fragment key={index}>
                     {
-                      route.name == 'Cloud Vendors' ?
+                      route.name === 'Cloud Vendors' ?
                         <div>
                           <span className='sidebar-link '>
                             {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
@@ -205,7 +204,7 @@ const Sidebar = () => {
                               </React.Fragment>
                             )
                           })}</div> :
-                        route.name == 'Cloud Insights' ?
+                        route.name === 'Cloud Insights' ?
                           <div>
                             <span className='sidebar-link '>
                               {isOpen && <div onClick={handleInsightsToggle} className="icon">{route.icon}</div>}
@@ -252,22 +251,22 @@ const Sidebar = () => {
 
                     }
 
-                    
+
                   </React.Fragment>
                 )
               })
 
               }
             </section>
-            <NavLink to='' className='sidebar-link '>
-                      <div className="icon"></div>
-                      {isOpen && <motion.div variants={ShowAnimation}
-                        initial='hidden'
-                        animate='show'
-                        esit='hidden'
-                        className="link-text"><span onClick={(e) => handleLogout()}>Logout</span></motion.div>}
+            <span className='sidebar-link '>
+              <div className="icon"></div>
+              {isOpen && <motion.div variants={ShowAnimation}
+                initial='hidden'
+                animate='show'
+                esit='hidden'
+                className="link-text"><span onClick={(e) => handleLogout()}>Logout</span></motion.div>}
 
-                    </NavLink>
+            </span>
           </motion.div>
 
 
@@ -307,7 +306,7 @@ const Sidebar = () => {
                 return (
                   <React.Fragment key={index}>
                     {
-                      route.name == 'Cloud Vendors' ?
+                      route.name === 'Cloud Vendors' ?
                         <div>
                           <span className='sidebar-link '>
                             {isOpen && <div onClick={handleInventoryToggle} className="icon">{route.icon}</div>}
@@ -337,7 +336,7 @@ const Sidebar = () => {
                               </React.Fragment>
                             )
                           })}</div> :
-                        route.name == 'Cloud Insights' ?
+                        route.name === 'Cloud Insights' ?
                           <div>
                             <span className='sidebar-link '>
                               {isOpen && <div onClick={handleInsightsToggle} className="icon">{route.icon}</div>}

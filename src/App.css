@@ -549,9 +549,190 @@ main{
 
 /* //////////////////////////Update Password////////////////////// */
 
+/* //////////////////////////Cloud Account Management////////////////////// */
+
+.account-management-container{
+    padding: 20px;
+}
+.search-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-container input{
+    padding: 8px;
+    width: 500px;
+    font-size: 14px;
+    padding-left: 15px;
+    border: 1px solid lightgrey;
+    
+ }
+ .search-container input:focus{
+     outline: 1px solid grey;
+  }
+  .search-block{
+    position: relative;
+  }
+  .search-icon{
+    position: absolute;
+    top: 7px;
+    right: 12px;
+  }
+  .referesh-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    
+  }
+  .referesh-block{
+    height: 40px;
+    width: 40px;
+    color: #fff;
+    background: #003d48;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+  .aws-content-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #aae0f3;
+    width: 100%;
+    min-height: 80px;
+    height: fit-content;
+    outline: 1px solid #05758a;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+  .aws-name-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+  }
+  .aws-name-logo{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: rgb(234, 242, 245);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .aws-heading-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .aws-heading-text{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    line-height: 10px;
+  }
+  .aws-sub-heading{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+    line-height: 10px;
+  }
+  .total-resource-action{
+    display: flex;
+    justify-content: space-between;
+    gap: 90px;
+  }
+  .total-resource-block{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    
+  }
+  .total-resource-number{
+    font-size: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+  .total-resource-text{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+  }
+.action-container{
+    display: flex;
+    gap: 5px;
+}
+.aws-name-logo-icon{
+    font-size: 30px;
+    font-weight: bold;
+}
+.action-referesh-block{
+    height: 40px;
+    width: 40px;
+    color: #fff;
+    background: #003d48;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+  .action-delete-block{
+    height: 40px;
+    width: 40px;
+    color: #fff;
+    background: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+/* //////////////////////////Cloud Account Management////////////////////// */
+
+
+/* //////////////////////////Add Cloud Account////////////////////// */
+
+.add-cloud-account-title{
+    padding: 15px  15px 10px 20px ;
+}
+.add-cloud-account-title h1{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0!important;
+    padding: 0!important;
+}
+.add-cloud-account-body{
+    padding: 10px 10px 10px 20px;
+}
+
+
+/* //////////////////////////Add Cloud Account////////////////////// */
+
 
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px){
+    .aws-content-container{
+    
+        flex-direction: column;
+      }
     .form-container{
         flex-direction: column!important;
         padding: 5px;
@@ -591,6 +772,33 @@ main{
         font-size: 16px;
         color: grey;
     }
+    .search-container{
+        display: flex;
+        flex-direction: column!important;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .search-container input{
+        padding: 8px;
+        /* width: 100%!important; */
+        font-size: 14px;
+        padding-left: 15px;
+        border: 1px solid lightgrey;
+        
+     }
+     
+}
+@media(max-width:520px){
+    .search-container input{
+        width: 400px;
+        
+     }
+}
+@media(max-width:410px){
+    .search-container input{
+        width: 350px;
+        
+     }
 }
 
 @media(max-width:350px){
@@ -630,6 +838,9 @@ main{
         left: 10px;
         
     }
+    .search-container input{
+        width: 310px;
+     }
 }
 
 /* //////////////////////////Media Queries////////////////////// */
