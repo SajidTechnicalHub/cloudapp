@@ -137,23 +137,33 @@ const AccountManagement = () => {
   const handleEditClose = () => setEditOpen(false);
 
   // Delete Cloud Account
+  const [deleteAccoutData, setDetaleAccountData] = useState()
   const [deleteOpen, setDeleteOpen] = React.useState(false);
-  const handleDeleteOpen = () => setDeleteOpen(true);
+  const handleDeleteOpen = (id) => {
+    setDetaleAccountData(id)
+    setDeleteOpen(true);
+  }
   const handleDeleteClose = () => setDeleteOpen(false);
 
+  const [q, setQ] = useState("")
+  const [cloudAccount, setCloudAccount] = useState(accountData)
 
   const [activeTab, setActiveTab] = useState('')
 
   const handleActiveCass = (id) => {
     setActiveTab(id)
   }
+
   return (
     <>
       <TopBar subtitle='Cloud Account Management' />
       <div className="account-management-container">
         <div className="search-container">
           <div className="search-block">
-            <input type="search" placeholder='Search' />
+            <input type="text"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder='Search' />
             <span className="search-icon"><FiSearch /></span>
           </div>
           <div className="referesh-container">
@@ -166,19 +176,27 @@ const AccountManagement = () => {
           </div>
         </div>
         {
-          accountData.map((val, index) => {
+          cloudAccount.filter((val) => {
+            if (q == '') {
+
+              return val
+            }
+            else if (val.heading.toLowerCase().includes(q.toLocaleLowerCase())) {
+              return val
+            }
+          }).map((currentElement) => {
             return (
-              <React.Fragment key={val.id}>
+              <React.Fragment key={currentElement.id}>
                 <div className='aws-content-container'>
 
                   <div className="aws-name-container">
                     <div className="aws-name-logo">
-                      <span className='aws-name-logo-icon' >{val.logo}</span>
+                      <span className='aws-name-logo-icon' >{currentElement.logo}</span>
                     </div>
                     <div className="aws-heading-container">
-                      <span className="aws-heading-text">{val.heading}</span>
-                      <span className='aws-sub-heading'>{val.title}</span>
-                      <span className='aws-sub-heading'>Last Sync Attempt: {val.sync}</span>
+                      <span className="aws-heading-text">{currentElement.heading}</span>
+                      <span className='aws-sub-heading'>{currentElement.title}</span>
+                      <span className='aws-sub-heading'>Last Sync Attempt: {currentElement.sync}</span>
                     </div>
                   </div>
 
@@ -196,7 +214,7 @@ const AccountManagement = () => {
                         <FiEdit2 onClick={handleEditOpen} />
                       </span>
                       <span className="action-delete-block">
-                        <AiFillDelete onClick={handleDeleteOpen} />
+                        <AiFillDelete onClick={e => handleDeleteOpen(currentElement.id)} />
                       </span>
                     </div>
                   </div>
@@ -347,7 +365,10 @@ const AccountManagement = () => {
       >
         <Fade in={deleteOpen}>
           <Box sx={width >= 992 ? deleteStyle : deleteMobileStyle}>
-            <DeleteCloudAccount handleDeleteClose={handleDeleteClose} />
+            <DeleteCloudAccount
+              handleDeleteClose={handleDeleteClose}
+              deleteAccoutData={deleteAccoutData}
+            />
           </Box>
         </Fade>
       </Modal>
