@@ -1,49 +1,57 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
-a, a:hover{
+
+a,
+a:hover {
     /* color: #05758a!important; */
-    text-decoration: none!important;
+    text-decoration: none !important;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: underline;
     cursor: pointer;
 }
-hr{
-    margin: 0px!important;
-    padding: 0px!important;
+
+hr {
+    margin: 0px !important;
+    padding: 0px !important;
 }
 
 /* //////////////////////////Sidebar////////////////////// */
 
-.main-container{
+.main-container {
     display: flex;
 
 }
-main{
+
+main {
     /* padding: 0px 20px 20px 20px; */
     background: rgb(252, 249, 249);
-    
+
 }
-.dashboard-pages{
+
+.dashboard-pages {
     padding: 20px;
 }
-.sidebar{
+
+.sidebar {
     background: #003d48;
     color: white;
     height: 100vh;
     /* min-width: 250px; */
 }
-.top-section{
+
+.top-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 55px;
     padding: 15px 10px;
 }
-.logo{
+
+.logo {
     /* height: 35px;
     width: 50px;
     margin-left: -5px ; */
@@ -51,11 +59,13 @@ main{
     font-family: Arial, Helvetica, sans-serif;
     color: #fff;
 }
-.bars{
+
+.bars {
     font-size: 16px;
     cursor: pointer;
 }
-.sidebar-link{
+
+.sidebar-link {
     display: flex;
     gap: 10px;
     color: white;
@@ -63,10 +73,11 @@ main{
     border-right: 4px solid transparent;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     align-items: center;
-    
+
 }
+
 .sidebar-link:hover,
-.active{
+.active {
     display: flex;
     gap: 10px;
     color: white;
@@ -78,29 +89,34 @@ main{
 }
 
 
-.link-text{
+.link-text {
     white-space: nowrap;
     font-size: 16px;
 }
-.icon{
+
+.icon {
     font-size: 18px;
-    
+
 }
-.routes{
+
+.routes {
     margin-top: 10px;
 }
-.inventory{
-    padding-left: 20px!important;
-    
+
+.inventory {
+    padding-left: 20px !important;
+
 }
-.sidebar-link-dropdown{
+
+.sidebar-link-dropdown {
     width: 200px;
     display: flex;
-    justify-content: space-between!important;
+    justify-content: space-between !important;
     align-items: center;
     /* gap: 20px; */
 }
-.sidebar-link-dropdown-icon{
+
+.sidebar-link-dropdown-icon {
     cursor: pointer;
 }
 
@@ -109,7 +125,7 @@ main{
     display: flex;
     flex-direction: column;
 } */
-.mobile-top-section{
+.mobile-top-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -117,10 +133,12 @@ main{
     padding: 15px 10px;
     background: #071330;
 }
-.mobile-bars{
+
+.mobile-bars {
     color: white;
 }
-.mobile-sidebar{
+
+.mobile-sidebar {
     background: #071330;
     color: white;
     height: calc(100vh - 50px);
@@ -129,13 +147,14 @@ main{
     left: 0;
     scroll-behavior: auto;
 }
+
 /* ***********************Mobile View**************************** */
 
 /* //////////////////////////Sidebar////////////////////// */
 
 /* //////////////////////////Top-Bar////////////////////// */
 
-.topbar-container{
+.topbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -146,28 +165,32 @@ main{
     color: white;
     width: 100%;
 }
-.topbar-heading-text{
+
+.topbar-heading-text {
     font-size: 16px;
     color: grey;
 }
 
-.topbar-icons-block{
+.topbar-icons-block {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
-.topbar-icons-3{
+
+.topbar-icons-3 {
     color: black;
     cursor: pointer;
     font-size: 24px;
 }
-.topbar-icons-2{
+
+.topbar-icons-2 {
     color: blue;
     cursor: pointer;
     font-size: 24px;
 }
-.topbar-icon-1{
+
+.topbar-icon-1 {
     width: 25px;
     height: 25px;
     cursor: pointer;
@@ -178,7 +201,8 @@ main{
     color: white;
     border-radius: 50%;
 }
-.topbar-icon-text{
+
+.topbar-icon-text {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: bold;
@@ -189,12 +213,13 @@ main{
 
 /* //////////////////////////Sign In////////////////////// */
 
-.form-container{
+.form-container {
     display: flex;
     position: relative;
 
 }
-.form-left-container{
+
+.form-left-container {
     height: 100vh;
     width: 100%;
     background: #003d48;
@@ -203,7 +228,7 @@ main{
     align-items: center;
 }
 
-.form-right-container{
+.form-right-container {
     min-height: 100vh;
     height: fit-content;
     width: 100%;
@@ -211,25 +236,28 @@ main{
     justify-content: center;
     align-items: center;
     overflow: auto;
-    
+
     /* border: 1px solid lightgray; */
 }
-.form-right-heading{   
+
+.form-right-heading {
     font-size: 42px;
     color: #fff;
-    
+
 }
-.signin-form-block{
+
+.signin-form-block {
     height: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-  
-   
+
+
 }
-.form-heading{
+
+.form-heading {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 28px;
     display: flex;
@@ -237,51 +265,58 @@ main{
     color: #003d48;
     margin-bottom: 20px;
 }
-.sign-in-form{
+
+.sign-in-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* width: 360px; */
 }
-.input-field-block{
+
+.input-field-block {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
 
-    
-}
-.input-field-block input{
-   padding: 5px;
-   width: 350px;
-   font-size: 14px;
-   padding-left: 15px;
-   border: 1px solid lightgrey;
-   
-}
-.input-field-block input:focus{
-    outline: 1px solid grey;
- }
 
-.input-field-label{
+}
+
+.input-field-block input {
+    padding: 5px;
+    width: 350px;
+    font-size: 14px;
+    padding-left: 15px;
+    border: 1px solid lightgrey;
+
+}
+
+.input-field-block input:focus {
+    outline: 1px solid grey;
+}
+
+.input-field-label {
     color: #171717;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 5px;
 }
-.estaric{
+
+.estaric {
     color: red;
 }
-.form-submit-field{
+
+.form-submit-field {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px;
     width: 363px;
     margin-bottom: 5px;
-   
+
 }
-.form-submit-btn{
+
+.form-submit-btn {
     background: #05758a;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
@@ -293,7 +328,8 @@ main{
     outline: none;
 
 }
-.form-submit-btn:hover{
+
+.form-submit-btn:hover {
     background: #003d48;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
@@ -305,93 +341,109 @@ main{
     outline: none;
 
 }
-.password-forgot-label-container{
+
+.password-forgot-label-container {
     display: flex;
     justify-content: space-between;
 }
+
 .password-forgot-label-container a,
-.password-forgot-label-container a:hover{
+.password-forgot-label-container a:hover {
     color: #05758a;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    text-decoration: underline!important;
+    text-decoration: underline !important;
     cursor: pointer;
 }
-.checkbox-field-block{
+
+.checkbox-field-block {
     display: flex;
     gap: 5px;
     align-items: center;
     margin-left: -235px;
     margin-bottom: 5px;
 }
-.checkbox-input-field{
+
+.checkbox-input-field {
     height: 20px;
     width: 20x;
 }
-.checkbox-field-label{
+
+.checkbox-field-label {
     color: grey;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
 
 }
-.form-buttom-container{
+
+.form-buttom-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
 }
-.form-buttom-block{
+
+.form-buttom-block {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-top: 30px;
     width: 355px;
-   
+
 }
-.sign-up-block{
+
+.sign-up-block {
     display: flex;
     justify-content: space-between;
 }
+
 .sign-up-block a,
-.sign-up-block a:hover{
-    color: #05758a!important;
+.sign-up-block a:hover {
+    color: #05758a !important;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: underline;
     cursor: pointer;
 }
+
 .a-underline,
-.a-underline:hover{
-    color: #05758a!important;
-    text-decoration: underline!important;
+.a-underline:hover {
+    color: #05758a !important;
+    text-decoration: underline !important;
 }
+
 .back-to-home a,
-.back-to-home a:hover{
-    color: #05758a!important;
+.back-to-home a:hover {
+    color: #05758a !important;
 }
-.checkbox-field-label{
+
+.checkbox-field-label {
     display: flex;
     justify-content: space-between;
 }
-.form-privacy-policy{
+
+.form-privacy-policy {
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     width: 350px;
 }
-.signup-container .checkbox-field-block{
-    margin-left: 17px!important;
-    align-items: start!important;
+
+.signup-container .checkbox-field-block {
+    margin-left: 17px !important;
+    align-items: start !important;
 }
+
 /* //////////////////////////Sign In////////////////////// */
 
 
 /* //////////////////////////Forgot Password////////////////////// */
 
-.form-logo-img{
+.form-logo-img {
     height: 150px;
     width: 180px;
 }
-.form-top-container{
+
+.form-top-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -400,26 +452,31 @@ main{
     margin-bottom: 30px;
     gap: 5px;
 }
-.form-top-email-info{
+
+.form-top-email-info {
     font-weight: bold;
 }
+
 .form-top-email-info,
-.form-top-code-info{
+.form-top-code-info {
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
-.form-top-code-info{
+
+.form-top-code-info {
     color: grey;
     margin-top: 10px;
 }
-.back-to-home{
+
+.back-to-home {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.form-submit-btn-status{
-    background:  #003d48;
+
+.form-submit-btn-status {
+    background: #003d48;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -435,8 +492,8 @@ main{
 /* //////////////////////////Forgot Password////////////////////// */
 
 /* //////////////////////////Code_varification////////////////////// */
-.code-varify-btn{
-    background:  #003d48;
+.code-varify-btn {
+    background: #003d48;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -446,8 +503,9 @@ main{
     border: none;
     outline: none;
 }
-.code-unvarify-btn{
-    background:  #cce9ee;
+
+.code-unvarify-btn {
+    background: #cce9ee;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -461,7 +519,7 @@ main{
 /* //////////////////////////Forgot Password////////////////////// */
 
 /* //////////////////////////Update Password////////////////////// */
-.update-password-heading{
+.update-password-heading {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 28px;
     display: flex;
@@ -470,12 +528,14 @@ main{
     margin-bottom: 20px;
     font-weight: bold;
 }
-.password-message{
+
+.password-message {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: red;
 }
-.password-info-container{
+
+.password-info-container {
     width: 250px;
     min-height: 20px;
     height: fit-content;
@@ -493,37 +553,44 @@ main{
     background: white;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
-.password-info{
+
+.password-info {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
-.password-info-block{
+
+.password-info-block {
     display: flex;
     align-items: center;
     gap: 5px;
 }
-.password-info-icon{
+
+.password-info-icon {
     min-height: 16px;
     min-width: 16px;
 }
-.request-submitted{
+
+.request-submitted {
     color: #05758a;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
 }
-.form-logo-sucess{
+
+.form-logo-sucess {
     width: 190px;
     height: 190px;
     margin-bottom: 20px;
 }
-.password-info-close-icon{
+
+.password-info-close-icon {
     font-size: 16px;
     position: absolute;
     top: 2px;
     right: 2px;
     cursor: pointer;
 }
-.password-info-close-icon:hover{
+
+.password-info-close-icon:hover {
     font-size: 16px;
     position: absolute;
     top: 2px;
@@ -531,14 +598,16 @@ main{
     color: #003d48;
     cursor: pointer;
 }
-.form-close-window-icon{
+
+.form-close-window-icon {
     position: absolute;
     top: 20px;
     right: 20px;
     cursor: pointer;
     font-size: 20px;
 }
-.form-close-window-icon:hover{
+
+.form-close-window-icon:hover {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -551,10 +620,11 @@ main{
 
 /* //////////////////////////Cloud Account Management////////////////////// */
 
-.account-management-container{
+.account-management-container {
     padding: 20px;
 }
-.search-container{
+
+.search-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -562,33 +632,38 @@ main{
     margin-bottom: 20px;
 }
 
-.search-container input{
+.search-container input {
     padding: 8px;
     width: 500px;
     font-size: 14px;
     padding-left: 15px;
     border: 1px solid lightgrey;
-    
- }
- .search-container input:focus{
-     outline: 1px solid grey;
-  }
-  .search-block{
+
+}
+
+.search-container input:focus {
+    outline: 1px solid grey;
+}
+
+.search-block {
     position: relative;
-  }
-  .search-icon{
+}
+
+.search-icon {
     position: absolute;
     top: 7px;
     right: 12px;
-  }
-  .referesh-container{
+}
+
+.referesh-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 5px;
-    
-  }
-  .referesh-block{
+
+}
+
+.referesh-block {
     height: 40px;
     width: 40px;
     color: #fff;
@@ -601,8 +676,9 @@ main{
     font-weight: bold;
     font-size: 20px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  }
-  .aws-content-container{
+}
+
+.aws-content-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -615,14 +691,16 @@ main{
     padding: 10px;
     margin-bottom: 10px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  }
-  .aws-name-container{
+}
+
+.aws-name-container {
     display: flex;
     align-items: center;
     gap: 20px;
 
-  }
-  .aws-name-logo{
+}
+
+.aws-name-logo {
     height: 50px;
     width: 50px;
     border-radius: 50%;
@@ -630,54 +708,64 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .aws-heading-container{
+}
+
+.aws-heading-container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-  .aws-heading-text{
+}
+
+.aws-heading-text {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     line-height: 10px;
-  }
-  .aws-sub-heading{
+}
+
+.aws-sub-heading {
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
     color: grey;
     line-height: 10px;
-  }
-  .total-resource-action{
+}
+
+.total-resource-action {
     display: flex;
     justify-content: space-between;
     gap: 90px;
-  }
-  .total-resource-block{
+}
+
+.total-resource-block {
     display: flex;
     flex-direction: column;
     align-items: end;
-    
-  }
-  .total-resource-number{
+
+}
+
+.total-resource-number {
     font-size: 24px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-  }
-  .total-resource-text{
+}
+
+.total-resource-text {
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-  }
-.action-container{
+}
+
+.action-container {
     display: flex;
     gap: 5px;
 }
-.aws-name-logo-icon{
+
+.aws-name-logo-icon {
     font-size: 30px;
     font-weight: bold;
 }
-.action-referesh-block{
+
+.action-referesh-block {
     height: 40px;
     width: 40px;
     color: #fff;
@@ -690,8 +778,9 @@ main{
     font-weight: bold;
     font-size: 20px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  }
-  .action-delete-block{
+}
+
+.action-delete-block {
     height: 40px;
     width: 40px;
     color: #fff;
@@ -704,53 +793,297 @@ main{
     font-weight: bold;
     font-size: 20px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  }
+}
+
 /* //////////////////////////Cloud Account Management////////////////////// */
 
 
 /* //////////////////////////Add Cloud Account////////////////////// */
 
-.add-cloud-account-title{
-    padding: 15px  15px 10px 20px ;
+.add-cloud-account-title {
+    padding: 15px 15px 10px 20px;
 }
-.add-cloud-account-title h1{
+
+.add-cloud-account-title h1 {
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0!important;
-    padding: 0!important;
-}
-.add-cloud-account-body{
-    padding: 10px 10px 10px 20px;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
+.add-cloud-account-body {
+    padding: 10px 20px 10px 20px;
+}
 
+.add-cloud-account-tabs {
+    height: 50x;
+    width: 80px;
+    border: 1px solid black;
+}
+
+.add-cloud-account-tabs input {
+    height: 50x !important;
+    width: 80px !important;
+    border: 1px solid black;
+}
+
+.add-cloud-account-tabs-container {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    gap: 30px;
+}
+
+.cloud-account-tabs-block {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    border: 1px solid #003d48;
+    gap: 10px;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.cloud-account-tabs-block:hover {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    border: 1px solid #05758a;
+    gap: 10px;
+    padding: 5px;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.aws-tabs-block {
+    display: flex;
+    gap: 5px;
+    /* align-items: center;
+        justify-content: center; */
+}
+
+.azure-tab-logo {
+    color: #05758a;
+    font-size: 18px;
+}
+
+.aws-tab-logo {
+    color: orange;
+    font-size: 30px;
+}
+
+.azure-tabs-name {
+    font-size: 18px;
+    color: #05758a;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tab-name {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.active-tab {
+    color: green;
+    visibility: show;
+
+}
+
+.dis-active-tab {
+
+    visibility: hidden;
+}
+
+.add-cloud-account-container {
+    padding-top: 10px;
+}
+
+.add-cloud-account-steps {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.add-cloud-account-container ol li {
+
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: .5em;
+    margin-left: .5em;
+
+}
+.azure-account-note{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background: #05758a;
+    padding: 5px;
+    
+}
+
+.list-style-type {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.list-style {
+    background: rgba(236, 233, 233, 0.493);
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 170px;
+    overflow: auto;
+}
+.need-more-help-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.need-more-help{
+    color: gray;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+.azure-account-input-field-block {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+
+}
+
+.azure-account-input-field-block input {
+    padding: 8px;
+    width: auto;
+    font-size: 14px;
+    padding-left: 15px;
+    border: 1px solid lightgrey;
+
+}
+
+.azure-account-input-field-block input:focus {
+    outline: 1px solid grey;
+}
+.azure-account-form-block {
+    margin-top: 10px;
+}
+.azure-form-submit-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.azure-read-permission {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: gray;
+}
+.azure-form-submit-btn-block{
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.azure-form-submit-btn {
+    background: #05758a;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 200px;
+    padding: 5px;
+    border: 1px solid #003d48;
+    outline: 1px solid #003d48;
+
+}
+
+.azure-form-submit-btn:hover {
+    background: #003d48;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 200px;
+    padding: 5px;
+    border: 1px solid #003d48;
+    outline: 1px solid #003d48;
+
+}
+.azure-form-cancel-btn {
+    background: grey;
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 200px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.azure-form-cancel-btn:hover {
+    background: lightgrey;
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 200px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
 /* //////////////////////////Add Cloud Account////////////////////// */
 
 
 /* //////////////////////////Media Queries////////////////////// */
-@media(max-width:992px){
-    .aws-content-container{
-    
-        flex-direction: column;
-      }
-    .form-container{
+@media(max-width:992px) {
+    .need-more-help-container{
         flex-direction: column!important;
+        justify-content: start!important;
+        align-items: start!important;
+    }
+    .add-cloud-account-tabs-container{
+        flex-direction: column!important;
+        gap: 10px!important;
+    }
+    .aws-content-container {
+
+        flex-direction: column!important;
+    }
+    
+
+    .form-container {
+        flex-direction: column !important;
         padding: 5px;
     }
-    
-    .form-right-heading{   
-        font-size: 30px!important;
+
+    .form-right-heading {
+        font-size: 30px !important;
         color: #fff;
-        
-        
+
+
     }
-    .form-left-container{
-        display: none!important;
+
+    .form-left-container {
+        display: none !important;
     }
-    .form-right-container{
-       margin-top: 20px;
+
+    .form-right-container {
+        margin-top: 20px;
     }
-    .topbar-container{
+
+    .topbar-container {
         /* flex-direction: column!important; */
         line-height: 18px;
         gap: 5px;
@@ -761,86 +1094,100 @@ main{
         margin-right: -20px;
 
     }
-    .topbar-line{
-        margin-top: -17px!important;
+
+    .topbar-line {
+        margin-top: -17px !important;
     }
-    .topbar-heading-text{
+
+    .topbar-heading-text {
         font-size: 16px;
         color: blue;
     }
-    .topbar-subheading-text{
+
+    .topbar-subheading-text {
         font-size: 16px;
         color: grey;
     }
-    .search-container{
+
+    .search-container {
         display: flex;
-        flex-direction: column!important;
+        flex-direction: column !important;
         justify-content: space-between;
         align-items: center;
     }
-    .search-container input{
+
+    .search-container input {
         padding: 8px;
         /* width: 100%!important; */
         font-size: 14px;
         padding-left: 15px;
         border: 1px solid lightgrey;
-        
-     }
-     
-}
-@media(max-width:520px){
-    .search-container input{
-        width: 400px;
-        
-     }
-}
-@media(max-width:410px){
-    .search-container input{
-        width: 350px;
-        
-     }
+
+    }
+
 }
 
-@media(max-width:350px){
- 
-    .input-field-block input{
+@media(max-width:520px) {
+    .search-container input {
+        width: 400px;
+
+    }
+}
+
+@media(max-width:410px) {
+    .search-container input {
+        width: 350px;
+
+    }
+}
+
+@media(max-width:350px) {
+
+    .input-field-block input {
         padding: 5px;
-        width: 295px!important;
+        width: 295px !important;
         padding-left: 15px;
-        
-        
-     }
-     .form-top-container{
-        width: 325px!important;
-     }
-     .form-submit-field{
+
+
+    }
+
+    .form-top-container {
+        width: 325px !important;
+    }
+
+    .form-submit-field {
         width: 308px;
     }
-    .form-buttom-block{
-        width: 305px!important;
+
+    .form-buttom-block {
+        width: 305px !important;
         margin-bottom: 20px;
     }
-    
-    .form-right-heading{   
-        font-size: 30px!important;
+
+    .form-right-heading {
+        font-size: 30px !important;
     }
-    .checkbox-field-block{
-        margin-left: -185px!important;
+
+    .checkbox-field-block {
+        margin-left: -185px !important;
     }
-    .signup-container .checkbox-field-block{
-        margin-left:60px!important;
-        align-items: start!important;
+
+    .signup-container .checkbox-field-block {
+        margin-left: 60px !important;
+        align-items: start !important;
     }
-    .password-info-container{
-    
+
+    .password-info-container {
+
         position: absolute;
         top: 180px;
         left: 10px;
-        
+
     }
-    .search-container input{
+
+    .search-container input {
         width: 310px;
-     }
+    }
 }
 
 /* //////////////////////////Media Queries////////////////////// */
