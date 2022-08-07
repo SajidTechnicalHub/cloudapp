@@ -20,6 +20,7 @@ import EditAzureAccount from './EditAzureAccount';
 import EditAwsAccount from './EditAwsAccount';
 import EditGoogleAccount from './EditGoogleAccount';
 import EditOracleAccount from './EditOracleAccount';
+import DeleteCloudAccount from './DeleteCloudAccount';
 
 const accountData = [
   {
@@ -94,6 +95,34 @@ const mobileStyle = {
   // p: 4,
 
 };
+const deleteStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '40%',
+  height: '50%',
+  bgcolor: 'background.paper',
+  border: '1px solid #003d48',
+  boxShadow: 24,
+  overflow: 'auto',
+  // p: 4,
+
+};
+const deleteMobileStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '90%',
+  height: '95%',
+  bgcolor: 'background.paper',
+  border: '1px solid #003d48',
+  boxShadow: 24,
+  overflow: 'auto',
+  // p: 4,
+
+};
 
 const AccountManagement = () => {
   const { height, width } = useWindowDimensions();
@@ -106,6 +135,11 @@ const AccountManagement = () => {
   const [editOpen, setEditOpen] = React.useState(false);
   const handleEditOpen = () => setEditOpen(true);
   const handleEditClose = () => setEditOpen(false);
+
+  // Delete Cloud Account
+  const [deleteOpen, setDeleteOpen] = React.useState(false);
+  const handleDeleteOpen = () => setDeleteOpen(true);
+  const handleDeleteClose = () => setDeleteOpen(false);
 
 
   const [activeTab, setActiveTab] = useState('')
@@ -159,10 +193,10 @@ const AccountManagement = () => {
                         <AiOutlineCloudSync />
                       </span>
                       <span className="referesh-block">
-                        <FiEdit2 onClick={handleEditOpen}/>
+                        <FiEdit2 onClick={handleEditOpen} />
                       </span>
                       <span className="action-delete-block">
-                        <AiFillDelete />
+                        <AiFillDelete onClick={handleDeleteOpen} />
                       </span>
                     </div>
                   </div>
@@ -188,7 +222,7 @@ const AccountManagement = () => {
         }}
       >
         <Fade in={open}>
-          <Box sx={width>=992 ? style: mobileStyle}>
+          <Box sx={width >= 992 ? style : mobileStyle}>
             <div className="add-cloud-account-title">
               <h1>Add Cloud Account</h1>
             </div>
@@ -199,12 +233,12 @@ const AccountManagement = () => {
                   CloudAccountTabs.map((val, index) => {
                     return (
                       <React.Fragment key={index}>
-                        
+
                         <div onClick={(e) => handleActiveCass(val.id)} className="cloud-account-tabs-block">
-                          <span className={activeTab == val.id ? 'active-tab' : activeTab == '' && val.id == 1?'active-tab': 'dis-active-tab'} >
+                          <span className={activeTab == val.id ? 'active-tab' : activeTab == '' && val.id == 1 ? 'active-tab' : 'dis-active-tab'} >
                             <AiFillCheckCircle fontSize='25px' />
                           </span>
-                      
+
                           <span className="aws-tabs-block">
                             <span className="aws-tabs-logo">
                               {/* <VscAzure className='aws-tab-logo' /> */}
@@ -221,14 +255,14 @@ const AccountManagement = () => {
               </div>
               {
                 activeTab == 1 ?
-                  <AddAzureAccount handleClose={handleClose}/> :
+                  <AddAzureAccount handleClose={handleClose} /> :
                   activeTab == 2 ?
-                    <AddAwsAccount handleClose={handleClose}/> :
+                    <AddAwsAccount handleClose={handleClose} /> :
                     activeTab == 3 ?
-                      <AddGoogleAccount handleClose={handleClose}/> :
+                      <AddGoogleAccount handleClose={handleClose} /> :
                       activeTab == 4 ?
-                      <AddOracleAccount handleClose={handleClose}/>:
-                      <AddAzureAccount handleClose={handleClose}/>
+                        <AddOracleAccount handleClose={handleClose} /> :
+                        <AddAzureAccount handleClose={handleClose} />
               }
 
             </div>
@@ -250,7 +284,7 @@ const AccountManagement = () => {
         }}
       >
         <Fade in={editOpen}>
-          <Box sx={width>=992 ? style: mobileStyle}>
+          <Box sx={width >= 992 ? style : mobileStyle}>
             <div className="add-cloud-account-title">
               <h1>Edit Cloud Account</h1>
             </div>
@@ -261,12 +295,12 @@ const AccountManagement = () => {
                   CloudAccountTabs.map((val, index) => {
                     return (
                       <React.Fragment key={index}>
-                        
+
                         <div onClick={(e) => handleActiveCass(val.id)} className="cloud-account-tabs-block">
-                          <span className={activeTab == val.id ? 'active-tab' : activeTab == '' && val.id == 1?'active-tab': 'dis-active-tab'} >
+                          <span className={activeTab == val.id ? 'active-tab' : activeTab == '' && val.id == 1 ? 'active-tab' : 'dis-active-tab'} >
                             <AiFillCheckCircle fontSize='25px' />
                           </span>
-                      
+
                           <span className="aws-tabs-block">
                             <span className="aws-tabs-logo">
                               {/* <VscAzure className='aws-tab-logo' /> */}
@@ -283,18 +317,37 @@ const AccountManagement = () => {
               </div>
               {
                 activeTab == 1 ?
-                  <EditAzureAccount handleEditClose={handleEditClose}/> :
+                  <EditAzureAccount handleEditClose={handleEditClose} /> :
                   activeTab == 2 ?
-                    <EditAwsAccount handleEditClose={handleEditClose}/> :
+                    <EditAwsAccount handleEditClose={handleEditClose} /> :
                     activeTab == 3 ?
-                      <EditGoogleAccount handleEditClose={handleEditClose}/> :
+                      <EditGoogleAccount handleEditClose={handleEditClose} /> :
                       activeTab == 4 ?
-                      <EditOracleAccount handleEditClose={handleEditClose}/>:
-                      <EditAzureAccount handleEditClose={handleEditClose}/>
+                        <EditOracleAccount handleEditClose={handleEditClose} /> :
+                        <EditAzureAccount handleEditClose={handleEditClose} />
               }
 
             </div>
 
+          </Box>
+        </Fade>
+      </Modal>
+
+      {/* Delete Azure Account */}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={deleteOpen}
+        onClose={handleDeleteClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={deleteOpen}>
+          <Box sx={width >= 992 ? deleteStyle : deleteMobileStyle}>
+            <DeleteCloudAccount handleDeleteClose={handleDeleteClose} />
           </Box>
         </Fade>
       </Modal>

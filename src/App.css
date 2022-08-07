@@ -899,6 +899,10 @@ main {
     visibility: hidden;
 }
 
+/* //////////////////////////Add Cloud Account////////////////////// */
+
+/* //////////////////////////Azure Cloud Account////////////////////// */
+
 .add-cloud-account-container {
     padding-top: 10px;
 }
@@ -1043,8 +1047,95 @@ main {
     text-align: center;
     cursor: pointer;
 }
-/* //////////////////////////Add Cloud Account////////////////////// */
+/* //////////////////////////Azure Cloud Account////////////////////// */
 
+/* //////////////////////////Delete Cloud Account////////////////////// */
+.delete-cloud-account-container{
+    padding: 20px;
+}
+.delete-account-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.delete-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.delete-account-btn {
+    background: #05758a;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 100px;
+    padding: 5px;
+    border: 1px solid #003d48;
+    outline: 1px solid #003d48;
+
+}
+
+.delete-account-btn:hover {
+    background: #003d48;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 100px;
+    padding: 5px;
+    border: 1px solid #003d48;
+    outline: 1px solid #003d48;
+
+}
+.delete-account-cancel-btn {
+    background: grey;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 100px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.delete-account-cancel-btn:hover {
+    background: lightgrey;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 100px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+.delete-account-btn-block{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.delete-text{
+    font-size: 28px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.delete-ensure{
+    font-size: 16px;
+    font-family:Arial, Helvetica, sans-serif;
+    color: grey;
+}
+
+/* //////////////////////////Delete Cloud Account////////////////////// */
 
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
