@@ -16,6 +16,10 @@ import AddAzureAccount from './AddAzureAccount';
 import AddAwsAccount from './AddAwsAccount';
 import AddGoogleAccount from './AddGoogleAccount';
 import AddOracleAccount from './AddOracleAccount';
+import EditAzureAccount from './EditAzureAccount';
+import EditAwsAccount from './EditAwsAccount';
+import EditGoogleAccount from './EditGoogleAccount';
+import EditOracleAccount from './EditOracleAccount';
 
 const accountData = [
   {
@@ -93,9 +97,15 @@ const mobileStyle = {
 
 const AccountManagement = () => {
   const { height, width } = useWindowDimensions();
+  // Add Cloud Account
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  // Edit Cloud Account
+  const [editOpen, setEditOpen] = React.useState(false);
+  const handleEditOpen = () => setEditOpen(true);
+  const handleEditClose = () => setEditOpen(false);
 
 
   const [activeTab, setActiveTab] = useState('')
@@ -149,7 +159,7 @@ const AccountManagement = () => {
                         <AiOutlineCloudSync />
                       </span>
                       <span className="referesh-block">
-                        <FiEdit2 />
+                        <FiEdit2 onClick={handleEditOpen}/>
                       </span>
                       <span className="action-delete-block">
                         <AiFillDelete />
@@ -165,6 +175,7 @@ const AccountManagement = () => {
         }
 
       </div>
+      {/* Add Azure Account */}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -218,6 +229,68 @@ const AccountManagement = () => {
                       activeTab == 4 ?
                       <AddOracleAccount handleClose={handleClose}/>:
                       <AddAzureAccount handleClose={handleClose}/>
+              }
+
+            </div>
+
+          </Box>
+        </Fade>
+      </Modal>
+
+      {/* Edit Azure Account */}
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={editOpen}
+        onClose={handleEditClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={editOpen}>
+          <Box sx={width>=992 ? style: mobileStyle}>
+            <div className="add-cloud-account-title">
+              <h1>Edit Cloud Account</h1>
+            </div>
+            <hr />
+            <div className="add-cloud-account-body">
+              <div className="add-cloud-account-tabs-container">
+                {
+                  CloudAccountTabs.map((val, index) => {
+                    return (
+                      <React.Fragment key={index}>
+                        
+                        <div onClick={(e) => handleActiveCass(val.id)} className="cloud-account-tabs-block">
+                          <span className={activeTab == val.id ? 'active-tab' : activeTab == '' && val.id == 1?'active-tab': 'dis-active-tab'} >
+                            <AiFillCheckCircle fontSize='25px' />
+                          </span>
+                      
+                          <span className="aws-tabs-block">
+                            <span className="aws-tabs-logo">
+                              {/* <VscAzure className='aws-tab-logo' /> */}
+                              {val.logo}
+                            </span>
+                            <span className="tabs-name">{val.name}</span>
+                          </span>
+                        </div>
+
+                      </React.Fragment>
+                    )
+                  })
+                }
+              </div>
+              {
+                activeTab == 1 ?
+                  <EditAzureAccount handleEditClose={handleEditClose}/> :
+                  activeTab == 2 ?
+                    <EditAwsAccount handleEditClose={handleEditClose}/> :
+                    activeTab == 3 ?
+                      <EditGoogleAccount handleEditClose={handleEditClose}/> :
+                      activeTab == 4 ?
+                      <EditOracleAccount handleEditClose={handleEditClose}/>:
+                      <EditAzureAccount handleEditClose={handleEditClose}/>
               }
 
             </div>
