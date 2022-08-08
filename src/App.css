@@ -29,6 +29,8 @@ hr {
 main {
     /* padding: 0px 20px 20px 20px; */
     background: rgb(252, 249, 249);
+    max-height: 100vh;
+    overflow: auto;
 
 }
 
@@ -41,6 +43,7 @@ main {
     color: white;
     height: 100vh;
     /* min-width: 250px; */
+    
 }
 
 .top-section {
@@ -164,6 +167,7 @@ main {
     padding: 15px;
     color: white;
     width: 100%;
+    
 }
 
 .topbar-heading-text {
@@ -1136,6 +1140,58 @@ main {
 }
 
 /* //////////////////////////Delete Cloud Account////////////////////// */
+
+/* //////////////////////////Azure Inventory////////////////////// */
+
+.azure-inventory-container{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.azure-inventory-block-heading{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: -15px;
+}
+.azure-inventory-groups-block{
+    /* gap: 20px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    padding-left: 5px;
+    padding-right: 10px;
+    width: auto;
+    background: #aae0f3;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.azure-inventory-sub-groups-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.azure-inventory-sub-groups-logo{
+    height: 25px;
+    width: 25px;
+}
+.azure-inventory-sub-groups-name{
+    font-size: 16;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.azure-inventory-sub-groups-number{
+    font-size: 16;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+
+/* //////////////////////////Azure Inventory////////////////////// */
 
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
