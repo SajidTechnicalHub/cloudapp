@@ -3,7 +3,6 @@ import { BsQuestionCircle } from 'react-icons/bs'
 
 const DeleteCloudAccount = (props) => {
     const handleDeleteAccount = () =>{
-        alert('Delete!')
        console.log(props.deleteAccoutData)
     }
     return (
