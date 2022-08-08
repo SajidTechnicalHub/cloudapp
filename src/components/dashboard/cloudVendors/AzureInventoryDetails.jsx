@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import TopBar from '../header/TopBar'
+import { FaArrowsAltH } from 'react-icons/fa';
+
+
 
 const AzureInventoryDetails = () => {
     const navigate = useNavigate();
     const [cloudAccount, setCloudAccount] = useState({
-        cloud_account:'All Azure Cloud Accounts'
-        
+        cloud_account: 'All Azure Cloud Accounts'
+
     })
 
     const InputEvent = (e) => {
@@ -25,7 +28,12 @@ const AzureInventoryDetails = () => {
             <div className="azure-inventory-detail-container">
                 <div className="azure-inventory-detail-all-vnets-block">
                     <span className="azure-inventory-detail-all-vnets-block-heading">
-                        All VNets (2)
+                        <span className="azure-inventory-detail-vnets-block">
+                            <span className="azure-inventory-detail-vnets-logo-block">
+                                <FaArrowsAltH />
+                            </span>
+                            <span>All VNets (2)</span>
+                        </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">
                         <select
