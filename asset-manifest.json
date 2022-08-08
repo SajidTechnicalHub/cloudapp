@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/cloudapp/static/css/main.a6c087cc.css",
-    "main.js": "/cloudapp/static/js/main.0dbc877e.js",
+    "main.css": "/cloudapp/static/css/main.55a78e2b.css",
+    "main.js": "/cloudapp/static/js/main.98b628a0.js",
     "static/media/success-icon.png": "/cloudapp/static/media/success-icon.a7106fd26dcc01d2f79e.png",
     "index.html": "/cloudapp/index.html",
-    "main.a6c087cc.css.map": "/cloudapp/static/css/main.a6c087cc.css.map",
-    "main.0dbc877e.js.map": "/cloudapp/static/js/main.0dbc877e.js.map"
+    "main.55a78e2b.css.map": "/cloudapp/static/css/main.55a78e2b.css.map",
+    "main.98b628a0.js.map": "/cloudapp/static/js/main.98b628a0.js.map"
   },
   "entrypoints": [
-    "static/css/main.a6c087cc.css",
-    "static/js/main.0dbc877e.js"
+    "static/css/main.55a78e2b.css",
+    "static/js/main.98b628a0.js"
   ]
 }
