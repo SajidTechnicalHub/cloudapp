@@ -19,6 +19,7 @@ import virtualMachineLogo from '../../images/virtual-machine.png'
 import containerInstancesLogo from '../../images/container-instances.png'
 import kubernetesServicesLogo from '../../images/kubernetes-services.png'
 import appServicesLogo from '../../images/app-services.jpg'
+import { Link } from 'react-router-dom'
 
 const azureGeneral = [
   {
@@ -118,7 +119,7 @@ const azureNetworking = [
 
   },
 ]
-const azureSecurity =[
+const azureSecurity = [
   {
     id: 1,
     group_name: 'Network Sec Groups',
@@ -143,7 +144,7 @@ const azureStorage = [
 
   },
 ]
-const azureIdentity =[
+const azureIdentity = [
   {
     id: 1,
     group_name: 'Users',
@@ -178,16 +179,18 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <div className="azure-inventory-groups-block">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                    </div>
+                      </div>
+                    </Link>
                   </div>
                 </React.Fragment>
-                
+
               )
             })
           }
@@ -199,17 +202,19 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <div className="azure-inventory-groups-block">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                    </div>
+                      </div>
+                    </Link>
                   </div>
-                  
+
                 </React.Fragment>
-                
+
               )
             })
           }
@@ -222,17 +227,19 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <div className="azure-inventory-groups-block">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                    </div>
+                      </div>
+                    </Link>
                   </div>
-                  
+
                 </React.Fragment>
-                
+
               )
             })
           }
@@ -244,17 +251,19 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <div className="azure-inventory-groups-block">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                    </div>
+                      </div>
+                    </Link>
                   </div>
-                  
+
                 </React.Fragment>
-                
+
               )
             })
           }
@@ -267,17 +276,19 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <div className="azure-inventory-groups-block">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                    </div>
+                      </div>
+                    </Link>
                   </div>
-                  
+
                 </React.Fragment>
-                
+
               )
             })
           }
@@ -290,17 +301,19 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <div className="azure-inventory-groups-block">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                    </div>
+                      </div>
+                    </Link>
                   </div>
-                  
+
                 </React.Fragment>
-                
+
               )
             })
           }

@@ -16,7 +16,7 @@ import VarificationCode from "./components/registration/VarificationCode";
 import UpdatePassword from "./components/registration/UpdatePassword";
 import RequestSuccess from "./components/registration/RequestSucess";
 import SignInVarificationCode from "./components/registration/SignInVarificationCode";
-
+import AzureInventoryDetails from "./components/dashboard/cloudVendors/AzureInventoryDetails";
 
 
 function App() {
@@ -27,13 +27,14 @@ function App() {
         <Route path="cloudapp" element={<DashboardLyout />} >
           <Route index element={<Overview />} />
           {/* <Route path="/dashboard_home" element={<DashboardHome />} /> */}
-          <Route path="cloudapp/overview" element={<Overview />} />
-          <Route path="cloudapp/AWS" element={<Aws/>} />
-          <Route path="cloudapp/Azure" element={<Azure/>} />
-          <Route path="cloudapp/GCP" element={<Gcp/>} />
-          <Route path="cloudapp/summary" element={<Summary/>} />
-          <Route path="cloudapp/reports" element={<Reports/>} />
-          <Route path="cloudapp/account-management" element={<AccountManagement/>} />
+          <Route path="/cloudapp/overview" element={<Overview />} />
+          <Route path="/cloudapp/AWS" element={<Aws/>} />
+          <Route path="/cloudapp/Azure" element={<Azure/>} />
+          <Route path="/cloudapp/Azure-Inventory-Details" element={<AzureInventoryDetails/>} />
+          <Route path="/cloudapp/GCP" element={<Gcp/>} />
+          <Route path="/cloudapp/summary" element={<Summary/>} />
+          <Route path="/cloudapp/reports" element={<Reports/>} />
+          <Route path="/cloudapp/account-management" element={<AccountManagement/>} />
           
         </Route>
         <Route path="/signin" element={<SignIn />} />

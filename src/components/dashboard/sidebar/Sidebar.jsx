@@ -15,12 +15,12 @@ import useWindowDimensions from '../../useWindowDimensions';
 
 const routes = [
   {
-    path: 'cloudapp/overview',
+    path: '/cloudapp/overview',
     name: 'Dashboard',
     icon: <MdDashboard />
   },
   {
-    path: 'cloudapp/account-management',
+    path: '/cloudapp/account-management',
     name: 'Cloud Account Management',
     icon: <MdOutlineManageAccounts />
   },
@@ -44,17 +44,17 @@ const routes = [
 ]
 const CloudVender = [
   {
-    path: 'cloudapp/Azure',
+    path: '/cloudapp/Azure',
     name: 'Azure Inventory',
     icon: <SiMicrosoftazure />
   },
   {
-    path: 'cloudapp/AWS',
+    path: '/cloudapp/AWS',
     name: 'AWS Inventory',
     icon: <FaAws />
   },
   {
-    path: 'cloudapp/GCP',
+    path: '/cloudapp/GCP',
     name: 'GCP Inventory',
     icon: <SiGooglecloud />
   },
@@ -63,12 +63,12 @@ const CloudVender = [
 ]
 const CloudInsights = [
   {
-    path: 'cloudapp/summary',
+    path: '/cloudapp/summary',
     name: 'Summary',
     icon: <MdOutlineInventory />
   },
   {
-    path: 'cloudapp/reports',
+    path: '/cloudapp/reports',
     name: 'Reports',
     icon: <TbReport />
   },
