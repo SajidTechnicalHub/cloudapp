@@ -43,7 +43,7 @@ main {
     color: white;
     height: 100vh;
     /* min-width: 250px; */
-    
+
 }
 
 .top-section {
@@ -167,7 +167,7 @@ main {
     padding: 15px;
     color: white;
     width: 100%;
-    
+
 }
 
 .topbar-heading-text {
@@ -925,13 +925,14 @@ main {
     margin-left: .5em;
 
 }
-.azure-account-note{
+
+.azure-account-note {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     background: #05758a;
     padding: 5px;
-    
+
 }
 
 .list-style-type {
@@ -948,17 +949,20 @@ main {
     height: 170px;
     overflow: auto;
 }
-.need-more-help-container{
+
+.need-more-help-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.need-more-help{
+
+.need-more-help {
     color: gray;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
+
 .azure-account-input-field-block {
     display: flex;
     flex-direction: column;
@@ -979,21 +983,25 @@ main {
 .azure-account-input-field-block input:focus {
     outline: 1px solid grey;
 }
+
 .azure-account-form-block {
     margin-top: 10px;
 }
-.azure-form-submit-block{
+
+.azure-form-submit-block {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+
 .azure-read-permission {
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     color: gray;
 }
-.azure-form-submit-btn-block{
+
+.azure-form-submit-btn-block {
     display: flex;
     gap: 20px;
     margin-top: 10px;
@@ -1026,6 +1034,7 @@ main {
     outline: 1px solid #003d48;
 
 }
+
 .azure-form-cancel-btn {
     background: grey;
     color: red;
@@ -1051,25 +1060,29 @@ main {
     text-align: center;
     cursor: pointer;
 }
+
 /* //////////////////////////Azure Cloud Account////////////////////// */
 
 /* //////////////////////////Delete Cloud Account////////////////////// */
-.delete-cloud-account-container{
+.delete-cloud-account-container {
     padding: 20px;
 }
-.delete-account-block{
+
+.delete-account-block {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-.delete-icon{
+
+.delete-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
+
 .delete-account-btn {
     background: #05758a;
     color: white;
@@ -1097,6 +1110,7 @@ main {
     outline: 1px solid #003d48;
 
 }
+
 .delete-account-cancel-btn {
     background: grey;
     color: #fff;
@@ -1122,20 +1136,23 @@ main {
     text-align: center;
     cursor: pointer;
 }
-.delete-account-btn-block{
+
+.delete-account-btn-block {
     display: flex;
     gap: 20px;
     justify-content: center;
     align-items: center;
 }
-.delete-text{
+
+.delete-text {
     font-size: 28px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
-.delete-ensure{
+
+.delete-ensure {
     font-size: 16px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: grey;
 }
 
@@ -1143,19 +1160,20 @@ main {
 
 /* //////////////////////////Azure Inventory////////////////////// */
 
-.azure-inventory-container{
+.azure-inventory-container {
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 10px;
     padding-bottom: 20px;
 }
 
-.azure-inventory-block-heading{
+.azure-inventory-block-heading {
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: -15px;
 }
-.azure-inventory-groups-block{
+
+.azure-inventory-groups-block {
     /* gap: 20px; */
     display: flex;
     justify-content: space-between;
@@ -1169,46 +1187,88 @@ main {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.azure-inventory-sub-groups-block{
+.azure-inventory-sub-groups-block {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
-.azure-inventory-sub-groups-logo{
+
+.azure-inventory-sub-groups-logo {
     height: 25px;
     width: 25px;
 }
-.azure-inventory-sub-groups-name{
-    font-size: 16;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-}
-.azure-inventory-sub-groups-number{
+
+.azure-inventory-sub-groups-name {
     font-size: 16;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
+.azure-inventory-sub-groups-number {
+    font-size: 16;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.azure-inventory-detail-container {
+    padding: 10px 20px 20px 20px;
+}
+
+.azure-inventory-detail-all-vnets-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.azure-inventory-detail-all-vnets-block-heading {
+    font-size: 16;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.azure-inventory-detail-all-vnets-block-dropdown select {
+    padding: 10px 20px 10px;
+    width: auto;
+    font-size: 14px;
+    border: 1px solid lightgrey;
+    background: white;
+    outline:none ;
+}
+.azure-inventory-detail-all-vnets-block-dropdown select option {
+    padding: 10px 20px 10px!important;
+    width: auto;
+    font-size: 14px;
+    border: 1px solid lightgrey;
+    background: white;
+    outline:none ;
+}
+
+.azure-inventory-detail-all-vnets-block-dropdown:focus {
+    outline: 1px solid grey;
+}
 
 /* //////////////////////////Azure Inventory////////////////////// */
 
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
-    .need-more-help-container{
-        flex-direction: column!important;
-        justify-content: start!important;
-        align-items: start!important;
+
+    .need-more-help-container {
+        flex-direction: column !important;
+        justify-content: start !important;
+        align-items: start !important;
     }
-    .add-cloud-account-tabs-container{
-        flex-direction: column!important;
-        gap: 10px!important;
+
+    .add-cloud-account-tabs-container {
+        flex-direction: column !important;
+        gap: 10px !important;
     }
+
     .aws-content-container {
 
-        flex-direction: column!important;
+        flex-direction: column !important;
     }
-    
+
 
     .form-container {
         flex-direction: column !important;
