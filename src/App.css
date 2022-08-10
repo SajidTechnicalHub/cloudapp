@@ -1134,7 +1134,7 @@ main {
     min-width: 100px;
     padding: 5px;
     text-align: center;
-    cursor: pointer;
+    cursor: pointer; 
 }
 
 .delete-account-btn-block {
@@ -1172,6 +1172,9 @@ main {
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: -15px;
     font-weight: bold;
+}
+.azure-inventory-detail-container .css-1jbbcbn-MuiDataGrid-columnHeaderTitle{
+    font-weight: bold!important;
 }
 
 .azure-inventory-groups-block {
