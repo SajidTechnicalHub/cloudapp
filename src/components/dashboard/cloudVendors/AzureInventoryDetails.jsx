@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import TopBar from '../header/TopBar'
 import { FaArrowsAltH } from 'react-icons/fa';
-
+import { FiPlus, FiRefreshCcw, FiSearch, FiEdit2, } from 'react-icons/fi'
+import { GoArrowSmallDown} from 'react-icons/go'
 
 
 const AzureInventoryDetails = () => {
     const navigate = useNavigate();
+    const [q, setQ] = useState("")
     const [cloudAccount, setCloudAccount] = useState({
         cloud_account: 'All Azure Cloud Accounts'
 
@@ -46,6 +48,23 @@ const AzureInventoryDetails = () => {
 
                         </select>
                     </span>
+                </div>
+                <div className="search-container">
+                    <div className="search-block">
+                        <input type="text"
+                            value={q}
+                            onChange={(e) => setQ(e.target.value)}
+                            placeholder='Search' />
+                        <span className="search-icon"><FiSearch /></span>
+                    </div>
+                    <div className="referesh-container">
+                        <span className="referesh-block">
+                            <FiRefreshCcw />
+                        </span>
+                        <span  className="referesh-block">
+                            <GoArrowSmallDown fontSize='28px' fontWeight='bold' />
+                        </span>
+                    </div>
                 </div>
             </div>
 

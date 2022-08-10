@@ -1168,9 +1168,10 @@ main {
 }
 
 .azure-inventory-block-heading {
-    font-size: 16px;
+    font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: -15px;
+    font-weight: bold;
 }
 
 .azure-inventory-groups-block {
@@ -1219,6 +1220,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
 }
 
 .azure-inventory-detail-all-vnets-block-heading {
@@ -1228,13 +1231,14 @@ main {
 }
 
 .azure-inventory-detail-all-vnets-block-dropdown select {
-    padding: 10px 10px 10px;
     width: auto;
     font-size: 14px;
     border: 1px solid lightgrey;
     background: white;
     outline:none ;
     border-radius: 2px;
+    padding: 8px;
+    padding-left: 15px;
 }
 
 
@@ -1251,7 +1255,7 @@ main {
     height: 35px;
     width: 35px;
     color: #aae0f3;
-    border: 1px solid #aae0f3;
+    border: 2px solid #aae0f3;
     border-radius: 10px;
     font-size: 20px;
     font-weight: bold;
@@ -1264,7 +1268,7 @@ main {
 
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
-
+    
     .need-more-help-container {
         flex-direction: column !important;
         justify-content: start !important;
@@ -1358,6 +1362,14 @@ main {
         width: 350px;
 
     }
+    .azure-inventory-detail-all-vnets-block {
+        flex-direction: column!important;
+        
+    }
+    .azure-inventory-detail-all-vnets-block-dropdown select {
+        width: 350px;
+        
+    }
 }
 
 @media(max-width:350px) {
@@ -1366,8 +1378,6 @@ main {
         padding: 5px;
         width: 295px !important;
         padding-left: 15px;
-
-
     }
 
     .form-top-container {
@@ -1406,6 +1416,10 @@ main {
 
     .search-container input {
         width: 310px;
+    }
+    .azure-inventory-detail-all-vnets-block-dropdown select {
+        width: 310px;
+        
     }
 }
 

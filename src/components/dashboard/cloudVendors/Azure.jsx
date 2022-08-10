@@ -187,7 +187,7 @@ const Azure = () => {
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                       </div>
-                    </Link>
+                    </Link><br />
                   </div>
                 </React.Fragment>
 
@@ -210,7 +210,7 @@ const Azure = () => {
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                       </div>
-                    </Link>
+                    </Link><br />
                   </div>
 
                 </React.Fragment>
@@ -235,7 +235,7 @@ const Azure = () => {
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                       </div>
-                    </Link>
+                    </Link><br />
                   </div>
 
                 </React.Fragment>
@@ -259,7 +259,7 @@ const Azure = () => {
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                       </div>
-                    </Link>
+                    </Link><br />
                   </div>
 
                 </React.Fragment>
@@ -284,7 +284,7 @@ const Azure = () => {
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                       </div>
-                    </Link>
+                    </Link><br />
                   </div>
 
                 </React.Fragment>
@@ -309,7 +309,7 @@ const Azure = () => {
                         </div>
                         <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                       </div>
-                    </Link>
+                    </Link><br />
                   </div>
 
                 </React.Fragment>
