@@ -1,18 +1,19 @@
 {
   "files": {
-    "main.css": "/cloudapp/static/css/main.c99b7577.css",
-    "main.js": "/cloudapp/static/js/main.54377023.js",
+    "main.css": "/cloudapp/static/css/main.2319989a.css",
+    "main.js": "/cloudapp/static/js/main.3cd90baa.js",
     "static/media/Subscriptions.png": "/cloudapp/static/media/Subscriptions.42573d0f724472fa172a.png",
     "static/media/success-icon.png": "/cloudapp/static/media/success-icon.a7106fd26dcc01d2f79e.png",
     "static/media/dns-zones.png": "/cloudapp/static/media/dns-zones.88cb30ac272a8d9a40ac.png",
     "static/media/kubernetes-services.png": "/cloudapp/static/media/kubernetes-services.13f040b71ccd4129ed31.png",
+    "static/media/CloudNoxLogo.png": "/cloudapp/static/media/CloudNoxLogo.d49ba4e1bc489ac74de8.png",
     "static/media/Service-Health.png": "/cloudapp/static/media/Service-Health.0a46cfbe4a3254679c6f.png",
     "index.html": "/cloudapp/index.html",
-    "main.c99b7577.css.map": "/cloudapp/static/css/main.c99b7577.css.map",
-    "main.54377023.js.map": "/cloudapp/static/js/main.54377023.js.map"
+    "main.2319989a.css.map": "/cloudapp/static/css/main.2319989a.css.map",
+    "main.3cd90baa.js.map": "/cloudapp/static/js/main.3cd90baa.js.map"
   },
   "entrypoints": [
-    "static/css/main.c99b7577.css",
-    "static/js/main.54377023.js"
+    "static/css/main.2319989a.css",
+    "static/js/main.3cd90baa.js"
   ]
 }
