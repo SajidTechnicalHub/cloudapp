@@ -9,7 +9,7 @@ import { CgClose } from 'react-icons/cg';
 import { BiCloudUpload } from 'react-icons/bi';
 import { TbReport } from 'react-icons/tb';
 import useWindowDimensions from '../../useWindowDimensions';
-
+import CloudNoxLogo from '../../images/CloudNoxLogo.png'
 
 
 
@@ -163,7 +163,9 @@ const Sidebar = () => {
                 initial='hidden'
                 animate='show'
                 esit='hidden'
-                className='logo' >Cloud Insights</motion.h1>}
+              >
+                <img src={CloudNoxLogo} alt='Cloud Insights' className='cloudNoxLogo' />
+              </motion.h1>}
               <div className="bars">
                 <FaBars onClick={toggle} />
               </div>
@@ -286,7 +288,9 @@ const Sidebar = () => {
               initial='hidden'
               animate='show'
               esit='hidden'
-              className='logo'>Cloud Insights</motion.h1>}
+            >
+              <img src={CloudNoxLogo} alt='Cloud Insights' className='cloudNoxLogo' />
+            </motion.h1>}
             <div className="mobile-bars">
               {mobileView ? <CgClose onClick={handleMobileView} /> :
                 <FaBars onClick={handleMobileView} />}

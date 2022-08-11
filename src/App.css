@@ -54,13 +54,11 @@ main {
     padding: 15px 10px;
 }
 
-.logo {
-    /* height: 35px;
-    width: 50px;
-    margin-left: -5px ; */
-    font-size: 26px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
+
+.cloudNoxLogo {
+    height: 200px;
+    width: 250px;
+    margin-left: -40px;
 }
 
 .bars {
@@ -147,6 +145,7 @@ main {
     height: calc(100vh - 50px);
     position: fixed;
     top: 50px;
+    z-index: 999;
     left: 0;
     scroll-behavior: auto;
 }
@@ -1134,7 +1133,7 @@ main {
     min-width: 100px;
     padding: 5px;
     text-align: center;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .delete-account-btn-block {
@@ -1173,8 +1172,14 @@ main {
     margin-bottom: -15px;
     font-weight: bold;
 }
-.azure-inventory-detail-container .css-1jbbcbn-MuiDataGrid-columnHeaderTitle{
-    font-weight: bold!important;
+
+.azure-inventory-detail-container .css-1jbbcbn-MuiDataGrid-columnHeaderTitle {
+    font-weight: bold !important;
+}
+
+.azure-inventory-detail-container .search-container {
+    display: flex;
+    justify-content: space-between;
 }
 
 .azure-inventory-groups-block {
@@ -1238,7 +1243,7 @@ main {
     font-size: 14px;
     border: 1px solid lightgrey;
     background: white;
-    outline:none ;
+    outline: none;
     border-radius: 2px;
     padding: 8px;
     padding-left: 15px;
@@ -1248,13 +1253,14 @@ main {
 .azure-inventory-detail-all-vnets-block-dropdown:focus {
     outline: 1px solid grey;
 }
-.azure-inventory-detail-vnets-block{
+
+.azure-inventory-detail-vnets-block {
     display: flex;
     gap: 5px;
     align-items: center;
 }
 
-.azure-inventory-detail-vnets-logo-block{
+.azure-inventory-detail-vnets-logo-block {
     height: 35px;
     width: 35px;
     color: #aae0f3;
@@ -1267,11 +1273,25 @@ main {
     align-items: center;
 }
 
+.azure-inventory-detail-vnets-text {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
 /* //////////////////////////Azure Inventory////////////////////// */
 
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
-    
+    .azure-inventory-detail-container {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .azure-inventory-detail-container .search-container {
+        flex-direction: row !important;
+    }
+
     .need-more-help-container {
         flex-direction: column !important;
         justify-content: start !important;
@@ -1327,7 +1347,7 @@ main {
 
     .topbar-heading-text {
         font-size: 16px;
-        color: blue;
+        
     }
 
     .topbar-subheading-text {
@@ -1353,6 +1373,12 @@ main {
 
 }
 
+@media(max-width:600px) {
+    .azure-inventory-detail-container .search-container input {
+        width: 300px;
+    }
+}
+
 @media(max-width:520px) {
     .search-container input {
         width: 400px;
@@ -1361,21 +1387,29 @@ main {
 }
 
 @media(max-width:410px) {
+    .azure-inventory-detail-container .search-container input {
+        width: 270px;
+    }
+
     .search-container input {
         width: 350px;
 
     }
-    .azure-inventory-detail-all-vnets-block {
-        flex-direction: column!important;
-        
+
+    .azure-inventory-detail-vnets-text {
+        font-size: 16px !important;
     }
+
     .azure-inventory-detail-all-vnets-block-dropdown select {
-        width: 350px;
-        
+        width: 150px !important;
+        padding-left: 10px !important;
     }
 }
 
 @media(max-width:350px) {
+    .azure-inventory-detail-container .search-container input {
+        width: 250px;
+    }
 
     .input-field-block input {
         padding: 5px;
@@ -1420,10 +1454,11 @@ main {
     .search-container input {
         width: 310px;
     }
-    .azure-inventory-detail-all-vnets-block-dropdown select {
+
+    /* .azure-inventory-detail-all-vnets-block-dropdown select {
         width: 310px;
         
-    }
+    } */
 }
 
 /* //////////////////////////Media Queries////////////////////// */
