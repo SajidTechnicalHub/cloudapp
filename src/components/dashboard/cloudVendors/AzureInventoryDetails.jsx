@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import TopBar from '../header/TopBar'
 import { FaArrowsAltH } from 'react-icons/fa';
@@ -70,6 +70,7 @@ const rows = [
 const AzureInventoryDetails = () => {
     const navigate = useNavigate();
     const [q, setQ] = useState("")
+    const [virtualNetwork, setVirtualNetwork] = useState()
     const [users, setUsers] = useState(rows)
     const [pageSize, setPageSize] = useState(5);
     const [cloudAccount, setCloudAccount] = useState({
@@ -97,12 +98,27 @@ const AzureInventoryDetails = () => {
 
     }
     const handleReferesh = () => {
-        console.log('handle referesh')
-        axios.get('http://localhost:3000/api/v1/azure_connection/index')
-            .then(function (response) {
-                console.log(response);
-            })
+
     }
+    const getVirtualNetwork = async () => {
+        const response = await fetch("http://localhost:3000/api/v1/azure_connection/virtual_network", {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token"),
+            },
+        })
+        const data = await response.json()
+        console.log(data)
+        setVirtualNetwork(data)
+    }
+
+    useEffect(() => {
+        getVirtualNetwork()
+    }, [])
+
+
+
+
     return (
         <>
             <TopBar subtitle='Azure / All VNets' />
@@ -113,6 +129,7 @@ const AzureInventoryDetails = () => {
                             <span className="azure-inventory-detail-vnets-logo-block">
                                 <FaArrowsAltH onClick={handleReferesh()} />
                             </span>
+                           
                             <span className='azure-inventory-detail-vnets-text'>All VNets (2)</span>
                         </span>
                     </span>
@@ -145,7 +162,7 @@ const AzureInventoryDetails = () => {
                         </span> */}
                     </div>
                 </div>
-
+              
                 <Box sx={{ height: 400, width: '100%' }}>
                     <DataGrid
                         rows={Search(users)}

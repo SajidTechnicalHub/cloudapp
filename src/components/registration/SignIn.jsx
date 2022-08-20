@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios';
+
 const SignIn = () => {
 
   const navigate = useNavigate();
+  const [loginMessage, setLoginMessage] = useState('')
   const [user, setUser] = useState({
     email: '',
     password: ''
@@ -18,47 +20,39 @@ const SignIn = () => {
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
-    fetch("http://localhost:3001/login", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        user: {
-          email: "test@test.com",
-          password: "password",
+   
+
+      fetch("http://localhost:3000/api/v1/login", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: localStorage.getItem("token"),
         },
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          console.log(res.headers.get("Authorization"));
-          localStorage.setItem("token", res.headers.get("Authorization"));
-          return res.json();
-        } else {
-          return res.text().then((text) => Promise.reject(text));
-        }
+        body: JSON.stringify({
+          user: {
+            email: user.email,
+            password: user.password,
+          },
+        }),
       })
-      .then((json) => console.dir(json))
-      .catch((err) => console.error(err));
+        .then((res) => {
+          if (res.ok) {
+            console.log(res.headers.get("Authorization"));
+            localStorage.setItem("token", res.headers.get("Authorization"));
+            navigate('/cloudapp/overview')
+            // navigate('/signin_varification_code')
+            return res.json();
 
-    // fetch("http://localhost:3001/private/test", {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization: localStorage.getItem("token"),
-    //   },
-    // })
-    //   .then((res) => {
-    //     if (res.ok) {
-    //       return res.json();
-    //     } else if (res.status == "401") {
-    //       throw new Error("Unauthorized Request. Must be signed in.");
-    //     }
-    //   })
-    //   .then((json) => console.dir(json))
-    //   .catch((err) => console.error(err));
+          } else {
+            return res.text().then((text) => Promise.reject(text));
+          }
+        })
+        .then((json) => console.dir(json))
+        .catch((err) => console.error(err));
 
-    navigate('/signin_varification_code')
+  
+
+
 
   }
   return (
@@ -71,7 +65,8 @@ const SignIn = () => {
         <div className="form-right-container">
           <div className="signin-form-block">
             <span className='form-heading'> Cloud Cloud</span>
-
+            
+            <span>{loginMessage}</span>
             <form onSubmit={SubmitEvent} className='sign-in-form'>
               <div className="input-field-block ">
                 <label htmlFor="email" className="input-field-label">Email<span className='estaric'>*</span></label>

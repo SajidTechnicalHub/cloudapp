@@ -4,6 +4,12 @@
   "homepage": "https://SajidTechnicalHub.github.io/cloudapp",
   "private": true,
   "dependencies": {
+    "@azure/arm-compute": "^19.1.0",
+    "@azure/arm-network": "^29.0.0",
+    "@azure/arm-resources": "^5.0.1",
+    "@azure/arm-storage": "^17.2.1",
+    "@azure/arm-subscriptions": "^5.0.1",
+    "@azure/identity": "^2.1.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/icons-material": "^5.8.4",

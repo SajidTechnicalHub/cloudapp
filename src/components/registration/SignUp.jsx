@@ -9,7 +9,7 @@ const SignUp = () => {
 
   const [passwordLength, setPasswordLength] = useState('')
   const [passwordInfo, setPasswordInfo] = useState(false)
-
+  const [loginMessage, setLoginMessage] = useState('')
   const [user, setUser] = useState({
     fname: '',
     lname: '',
@@ -19,6 +19,7 @@ const SignUp = () => {
 
   })
   const InputEvent = (e) => {
+   
     const { name, value } = e.target;
     setUser(() => {
       return { ...user, [name]: value }
@@ -35,35 +36,40 @@ const SignUp = () => {
 
     if (user.password.length >= 8) {
       setPasswordLength('')
-
-      fetch("http://localhost:3001/signup", {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user: {
-            fname: user.fname,
-            lname: user.lname,
-            company_name: user.company_name,
-            email: user.company_email,
-            password: user.password,
+      if (localStorage.getItem('token') != '') {
+        setLoginMessage('You are already login!')
+      } else {
+        fetch("http://localhost:3000/api/v1/signup", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
           },
-        }),
-      })
-        .then((res) => {
-          if (res.ok) {
-            console.log(res.headers.get("Authorization"));
-            localStorage.setItem("token", res.headers.get("Authorization"));
-            return res.json();
-          } else {
-            throw new Error(res);
-          }
+          body: JSON.stringify({
+            user: {
+              fname: user.fname,
+              lname: user.lname,
+              company_name: user.company_name,
+              email: user.company_email,
+              password: user.password,
+            },
+          }),
         })
-        .then((json) => console.dir(json))
-        .catch((err) => console.error(err));
+          .then((res) => {
+            if (res.ok) {
+              console.log(res.headers.get("Authorization"));
+              localStorage.setItem("token", res.headers.get("Authorization"));
+              navigate('/cloudapp')
+              return res.json();
+            } else {
+              throw new Error(res);
+            }
+          })
+          .then((json) => console.dir(json))
+          .catch((err) => console.error(err));
 
-      navigate('/cloudapp')
+      }
+
+
 
     } else {
       setPasswordLength('Password must be contain atleast 8 characters.')
@@ -83,6 +89,7 @@ const SignUp = () => {
           < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
           <div className="signin-form-block">
             <span className='form-heading'> Cloud Cloud Cloud</span>
+            <span>{loginMessage}</span>
             {passwordInfo && <div className="password-info-container">
 
               <AiOutlineClose onClick={(e) => setPasswordInfo(false)} className='password-info-close-icon' />

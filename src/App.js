@@ -19,10 +19,12 @@ import SignInVarificationCode from "./components/registration/SignInVarification
 import AzureInventoryDetails from "./components/dashboard/cloudVendors/AzureInventoryDetails";
 
 
+
 function App() {
+
   return (
     <div className="container-flude">
-    
+  
       <Routes>
         <Route path="cloudapp" element={<DashboardLyout />} >
           <Route index element={<Overview />} />
@@ -47,6 +49,8 @@ function App() {
         
 
       </Routes>
+
+     
     </div>
   );
 }

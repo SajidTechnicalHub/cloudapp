@@ -2,25 +2,44 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const AddAzureAccount = (props) => {
-  const [user, setUser] = useState({
+
+  const [credential, setCredential] = useState({
     account_name: '',
-    application_id: '',
-    secret_id: '',
-    tenent_id: '',
+    client_id: '',
+    client_secret: '',
+    tenant_id: '',
     subscription_id: '',
 
 
   })
   const InputEvent = (e) => {
     const { name, value } = e.target;
-    setUser(() => {
-      return { ...user, [name]: value }
+    setCredential(() => {
+      return { ...credential, [name]: value }
     })
 
   }
   const SubmitEvent = (e) => {
     e.preventDefault()
-
+    
+    fetch("http://localhost:3000/api/v1/azure_credentials", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({azure_credential:credential}),
+      })
+        .then((res) => {
+          if (res.ok) {
+            console.log(res.headers.get("Authorization"));
+            localStorage.setItem("token", res.headers.get("Authorization"));
+            return res.json();
+          } else {
+            throw new Error(res);
+          }
+        })
+        .then((json) => console.dir(json))
 
     // navigate('/cloudapp')
   }
@@ -73,7 +92,7 @@ const AddAzureAccount = (props) => {
                 provided  <span className='list-style-type'>“custom permission template”</span>. Click on <span className='list-style-type'>“Review + Create”</span></li>
               <li>Click <span className='list-style-type'>Add {`>`} Add role assignment</span>.</li>
               <li>On the <span className='list-style-type'>Add {`>`} Roles</span> tab, select the previously created custom role.</li>
-              <li>On the <span className='list-style-type'>Members</span> tab, select <span className='list-style-type'>User, group, or service principal</span>. Click <span className='list-style-type'>Members</span>Select members.
+              <li>On the <span className='list-style-type'>Members</span> tab, select <span className='list-style-type'>credential, group, or service principal</span>. Click <span className='list-style-type'>Members</span>Select members.
                 Find and select the application created previously. Click <span className='list-style-type'>Save</span> and <span className='list-style-type'>Next</span>.</li>
               <li>Click <span className='list-style-type'>Review + Assign</span>.</li>
             </ol>
@@ -91,7 +110,7 @@ const AddAzureAccount = (props) => {
                 {/* <label htmlFor="account_name" className="input-field-label">Fist Name<span className='estaric'>*</span></label> */}
                 <input type="text"
                   name="account_name"
-                  value={user.account_name}
+                  value={credential.account_name}
                   onChange={InputEvent}
                   required="required"
                   placeholder='Enter Account Name'
@@ -101,10 +120,10 @@ const AddAzureAccount = (props) => {
             </div>
             <div className="col-lg-6">
               <div className="azure-account-input-field-block ">
-                {/* <label htmlFor="application_id" className="input-field-label">Last Name<span className='estaric'>*</span></label> */}
+                {/* <label htmlFor="client_id" className="input-field-label">Last Name<span className='estaric'>*</span></label> */}
                 <input type="text"
-                  name="application_id"
-                  value={user.application_id}
+                  name="client_id"
+                  value={credential.client_id}
                   onChange={InputEvent}
                   required="required"
                   placeholder='Enter Application ID'
@@ -116,10 +135,10 @@ const AddAzureAccount = (props) => {
           <div className="row">
             <div className="col-lg-6">
               <div className="azure-account-input-field-block ">
-                {/* <label htmlFor="secret_id" className="input-field-label">Fist Name<span className='estaric'>*</span></label> */}
+                {/* <label htmlFor="client_secret" className="input-field-label">Fist Name<span className='estaric'>*</span></label> */}
                 <input type="text"
-                  name="secret_id"
-                  value={user.secret_id}
+                  name="client_secret"
+                  value={credential.client_secret}
                   onChange={InputEvent}
                   required="required"
                   placeholder='Enter Secret ID'
@@ -129,13 +148,13 @@ const AddAzureAccount = (props) => {
             </div>
             <div className="col-lg-6">
               <div className="azure-account-input-field-block ">
-                {/* <label htmlFor="tenent_id" className="input-field-label">Last Name<span className='estaric'>*</span></label> */}
+                {/* <label htmlFor="tenant_id" className="input-field-label">Last Name<span className='estaric'>*</span></label> */}
                 <input type="text"
-                  name="tenent_id"
-                  value={user.tenent_id}
+                  name="tenant_id"
+                  value={credential.tenant_id}
                   onChange={InputEvent}
                   required="required"
-                  placeholder='Enter Tenent ID'
+                  placeholder='Enter Tenant ID'
                 />
 
               </div>
@@ -147,7 +166,7 @@ const AddAzureAccount = (props) => {
                 {/* <label htmlFor="subscription_id" className="input-field-label">Fist Name<span className='estaric'>*</span></label> */}
                 <input type="text"
                   name="subscription_id"
-                  value={user.subscription_id}
+                  value={credential.subscription_id}
                   onChange={InputEvent}
                   required="required"
                   placeholder='Enter Subscription ID'
@@ -176,3 +195,7 @@ const AddAzureAccount = (props) => {
 }
 
 export default AddAzureAccount
+
+
+// https://github.com/Azure/azure-sdk-for-js/blob/main/documentation/next-generation-quickstart.md
+// https://docs.microsoft.com/en-us/azure/developer/javascript/core/use-azure-sdk

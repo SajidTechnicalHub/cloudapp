@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import TopBar from '../header/TopBar'
 import managementGroup from '../../images/management-group.png'
 import resourceGroup from '../../images/resource-group.png'
@@ -20,6 +20,9 @@ import containerInstancesLogo from '../../images/container-instances.png'
 import kubernetesServicesLogo from '../../images/kubernetes-services.png'
 import appServicesLogo from '../../images/app-services.jpg'
 import { Link } from 'react-router-dom'
+// import { useGlobalContext } from '../../Context'
+import { useContext } from 'react'
+import { AppStateContext } from '../../Context'
 
 const azureGeneral = [
   {
@@ -87,7 +90,7 @@ const azureNetworking = [
     id: 1,
     group_name: 'Virtual Networks',
     group_logo: virtualNetworksLogo,
-    group_number: 2,
+    group_number: 0,
 
   },
   {
@@ -167,13 +170,57 @@ const azureIdentity = [
 
   },
 ]
+
+
+
+
 const Azure = () => {
+  // console.log("useContext(context): ", useContext(AppStateContext));
+  const virtualNetworkState = useContext(AppStateContext)
+  console.log(virtualNetworkState)
+/////////// define total no of resources //////////////////////
+  let virtualNetworkResource = 0
+
+  /////////// define total no of resources //////////////////////
+
+  const [virtualNetwork, setVirtualNetwork] = useState()
+  //////////////// fatch data from database//////////////////////////////
+  const getVirtualNetwork = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_accounts/virtual_network", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const res = await response.json()
+    console.log(res)
+    setVirtualNetwork(res.data)
+
+  }
+
+  //////////////// update data//////////////////////////////
+  const updateVirtualNetwork = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_virtualnetworks/virtual_network_save", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  //////////////// update data//////////////////////////////
+  useEffect(() => {
+    getVirtualNetwork()
+  }, [])
   return (
     <>
       <TopBar subtitle='Azure' />
       <div className="azure-inventory-container">
         <div className="row gy-3 mb-3">
           <span className="azure-inventory-block-heading">General</span>
+          {/* {console.log(data)} */}
           {
             azureGeneral.map((val, index) => {
               return (
@@ -233,7 +280,19 @@ const Azure = () => {
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
-                        <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
+
+
+                        <span className="azure-inventory-sub-groups-number">
+                          {virtualNetwork !=''? 
+                          <span>{virtualNetwork?.map((val, index) => {
+                            return (
+                              <React.Fragment key={index}>
+                                {virtualNetworkResource += 1}
+                              </React.Fragment>
+                            )
+                          })}</span>:<span>{virtualNetworkResource}</span>}
+                          
+                        </span>
                       </div>
                     </Link><br />
                   </div>

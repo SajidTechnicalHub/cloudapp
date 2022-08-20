@@ -123,7 +123,7 @@ const Sidebar = () => {
   //////////////Mobile View////////////////////
 
   const handleLogout = () => {
-    fetch("http://localhost:3001/logout", {
+    fetch("http://localhost:3000/api/v1/logout", {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
@@ -132,6 +132,7 @@ const Sidebar = () => {
     })
       .then((res) => {
         if (res.ok) {
+          localStorage.removeItem("token");
           return res.json();
         } else {
           return res.json().then((json) => Promise.reject(json));
