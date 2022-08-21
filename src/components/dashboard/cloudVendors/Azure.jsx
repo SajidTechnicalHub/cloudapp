@@ -176,8 +176,9 @@ const azureIdentity = [
 
 const Azure = () => {
   // console.log("useContext(context): ", useContext(AppStateContext));
-  const virtualNetworkState = useContext(AppStateContext)
-  console.log(virtualNetworkState)
+  const {network, setNetwork} = useContext(AppStateContext)
+ 
+  console.log(network)
 
   const [loading, setLoading] = useState(false);
   /////////// define total no of resources //////////////////////
@@ -227,7 +228,7 @@ const Azure = () => {
   }
   //////////////// update data//////////////////////////////
   useEffect(() => {
-    getVirtualNetwork()
+    // getVirtualNetwork()
     // updateVirtualNetwork()
     // updateLoadBalancer();
   }, [])
@@ -235,16 +236,12 @@ const Azure = () => {
     <>
       <TopBar subtitle='Azure' />
       {loading === true ?
-        <div>Loading...</div> :
+        <div className='loading'>Loading...</div> :
         <div className="azure-inventory-container">
           <div className="row gy-3 mb-3">
+    
             <span className="azure-inventory-block-heading">General</span>
-            {/* {virtualNetworkState.map((val)=>{
-            return(
-              <>
-              {valname})
-              </>
-          })} */}
+            
             {
               azureGeneral.map((val, index) => {
                 return (
@@ -307,14 +304,14 @@ const Azure = () => {
 
 
                           <span className="azure-inventory-sub-groups-number">
-                            {virtualNetwork != '' ?
-                              <span>{virtualNetwork?.map((val, index) => {
+                            {val.group_name === 'Virtual Networks' ?
+                              <span>{network?.map((val, index) => {
                                 return (
                                   <React.Fragment key={index}>
-                                    {virtualNetworkResource += 1}
+                                    {virtualNetworkResource}
                                   </React.Fragment>
                                 )
-                              })}</span> : <span>{virtualNetworkResource}</span>}
+                              })}</span> : <span>2</span>}
 
                           </span>
                         </div>

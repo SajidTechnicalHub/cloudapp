@@ -7,11 +7,12 @@ import { GoArrowSmallDown } from 'react-icons/go'
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axios from 'axios';
-
+import { useContext } from 'react'
+import { AppStateContext } from '../../Context'
 
 const columns = [
     {
-        field: 'VNet_Name',
+        field: 'VNet_name',
         headerName: 'VNet Name',
         minWidth: 162,
         flex: true,
@@ -25,28 +26,28 @@ const columns = [
         editable: true,
     },
     {
-        field: 'Region',
+        field: 'region',
         headerName: 'Region',
         minWidth: 162,
         flex: true,
         editable: true,
     },
     {
-        field: 'Subscription',
+        field: 'subscription',
         headerName: 'Subscription',
         minWidth: 162,
         flex: true,
         editable: true,
     },
     {
-        field: 'Resource_Group',
+        field: 'resource_group',
         headerName: 'Resource Group',
         minWidth: 162,
         flex: true,
         editable: true,
     },
     {
-        field: 'Account_Name',
+        field: 'account_name',
         headerName: 'Account Name',
         minWidth: 162,
         flex: true,
@@ -54,34 +55,23 @@ const columns = [
     },
 ];
 
-const rows = [
-    { id: 1, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 2, VNet_Name: 'Cloud Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 3, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 4, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 5, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 6, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 7, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 8, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 9, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-    { id: 10, VNet_Name: 'PhishCode Testing', CIDR: '10.0.0/16', Region: 'Pakistan', Subscription: 'Azure', Resource_Group: 'PhishCode', Account_Name: 'Ahsan' },
-];
 
 const AzureInventoryDetails = () => {
+    const { network, setNetwork } = useContext(AppStateContext)
+
     const navigate = useNavigate();
     const [q, setQ] = useState("")
     const [virtualNetwork, setVirtualNetwork] = useState()
-    const [users, setUsers] = useState(rows)
     const [pageSize, setPageSize] = useState(5);
     const [cloudAccount, setCloudAccount] = useState({
         cloud_account: 'All Azure Cloud Accounts'
 
     })
-    const Search = (users) => {
-        return users.filter(
+    const Search = (network) => {
+        return network.filter(
             (row) =>
-                row.VNet_Name.toLowerCase().indexOf(q) > -1 ||
-                row.VNet_Name.indexOf(q) > -1
+                row.VNet_name.toLowerCase().indexOf(q) > -1 ||
+                row.VNet_name.indexOf(q) > -1
 
         );
     }
@@ -100,21 +90,21 @@ const AzureInventoryDetails = () => {
     const handleReferesh = () => {
 
     }
-    const getVirtualNetwork = async () => {
-        const response = await fetch("http://localhost:3000/api/v1/azure_connection/virtual_network", {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: localStorage.getItem("token"),
-            },
-        })
-        const data = await response.json()
-        console.log(data)
-        setVirtualNetwork(data)
-    }
+    // const getVirtualNetwork = async () => {
+    //     const response = await fetch("http://localhost:3000/api/v1/azure_connection/virtual_network", {
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: localStorage.getItem("token"),
+    //         },
+    //     })
+    //     const data = await response.json()
+    //     console.log(data)
+    //     setVirtualNetwork(data)
+    // }
 
-    useEffect(() => {
-        getVirtualNetwork()
-    }, [])
+    // useEffect(() => {
+    //     getVirtualNetwork()
+    // }, [])
 
 
 
@@ -129,7 +119,7 @@ const AzureInventoryDetails = () => {
                             <span className="azure-inventory-detail-vnets-logo-block">
                                 <FaArrowsAltH onClick={handleReferesh()} />
                             </span>
-                           
+
                             <span className='azure-inventory-detail-vnets-text'>All VNets (2)</span>
                         </span>
                     </span>
@@ -157,21 +147,18 @@ const AzureInventoryDetails = () => {
                         <span className="referesh-block">
                             <FiRefreshCcw />
                         </span>
-                        {/* <span className="referesh-block">
-                            <GoArrowSmallDown fontSize='28px' fontWeight='bold' />
-                        </span> */}
                     </div>
                 </div>
-              
+
                 <Box sx={{ height: 400, width: '100%' }}>
                     <DataGrid
-                        rows={Search(users)}
+                        rows={Search(network)}
                         columns={columns}
                         pageSize={pageSize}
                         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                         rowsPerPageOptions={[5, 10, 20]}
                         pagination
-                        {...users}
+                        {...network}
                         components={{ Toolbar: GridToolbar }}
                         disableSelectionOnClick
                     />

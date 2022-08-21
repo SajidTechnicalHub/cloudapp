@@ -16,7 +16,7 @@
 //         {props.children}
 //     </AppContext.Provider>
 //     );
-    
+
 // };
 
 
@@ -28,21 +28,40 @@
 
 // export { AppContext, AppProvider, useGlobalContext}
 
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 
- const AppStateContext = createContext();
+const AppStateContext = React.createContext();
 
 const AppStateContextProvider = props => {
-  const [virtualNetwork, setVirtualNetwork] = useState({
-    name:'sajid',
-    
-  });
+  const [network, setNetwork] = useState([] )
 
-  return(
-    <AppStateContext.Provider value={{ virtualNetwork, setVirtualNetwork }}>
-        {props.children}
+  
+
+   const getVirtualNetwork = async () => {
+    
+    const response = await fetch("http://localhost:3000/api/v1/azure_accounts/virtual_network", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const res = await response.json()
+    console.log(res)
+    setNetwork(res.data)
+    
+  }
+
+   useEffect(() => {
+    getVirtualNetwork()
+    // updateVirtualNetwork()
+    // updateLoadBalancer();
+  }, [])
+  
+  return (
+    <AppStateContext.Provider value={{network, setNetwork}}>
+      {props.children}
     </AppStateContext.Provider>
-  ); 
+  );
 };
 
 export { AppStateContextProvider, AppStateContext };
