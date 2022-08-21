@@ -178,14 +178,18 @@ const Azure = () => {
   // console.log("useContext(context): ", useContext(AppStateContext));
   const virtualNetworkState = useContext(AppStateContext)
   console.log(virtualNetworkState)
-/////////// define total no of resources //////////////////////
+
+  const [loading, setLoading] = useState(false);
+  /////////// define total no of resources //////////////////////
   let virtualNetworkResource = 0
 
   /////////// define total no of resources //////////////////////
 
   const [virtualNetwork, setVirtualNetwork] = useState()
+  const [loadBalancer, setLoadBalancer] = useState()
   //////////////// fatch data from database//////////////////////////////
   const getVirtualNetwork = async () => {
+    setLoading(true);
     const response = await fetch("http://localhost:3000/api/v1/azure_accounts/virtual_network", {
       headers: {
         "Content-Type": "application/json",
@@ -195,7 +199,7 @@ const Azure = () => {
     const res = await response.json()
     console.log(res)
     setVirtualNetwork(res.data)
-
+    setLoading(false);
   }
 
   //////////////// update data//////////////////////////////
@@ -210,174 +214,195 @@ const Azure = () => {
     console.log(data)
 
   }
+  const updateLoadBalancer = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_load_balancer/load_balancer", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
   //////////////// update data//////////////////////////////
   useEffect(() => {
     getVirtualNetwork()
+    // updateVirtualNetwork()
+    // updateLoadBalancer();
   }, [])
   return (
     <>
       <TopBar subtitle='Azure' />
-      <div className="azure-inventory-container">
-        <div className="row gy-3 mb-3">
-          <span className="azure-inventory-block-heading">General</span>
-          {/* {console.log(data)} */}
-          {
-            azureGeneral.map((val, index) => {
-              return (
-                <React.Fragment key={val.id}>
-                  <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
-                      <div className="azure-inventory-groups-block">
-                        <div className="azure-inventory-sub-groups-block">
-                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+      {loading === true ?
+        <div>Loading...</div> :
+        <div className="azure-inventory-container">
+          <div className="row gy-3 mb-3">
+            <span className="azure-inventory-block-heading">General</span>
+            {/* {virtualNetworkState.map((val)=>{
+            return(
+              <>
+              {valname})
+              </>
+          })} */}
+            {
+              azureGeneral.map((val, index) => {
+                return (
+                  <React.Fragment key={val.id}>
+                    <div className="col-lg-4">
+                      <Link to='/cloudapp/Azure-Inventory-Details'>
+                        <div className="azure-inventory-groups-block">
+                          <div className="azure-inventory-sub-groups-block">
+                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                          </div>
+                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                         </div>
-                        <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                      </div>
-                    </Link><br />
-                  </div>
-                </React.Fragment>
+                      </Link><br />
+                    </div>
+                  </React.Fragment>
 
-              )
-            })
-          }
-        </div>
-        <div className="row gy-3 mb-3">
-          <span className="azure-inventory-block-heading">Compute</span>
-          {
-            azureCompute.map((val, index) => {
-              return (
-                <React.Fragment key={val.id}>
-                  <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
-                      <div className="azure-inventory-groups-block">
-                        <div className="azure-inventory-sub-groups-block">
-                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                )
+              })
+            }
+          </div>
+          <div className="row gy-3 mb-3">
+            <span className="azure-inventory-block-heading">Compute</span>
+            {
+              azureCompute.map((val, index) => {
+                return (
+                  <React.Fragment key={val.id}>
+                    <div className="col-lg-4">
+                      <Link to='/cloudapp/Azure-Inventory-Details'>
+                        <div className="azure-inventory-groups-block">
+                          <div className="azure-inventory-sub-groups-block">
+                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                          </div>
+                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                         </div>
-                        <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                      </div>
-                    </Link><br />
-                  </div>
+                      </Link><br />
+                    </div>
 
-                </React.Fragment>
+                  </React.Fragment>
 
-              )
-            })
-          }
-        </div>
+                )
+              })
+            }
+          </div>
 
-        <div className="row gy-3 mb-3">
-          <span className="azure-inventory-block-heading">Networking</span>
-          {
-            azureNetworking.map((val, index) => {
-              return (
-                <React.Fragment key={val.id}>
-                  <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
-                      <div className="azure-inventory-groups-block">
-                        <div className="azure-inventory-sub-groups-block">
-                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+          <div className="row gy-3 mb-3">
+            <span className="azure-inventory-block-heading">Networking</span>
+            {
+              azureNetworking.map((val, index) => {
+                return (
+                  <React.Fragment key={val.id}>
+                    <div className="col-lg-4">
+                      <Link to='/cloudapp/Azure-Inventory-Details'>
+                        <div className="azure-inventory-groups-block">
+                          <div className="azure-inventory-sub-groups-block">
+                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                          </div>
+
+
+                          <span className="azure-inventory-sub-groups-number">
+                            {virtualNetwork != '' ?
+                              <span>{virtualNetwork?.map((val, index) => {
+                                return (
+                                  <React.Fragment key={index}>
+                                    {virtualNetworkResource += 1}
+                                  </React.Fragment>
+                                )
+                              })}</span> : <span>{virtualNetworkResource}</span>}
+
+                          </span>
                         </div>
+                      </Link><br />
+                    </div>
 
+                  </React.Fragment>
 
-                        <span className="azure-inventory-sub-groups-number">
-                          {virtualNetwork !=''? 
-                          <span>{virtualNetwork?.map((val, index) => {
-                            return (
-                              <React.Fragment key={index}>
-                                {virtualNetworkResource += 1}
-                              </React.Fragment>
-                            )
-                          })}</span>:<span>{virtualNetworkResource}</span>}
-                          
-                        </span>
-                      </div>
-                    </Link><br />
-                  </div>
-
-                </React.Fragment>
-
-              )
-            })
-          }
-        </div>
-        <div className="row gy-3 mb-3">
-          <span className="azure-inventory-block-heading">Security</span>
-          {
-            azureSecurity.map((val, index) => {
-              return (
-                <React.Fragment key={val.id}>
-                  <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
-                      <div className="azure-inventory-groups-block">
-                        <div className="azure-inventory-sub-groups-block">
-                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                )
+              })
+            }
+          </div>
+          <div className="row gy-3 mb-3">
+            <span className="azure-inventory-block-heading">Security</span>
+            {
+              azureSecurity.map((val, index) => {
+                return (
+                  <React.Fragment key={val.id}>
+                    <div className="col-lg-4">
+                      <Link to='/cloudapp/Azure-Inventory-Details'>
+                        <div className="azure-inventory-groups-block">
+                          <div className="azure-inventory-sub-groups-block">
+                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                          </div>
+                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                         </div>
-                        <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                      </div>
-                    </Link><br />
-                  </div>
+                      </Link><br />
+                    </div>
 
-                </React.Fragment>
+                  </React.Fragment>
 
-              )
-            })
-          }
-        </div>
+                )
+              })
+            }
+          </div>
 
-        <div className="row gy-3 mb-3">
-          <span className="azure-inventory-block-heading">Storage</span>
-          {
-            azureStorage.map((val, index) => {
-              return (
-                <React.Fragment key={val.id}>
-                  <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
-                      <div className="azure-inventory-groups-block">
-                        <div className="azure-inventory-sub-groups-block">
-                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+          <div className="row gy-3 mb-3">
+            <span className="azure-inventory-block-heading">Storage</span>
+            {
+              azureStorage.map((val, index) => {
+                return (
+                  <React.Fragment key={val.id}>
+                    <div className="col-lg-4">
+                      <Link to='/cloudapp/Azure-Inventory-Details'>
+                        <div className="azure-inventory-groups-block">
+                          <div className="azure-inventory-sub-groups-block">
+                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                          </div>
+                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                         </div>
-                        <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                      </div>
-                    </Link><br />
-                  </div>
+                      </Link><br />
+                    </div>
 
-                </React.Fragment>
+                  </React.Fragment>
 
-              )
-            })
-          }
-        </div>
+                )
+              })
+            }
+          </div>
 
-        <div className="row gy-3 mb-3">
-          <span className="azure-inventory-block-heading">Identity</span>
-          {
-            azureIdentity.map((val, index) => {
-              return (
-                <React.Fragment key={val.id}>
-                  <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
-                      <div className="azure-inventory-groups-block">
-                        <div className="azure-inventory-sub-groups-block">
-                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+          <div className="row gy-3 mb-3">
+            <span className="azure-inventory-block-heading">Identity</span>
+            {
+              azureIdentity.map((val, index) => {
+                return (
+                  <React.Fragment key={val.id}>
+                    <div className="col-lg-4">
+                      <Link to='/cloudapp/Azure-Inventory-Details'>
+                        <div className="azure-inventory-groups-block">
+                          <div className="azure-inventory-sub-groups-block">
+                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                          </div>
+                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
                         </div>
-                        <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                      </div>
-                    </Link><br />
-                  </div>
+                      </Link><br />
+                    </div>
 
-                </React.Fragment>
+                  </React.Fragment>
 
-              )
-            })
-          }
+                )
+              })
+            }
+          </div>
         </div>
-      </div>
+      }
     </>
   )
 }

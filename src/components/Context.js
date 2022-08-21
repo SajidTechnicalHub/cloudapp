@@ -34,7 +34,8 @@ import React, { useState, createContext } from "react";
 
 const AppStateContextProvider = props => {
   const [virtualNetwork, setVirtualNetwork] = useState({
-    cartOpen: false
+    name:'sajid',
+    
   });
 
   return(
