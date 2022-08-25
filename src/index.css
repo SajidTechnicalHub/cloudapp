@@ -1,9 +1,26 @@
 @import url('http://fonts.cdnfonts.com/css/helvetica-neue-9');
 
-body
-{
+body {
     font-family: 'Helvetica', 'Arial', sans-serif;
     color: #444444;
     font-size: 9pt;
     background-color: #FAFAFA;
+}
+
+.loading {
+    /* height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid #003d48;
+    box-shadow: 24;
+    overflow: 'auto';
 }

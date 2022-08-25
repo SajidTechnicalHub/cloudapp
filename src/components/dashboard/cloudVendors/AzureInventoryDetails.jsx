@@ -9,6 +9,8 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import axios from 'axios';
 import { useContext } from 'react'
 import { AppStateContext } from '../../Context'
+import CircularProgress from '@mui/material/CircularProgress';
+import Loading from './azure/Loading';
 
 const columns = [
     {
@@ -57,25 +59,41 @@ const columns = [
 
 
 const AzureInventoryDetails = () => {
-    const { network, setNetwork } = useContext(AppStateContext)
+    const {
+        virtualNetwork, setVirtualNetwork,
+        accountCredentials, setAzureCredentails,
+
+    } = useContext(AppStateContext)
 
     const navigate = useNavigate();
     const [q, setQ] = useState("")
-    const [virtualNetwork, setVirtualNetwork] = useState()
     const [pageSize, setPageSize] = useState(5);
     const [cloudAccount, setCloudAccount] = useState({
         cloud_account: 'All Azure Cloud Accounts'
 
     })
-    const Search = (network) => {
-        return network.filter(
+    const [isLoading, setIsLoading] = useState(false)
+
+    const Search = (virtualNetwork) => {
+        
+        return virtualNetwork.filter(
             (row) =>
-                row.VNet_name.toLowerCase().indexOf(q) > -1 ||
-                row.VNet_name.indexOf(q) > -1
+                cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
+                    row.VNet_name.toLowerCase().indexOf(q) > -1 ||
+                    row.VNet_name.indexOf(q) > -1 :
+
+                    (row.account_name.toLowerCase().indexOf(cloudAccount.cloud_account) > -1 ||
+                    row.account_name.indexOf(cloudAccount.cloud_account) > -1) &&
+                    (row.VNet_name.toLowerCase().indexOf(q) > -1 ||
+                    row.VNet_name.indexOf(q) > -1)
+
+
 
         );
     }
+    
 
+   
 
     const InputEvent = (e) => {
         const { name, value } = e.target;
@@ -83,29 +101,20 @@ const AzureInventoryDetails = () => {
             return { ...cloudAccount, [name]: value }
         })
     }
-    const SubmitEvent = (e) => {
-        e.preventDefault()
 
+
+    const getVirtualNetwork = async () => {
+        setIsLoading(true)
+        const response = await fetch("http://localhost:3000/api/v1/azure_accounts/virtual_network", {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token"),
+            },
+        })
+        const res = await response.json()
+        setVirtualNetwork(res.data)
+        setIsLoading(false)
     }
-    const handleReferesh = () => {
-
-    }
-    // const getVirtualNetwork = async () => {
-    //     const response = await fetch("http://localhost:3000/api/v1/azure_connection/virtual_network", {
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Authorization: localStorage.getItem("token"),
-    //         },
-    //     })
-    //     const data = await response.json()
-    //     console.log(data)
-    //     setVirtualNetwork(data)
-    // }
-
-    // useEffect(() => {
-    //     getVirtualNetwork()
-    // }, [])
-
 
 
 
@@ -117,10 +126,10 @@ const AzureInventoryDetails = () => {
                     <span className="azure-inventory-detail-all-vnets-block-heading">
                         <span className="azure-inventory-detail-vnets-block">
                             <span className="azure-inventory-detail-vnets-logo-block">
-                                <FaArrowsAltH onClick={handleReferesh()} />
+                                <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All VNets (2)</span>
+                            <span className='azure-inventory-detail-vnets-text'>All VNets ({virtualNetwork.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">
@@ -130,7 +139,14 @@ const AzureInventoryDetails = () => {
                             onChange={InputEvent}
                         >
                             <option >All Azure Cloud Accounts</option>
-                            <option > Azure Accounts</option>
+                            {accountCredentials.map((val, index) => {
+                                return (
+                                    <React.Fragment key={val.id}>
+                                        <option >{val.account_name}</option>
+                                    </React.Fragment>
+                                )
+                            })}
+
 
                         </select>
                     </span>
@@ -145,24 +161,29 @@ const AzureInventoryDetails = () => {
                     </div>
                     <div className="referesh-container">
                         <span className="referesh-block">
-                            <FiRefreshCcw />
+                            <FiRefreshCcw onClick={() => getVirtualNetwork()} />
                         </span>
                     </div>
                 </div>
-
-                <Box sx={{ height: 400, width: '100%' }}>
-                    <DataGrid
-                        rows={Search(network)}
-                        columns={columns}
-                        pageSize={pageSize}
-                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                        rowsPerPageOptions={[5, 10, 20]}
-                        pagination
-                        {...network}
-                        components={{ Toolbar: GridToolbar }}
-                        disableSelectionOnClick
-                    />
-                </Box>
+                {isLoading == true ?
+                    <div className="loading">
+                        <Loading />
+                    </div> :
+                    <Box sx={{ height: 400, width: '100%' }}>
+                        <DataGrid
+                            // rows={Search(virtualNetwork)}
+                            rows={Search(virtualNetwork)}
+                            columns={columns}
+                            pageSize={pageSize}
+                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                            rowsPerPageOptions={[5, 10, 20]}
+                            pagination
+                            {...virtualNetwork}
+                            components={{ Toolbar: GridToolbar }}
+                            disableSelectionOnClick
+                        />
+                    </Box>
+                }
             </div>
         </>
     )

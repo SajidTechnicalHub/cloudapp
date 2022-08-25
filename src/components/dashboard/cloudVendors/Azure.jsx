@@ -20,7 +20,6 @@ import containerInstancesLogo from '../../images/container-instances.png'
 import kubernetesServicesLogo from '../../images/kubernetes-services.png'
 import appServicesLogo from '../../images/app-services.jpg'
 import { Link } from 'react-router-dom'
-// import { useGlobalContext } from '../../Context'
 import { useContext } from 'react'
 import { AppStateContext } from '../../Context'
 
@@ -176,32 +175,30 @@ const azureIdentity = [
 
 const Azure = () => {
   // console.log("useContext(context): ", useContext(AppStateContext));
-  const {network, setNetwork} = useContext(AppStateContext)
+  const {
+  
+    virtualNetwork, 
+    resourceGroup,
+    
+    
+  } = useContext(AppStateContext)
  
-  console.log(network)
 
-  const [loading, setLoading] = useState(false);
-  /////////// define total no of resources //////////////////////
-  let virtualNetworkResource = 0
-
-  /////////// define total no of resources //////////////////////
-
-  const [virtualNetwork, setVirtualNetwork] = useState()
   const [loadBalancer, setLoadBalancer] = useState()
   //////////////// fatch data from database//////////////////////////////
-  const getVirtualNetwork = async () => {
-    setLoading(true);
-    const response = await fetch("http://localhost:3000/api/v1/azure_accounts/virtual_network", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const res = await response.json()
-    console.log(res)
-    setVirtualNetwork(res.data)
-    setLoading(false);
-  }
+  // const getVirtualNetwork = async () => {
+  //   setLoading(true);
+  //   const response = await fetch("http://localhost:3000/api/v1/azure_accounts/virtual_network", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: localStorage.getItem("token"),
+  //     },
+  //   })
+  //   const res = await response.json()
+  //   console.log(res)
+  //   setVirtualNetwork(res.data)
+  //   setLoading(false);
+  // }
 
   //////////////// update data//////////////////////////////
   const updateVirtualNetwork = async () => {
@@ -215,8 +212,63 @@ const Azure = () => {
     console.log(data)
 
   }
+  const updateResourceGroups = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_resource_groups/index", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
   const updateLoadBalancer = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_load_balancer/load_balancer", {
+    const response = await fetch("http://localhost:3000/api/v1/azure_load_balancer/index", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzureSubscription = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_subscription/index", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzureDnsZone = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_dns_zone/index", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzureRouteTAble = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_route_tables/index", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzureNatGateway = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_nat_gateway/index", {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -229,14 +281,18 @@ const Azure = () => {
   //////////////// update data//////////////////////////////
   useEffect(() => {
     // getVirtualNetwork()
+    // updateResourceGroups()
+    // updateAzureSubscription()
     // updateVirtualNetwork()
     // updateLoadBalancer();
+    // updateAzureDnsZone()
+    // updateAzureRouteTAble()
+    // updateAzureNatGateway()
   }, [])
   return (
     <>
       <TopBar subtitle='Azure' />
-      {loading === true ?
-        <div className='loading'>Loading...</div> :
+      
         <div className="azure-inventory-container">
           <div className="row gy-3 mb-3">
     
@@ -305,13 +361,7 @@ const Azure = () => {
 
                           <span className="azure-inventory-sub-groups-number">
                             {val.group_name === 'Virtual Networks' ?
-                              <span>{network?.map((val, index) => {
-                                return (
-                                  <React.Fragment key={index}>
-                                    {virtualNetworkResource}
-                                  </React.Fragment>
-                                )
-                              })}</span> : <span>2</span>}
+                              <span>{virtualNetwork.length }</span> : <span>1</span>}
 
                           </span>
                         </div>
@@ -399,7 +449,7 @@ const Azure = () => {
             }
           </div>
         </div>
-      }
+      
     </>
   )
 }
