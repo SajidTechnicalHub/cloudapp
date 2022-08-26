@@ -6,6 +6,7 @@ const AppStateContext = React.createContext();
 
 const AppStateContextProvider = props => {
   const [loading, setLoading] = useState(false);
+  const [isLogin, setIsLogin] = useState()
   const [virtualNetwork, setVirtualNetwork] = useState([])
   const [resourceGroup, setResourceGroup] = useState([])
   const [accountCredentials, setAzureCredentails] = useState([])
@@ -34,7 +35,7 @@ const AppStateContextProvider = props => {
 
   useEffect(() => {
 
-    getAccountDetails()
+    // getAccountDetails()
 
   }, [])
 
@@ -46,6 +47,7 @@ const AppStateContextProvider = props => {
       loadBalancer, setLoadBalancer,
       azureSubscription, setAzureSubscription,
       loading, setLoading,
+      isLogin, setIsLogin,
 
     }}>
       {props.children}

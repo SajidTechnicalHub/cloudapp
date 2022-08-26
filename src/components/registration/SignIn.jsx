@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios';
+// import { useContext } from 'react'
+// import { AppStateContext } from '../../Context'
 
 const SignIn = () => {
 
@@ -11,7 +13,8 @@ const SignIn = () => {
     email: '',
     password: ''
   })
-
+  //  const {isLogin, setIsLogin} = useContext(AppStateContext)
+  
   const InputEvent = (e) => {
     const { name, value } = e.target;
     setUser(() => {
@@ -39,8 +42,9 @@ const SignIn = () => {
           if (res.ok) {
             console.log(res.headers.get("Authorization"));
             localStorage.setItem("token", res.headers.get("Authorization"));
+            // setIsLogin(res.data)
             navigate('/cloudapp/overview')
-            // navigate('/signin_varification_code')
+            
             return res.json();
 
           } else {

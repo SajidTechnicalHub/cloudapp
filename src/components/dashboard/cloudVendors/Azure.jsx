@@ -174,17 +174,13 @@ const azureIdentity = [
 
 
 const Azure = () => {
-  // console.log("useContext(context): ", useContext(AppStateContext));
-  const {
   
+  const {
+
     virtualNetwork, 
-    resourceGroup,
-    
-    
+    resourceGroup, 
   } = useContext(AppStateContext)
  
-
-  const [loadBalancer, setLoadBalancer] = useState()
   //////////////// fatch data from database//////////////////////////////
   // const getVirtualNetwork = async () => {
   //   setLoading(true);
@@ -269,7 +265,57 @@ const Azure = () => {
   }
   const updateAzureNatGateway = async () => {
     const response = await fetch("http://localhost:3000/api/v1/azure_nat_gateway/index", {
-      headers: {
+    method: 'get',
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzureVirtualWans = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_virtual_wans/index", {
+    method: 'get',
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzurePublicIpAddress = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_public_ip_address/index", {
+    method: 'get',
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzureNetworkSecurityGroups = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_network_security_groups/index", {
+    method: 'get',
+    headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  
+  const updateAzureApplicationSecurityGroups = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_application_security_groups/index", {
+    method: 'get',
+    headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
@@ -288,6 +334,10 @@ const Azure = () => {
     // updateAzureDnsZone()
     // updateAzureRouteTAble()
     // updateAzureNatGateway()
+    // updateAzureVirtualWans()
+    // updateAzurePublicIpAddress()
+    // updateAzureNetworkSecurityGroups()
+    updateAzureApplicationSecurityGroups()
   }, [])
   return (
     <>

@@ -75,7 +75,7 @@ const AzureInventoryDetails = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const Search = (virtualNetwork) => {
-        
+
         return virtualNetwork.filter(
             (row) =>
                 cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
@@ -83,17 +83,17 @@ const AzureInventoryDetails = () => {
                     row.VNet_name.indexOf(q) > -1 :
 
                     (row.account_name.toLowerCase().indexOf(cloudAccount.cloud_account) > -1 ||
-                    row.account_name.indexOf(cloudAccount.cloud_account) > -1) &&
+                        row.account_name.indexOf(cloudAccount.cloud_account) > -1) &&
                     (row.VNet_name.toLowerCase().indexOf(q) > -1 ||
-                    row.VNet_name.indexOf(q) > -1)
+                        row.VNet_name.indexOf(q) > -1)
 
 
 
         );
     }
-    
 
-   
+
+
 
     const InputEvent = (e) => {
         const { name, value } = e.target;
@@ -115,7 +115,7 @@ const AzureInventoryDetails = () => {
         setVirtualNetwork(res.data)
         setIsLoading(false)
     }
-
+    
 
 
     return (
