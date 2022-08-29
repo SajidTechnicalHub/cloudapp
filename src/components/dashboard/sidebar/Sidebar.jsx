@@ -10,7 +10,9 @@ import { BiCloudUpload } from 'react-icons/bi';
 import { TbReport } from 'react-icons/tb';
 import useWindowDimensions from '../../useWindowDimensions';
 import CloudNoxLogo from '../../images/CloudNoxLogo.png'
-
+import { Link, useNavigate } from "react-router-dom"
+import { useContext } from 'react'
+import { AppStateContext } from '../../Context';
 
 
 const routes = [
@@ -74,6 +76,7 @@ const CloudInsights = [
   },
 
 ]
+
 const mainWidthToggleHidden = {
   width: 'calc(100vw - 50px)',
 }
@@ -81,6 +84,28 @@ const mainWidthToggleShow = {
   width: 'calc(100vw - 230px)',
 }
 const Sidebar = () => {
+
+  const { isLogin, setIsLogin,
+    setAzureCredentails,
+    setAzureSubscription,
+    setResourceGroup,
+
+    setVirtualNetwork,
+    setLoadBalancer,
+    setAzureDnsZone,
+    setAzureRouteTable,
+    setAzureNatGateway,
+    setAzureVirtualWans,
+    setAzurePublicIpAddress,
+    setAzureNetworkSecurityGroups,
+    setAzureApplicationSecurityGroups,
+    setAzureStorageAccount,
+    setAzureSupportsTickets,
+    setAzureRecommendation,
+    setAzureVirtualMachine,
+    setAzureDisks,
+  } = useContext(AppStateContext)
+  const navigate = useNavigate();
   const { height, width } = useWindowDimensions();
   const [isOpen, setIsOpen] = useState(true)
 
@@ -133,15 +158,38 @@ const Sidebar = () => {
       .then((res) => {
         if (res.ok) {
           localStorage.removeItem("token");
-          return res.json();
+          setIsLogin(false)
+          setAzureCredentails([])
+          setAzureSubscription([])
+          setResourceGroup([])
+
+          setVirtualNetwork([])
+          setLoadBalancer([])
+          setAzureDnsZone([])
+          setAzureRouteTable([])
+          setAzureNatGateway([])
+          setAzureVirtualWans([])
+          setAzurePublicIpAddress([])
+
+          setAzureNetworkSecurityGroups([])
+          setAzureApplicationSecurityGroups([])
+          setAzureStorageAccount([])
+          setAzureSupportsTickets([])
+          setAzureRecommendation([])
+          setAzureVirtualMachine([])
+          setAzureDisks([])
+          navigate('/signin')
+          // return res.json();
         } else {
           return res.json().then((json) => Promise.reject(json));
+
         }
       })
       .then((json) => {
         console.dir(json);
       })
       .catch((err) => console.error(err));
+    navigate('/signin')
   }
 
   return (
@@ -261,15 +309,17 @@ const Sidebar = () => {
 
               }
             </section>
-            <span className='sidebar-link '>
-              <div className="icon"></div>
-              {isOpen && <motion.div variants={ShowAnimation}
-                initial='hidden'
-                animate='show'
-                esit='hidden'
-                className="link-text"><span onClick={(e) => handleLogout()}>Logout</span></motion.div>}
+            {isLogin === true || localStorage.getItem("token") != null?
+              <span className='sidebar-link '>
+                <div className="icon"></div>
+                {isOpen && <motion.div variants={ShowAnimation}
+                  initial='hidden'
+                  animate='show'
+                  esit='hidden'
+                  className="link-text"><span onClick={(e) => handleLogout()}>Logout</span></motion.div>}
 
-            </span>
+              </span> : <></>
+            }
           </motion.div>
 
 

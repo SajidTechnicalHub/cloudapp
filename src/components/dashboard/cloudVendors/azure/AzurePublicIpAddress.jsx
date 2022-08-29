@@ -1,27 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from "react-router-dom"
-import TopBar from '../header/TopBar'
+import React, { useState } from 'react'
+import {useNavigate } from "react-router-dom"
+import TopBar from '../../header/TopBar';
 import { FaArrowsAltH } from 'react-icons/fa';
-import { FiPlus, FiRefreshCcw, FiSearch, FiEdit2, } from 'react-icons/fi'
-import { GoArrowSmallDown } from 'react-icons/go'
+import {FiRefreshCcw, FiSearch } from 'react-icons/fi'
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { useContext } from 'react'
-import { AppStateContext } from '../../Context'
-import Loading from './azure/Loading';
+import { AppStateContext } from '../../../Context'
+import Loading from './Loading';
 import axios from 'axios';
 
 const columns = [
     {
-        field: 'VNet_name',
-        headerName: 'VNet Name',
-        minWidth: 162,
-        flex: true,
-        editable: true,
-    },
-    {
-        field: 'CIDR',
-        headerName: 'CIDR(x)',
+        field: 'name',
+        headerName: 'Name',
         minWidth: 162,
         flex: true,
         editable: true,
@@ -34,12 +26,20 @@ const columns = [
         editable: true,
     },
     {
-        field: 'subscription',
-        headerName: 'Subscription',
-        minWidth: 162,
-        flex: true,
-        editable: true,
-    },
+      field: 'ip_address',
+      headerName: 'Ip Address',
+      minWidth: 162,
+      flex: true,
+      editable: true,
+  },
+   
+    {
+      field: 'subscription',
+      headerName: 'Subscription',
+      minWidth: 162,
+      flex: true,
+      editable: true,
+  },
     {
         field: 'resource_group',
         headerName: 'Resource Group',
@@ -47,6 +47,7 @@ const columns = [
         flex: true,
         editable: true,
     },
+   
     {
         field: 'account_name',
         headerName: 'Account Name',
@@ -57,9 +58,9 @@ const columns = [
 ];
 
 
-const AzureInventoryDetails = () => {
+const AzurePublicIpAddress = () => {
     const {
-        virtualNetwork, setVirtualNetwork,
+        azurePublicIpAddress, setAzurePublicIpAddress, 
         accountCredentials, setAzureCredentails,
         isoAuth, setoAuth,
         isLoading, setIsLoading,
@@ -74,18 +75,18 @@ const AzureInventoryDetails = () => {
 
     })
 
-    const Search = (virtualNetwork) => {
+    const Search = (azurePublicIpAddress) => {
 
-        return virtualNetwork.filter(
+        return azurePublicIpAddress.filter(
             (row) =>
                 cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
-                    row.VNet_name.toLowerCase().indexOf(q) > -1 ||
-                    row.VNet_name.indexOf(q) > -1 :
+                    row.name.toLowerCase().indexOf(q) > -1 ||
+                    row.name.indexOf(q) > -1 :
 
                     (row.account_name.toLowerCase().indexOf(cloudAccount.cloud_account) > -1 ||
                         row.account_name.indexOf(cloudAccount.cloud_account) > -1) &&
-                    (row.VNet_name.toLowerCase().indexOf(q) > -1 ||
-                        row.VNet_name.indexOf(q) > -1)
+                    (row.name.toLowerCase().indexOf(q) > -1 ||
+                        row.name.indexOf(q) > -1)
 
         );
     }
@@ -97,9 +98,10 @@ const AzureInventoryDetails = () => {
         })
     }
 
-    const getVirtualNetwork = async () => {
 
-        const response = await axios.get("http://localhost:3000/api/v1/azure_virtualnetworks/get_azure_virtual_network", {
+    const getAzurePublicIpAddress = async () => {
+
+        const response = await axios.get("http://localhost:3000/api/v1/azure_public_ip_address/get_azure_public_ip_address", {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
@@ -107,13 +109,14 @@ const AzureInventoryDetails = () => {
         })
 
         setIsLoading(false)
-        setVirtualNetwork(response.data.virtualNetwork)
+        setAzurePublicIpAddress(response.data.azurePublicIpAddress)
+        
 
     }
 
-    const updateVirtualNetwork = async () => {
+    const updateAzurePublicIpAddress = async () => {
         setIsLoading(true)
-        const response = await fetch("http://localhost:3000/api/v1/azure_virtualnetworks/virtual_network_save", {
+        const response = await fetch("http://localhost:3000/api/v1/azure_public_ip_address/index", {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
@@ -124,7 +127,7 @@ const AzureInventoryDetails = () => {
                 if (res.ok == true) {
                     setoAuth(false)
                     setIsLoading(false)
-                    getVirtualNetwork()
+                    getAzurePublicIpAddress()
                 } else if (res.status == "401") {
                     setoAuth(true)
                     setIsLoading(false)
@@ -137,10 +140,9 @@ const AzureInventoryDetails = () => {
 
 
 
-
     return (
         <>
-            <TopBar subtitle='Azure / All VNets' />
+            <TopBar subtitle='Azure / All LBalancer' />
             <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
             <div className="azure-inventory-detail-container">
                 <div className="azure-inventory-detail-all-vnets-block">
@@ -150,7 +152,7 @@ const AzureInventoryDetails = () => {
                                 <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All VNets ({virtualNetwork.length})</span>
+                            <span className='azure-inventory-detail-vnets-text'>All Public IpAddresses ({azurePublicIpAddress.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">
@@ -182,7 +184,7 @@ const AzureInventoryDetails = () => {
                     </div>
                     <div className="referesh-container">
                         <span className="referesh-block">
-                            <FiRefreshCcw onClick={() => updateVirtualNetwork()} />
+                            <FiRefreshCcw onClick={() => updateAzurePublicIpAddress()} />
                         </span>
                     </div>
                 </div>
@@ -192,14 +194,14 @@ const AzureInventoryDetails = () => {
                     </div> :
                     <Box sx={{ height: 400, width: '100%' }}>
                         <DataGrid
-                            // rows={Search(virtualNetwork)}
-                            rows={Search(virtualNetwork)}
+                            // rows={Search(azurePublicIpAddress)}
+                            rows={Search(azurePublicIpAddress)}
                             columns={columns}
                             pageSize={pageSize}
                             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                             rowsPerPageOptions={[5, 10, 20]}
                             pagination
-                            {...virtualNetwork}
+                            {...azurePublicIpAddress}
                             components={{ Toolbar: GridToolbar }}
                             disableSelectionOnClick
                         />
@@ -210,4 +212,4 @@ const AzureInventoryDetails = () => {
     )
 }
 
-export default AzureInventoryDetails
+export default AzurePublicIpAddress

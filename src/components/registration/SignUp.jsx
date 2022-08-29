@@ -2,9 +2,16 @@ import React, { useState } from 'react'
 import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { Link, useNavigate } from "react-router-dom"
 import { AiOutlineClose } from 'react-icons/ai';
+import { useContext } from 'react'
+import { AppStateContext } from '../Context';
 
 
 const SignUp = () => {
+
+  const { 
+    isLogin, setIsLogin,
+    isoAuth, setoAuth,
+  } = useContext(AppStateContext)
   const navigate = useNavigate();
 
   const [passwordLength, setPasswordLength] = useState('')
@@ -19,7 +26,7 @@ const SignUp = () => {
 
   })
   const InputEvent = (e) => {
-   
+
     const { name, value } = e.target;
     setUser(() => {
       return { ...user, [name]: value }
@@ -36,40 +43,35 @@ const SignUp = () => {
 
     if (user.password.length >= 8) {
       setPasswordLength('')
-      if (localStorage.getItem('token') != '') {
-        setLoginMessage('You are already login!')
-      } else {
-        fetch("http://localhost:3000/api/v1/signup", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
+
+      fetch("http://localhost:3000/api/v1/signup", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: {
+            fname: user.fname,
+            lname: user.lname,
+            company_name: user.company_name,
+            email: user.company_email,
+            password: user.password,
           },
-          body: JSON.stringify({
-            user: {
-              fname: user.fname,
-              lname: user.lname,
-              company_name: user.company_name,
-              email: user.company_email,
-              password: user.password,
-            },
-          }),
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            console.log(res.headers.get("Authorization"));
+            localStorage.setItem("token", res.headers.get("Authorization"));
+            setoAuth(false)
+            navigate('/cloudapp')
+            return res.json();
+          } else {
+            throw new Error(res);
+          }
         })
-          .then((res) => {
-            if (res.ok) {
-              console.log(res.headers.get("Authorization"));
-              localStorage.setItem("token", res.headers.get("Authorization"));
-              navigate('/cloudapp')
-              return res.json();
-            } else {
-              throw new Error(res);
-            }
-          })
-          .then((json) => console.dir(json))
-          .catch((err) => console.error(err));
-
-      }
-
-
+        .then((json) => console.dir(json))
+        .catch((err) => console.error(err));
 
     } else {
       setPasswordLength('Password must be contain atleast 8 characters.')

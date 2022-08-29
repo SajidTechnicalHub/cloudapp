@@ -5,7 +5,6 @@ import Sidebar from '../sidebar/Sidebar'
 const DashboardLyout = () => {
   return (
     <>
-    
     <Sidebar/>
     </>
   )

@@ -22,116 +22,126 @@ import appServicesLogo from '../../images/app-services.jpg'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppStateContext } from '../../Context'
+import Loading from './azure/Loading'
 
 const azureGeneral = [
   {
     id: 1,
-    group_name: 'Management Groups',
+    group_name: 'Advisor',
     group_logo: managementGroup,
-    group_number: 1,
-
+    route:'/cloudapp/azure/advisor'
   },
   {
     id: 2,
     group_name: 'Resource Groups',
     group_logo: resourceGroup,
-    group_number: 1,
-
-  },
+    route:'/cloudapp/azure/resourceGroups'
+  },  
   {
     id: 3,
     group_name: 'Subscriptions',
     group_logo: subscriptionGroup,
-    group_number: 1,
-
-  },
+      route:'/cloudapp/azure/subscription'
+  },  
   {
     id: 4,
     group_name: 'Service Health',
     group_logo: ServiceHealth,
-    group_number: 1,
+    route:'/cloudapp/azure/serviceHealth'
+  },
+  
 
-  }
 
 ]
 const azureCompute = [
   {
     id: 1,
-    group_name: 'Virtual Machine',
-    group_logo: virtualMachineLogo,
-    group_number: 2,
-
-  },
-  {
-    id: 2,
-    group_name: 'Container Instances',
+    group_name: 'App Services',
     group_logo: containerInstancesLogo,
     group_number: 2,
 
   },
   {
+    id: 2,
+    group_name: 'Virtual Machine',
+    group_logo: virtualMachineLogo,
+    group_number: 2,
+
+  },
+  
+  {
     id: 3,
-    group_name: 'Kubernetes Services',
+    group_name: 'Virtual Machine',
     group_logo: kubernetesServicesLogo,
     group_number: 2,
 
   },
-  {
-    id: 4,
-    group_name: 'App Services',
-    group_logo: appServicesLogo,
-    group_number: 2,
-
-  },
+  
 ]
 const azureNetworking = [
   {
     id: 1,
     group_name: 'Virtual Networks',
     group_logo: virtualNetworksLogo,
-    group_number: 0,
+    route: '/cloudapp/azure/virtualNetwork',
 
   },
   {
     id: 2,
     group_name: 'Load Balancers',
     group_logo: loadBalancersLogo,
-    group_number: 2,
+    route: '/cloudapp/azure/loadBalancer',
 
   },
   {
     id: 3,
-    group_name: 'DNS Zone',
+    group_name: 'DNS Zones',
     group_logo: dnsZonesLogo,
-    group_number: 2,
+    route: '/cloudapp/azure/dnsZone',
 
   },
   {
     id: 4,
     group_name: 'Route Tables',
     group_logo: RouteTablesLogo,
-    group_number: 2,
+    route: '/cloudapp/azure/routeTable',
 
   },
   {
     id: 5,
     group_name: 'Virtual WANs',
     group_logo: VirtualWANsLogo,
-    group_number: 2,
+    route: '/cloudapp/azure/virtualWans',
 
   },
+  {
+    id: 6,
+    group_name: 'NAT Gateways',
+    group_logo: VirtualWANsLogo,
+    route: '/cloudapp/azure/natGateway',
+
+  },
+  {
+    id: 7,
+    group_name: 'Public IP Addresses',
+    group_logo: VirtualWANsLogo,
+    route: '/cloudapp/azure/publicIpAddress',
+
+  },
+
+
 ]
 const azureSecurity = [
   {
     id: 1,
-    group_name: 'Network Sec Groups',
+    group_name: 'Network Security Groups',
     group_logo: NetworkSecLogo,
     group_number: 2,
 
   },
   {
     id: 2,
-    group_name: 'Application Sec Groups',
+    group_name: 'Application Security Groups',
     group_logo: ApplicationSecLogo,
     group_number: 2,
 
@@ -140,47 +150,43 @@ const azureSecurity = [
 const azureStorage = [
   {
     id: 1,
-    group_name: 'Storage Account',
+    group_name: 'Storage Accounts',
     group_logo: StorageLogo,
     group_number: 2,
 
   },
 ]
-const azureIdentity = [
-  {
-    id: 1,
-    group_name: 'Users',
-    group_logo: UsersLogo,
-    group_number: 2,
 
-  },
-  {
-    id: 2,
-    group_name: 'Groups',
-    group_logo: GroupsLogo,
-    group_number: 2,
-
-  },
-  {
-    id: 3,
-    group_name: 'Devices',
-    group_logo: DevicesLogo,
-    group_number: 2,
-
-  },
-]
 
 
 
 
 const Azure = () => {
-  
+
   const {
 
-    virtualNetwork, 
-    resourceGroup, 
+    virtualNetwork, setVirtualNetwork,
+    loadBalancer, setLoadBalancer,
+    azureDnsZone, setAzureDnsZone,
+    azureRouteTable, setAzureRouteTable,
+    azureNatGateway, setAzureNatGateway,
+    azureVirtualWans, setAzureVirtualWans,
+    azurePublicIpAddress, setAzurePublicIpAddress,
+    azureNetworkSecurityGroups, setAzureNetworkSecurityGroups,
+    azureApplicationSecurityGroups, setAzureApplicationSecurityGroups,
+    azureStorageAccount, setAzureStorageAccount,
+    azureSupportsTickets, setAzureSupportsTickets,
+    azureRecommendation, setAzureRecommendation,
+    azureVirtualMachine, setAzureVirtualMachine,
+    azureDisks, setAzureDisks,
+
+    resourceGroup, setResourceGroup,
+    accountCredentials, setAzureCredentails,
+    azureSubscription, setAzureSubscription,
+
   } = useContext(AppStateContext)
- 
+  const [isLoading, setIsLoading] = useState()
+
   //////////////// fatch data from database//////////////////////////////
   // const getVirtualNetwork = async () => {
   //   setLoading(true);
@@ -197,17 +203,7 @@ const Azure = () => {
   // }
 
   //////////////// update data//////////////////////////////
-  const updateVirtualNetwork = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_virtualnetworks/virtual_network_save", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
+  
   const updateResourceGroups = async () => {
     const response = await fetch("http://localhost:3000/api/v1/azure_resource_groups/index", {
       headers: {
@@ -265,8 +261,8 @@ const Azure = () => {
   }
   const updateAzureNatGateway = async () => {
     const response = await fetch("http://localhost:3000/api/v1/azure_nat_gateway/index", {
-    method: 'get',
-    headers: {
+      method: 'get',
+      headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
@@ -277,8 +273,8 @@ const Azure = () => {
   }
   const updateAzureVirtualWans = async () => {
     const response = await fetch("http://localhost:3000/api/v1/azure_virtual_wans/index", {
-    method: 'get',
-    headers: {
+      method: 'get',
+      headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
@@ -289,8 +285,8 @@ const Azure = () => {
   }
   const updateAzurePublicIpAddress = async () => {
     const response = await fetch("http://localhost:3000/api/v1/azure_public_ip_address/index", {
-    method: 'get',
-    headers: {
+      method: 'get',
+      headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
@@ -301,8 +297,8 @@ const Azure = () => {
   }
   const updateAzureNetworkSecurityGroups = async () => {
     const response = await fetch("http://localhost:3000/api/v1/azure_network_security_groups/index", {
-    method: 'get',
-    headers: {
+      method: 'get',
+      headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
@@ -311,11 +307,11 @@ const Azure = () => {
     console.log(data)
 
   }
-  
+
   const updateAzureApplicationSecurityGroups = async () => {
     const response = await fetch("http://localhost:3000/api/v1/azure_application_security_groups/index", {
-    method: 'get',
-    headers: {
+      method: 'get',
+      headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
@@ -324,6 +320,78 @@ const Azure = () => {
     console.log(data)
 
   }
+  const updateAzureStorageAccount = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_storage_accunt/index", {
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+
+  const updateAzureSupportsTickets = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_supports_tickets/index", {
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzureRecommendation = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_recommendations/index", {
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+  const updateAzureVirtualMachine = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_virtual_machine/index", {
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+    const data = await response.json()
+    console.log(data)
+
+  }
+
+  const updateAzureDisks = async () => {
+    const response = await fetch("http://localhost:3000/api/v1/azure_disks/index", {
+      method: 'get',
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          // setIsLogin(true)
+          return res.json();
+        } else if (res.status == "401") {
+          // setIsLogin(false)
+          // return res.text().then((text) => Promise.reject(text));
+        }
+      })
+    const data = await response.json()
+    console.log(data.status)
+
+  }
+
   //////////////// update data//////////////////////////////
   useEffect(() => {
     // getVirtualNetwork()
@@ -337,169 +405,249 @@ const Azure = () => {
     // updateAzureVirtualWans()
     // updateAzurePublicIpAddress()
     // updateAzureNetworkSecurityGroups()
-    updateAzureApplicationSecurityGroups()
+    // updateAzureApplicationSecurityGroups()
+    // updateAzureStorageAccount()/cloudapp/azure/advisor
+    // updateAzureSupportsTickets()
+    // updateAzureRecommendation()
+    // updateAzureVirtualMachine()
+    // updateAzureDisks()
   }, [])
   return (
     <>
       <TopBar subtitle='Azure' />
-      
-        <div className="azure-inventory-container">
-          <div className="row gy-3 mb-3">
-    
-            <span className="azure-inventory-block-heading">General</span>
-            
-            {
-              azureGeneral.map((val, index) => {
-                return (
-                  <React.Fragment key={val.id}>
-                    <div className="col-lg-4">
-                      <Link to='/cloudapp/Azure-Inventory-Details'>
-                        <div className="azure-inventory-groups-block">
-                          <div className="azure-inventory-sub-groups-block">
-                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
-                          </div>
-                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
+      <div className="azure-inventory-container">
+        <div className="row gy-3 mb-3">
+
+          <span className="azure-inventory-block-heading">General</span>
+
+          {
+            azureGeneral.map((val, index) => {
+              return (
+                <React.Fragment key={val.id}>
+                  <div className="col-lg-4">
+                    <Link to={val.route}>
+                      <div className="azure-inventory-groups-block">
+                        <div className="azure-inventory-sub-groups-block">
+                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
-                      </Link><br />
-                    </div>
-                  </React.Fragment>
+                        <span className="azure-inventory-sub-groups-number">
+                          {
+                            val.group_name === 'Advisor' ?
+                              <span>0</span> :
+                              <span>
+                                {
+                                  val.group_name === 'Resource Groups' ?
+                                    <span>{resourceGroup.length}</span> :
+                                    <span>
+                                      {
+                                        val.group_name === 'Subscriptions' ?
+                                          <span>{azureSubscription.length}</span> :
+                                          <span>
+                                            {
+                                              val.group_name === 'Service Health' ?
+                                                <span>0</span> :
+                                                <sapn>0</sapn>
+                                            }
+                                          </span>
+                                      }
+                                    </span>
+                                }
+                              </span>
+                          }
 
-                )
-              })
-            }
-          </div>
-          <div className="row gy-3 mb-3">
-            <span className="azure-inventory-block-heading">Compute</span>
-            {
-              azureCompute.map((val, index) => {
-                return (
-                  <React.Fragment key={val.id}>
-                    <div className="col-lg-4">
-                      <Link to='/cloudapp/Azure-Inventory-Details'>
-                        <div className="azure-inventory-groups-block">
-                          <div className="azure-inventory-sub-groups-block">
-                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
-                          </div>
-                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                        </div>
-                      </Link><br />
-                    </div>
+                        </span>
+                      </div>
 
-                  </React.Fragment>
+                    </Link><br />
+                  </div>
+                </React.Fragment>
 
-                )
-              })
-            }
-          </div>
-
-          <div className="row gy-3 mb-3">
-            <span className="azure-inventory-block-heading">Networking</span>
-            {
-              azureNetworking.map((val, index) => {
-                return (
-                  <React.Fragment key={val.id}>
-                    <div className="col-lg-4">
-                      <Link to='/cloudapp/Azure-Inventory-Details'>
-                        <div className="azure-inventory-groups-block">
-                          <div className="azure-inventory-sub-groups-block">
-                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
-                          </div>
-
-
-                          <span className="azure-inventory-sub-groups-number">
-                            {val.group_name === 'Virtual Networks' ?
-                              <span>{virtualNetwork.length }</span> : <span>1</span>}
-
-                          </span>
-                        </div>
-                      </Link><br />
-                    </div>
-
-                  </React.Fragment>
-
-                )
-              })
-            }
-          </div>
-          <div className="row gy-3 mb-3">
-            <span className="azure-inventory-block-heading">Security</span>
-            {
-              azureSecurity.map((val, index) => {
-                return (
-                  <React.Fragment key={val.id}>
-                    <div className="col-lg-4">
-                      <Link to='/cloudapp/Azure-Inventory-Details'>
-                        <div className="azure-inventory-groups-block">
-                          <div className="azure-inventory-sub-groups-block">
-                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
-                          </div>
-                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                        </div>
-                      </Link><br />
-                    </div>
-
-                  </React.Fragment>
-
-                )
-              })
-            }
-          </div>
-
-          <div className="row gy-3 mb-3">
-            <span className="azure-inventory-block-heading">Storage</span>
-            {
-              azureStorage.map((val, index) => {
-                return (
-                  <React.Fragment key={val.id}>
-                    <div className="col-lg-4">
-                      <Link to='/cloudapp/Azure-Inventory-Details'>
-                        <div className="azure-inventory-groups-block">
-                          <div className="azure-inventory-sub-groups-block">
-                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
-                          </div>
-                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                        </div>
-                      </Link><br />
-                    </div>
-
-                  </React.Fragment>
-
-                )
-              })
-            }
-          </div>
-
-          <div className="row gy-3 mb-3">
-            <span className="azure-inventory-block-heading">Identity</span>
-            {
-              azureIdentity.map((val, index) => {
-                return (
-                  <React.Fragment key={val.id}>
-                    <div className="col-lg-4">
-                      <Link to='/cloudapp/Azure-Inventory-Details'>
-                        <div className="azure-inventory-groups-block">
-                          <div className="azure-inventory-sub-groups-block">
-                            <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                            <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
-                          </div>
-                          <span className="azure-inventory-sub-groups-number">{val.group_number}</span>
-                        </div>
-                      </Link><br />
-                    </div>
-
-                  </React.Fragment>
-
-                )
-              })
-            }
-          </div>
+              )
+            })
+          }
         </div>
-      
+        <div className="row gy-3 mb-3">
+          <span className="azure-inventory-block-heading">Compute</span>
+          {
+            azureCompute.map((val, index) => {
+              return (
+                <React.Fragment key={val.id}>
+                  <div className="col-lg-4">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
+                        <div className="azure-inventory-sub-groups-block">
+                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                        </div>
+                        <span className="azure-inventory-sub-groups-number">
+                          {
+                            val.group_name === 'Virtual Machine' ?
+                              <span>{azureVirtualMachine.length}</span> :
+                              <span>
+                                {
+                                  val.group_name === 'Container Instances' ?
+                                    <span>0</span> :
+                                    <span>
+                                      {
+                                        val.group_name === 'Kubernetes Services' ?
+                                          <span>0</span> :
+                                          <span>
+                                            {
+                                              val.group_name === 'App Services' ?
+                                                <span>0</span> :
+                                                <sapn>0</sapn>
+                                            }
+                                          </span>
+                                      }
+                                    </span>
+                                }
+                              </span>
+                          }
+                        </span>
+                      </div>
+                    </Link><br />
+                  </div>
+
+                </React.Fragment>
+
+              )
+            })
+          }
+        </div>
+
+        <div className="row gy-3 mb-3">
+          <span className="azure-inventory-block-heading">Networking</span>
+          {
+            azureNetworking.map((val, index) => {
+              return (
+                <React.Fragment key={val.id}>
+                  <div className="col-lg-4">
+                    <Link to={val.route}>
+                      <div className="azure-inventory-groups-block">
+                        <div className="azure-inventory-sub-groups-block">
+                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                        </div>
+
+                        <span className="azure-inventory-sub-groups-number">
+                          {
+                            val.group_name === 'Virtual Networks' ?
+                              <span>{virtualNetwork.length}</span> :
+                              <span>
+                                {
+                                  val.group_name === 'Load Balancers' ?
+                                    <span>{loadBalancer.length}</span> :
+                                    <span>
+                                      {
+                                        val.group_name === 'DNS Zones' ?
+                                          <span>{azureDnsZone.length}</span> :
+                                          <span>
+                                            {
+                                              val.group_name === 'Route Tables' ?
+                                                <span>{azureRouteTable.length}</span> :
+                                                <span>
+                                                  {
+                                                    val.group_name === 'Virtual WANs' ?
+                                                      <span>{azureVirtualWans.length}</span> :
+                                                      <span>
+                                                        {
+                                                          val.group_name === 'NAT Gateways' ?
+                                                            <span>{azureNatGateway.length}</span> :
+                                                            <span>
+                                                              {
+                                                                val.group_name === 'Public IP Addresses' ?
+                                                                  <span>{azurePublicIpAddress.length}</span> :
+                                                                  <sapn>0</sapn>
+                                                              }
+                                                            </span>
+                                                        }
+                                                      </span>
+                                                  }
+                                                </span>
+                                            }
+                                          </span>
+                                      }
+                                    </span>
+                                }
+                              </span>
+                          }
+
+                        </span>
+                      </div>
+                    </Link><br />
+                  </div>
+
+                </React.Fragment>
+
+              )
+            })
+          }
+        </div>
+        <div className="row gy-3 mb-3">
+          <span className="azure-inventory-block-heading">Security</span>
+          {
+            azureSecurity.map((val, index) => {
+              return (
+                <React.Fragment key={val.id}>
+                  <div className="col-lg-4">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
+                        <div className="azure-inventory-sub-groups-block">
+                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                        </div>
+                        <span className="azure-inventory-sub-groups-number">
+                          {
+                            val.group_name === 'Network Security Groups' ?
+                              <span>{azureNetworkSecurityGroups.length}</span> :
+                              <span>
+                                {
+                                  val.group_name === 'Application Security Groups' ?
+                                    <span>{azureApplicationSecurityGroups.length}</span> :
+                                    <sapn>0</sapn>
+                                }
+                              </span>
+                          }
+                        </span>
+                      </div>
+    
+                    </Link><br />
+                  </div>
+
+                </React.Fragment>
+
+              )
+            })
+          }
+        </div>
+
+        <div className="row gy-3 mb-3">
+          <span className="azure-inventory-block-heading">Storage</span>
+          {
+            azureStorage.map((val, index) => {
+              return (
+                <React.Fragment key={val.id}>
+                  <div className="col-lg-4">
+                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                      <div className="azure-inventory-groups-block">
+                        <div className="azure-inventory-sub-groups-block">
+                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                        </div>
+                        <span className="azure-inventory-sub-groups-number">{azureStorageAccount.length}</span>
+                      </div>
+                    </Link><br />
+                  </div>
+
+                </React.Fragment>
+
+              )
+            })
+          }
+        </div>
+
+      </div>
     </>
   )
 }

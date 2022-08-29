@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import './App.css';
 import DashboardHome from "./components/dashboard/dashboardLayout/DashboardHome";
 import DashboardLyout from "./components/dashboard/dashboardLayout/DashboardLyout";
@@ -18,18 +18,23 @@ import RequestSuccess from "./components/registration/RequestSucess";
 import SignInVarificationCode from "./components/registration/SignInVarificationCode";
 import AzureInventoryDetails from "./components/dashboard/cloudVendors/AzureInventoryDetails";
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import { useContext } from 'react'
 import { AppStateContext } from './components/Context'
+import AzureLoadBalancer from "./components/dashboard/cloudVendors/azure/AzureLoadBalancer";
+import AzureDnsZone from "./components/dashboard/cloudVendors/azure/AzureDnsZone";
+import AzureRouteTable from "./components/dashboard/cloudVendors/azure/AzureRouteTable";
+import AzureVirtualWans from "./components/dashboard/cloudVendors/azure/AzureVirtualWans";
+import AzureNatGateway from "./components/dashboard/cloudVendors/azure/AzureNatGateway";
+import AzurePublicIpAddress from "./components/dashboard/cloudVendors/azure/AzurePublicIpAddress";
+import AzureAdvisor from "./components/dashboard/cloudVendors/azure/AzureAdvisor";
+import AzureServiceHealth from "./components/dashboard/cloudVendors/azure/AzureServiceHealth";
+import AzureSubscription from "./components/dashboard/cloudVendors/azure/AzureSubscription";
+import AzureResourceGroups from "./components/dashboard/cloudVendors/azure/AzureResourceGroups";
 
 
 function App() {
-
-  const {
-    loading,
-    setLoading
-  } = useContext(AppStateContext)
-  console.log(loading)
+  const navigate = useNavigate();
+  const {loading} = useContext(AppStateContext)
   return (
     <div className="container-flude">
       {loading == true ?
@@ -41,17 +46,31 @@ function App() {
         <Routes>
           <Route path="cloudapp" element={<DashboardLyout />} >
             <Route index element={<Overview />} />
-            {/* <Route path="/dashboard_home" element={<DashboardHome />} /> */}
             <Route path="/cloudapp/overview" element={<Overview />} />
             <Route path="/cloudapp/AWS" element={<Aws />} />
+
             <Route path="/cloudapp/Azure" element={<Azure />} />
-            <Route path="/cloudapp/Azure-Inventory-Details" element={<AzureInventoryDetails />} />
+            <Route path="/cloudapp/azure/loadBalancer" element={<AzureLoadBalancer />} />
+            <Route path="/cloudapp/azure/dnsZone" element={<AzureDnsZone />} />
+            <Route path="/cloudapp/azure/routeTable" element={<AzureRouteTable />} />
+            <Route path="/cloudapp/azure/virtualWans" element={<AzureVirtualWans />} />
+            <Route path="/cloudapp/azure/natGateway" element={<AzureNatGateway />} />
+            <Route path="/cloudapp/azure/publicIpAddress" element={<AzurePublicIpAddress />} />
+
+            <Route path="/cloudapp/azure/advisor" element={<AzureAdvisor />} />
+            <Route path="/cloudapp/azure/resourceGroups" element={<AzureResourceGroups />} />
+            <Route path="/cloudapp/azure/serviceHealth" element={<AzureServiceHealth />} />
+            <Route path="/cloudapp/azure/subscription" element={<AzureSubscription />} />
+
+            <Route path="/cloudapp/azure/virtualNetwork" element={<AzureInventoryDetails />} />
             <Route path="/cloudapp/GCP" element={<Gcp />} />
             <Route path="/cloudapp/summary" element={<Summary />} />
             <Route path="/cloudapp/reports" element={<Reports />} />
             <Route path="/cloudapp/account-management" element={<AccountManagement />} />
 
+            
           </Route>
+
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signin_varification_code" element={<SignInVarificationCode />} />
           <Route path="/signup" element={<SignUp />} />
