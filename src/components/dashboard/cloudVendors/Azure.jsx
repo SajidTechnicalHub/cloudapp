@@ -29,54 +29,59 @@ const azureGeneral = [
     id: 1,
     group_name: 'Advisor',
     group_logo: managementGroup,
-    route:'/cloudapp/azure/advisor'
+    route: '/cloudapp/azure/advisor'
   },
   {
     id: 2,
     group_name: 'Resource Groups',
     group_logo: resourceGroup,
-    route:'/cloudapp/azure/resourceGroups'
-  },  
+    route: '/cloudapp/azure/resourceGroups'
+  },
   {
     id: 3,
     group_name: 'Subscriptions',
     group_logo: subscriptionGroup,
-      route:'/cloudapp/azure/subscription'
-  },  
+    route: '/cloudapp/azure/subscription'
+  },
   {
     id: 4,
     group_name: 'Service Health',
     group_logo: ServiceHealth,
-    route:'/cloudapp/azure/serviceHealth'
+    route: '/cloudapp/azure/serviceHealth'
   },
-  
+  {
+    id: 5,
+    group_name: 'Cost & Billings',
+    group_logo: ServiceHealth,
+    route: ''
+  },
 
 
 ]
 const azureCompute = [
   {
     id: 1,
-    group_name: 'App Services',
-    group_logo: containerInstancesLogo,
-    group_number: 2,
-
-  },
-  {
-    id: 2,
     group_name: 'Virtual Machine',
     group_logo: virtualMachineLogo,
     group_number: 2,
 
   },
-  
+  {
+    id: 2,
+    group_name: 'Disks',
+    group_logo: containerInstancesLogo,
+    group_number: 2,
+
+  },
+
   {
     id: 3,
-    group_name: 'Virtual Machine',
+    group_name: 'App Services',
     group_logo: kubernetesServicesLogo,
     group_number: 2,
 
   },
-  
+
 ]
 const azureNetworking = [
   {
@@ -203,7 +208,7 @@ const Azure = () => {
   // }
 
   //////////////// update data//////////////////////////////
-  
+
   const updateResourceGroups = async () => {
     const response = await fetch("http://localhost:3000/api/v1/azure_resource_groups/index", {
       headers: {
@@ -426,39 +431,50 @@ const Azure = () => {
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
                     <Link to={val.route}>
-                      <div className="azure-inventory-groups-block">
-                        <div className="azure-inventory-sub-groups-block">
-                          <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
-                          <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
-                        </div>
-                        <span className="azure-inventory-sub-groups-number">
-                          {
-                            val.group_name === 'Advisor' ?
-                              <span>0</span> :
-                              <span>
-                                {
-                                  val.group_name === 'Resource Groups' ?
-                                    <span>{resourceGroup.length}</span> :
-                                    <span>
-                                      {
-                                        val.group_name === 'Subscriptions' ?
-                                          <span>{azureSubscription.length}</span> :
-                                          <span>
-                                            {
-                                              val.group_name === 'Service Health' ?
-                                                <span>0</span> :
-                                                <sapn>0</sapn>
-                                            }
-                                          </span>
-                                      }
-                                    </span>
-                                }
-                              </span>
-                          }
+                      {
+                        val.group_name === 'Cost & Billings' ?
+                          <div className="azure-inventory-groups-block-disable">
+                            <div className="azure-inventory-sub-groups-block">
+                              <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                              <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                            </div>
+                            <span className="azure-inventory-sub-groups-number">0</span>
+                          </div> :
 
-                        </span>
-                      </div>
 
+                          <div className="azure-inventory-groups-block">
+                            <div className="azure-inventory-sub-groups-block">
+                              <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                              <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                            </div>
+                            <span className="azure-inventory-sub-groups-number">
+                              {
+                                val.group_name === 'Advisor' ?
+                                  <span>{azureRecommendation.length}</span> :
+                                  <span>
+                                    {
+                                      val.group_name === 'Resource Groups' ?
+                                        <span>{resourceGroup.length}</span> :
+                                        <span>
+                                          {
+                                            val.group_name === 'Subscriptions' ?
+                                              <span>{azureSubscription.length}</span> :
+                                              <span>
+                                                {
+                                                  val.group_name === 'Service Health' ?
+                                                    <span>0</span> :
+                                                    <sapn>0</sapn>
+                                                }
+                                              </span>
+                                          }
+                                        </span>
+                                    }
+                                  </span>
+                              }
+
+                            </span>
+                          </div>
+                      }
                     </Link><br />
                   </div>
                 </React.Fragment>
@@ -475,37 +491,37 @@ const Azure = () => {
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
                     <Link to='/cloudapp/Azure-Inventory-Details'>
-                      <div className="azure-inventory-groups-block">
+                      {
+                        val.group_name === 'App Services' ?
+                        <div className="azure-inventory-groups-block-disable">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
-                        <span className="azure-inventory-sub-groups-number">
-                          {
-                            val.group_name === 'Virtual Machine' ?
-                              <span>{azureVirtualMachine.length}</span> :
-                              <span>
-                                {
-                                  val.group_name === 'Container Instances' ?
-                                    <span>0</span> :
-                                    <span>
-                                      {
-                                        val.group_name === 'Kubernetes Services' ?
-                                          <span>0</span> :
-                                          <span>
-                                            {
-                                              val.group_name === 'App Services' ?
-                                                <span>0</span> :
-                                                <sapn>0</sapn>
-                                            }
-                                          </span>
-                                      }
-                                    </span>
-                                }
-                              </span>
-                          }
-                        </span>
-                      </div>
+                        <span className="azure-inventory-sub-groups-number">0</span>
+                      </div> :
+
+
+                          <div className="azure-inventory-groups-block">
+                            <div className="azure-inventory-sub-groups-block">
+                              <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
+                              <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
+                            </div>
+                            <span className="azure-inventory-sub-groups-number">
+                              {
+                                val.group_name === 'Virtual Machine' ?
+                                  <span>{azureVirtualMachine.length}</span> :
+                                  <span>
+                                    {
+                                      val.group_name === 'Disks' ?
+                                      <span>0</span> :
+                                      <span>0</span>
+                                    }
+                                  </span>
+                              }
+                            </span>
+                          </div>
+                      }
                     </Link><br />
                   </div>
 
@@ -611,7 +627,7 @@ const Azure = () => {
                           }
                         </span>
                       </div>
-    
+
                     </Link><br />
                   </div>
 

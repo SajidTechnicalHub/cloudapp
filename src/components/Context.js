@@ -30,46 +30,47 @@ const AppStateContextProvider = props => {
 
 
   const getAccountDetails = async () => {
-  try {
-		const response = await axios.get("http://localhost:3000/api/v1/azure_accounts/azure_account_details", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-		// const res = await response.json()
-    console.log(response)
-    setAzureCredentails(response.data.azureCredential)
-    setAzureSubscription(response.data.azureSubscription)
-    setResourceGroup(response.data.resourceGroup)
+    try {
+      const response = await axios.get("http://localhost:3000/api/v1/azure_accounts/azure_account_details", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      // const res = await response.json()
+      console.log(response)
+      setAzureCredentails(response.data.azureCredential)
+      setAzureSubscription(response.data.azureSubscription)
+      setResourceGroup(response.data.resourceGroup)
 
-    setVirtualNetwork(response.data.virtualNetwork)
-    setLoadBalancer(response.data.loadBalancer)
-    setAzureDnsZone(response.data.azureDnsZone)
-    setAzureRouteTable(response.data.azureRouteTable)
-    setAzureNatGateway(response.data.azureNatGateway)
-    setAzureVirtualWans(response.data.azureVirtualWans)
-    setAzurePublicIpAddress(response.data.azurePublicIpAddress)
+      setVirtualNetwork(response.data.virtualNetwork)
+      setLoadBalancer(response.data.loadBalancer)
+      setAzureDnsZone(response.data.azureDnsZone)
+      setAzureRouteTable(response.data.azureRouteTable)
+      setAzureNatGateway(response.data.azureNatGateway)
+      setAzureVirtualWans(response.data.azureVirtualWans)
+      setAzurePublicIpAddress(response.data.azurePublicIpAddress)
 
-    setAzureApplicationSecurityGroups(response.data.azureApplicationSecurityGroups)
-    setAzureNetworkSecurityGroups(response.data.azureNetworkSecurityGroups)
-    setAzureStorageAccount(response.data.azureStorageAccount)
-    setAzureSupportsTickets(response.data.azureSupportsTickets)
-    setAzureRecommendation(response.data.azureRecommendation)
-    setAzureVirtualMachine(response.data.azureVirtualMachine)
-    setAzureDisks(response.data.azureDisks)
-    setoAuth(false)
-    setLoading(false)
-	}
-	catch (error) {
-		console.log(error);
-    setLoading(false)
-	}
+      setAzureApplicationSecurityGroups(response.data.azureApplicationSecurityGroups)
+      setAzureNetworkSecurityGroups(response.data.azureNetworkSecurityGroups)
+      setAzureStorageAccount(response.data.azureStorageAccount)
+      setAzureSupportsTickets(response.data.azureSupportsTickets)
+      setAzureRecommendation(response.data.azureRecommendation)
+      setAzureVirtualMachine(response.data.azureVirtualMachine)
+      setAzureDisks(response.data.azureDisks)
+      setoAuth(false)
+      setLoading(false)
+    }
+    catch (error) {
+      console.log(error);
+      setLoading(false)
+      setoAuth(true)
+    }
   }
 
 
   useEffect(() => {
-  
+
     getAccountDetails()
   }, [])
 

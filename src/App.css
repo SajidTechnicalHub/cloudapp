@@ -1196,6 +1196,20 @@ main {
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
+.azure-inventory-groups-block-disable {
+    /* gap: 20px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    padding-left: 5px;
+    padding-right: 10px;
+    width: auto;
+    background: #aae0f3;
+    cursor: not-allowed !important;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
 .azure-inventory-sub-groups-block {
     display: flex;
     justify-content: center;
@@ -1278,20 +1292,70 @@ main {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
 }
-.loading{
+
+.loading {
     height: 100vh;
     width: 100wh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.Login-error-message{
+
+.Login-error-message {
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: red;
     padding-left: 20px;
 }
+
+.azure-recommendation-column-style {
+    color: blue;
+}
+
+/* ********************** Azure Advisor*********************** */
+.advisor-tabs-block {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60px;
+    width: 140px;
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor:not-allowed;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.advisor-tabs-block-enable {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60px;
+    width: 140px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid blue;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.advisor-tabs-name {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.advisor-tabs-logo-block {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.advisor-tab-number {
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 
 /* //////////////////////////Azure Inventory////////////////////// */
 
@@ -1361,7 +1425,7 @@ main {
 
     .topbar-heading-text {
         font-size: 16px;
-        
+
     }
 
     .topbar-subheading-text {
