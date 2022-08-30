@@ -1352,9 +1352,57 @@ main {
 }
 
 .advisor-tab-number {
-    font-size: 12px;
+    font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
+
+/* **********Azure Subscription */
+.azure-subscription-block{
+    display: flex;
+    flex-direction: column;
+    
+}
+.azure-subscription-title-block{
+    background-color: #003d48;
+    color: #fff;
+    font-size: 12;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px;
+    font-weight: bold;
+    
+}
+.azure-subscription-block-body{
+    min-height: 200px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: lightgray;
+    
+    
+}
+.azure-subscription-block-body-contents-container{
+    display: flex;
+    flex-direction: column;
+    background: #aae0f3;
+    border: 3px solid white;
+    border-radius: 3px;
+    padding: 5px 20px;
+}
+.azure-subscription-name{
+    font-size: 12;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    
+}
+.azure-subscription-state{
+    text-align: center;
+    font-size: 12;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
 
 
 /* //////////////////////////Azure Inventory////////////////////// */
