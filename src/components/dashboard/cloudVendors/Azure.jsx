@@ -21,6 +21,10 @@ import kubernetesServicesLogo from '../../images/kubernetes-services.png'
 import AppServicesLogo from '../../images/AppServices.png'
 import VirtualMachinesLogo from '../../images/VirtualMachines.png'
 import DisksLogo from '../../images/Disks.png'
+import AdvisorLogo from '../../images/Advisor.png'
+import CostBillingLogo from '../../images/CostBilling.png'
+import HelpSupportLogo from '../../images/HelpSupport.png'
+import ResourceGroupsLogo from '../../images/ResourceGroups.png'
 
 
 import appServicesLogo from '../../images/app-services.jpg'
@@ -33,13 +37,13 @@ const azureGeneral = [
   {
     id: 1,
     group_name: 'Advisor',
-    group_logo: managementGroup,
+    group_logo: AdvisorLogo,
     route: '/cloudapp/azure/advisor'
   },
   {
     id: 2,
     group_name: 'Resource Groups',
-    group_logo: resourceGroup,
+    group_logo: ResourceGroupsLogo,
     route: '/cloudapp/azure/resourceGroups'
   },
   {
@@ -51,13 +55,13 @@ const azureGeneral = [
   {
     id: 4,
     group_name: 'Service Health',
-    group_logo: ServiceHealth,
+    group_logo: HelpSupportLogo,
     route: '/cloudapp/azure/serviceHealth'
   },
   {
     id: 5,
     group_name: 'Cost & Billings',
-    group_logo: ServiceHealth,
+    group_logo: CostBillingLogo,
     route: ''
   },
 
