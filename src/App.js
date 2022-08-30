@@ -32,6 +32,9 @@ import AzureSubscription from "./components/dashboard/cloudVendors/azure/AzureSu
 import AzureResourceGroups from "./components/dashboard/cloudVendors/azure/AzureResourceGroups";
 import AzureVirtualMachine from "./components/dashboard/cloudVendors/azure/AzureVirtualMachine";
 import AzureDisks from "./components/dashboard/cloudVendors/azure/AzureDisks";
+import AzureAplicationSecurityGroup from "./components/dashboard/cloudVendors/azure/AzureAplicationSecurityGroup";
+import AzureNetworkSecurityGroups from "./components/dashboard/cloudVendors/azure/AzureNetworkSecurityGroups";
+import AzureStorageAccounts from "./components/dashboard/cloudVendors/azure/AzureStorageAccounts";
 
 
 function App() {
@@ -71,6 +74,13 @@ function App() {
             {/* Azure Compute */}
             <Route path="/cloudapp/azure/virtualMachine" element={<AzureVirtualMachine />} />
             <Route path="/cloudapp/azure/disks" element={<AzureDisks />} />
+
+            {/* Azure Security */}
+            <Route path="/cloudapp/azure/applicationSecurityGroups" element={<AzureAplicationSecurityGroup />} />
+            <Route path="/cloudapp/azure/networkSecurityGroups" element={<AzureNetworkSecurityGroups />} />
+
+            {/* Azure Storage Accounts */}
+            <Route path="/cloudapp/azure/storageAccounts" element={<AzureStorageAccounts />} />
 
             
             <Route path="/cloudapp/GCP" element={<Gcp />} />

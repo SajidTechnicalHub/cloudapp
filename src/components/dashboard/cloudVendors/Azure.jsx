@@ -141,14 +141,14 @@ const azureSecurity = [
     id: 1,
     group_name: 'Network Security Groups',
     group_logo: NetworkSecLogo,
-    group_number: 2,
+    route:'/cloudapp/azure/networkSecurityGroups'
 
   },
   {
     id: 2,
     group_name: 'Application Security Groups',
     group_logo: ApplicationSecLogo,
-    group_number: 2,
+    route:'/cloudapp/azure/applicationSecurityGroups'
 
   },
 ]
@@ -157,7 +157,7 @@ const azureStorage = [
     id: 1,
     group_name: 'Storage Accounts',
     group_logo: StorageLogo,
-    group_number: 2,
+    route:'/cloudapp/azure/storageAccounts'
 
   },
 ]
@@ -607,7 +607,7 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                    <Link to={val.route}>
                       <div className="azure-inventory-groups-block">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
@@ -645,7 +645,7 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                    <Link to={val.route}>
                       <div className="azure-inventory-groups-block">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
