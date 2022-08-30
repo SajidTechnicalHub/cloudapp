@@ -182,22 +182,26 @@ const AccountManagement = () => {
 
   }
 
-  const updateSubscriptionResource = (id) => {
-    fetch("http://localhost:3000/api/v1/azure_accounts/update_subscription_current_resources", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-      body: JSON.stringify({
-        subscription: id
-      }),
-    })
-      .then((res) => {
-        console.log(res)
+  const updateSubscriptionResource = async (id) => {
+
+    try{
+      const response = await fetch("http://localhost:3000/api/v1/azure_accounts/update_subscription_current_resources", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          subscription: id
+        }),
       })
-      .then((json) => console.dir(json))
-      .catch((err) => console.error(err));
+      const data = await response.json()
+      console.log(data)
+    }
+    
+    catch(error){
+      console.log(error)
+    }
   }
 
 
