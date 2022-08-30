@@ -14,7 +14,6 @@ import virtualNetworksLogo from '../../images/virtual-networks.png'
 import loadBalancersLogo from '../../images/load-balancers.png'
 import dnsZonesLogo from '../../images/dns-zones.png'
 import RouteTablesLogo from '../../images/RouteTables.png'
-import VirtualWANsLogo from '../../images/Virtual-WANs.png'
 import virtualMachineLogo from '../../images/virtual-machine.png'
 import containerInstancesLogo from '../../images/container-instances.png'
 import kubernetesServicesLogo from '../../images/kubernetes-services.png'
@@ -25,6 +24,12 @@ import AdvisorLogo from '../../images/Advisor.png'
 import CostBillingLogo from '../../images/CostBilling.png'
 import HelpSupportLogo from '../../images/HelpSupport.png'
 import ResourceGroupsLogo from '../../images/ResourceGroups.png'
+import DNSZonesLogo from '../../images/DNS Zones.png'
+import LoadBalancersLogo from '../../images/LoadBalancers.png'
+import NATGatewaysLogo from '../../images/NATGateways.png'
+import PublicIPAddressesLogo from '../../images/PublicIPAddresses.png'
+import VirtualNetworksLogo from '../../images/VirtualNetworks.png'
+import VirtualWANsLogo from '../../images/VirtualWANs.png'
 
 
 import appServicesLogo from '../../images/app-services.jpg'
@@ -96,21 +101,21 @@ const azureNetworking = [
   {
     id: 1,
     group_name: 'Virtual Networks',
-    group_logo: virtualNetworksLogo,
+    group_logo: VirtualNetworksLogo,
     route: '/cloudapp/azure/virtualNetwork',
 
   },
   {
     id: 2,
     group_name: 'Load Balancers',
-    group_logo: loadBalancersLogo,
+    group_logo: LoadBalancersLogo,
     route: '/cloudapp/azure/loadBalancer',
 
   },
   {
     id: 3,
     group_name: 'DNS Zones',
-    group_logo: dnsZonesLogo,
+    group_logo: DNSZonesLogo,
     route: '/cloudapp/azure/dnsZone',
 
   },
@@ -131,14 +136,14 @@ const azureNetworking = [
   {
     id: 6,
     group_name: 'NAT Gateways',
-    group_logo: VirtualWANsLogo,
+    group_logo: NATGatewaysLogo,
     route: '/cloudapp/azure/natGateway',
 
   },
   {
     id: 7,
     group_name: 'Public IP Addresses',
-    group_logo: VirtualWANsLogo,
+    group_logo: PublicIPAddressesLogo,
     route: '/cloudapp/azure/publicIpAddress',
 
   },
