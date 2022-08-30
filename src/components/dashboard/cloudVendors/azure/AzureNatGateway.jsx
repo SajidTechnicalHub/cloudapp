@@ -135,7 +135,7 @@ const AzureNatGateway = () => {
 
     return (
         <>
-            <TopBar subtitle='Azure / All LBalancer' />
+            <TopBar subtitle='Azure / All Nat Gateways' />
             <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
             <div className="azure-inventory-detail-container">
                 <div className="azure-inventory-detail-all-vnets-block">
@@ -145,7 +145,7 @@ const AzureNatGateway = () => {
                                 <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All Nat Gatways ({azureNatGateway.length})</span>
+                            <span className='azure-inventory-detail-vnets-text'>All Nat Gateways ({azureNatGateway.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">

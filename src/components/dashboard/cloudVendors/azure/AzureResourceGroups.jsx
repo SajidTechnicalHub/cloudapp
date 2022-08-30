@@ -136,7 +136,7 @@ const AzureResourceGroups = () => {
 
   return (
     <>
-      <TopBar subtitle='Azure / All LBalancer' />
+      <TopBar subtitle='Azure / All Resource Groups' />
       <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">
@@ -146,7 +146,7 @@ const AzureResourceGroups = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Public IpAddresses ({resourceGroup.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Resource Groups ({resourceGroup.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">

@@ -18,6 +18,11 @@ import VirtualWANsLogo from '../../images/Virtual-WANs.png'
 import virtualMachineLogo from '../../images/virtual-machine.png'
 import containerInstancesLogo from '../../images/container-instances.png'
 import kubernetesServicesLogo from '../../images/kubernetes-services.png'
+import AppServicesLogo from '../../images/AppServices.png'
+import VirtualMachinesLogo from '../../images/VirtualMachines.png'
+import DisksLogo from '../../images/Disks.png'
+
+
 import appServicesLogo from '../../images/app-services.jpg'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
@@ -62,14 +67,14 @@ const azureCompute = [
   {
     id: 1,
     group_name: 'Virtual Machine',
-    group_logo: virtualMachineLogo,
+    group_logo: VirtualMachinesLogo,
     route:'/cloudapp/azure/virtualMachine'
 
   },
   {
     id: 2,
     group_name: 'Disks',
-    group_logo: containerInstancesLogo,
+    group_logo: DisksLogo,
     route:'/cloudapp/azure/disks'
 
   },
@@ -77,7 +82,7 @@ const azureCompute = [
   {
     id: 3,
     group_name: 'App Services',
-    group_logo: kubernetesServicesLogo,
+    group_logo: AppServicesLogo,
     route:''
 
   },

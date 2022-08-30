@@ -135,7 +135,7 @@ const AzureVirtualWans = () => {
 
     return (
         <>
-            <TopBar subtitle='Azure / All LBalancer' />
+            <TopBar subtitle='Azure / All Virtual Wans' />
             <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
             <div className="azure-inventory-detail-container">
                 <div className="azure-inventory-detail-all-vnets-block">

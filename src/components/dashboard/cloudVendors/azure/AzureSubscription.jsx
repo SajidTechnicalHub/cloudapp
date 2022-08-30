@@ -79,7 +79,7 @@ const AzureSubscription = () => {
 
   return (
     <>
-      <TopBar subtitle='Azure / AAll Subscriptions' />
+      <TopBar subtitle='Azure / All Subscriptions' />
       <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">

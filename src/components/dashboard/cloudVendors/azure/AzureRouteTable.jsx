@@ -134,7 +134,7 @@ const AzureRouteTable = () => {
 
     return (
         <>
-            <TopBar subtitle='Azure / All LBalancer' />
+            <TopBar subtitle='Azure / All Route Tables' />
             <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
             <div className="azure-inventory-detail-container">
                 <div className="azure-inventory-detail-all-vnets-block">

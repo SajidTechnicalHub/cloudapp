@@ -153,7 +153,7 @@ const AzureServiceHealth = () => {
 
   return (
     <>
-      <TopBar subtitle='Azure / All LBalancer' />
+      <TopBar subtitle='Azure / All Service Health' />
       <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">
@@ -163,7 +163,7 @@ const AzureServiceHealth = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Public IpAddresses ({azureSupportsTickets.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Service Health ({azureSupportsTickets.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">
