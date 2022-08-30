@@ -21,6 +21,9 @@ import EditAwsAccount from './EditAwsAccount';
 import EditGoogleAccount from './EditGoogleAccount';
 import EditOracleAccount from './EditOracleAccount';
 import DeleteCloudAccount from './DeleteCloudAccount';
+import { useContext } from 'react'
+import { AppStateContext } from '../../Context';
+import axios from 'axios';
 
 const accountData = [
   {
@@ -125,6 +128,15 @@ const deleteMobileStyle = {
 };
 
 const AccountManagement = () => {
+
+  const {
+    azureSubscription, setAzureSubscription,
+    accountCredentials, setAzureCredentails,
+    isoAuth, setoAuth,
+    isLoading, setIsLoading,
+
+  } = useContext(AppStateContext)
+
   const { height, width } = useWindowDimensions();
   // Add Cloud Account
   const [open, setOpen] = React.useState(false);
@@ -154,6 +166,41 @@ const AccountManagement = () => {
     setActiveTab(id)
   }
 
+  const getAllAzureSubscriptionResource = async () => {
+
+    const response = await axios.get("http://localhost:3000/api/v1/azure_accounts/update_subscription_total_resources", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+    })
+
+    setIsLoading(false)
+    console.log(response)
+    setAzureSubscription(response.data.azureSubscription)
+
+
+  }
+
+  const updateSubscriptionResource = (id) => {
+    fetch("http://localhost:3000/api/v1/azure_accounts/update_subscription_current_resources", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        subscription: id
+      }),
+    })
+      .then((res) => {
+        console.log(res)
+      })
+      .then((json) => console.dir(json))
+      .catch((err) => console.error(err));
+  }
+
+
   return (
     <>
       <TopBar subtitle='Cloud Account Management' />
@@ -168,7 +215,7 @@ const AccountManagement = () => {
           </div>
           <div className="referesh-container">
             <span className="referesh-block">
-              <FiRefreshCcw />
+              <FiRefreshCcw onClick={() => getAllAzureSubscriptionResource()} />
             </span>
             <span onClick={handleOpen} className="referesh-block">
               <FiPlus />
@@ -176,7 +223,7 @@ const AccountManagement = () => {
           </div>
         </div>
         {
-          cloudAccount.filter((val) => {
+          azureSubscription.filter((val) => {
             if (q == '') {
 
               return val
@@ -191,24 +238,24 @@ const AccountManagement = () => {
 
                   <div className="aws-name-container">
                     <div className="aws-name-logo">
-                      <span className='aws-name-logo-icon' >{currentElement.logo}</span>
+                      <span className='aws-name-logo-icon' ><VscAzure color='#008AD7' /></span>
                     </div>
                     <div className="aws-heading-container">
-                      <span className="aws-heading-text">{currentElement.heading}</span>
-                      <span className='aws-sub-heading'>{currentElement.title}</span>
-                      <span className='aws-sub-heading'>Last Sync Attempt: {currentElement.sync}</span>
+                      <span className="aws-heading-text">{currentElement.account_name}</span>
+                      <span className='aws-sub-heading'>{currentElement.subscription_name}</span>
+                      <span className='aws-sub-heading'>Last Sync Attempt: {currentElement.updated_at}</span>
                     </div>
                   </div>
 
                   <div className="total-resource-action">
 
                     <div className="total-resource-block">
-                      <span className="total-resource-number">5</span>
+                      <span className="total-resource-number">{currentElement.total_resource}</span>
                       <span className="total-resource-text">Total Resource</span>
                     </div>
                     <div className="action-container">
                       <span className="action-referesh-block">
-                        <AiOutlineCloudSync />
+                        <AiOutlineCloudSync onClick={() => updateSubscriptionResource(currentElement.id)} />
                       </span>
                       <span className="referesh-block">
                         <FiEdit2 onClick={handleEditOpen} />

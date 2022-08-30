@@ -1,22 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import TopBar from '../header/TopBar'
-import managementGroup from '../../images/management-group.png'
-import resourceGroup from '../../images/resource-group.png'
 import subscriptionGroup from '../../images/Subscriptions.png'
-import ServiceHealth from '../../images/Service-Health.png'
-import DevicesLogo from '../../images/Devices.png'
-import GroupsLogo from '../../images/Groups.jpg'
-import UsersLogo from '../../images/Users.png'
-import StorageLogo from '../../images/Storage-Accounts.png'
-import NetworkSecLogo from '../../images/Network-Sec-Groups.png'
-import ApplicationSecLogo from '../../images/Application-Sec-Groups.jpg'
-import virtualNetworksLogo from '../../images/virtual-networks.png'
-import loadBalancersLogo from '../../images/load-balancers.png'
-import dnsZonesLogo from '../../images/dns-zones.png'
 import RouteTablesLogo from '../../images/RouteTables.png'
-import virtualMachineLogo from '../../images/virtual-machine.png'
-import containerInstancesLogo from '../../images/container-instances.png'
-import kubernetesServicesLogo from '../../images/kubernetes-services.png'
 import AppServicesLogo from '../../images/AppServices.png'
 import VirtualMachinesLogo from '../../images/VirtualMachines.png'
 import DisksLogo from '../../images/Disks.png'
@@ -30,9 +15,9 @@ import NATGatewaysLogo from '../../images/NATGateways.png'
 import PublicIPAddressesLogo from '../../images/PublicIPAddresses.png'
 import VirtualNetworksLogo from '../../images/VirtualNetworks.png'
 import VirtualWANsLogo from '../../images/VirtualWANs.png'
-
-
-import appServicesLogo from '../../images/app-services.jpg'
+import NetworkSecurityGroupsLogo from '../../images/NetworkSecurityGroups.png'
+import ApplicationSecurityGroupsLogo from '../../images/ApplicationSecurityGroups.png'
+import StorageAccountsLogo from '../../images/StorageAccounts.png'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppStateContext } from '../../Context'
@@ -154,14 +139,14 @@ const azureSecurity = [
   {
     id: 1,
     group_name: 'Network Security Groups',
-    group_logo: NetworkSecLogo,
+    group_logo: ApplicationSecurityGroupsLogo,
     route:'/cloudapp/azure/networkSecurityGroups'
 
   },
   {
     id: 2,
     group_name: 'Application Security Groups',
-    group_logo: ApplicationSecLogo,
+    group_logo: NetworkSecurityGroupsLogo,
     route:'/cloudapp/azure/applicationSecurityGroups'
 
   },
@@ -170,7 +155,7 @@ const azureStorage = [
   {
     id: 1,
     group_name: 'Storage Accounts',
-    group_logo: StorageLogo,
+    group_logo: StorageAccountsLogo,
     route:'/cloudapp/azure/storageAccounts'
 
   },
