@@ -10,47 +10,6 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 
-const columns = [
-  {
-    field: 'subscription_name',
-    headerName: 'Subscription Name',
-    minWidth: 162,
-    flex: true,
-    editable: true,
-  },
-  {
-    field: 'subscription_id',
-    headerName: 'Subscription Id',
-    minWidth: 162,
-    flex: true,
-    editable: true,
-  },
-
-
-  {
-    field: 'tenant_id',
-    headerName: 'Tenant Id',
-    minWidth: 162,
-    flex: true,
-    editable: true,
-  },
-  {
-    field: 'subscription_state',
-    headerName: 'Subscription State',
-    minWidth: 162,
-    flex: true,
-    editable: true,
-  },
-
-  {
-    field: 'subscription_speed',
-    headerName: 'Subscription Speed',
-    minWidth: 162,
-    flex: true,
-    editable: true,
-  },
-];
-
 
 const AzureSubscription = () => {
   const {
@@ -120,7 +79,7 @@ const AzureSubscription = () => {
 
   return (
     <>
-      <TopBar subtitle='Azure / All LBalancer' />
+      <TopBar subtitle='Azure / AAll Subscriptions' />
       <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">

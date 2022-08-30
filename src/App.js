@@ -30,6 +30,8 @@ import AzureAdvisor from "./components/dashboard/cloudVendors/azure/AzureAdvisor
 import AzureServiceHealth from "./components/dashboard/cloudVendors/azure/AzureServiceHealth";
 import AzureSubscription from "./components/dashboard/cloudVendors/azure/AzureSubscription";
 import AzureResourceGroups from "./components/dashboard/cloudVendors/azure/AzureResourceGroups";
+import AzureVirtualMachine from "./components/dashboard/cloudVendors/azure/AzureVirtualMachine";
+import AzureDisks from "./components/dashboard/cloudVendors/azure/AzureDisks";
 
 
 function App() {
@@ -50,6 +52,9 @@ function App() {
             <Route path="/cloudapp/AWS" element={<Aws />} />
 
             <Route path="/cloudapp/Azure" element={<Azure />} />
+
+            {/* Azure Networking */}
+            <Route path="/cloudapp/azure/virtualNetwork" element={<AzureInventoryDetails />} />
             <Route path="/cloudapp/azure/loadBalancer" element={<AzureLoadBalancer />} />
             <Route path="/cloudapp/azure/dnsZone" element={<AzureDnsZone />} />
             <Route path="/cloudapp/azure/routeTable" element={<AzureRouteTable />} />
@@ -57,12 +62,17 @@ function App() {
             <Route path="/cloudapp/azure/natGateway" element={<AzureNatGateway />} />
             <Route path="/cloudapp/azure/publicIpAddress" element={<AzurePublicIpAddress />} />
 
+            {/* Azure General */}
             <Route path="/cloudapp/azure/advisor" element={<AzureAdvisor />} />
             <Route path="/cloudapp/azure/resourceGroups" element={<AzureResourceGroups />} />
             <Route path="/cloudapp/azure/serviceHealth" element={<AzureServiceHealth />} />
             <Route path="/cloudapp/azure/subscription" element={<AzureSubscription />} />
 
-            <Route path="/cloudapp/azure/virtualNetwork" element={<AzureInventoryDetails />} />
+            {/* Azure Compute */}
+            <Route path="/cloudapp/azure/virtualMachine" element={<AzureVirtualMachine />} />
+            <Route path="/cloudapp/azure/disks" element={<AzureDisks />} />
+
+            
             <Route path="/cloudapp/GCP" element={<Gcp />} />
             <Route path="/cloudapp/summary" element={<Summary />} />
             <Route path="/cloudapp/reports" element={<Reports />} />

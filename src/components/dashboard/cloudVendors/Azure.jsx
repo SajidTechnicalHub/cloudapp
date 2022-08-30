@@ -63,14 +63,14 @@ const azureCompute = [
     id: 1,
     group_name: 'Virtual Machine',
     group_logo: virtualMachineLogo,
-    group_number: 2,
+    route:'/cloudapp/azure/virtualMachine'
 
   },
   {
     id: 2,
     group_name: 'Disks',
     group_logo: containerInstancesLogo,
-    group_number: 2,
+    route:'/cloudapp/azure/disks'
 
   },
 
@@ -78,7 +78,7 @@ const azureCompute = [
     id: 3,
     group_name: 'App Services',
     group_logo: kubernetesServicesLogo,
-    group_number: 2,
+    route:''
 
   },
 
@@ -432,7 +432,7 @@ const Azure = () => {
                   <div className="col-lg-4">
                     <Link to={val.route}>
                       {
-                        val.group_name === 'Cost & Billings' ?
+                        val.group_name == 'Cost & Billings' ?
                           <div className="azure-inventory-groups-block-disable">
                             <div className="azure-inventory-sub-groups-block">
                               <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
@@ -449,20 +449,20 @@ const Azure = () => {
                             </div>
                             <span className="azure-inventory-sub-groups-number">
                               {
-                                val.group_name === 'Advisor' ?
+                                val.group_name == 'Advisor' ?
                                   <span>{azureRecommendation.length}</span> :
                                   <span>
                                     {
-                                      val.group_name === 'Resource Groups' ?
+                                      val.group_name == 'Resource Groups' ?
                                         <span>{resourceGroup.length}</span> :
                                         <span>
                                           {
-                                            val.group_name === 'Subscriptions' ?
+                                            val.group_name == 'Subscriptions' ?
                                               <span>{azureSubscription.length}</span> :
                                               <span>
                                                 {
-                                                  val.group_name === 'Service Health' ?
-                                                    <span>0</span> :
+                                                  val.group_name == 'Service Health' ?
+                                                    <span>{azureSupportsTickets.length}</span> :
                                                     <sapn>0</sapn>
                                                 }
                                               </span>
@@ -490,9 +490,9 @@ const Azure = () => {
               return (
                 <React.Fragment key={val.id}>
                   <div className="col-lg-4">
-                    <Link to='/cloudapp/Azure-Inventory-Details'>
+                    <Link to={val.route}>
                       {
-                        val.group_name === 'App Services' ?
+                        val.group_name == 'App Services' ?
                         <div className="azure-inventory-groups-block-disable">
                         <div className="azure-inventory-sub-groups-block">
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
@@ -509,12 +509,12 @@ const Azure = () => {
                             </div>
                             <span className="azure-inventory-sub-groups-number">
                               {
-                                val.group_name === 'Virtual Machine' ?
+                                val.group_name == 'Virtual Machine' ?
                                   <span>{azureVirtualMachine.length}</span> :
                                   <span>
                                     {
-                                      val.group_name === 'Disks' ?
-                                      <span>0</span> :
+                                      val.group_name == 'Disks' ?
+                                      <span>{azureDisks.length}</span> :
                                       <span>0</span>
                                     }
                                   </span>
@@ -548,31 +548,31 @@ const Azure = () => {
 
                         <span className="azure-inventory-sub-groups-number">
                           {
-                            val.group_name === 'Virtual Networks' ?
+                            val.group_name == 'Virtual Networks' ?
                               <span>{virtualNetwork.length}</span> :
                               <span>
                                 {
-                                  val.group_name === 'Load Balancers' ?
+                                  val.group_name == 'Load Balancers' ?
                                     <span>{loadBalancer.length}</span> :
                                     <span>
                                       {
-                                        val.group_name === 'DNS Zones' ?
+                                        val.group_name == 'DNS Zones' ?
                                           <span>{azureDnsZone.length}</span> :
                                           <span>
                                             {
-                                              val.group_name === 'Route Tables' ?
+                                              val.group_name == 'Route Tables' ?
                                                 <span>{azureRouteTable.length}</span> :
                                                 <span>
                                                   {
-                                                    val.group_name === 'Virtual WANs' ?
+                                                    val.group_name == 'Virtual WANs' ?
                                                       <span>{azureVirtualWans.length}</span> :
                                                       <span>
                                                         {
-                                                          val.group_name === 'NAT Gateways' ?
+                                                          val.group_name == 'NAT Gateways' ?
                                                             <span>{azureNatGateway.length}</span> :
                                                             <span>
                                                               {
-                                                                val.group_name === 'Public IP Addresses' ?
+                                                                val.group_name == 'Public IP Addresses' ?
                                                                   <span>{azurePublicIpAddress.length}</span> :
                                                                   <sapn>0</sapn>
                                                               }
@@ -615,11 +615,11 @@ const Azure = () => {
                         </div>
                         <span className="azure-inventory-sub-groups-number">
                           {
-                            val.group_name === 'Network Security Groups' ?
+                            val.group_name == 'Network Security Groups' ?
                               <span>{azureNetworkSecurityGroups.length}</span> :
                               <span>
                                 {
-                                  val.group_name === 'Application Security Groups' ?
+                                  val.group_name == 'Application Security Groups' ?
                                     <span>{azureApplicationSecurityGroups.length}</span> :
                                     <sapn>0</sapn>
                                 }

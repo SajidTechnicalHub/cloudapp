@@ -12,28 +12,21 @@ import axios from 'axios';
 
 const columns = [
   {
-    field: 'title',
-    headerName: 'Title',
+    field: 'vm_name',
+    headerName: 'VM Name',
     minWidth: 162,
     flex: true,
     editable: true,
   },
   {
-    field: 'st_id',
-    headerName: 'ID',
-    minWidth: 162,
+    field: 'region',
+    headerName: 'Region',
+    minWidth: 100,
     flex: true,
     editable: true,
   },
 
 
-  {
-    field: 'created',
-    headerName: 'Created',
-    minWidth: 162,
-    flex: true,
-    editable: true,
-  },
   {
     field: 'subscription',
     headerName: 'Subscription',
@@ -41,37 +34,41 @@ const columns = [
     flex: true,
     editable: true,
   },
-
   {
-    field: 'resource_type',
-    headerName: 'Resource Type',
+    field: 'vm_size',
+    headerName: 'VM Size',
     minWidth: 162,
     flex: true,
     editable: true,
   },
-
   {
-    field: 'status',
-    headerName: 'Status',
-    minWidth: 162,
+    field: 'os',
+    headerName: 'OS',
+    minWidth: 100,
     flex: true,
     editable: true,
   },
-
+  {
+    field: 'resource_group',
+    headerName: 'Resource Group',
+    minWidth: 150,
+    flex: true,
+    editable: true,
+  },
+  
   {
     field: 'account_name',
     headerName: 'Account Name',
     minWidth: 162,
     flex: true,
     editable: true,
-    hide:true
   },
 ];
 
 
-const AzureServiceHealth = () => {
+const AzureVirtualMachine = () => {
   const {
-    azureSupportsTickets, setAzureSupportsTickets,
+    azureVirtualMachine, setAzureVirtualMachine,
     accountCredentials, setAzureCredentails,
     isoAuth, setoAuth,
     isLoading, setIsLoading,
@@ -86,18 +83,18 @@ const AzureServiceHealth = () => {
 
   })
 
-  const Search = (azureSupportsTickets) => {
+  const Search = (azureVirtualMachine) => {
 
-    return azureSupportsTickets.filter(
+    return azureVirtualMachine.filter(
       (row) =>
         cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
-          row.title.toLowerCase().indexOf(q) > -1 ||
-          row.title.indexOf(q) > -1 :
+          row.vm_name.toLowerCase().indexOf(q) > -1 ||
+          row.vm_name.indexOf(q) > -1 :
 
           (row.account_name.toLowerCase().indexOf(cloudAccount.cloud_account) > -1 ||
             row.account_name.indexOf(cloudAccount.cloud_account) > -1) &&
-          (row.title.toLowerCase().indexOf(q) > -1 ||
-            row.title.indexOf(q) > -1)
+          (row.vm_name.toLowerCase().indexOf(q) > -1 ||
+            row.vm_name.indexOf(q) > -1)
 
     );
   }
@@ -110,9 +107,9 @@ const AzureServiceHealth = () => {
   }
 
 
-  const getAzureSupportsTickets = async () => {
+  const getAzureVirtualMachine = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_supports_tickets/get_azure_supports_tickets", {
+    const response = await axios.get("http://localhost:3000/api/v1/azure_virtual_machine/get_azure_virtual_machine", {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -120,14 +117,14 @@ const AzureServiceHealth = () => {
     })
 
     setIsLoading(false)
-    setAzureSupportsTickets(response.data.azureSupportsTickets)
+    setAzureVirtualMachine(response.data.azureVirtualMachine)
 
 
   }
 
-  const updateAzureSupportsTickets = async () => {
+  const updateAzureVirtualMachine = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_supports_tickets/index", {
+    const response = await fetch("http://localhost:3000/api/v1/azure_virtual_machine/index", {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -138,7 +135,7 @@ const AzureServiceHealth = () => {
         if (res.ok == true) {
           setoAuth(false)
           setIsLoading(false)
-          getAzureSupportsTickets()
+          getAzureVirtualMachine()
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
@@ -153,7 +150,7 @@ const AzureServiceHealth = () => {
 
   return (
     <>
-      <TopBar subtitle='Azure / All LBalancer' />
+      <TopBar subtitle='Azure / AAll Virtual Machines' />
       <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">
@@ -163,7 +160,7 @@ const AzureServiceHealth = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Public IpAddresses ({azureSupportsTickets.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Virtual Machines ({azureVirtualMachine.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">
@@ -195,7 +192,7 @@ const AzureServiceHealth = () => {
           </div>
           <div className="referesh-container">
             <span className="referesh-block">
-              <FiRefreshCcw onClick={() => updateAzureSupportsTickets()} />
+              <FiRefreshCcw onClick={() => updateAzureVirtualMachine()} />
             </span>
           </div>
         </div>
@@ -205,14 +202,14 @@ const AzureServiceHealth = () => {
           </div> :
           <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-              // rows={Search(azureSupportsTickets)}
-              rows={Search(azureSupportsTickets)}
+              // rows={Search(azureVirtualMachine)}
+              rows={Search(azureVirtualMachine)}
               columns={columns}
               pageSize={pageSize}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               rowsPerPageOptions={[5, 10, 20]}
               pagination
-              {...azureSupportsTickets}
+              {...azureVirtualMachine}
               components={{ Toolbar: GridToolbar }}
               disableSelectionOnClick
             />
@@ -223,4 +220,4 @@ const AzureServiceHealth = () => {
   )
 }
 
-export default AzureServiceHealth
+export default AzureVirtualMachine

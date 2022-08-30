@@ -1368,7 +1368,7 @@ main {
     color: #fff;
     font-size: 12;
     font-family: Arial, Helvetica, sans-serif;
-    padding: 5px;
+    padding: 5px 10px;
     font-weight: bold;
     
 }
@@ -1378,7 +1378,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    background: lightgray;
+    background: rgb(234, 242, 245);
     
     
 }

@@ -12,28 +12,28 @@ import axios from 'axios';
 
 const columns = [
   {
-    field: 'title',
-    headerName: 'Title',
-    minWidth: 162,
+    field: 'name',
+    headerName: 'Name',
+    minWidth: 262,
     flex: true,
     editable: true,
   },
   {
-    field: 'st_id',
-    headerName: 'ID',
+    field: 'size',
+    headerName: 'Size (GB)',
+    minWidth: 100,
+    flex: true,
+    editable: true,
+  },
+  {
+    field: 'region',
+    headerName: 'Region',
     minWidth: 162,
     flex: true,
     editable: true,
   },
 
 
-  {
-    field: 'created',
-    headerName: 'Created',
-    minWidth: 162,
-    flex: true,
-    editable: true,
-  },
   {
     field: 'subscription',
     headerName: 'Subscription',
@@ -41,37 +41,28 @@ const columns = [
     flex: true,
     editable: true,
   },
-
+  
   {
-    field: 'resource_type',
-    headerName: 'Resource Type',
+    field: 'resource_group',
+    headerName: 'Resource Group',
     minWidth: 162,
     flex: true,
     editable: true,
   },
-
-  {
-    field: 'status',
-    headerName: 'Status',
-    minWidth: 162,
-    flex: true,
-    editable: true,
-  },
-
+  
   {
     field: 'account_name',
     headerName: 'Account Name',
     minWidth: 162,
     flex: true,
     editable: true,
-    hide:true
   },
 ];
 
 
-const AzureServiceHealth = () => {
+const AzureDisks = () => {
   const {
-    azureSupportsTickets, setAzureSupportsTickets,
+    azureDisks, setAzureDisks,
     accountCredentials, setAzureCredentails,
     isoAuth, setoAuth,
     isLoading, setIsLoading,
@@ -86,18 +77,18 @@ const AzureServiceHealth = () => {
 
   })
 
-  const Search = (azureSupportsTickets) => {
+  const Search = (azureDisks) => {
 
-    return azureSupportsTickets.filter(
+    return azureDisks.filter(
       (row) =>
         cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
-          row.title.toLowerCase().indexOf(q) > -1 ||
-          row.title.indexOf(q) > -1 :
+          row.name.toLowerCase().indexOf(q) > -1 ||
+          row.name.indexOf(q) > -1 :
 
           (row.account_name.toLowerCase().indexOf(cloudAccount.cloud_account) > -1 ||
             row.account_name.indexOf(cloudAccount.cloud_account) > -1) &&
-          (row.title.toLowerCase().indexOf(q) > -1 ||
-            row.title.indexOf(q) > -1)
+          (row.name.toLowerCase().indexOf(q) > -1 ||
+            row.name.indexOf(q) > -1)
 
     );
   }
@@ -110,9 +101,9 @@ const AzureServiceHealth = () => {
   }
 
 
-  const getAzureSupportsTickets = async () => {
+  const getAzureDisks = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_supports_tickets/get_azure_supports_tickets", {
+    const response = await axios.get("http://localhost:3000/api/v1/azure_disks/get_azure_disks", {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -120,14 +111,14 @@ const AzureServiceHealth = () => {
     })
 
     setIsLoading(false)
-    setAzureSupportsTickets(response.data.azureSupportsTickets)
+    setAzureDisks(response.data.azureDisks)
 
 
   }
 
-  const updateAzureSupportsTickets = async () => {
+  const updateAzureDisks = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_supports_tickets/index", {
+    const response = await fetch("http://localhost:3000/api/v1/azure_disks/index", {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -138,7 +129,7 @@ const AzureServiceHealth = () => {
         if (res.ok == true) {
           setoAuth(false)
           setIsLoading(false)
-          getAzureSupportsTickets()
+          getAzureDisks()
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
@@ -153,7 +144,7 @@ const AzureServiceHealth = () => {
 
   return (
     <>
-      <TopBar subtitle='Azure / All LBalancer' />
+      <TopBar subtitle='Azure / All Disks' />
       <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">
@@ -163,7 +154,7 @@ const AzureServiceHealth = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Public IpAddresses ({azureSupportsTickets.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Disks ({azureDisks.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">
@@ -195,7 +186,7 @@ const AzureServiceHealth = () => {
           </div>
           <div className="referesh-container">
             <span className="referesh-block">
-              <FiRefreshCcw onClick={() => updateAzureSupportsTickets()} />
+              <FiRefreshCcw onClick={() => updateAzureDisks()} />
             </span>
           </div>
         </div>
@@ -205,14 +196,14 @@ const AzureServiceHealth = () => {
           </div> :
           <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-              // rows={Search(azureSupportsTickets)}
-              rows={Search(azureSupportsTickets)}
+              // rows={Search(azureDisks)}
+              rows={Search(azureDisks)}
               columns={columns}
               pageSize={pageSize}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               rowsPerPageOptions={[5, 10, 20]}
               pagination
-              {...azureSupportsTickets}
+              {...azureDisks}
               components={{ Toolbar: GridToolbar }}
               disableSelectionOnClick
             />
@@ -223,4 +214,4 @@ const AzureServiceHealth = () => {
   )
 }
 
-export default AzureServiceHealth
+export default AzureDisks
