@@ -131,6 +131,7 @@ const AccountManagement = () => {
 
   const {
     azureSubscription, setAzureSubscription,
+    editAzureCredential, setEditAzureCredential,
     accountCredentials, setAzureCredentails,
     isoAuth, setoAuth,
     isLoading, setIsLoading,
@@ -138,6 +139,7 @@ const AccountManagement = () => {
   } = useContext(AppStateContext)
 
   const { height, width } = useWindowDimensions();
+  
   // Add Cloud Account
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -145,7 +147,30 @@ const AccountManagement = () => {
 
   // Edit Cloud Account
   const [editOpen, setEditOpen] = React.useState(false);
-  const handleEditOpen = () => setEditOpen(true);
+
+  // *****************Get Azure Credential data******************
+  const handleEditOpen = async (id) => {
+
+    const response = await axios.get("http://localhost:3000/api/v1/azure_accounts/show", {
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"),
+      },
+      params: {
+        azure_credential_id: id
+      }
+
+    })
+    if (response.status == 200) {
+      setEditOpen(true)
+      // console.log(response.data.azureCredential)
+      setEditAzureCredential(response.data.azureCredential)
+      console.log(editAzureCredential)
+    }
+
+  }
+  // *************************************************
   const handleEditClose = () => setEditOpen(false);
 
   // Delete Cloud Account
@@ -183,8 +208,8 @@ const AccountManagement = () => {
   }
 
   const updateSubscriptionResource = async (id) => {
-
-    try{
+    console.log(id)
+    try {
       const response = await fetch("http://localhost:3000/api/v1/azure_accounts/update_subscription_current_resources", {
         method: "post",
         headers: {
@@ -198,8 +223,8 @@ const AccountManagement = () => {
       const data = await response.json()
       console.log(data)
     }
-    
-    catch(error){
+
+    catch (error) {
       console.log(error)
     }
   }
@@ -208,6 +233,7 @@ const AccountManagement = () => {
   return (
     <>
       <TopBar subtitle='Cloud Account Management' />
+      <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
       <div className="account-management-container">
         <div className="search-container">
           <div className="search-block">
@@ -262,7 +288,7 @@ const AccountManagement = () => {
                         <AiOutlineCloudSync onClick={() => updateSubscriptionResource(currentElement.id)} />
                       </span>
                       <span className="referesh-block">
-                        <FiEdit2 onClick={handleEditOpen} />
+                        <FiEdit2 onClick={(e) => handleEditOpen(currentElement.azure_credential_id)} />
                       </span>
                       <span className="action-delete-block">
                         <AiFillDelete onClick={e => handleDeleteOpen(currentElement.id)} />
@@ -386,7 +412,10 @@ const AccountManagement = () => {
               </div>
               {
                 activeTab == 1 ?
-                  <EditAzureAccount handleEditClose={handleEditClose} /> :
+                  <EditAzureAccount
+                    handleEditClose={handleEditClose}
+                    
+                  /> :
                   activeTab == 2 ?
                     <EditAwsAccount handleEditClose={handleEditClose} /> :
                     activeTab == 3 ?

@@ -1,9 +1,20 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppStateContext } from '../../Context'
 
 const EditAzureAccount = (props) => {
+
+  const {
+    editAzureCredential, setEditAzureCredential,
+    isoAuth, setoAuth,
+    isLoading, setIsLoading,
+
+  } = useContext(AppStateContext)
+
+  const [editableAzureCredentail, setEditableAzureCredentail] = useState()
   const [user, setUser] = useState({
-    account_name: '',
+    account_name: editAzureCredential.account_name,
     application_id: '',
     secret_id: '',
     tenent_id: '',
@@ -11,13 +22,18 @@ const EditAzureAccount = (props) => {
 
 
   })
+
   const InputEvent = (e) => {
     const { name, value } = e.target;
     setUser(() => {
       return { ...user, [name]: value }
     })
 
+    
+    // setEditAzureCredential(user)
   }
+  
+
   const SubmitEvent = (e) => {
     e.preventDefault()
 
@@ -96,7 +112,7 @@ const EditAzureAccount = (props) => {
                   required="required"
                   placeholder='Enter Account Name'
                 />
-
+    
               </div>
             </div>
             <div className="col-lg-6">

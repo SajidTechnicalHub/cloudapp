@@ -28,6 +28,8 @@ const AppStateContextProvider = props => {
   const [accountCredentials, setAzureCredentails] = useState([])
   const [azureSubscription, setAzureSubscription] = useState([])
 
+  const [editAzureCredential, setEditAzureCredential] = useState([])
+
 
   const getAccountDetails = async () => {
     try {
@@ -102,7 +104,7 @@ const AppStateContextProvider = props => {
       resourceGroup, setResourceGroup,
       accountCredentials, setAzureCredentails,
       azureSubscription, setAzureSubscription,
-
+      editAzureCredential, setEditAzureCredential,
 
 
 
