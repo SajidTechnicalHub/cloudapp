@@ -1402,7 +1402,15 @@ main {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
-
+.update-azure-credential{
+    font-size: 12;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 /* //////////////////////////Azure Inventory////////////////////// */

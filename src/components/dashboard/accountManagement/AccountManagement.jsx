@@ -151,20 +151,16 @@ const AccountManagement = () => {
   // *****************Get Azure Credential data******************
   const handleEditOpen = async (id) => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_accounts/show", {
+    const response = await axios.get(`http://localhost:3000/api/v1/azure_credentials/${id}`, {
 
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
-      params: {
-        azure_credential_id: id
-      }
-
+     
     })
     if (response.status == 200) {
       setEditOpen(true)
-      // console.log(response.data.azureCredential)
       setEditAzureCredential(response.data.azureCredential)
       console.log(editAzureCredential)
     }

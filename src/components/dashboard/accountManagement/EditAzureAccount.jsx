@@ -12,7 +12,7 @@ const EditAzureAccount = (props) => {
 
   } = useContext(AppStateContext)
 
-  const [editableAzureCredentail, setEditableAzureCredentail] = useState()
+  const [editAzureCredentialMessage, setEditAzureCredentialMessage] = useState('')
   const [user, setUser] = useState({
     account_name: editAzureCredential.account_name,
     application_id: '',
@@ -29,14 +29,34 @@ const EditAzureAccount = (props) => {
       return { ...user, [name]: value }
     })
 
-    
-    // setEditAzureCredential(user)
+   
+  }
+  const cancelEditModel = ()=>{
+    props.handleEditClose()
   }
   
 
   const SubmitEvent = (e) => {
     e.preventDefault()
 
+    fetch(`http://localhost:3000/api/v1/azure_credentials/${editAzureCredential.id}`, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+        body: JSON.stringify({azure_credential:user}),
+      })
+        .then((res) => {
+          if (res.ok) {
+            // props.handleEditClose() // Cancel model when update record successfully
+            setEditAzureCredentialMessage('Update Record Successfully.')
+            return res.json();
+          } else {
+            throw new Error(res);
+          }
+        })
+        .then((json) => console.dir(json))
 
     // navigate('/cloudapp')
   }
@@ -44,6 +64,7 @@ const EditAzureAccount = (props) => {
   return (
     <>
       <div className="add-cloud-account-container">
+        
         <span className='add-cloud-account-steps'>
           Step 1: Register and Configure an Application with Reader permissions in Azure Active Directory.
         </span>
@@ -98,8 +119,8 @@ const EditAzureAccount = (props) => {
 
         <span className='add-cloud-account-steps'>
           Step 2: Cloud Account Details.
-        </span>
-
+        </span><br />
+        <span className="update-azure-credential">{editAzureCredentialMessage}</span>
         <form onSubmit={SubmitEvent} className='azure-account-form-block'>
           <div className="row">
             <div className="col-lg-6">
