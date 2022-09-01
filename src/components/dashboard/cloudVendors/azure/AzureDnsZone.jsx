@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
-import {useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import TopBar from '../../header/TopBar';
 import { FaArrowsAltH } from 'react-icons/fa';
-import {FiRefreshCcw, FiSearch } from 'react-icons/fi'
+import { FiRefreshCcw, FiSearch } from 'react-icons/fi'
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
-
+import { baseUrl } from './GetAzureServices';
 const columns = [
     {
         field: 'name',
@@ -33,12 +33,12 @@ const columns = [
         editable: true,
     },
     {
-      field: 'subscription',
-      headerName: 'Subscription',
-      minWidth: 162,
-      flex: true,
-      editable: true,
-  },
+        field: 'subscription',
+        headerName: 'Subscription',
+        minWidth: 162,
+        flex: true,
+        editable: true,
+    },
     {
         field: 'resource_group',
         headerName: 'Resource Group',
@@ -46,7 +46,7 @@ const columns = [
         flex: true,
         editable: true,
     },
-   
+
     {
         field: 'account_name',
         headerName: 'Account Name',
@@ -100,7 +100,7 @@ const AzureDnsZone = () => {
 
     const getAzureDnsZone = async () => {
 
-        const response = await axios.get("http://localhost:3000/api/v1/azure_dns_zone/get_azure_dns_zone", {
+        const response = await axios.get(`${baseUrl}/azure_dns_zone/get_azure_dns_zone`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
@@ -108,13 +108,14 @@ const AzureDnsZone = () => {
         })
 
         setIsLoading(false)
-        setAzureDnsZone(response.data.azureDnsZone)
-
+        if (response.data.status != 'No_record_find') {
+            setAzureDnsZone(response.data.azureDnsZone)
+        }
     }
 
     const updateAzureDnsZone = async () => {
         setIsLoading(true)
-        const response = await fetch("http://localhost:3000/api/v1/azure_dns_zone/index", {
+        const response = await fetch(`${baseUrl}/azure_dns_zone/index`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),

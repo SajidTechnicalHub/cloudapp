@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TopBar from '../header/TopBar'
 import { FiPlus, FiRefreshCcw, FiSearch, FiEdit2, } from 'react-icons/fi'
 import { FaAws } from 'react-icons/fa'
@@ -24,6 +24,8 @@ import DeleteCloudAccount from './DeleteCloudAccount';
 import { useContext } from 'react'
 import { AppStateContext } from '../../Context';
 import axios from 'axios';
+import Loading from '../cloudVendors/azure/Loading';
+import { baseUrl } from '../cloudVendors/azure/GetAzureServices';
 
 const accountData = [
   {
@@ -139,7 +141,7 @@ const AccountManagement = () => {
   } = useContext(AppStateContext)
 
   const { height, width } = useWindowDimensions();
-  
+
   // Add Cloud Account
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -157,7 +159,7 @@ const AccountManagement = () => {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
       },
-     
+
     })
     if (response.status == 200) {
       setEditOpen(true)
@@ -188,7 +190,7 @@ const AccountManagement = () => {
   }
 
   const getAllAzureSubscriptionResource = async () => {
-
+    setIsLoading(true)
     const response = await axios.get("http://localhost:3000/api/v1/azure_accounts/update_subscription_total_resources", {
       headers: {
         "Content-Type": "application/json",
@@ -204,9 +206,9 @@ const AccountManagement = () => {
   }
 
   const updateSubscriptionResource = async (id) => {
-    console.log(id)
+    setIsLoading(true)
     try {
-      const response = await fetch("http://localhost:3000/api/v1/azure_accounts/update_subscription_current_resources", {
+      const response = await fetch(`${baseUrl}/azure_accounts/update_subscription_current_resources`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -217,13 +219,19 @@ const AccountManagement = () => {
         }),
       })
       const data = await response.json()
+      setIsLoading(false)
       console.log(data)
     }
 
     catch (error) {
+      setIsLoading(false)
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    getAllAzureSubscriptionResource()
+  }, [])
 
 
   return (
@@ -249,7 +257,7 @@ const AccountManagement = () => {
           </div>
         </div>
         {
-          azureSubscription.filter((val) => {
+          azureSubscription?.filter((val) => {
             if (q == '') {
 
               return val
@@ -260,39 +268,44 @@ const AccountManagement = () => {
           }).map((currentElement) => {
             return (
               <React.Fragment key={currentElement.id}>
-                <div className='aws-content-container'>
+                {isLoading === true ?
+                  <div className="loading">
+                    <Loading />
+                  </div> :
+                  <div className='aws-content-container'>
 
-                  <div className="aws-name-container">
-                    <div className="aws-name-logo">
-                      <span className='aws-name-logo-icon' ><VscAzure color='#008AD7' /></span>
+                    <div className="aws-name-container">
+                      <div className="aws-name-logo">
+                        <span className='aws-name-logo-icon' ><VscAzure color='#008AD7' /></span>
+                      </div>
+                      <div className="aws-heading-container">
+                        <span className="aws-heading-text">{currentElement.account_name}</span>
+                        <span className='aws-sub-heading'>{currentElement.subscription_name}</span>
+                        <span className='aws-sub-heading'>Last Sync Attempt: {currentElement.updated_at}</span>
+                      </div>
                     </div>
-                    <div className="aws-heading-container">
-                      <span className="aws-heading-text">{currentElement.account_name}</span>
-                      <span className='aws-sub-heading'>{currentElement.subscription_name}</span>
-                      <span className='aws-sub-heading'>Last Sync Attempt: {currentElement.updated_at}</span>
+
+                    <div className="total-resource-action">
+
+                      <div className="total-resource-block">
+                        <span className="total-resource-number">{currentElement.total_resource}</span>
+                        <span className="total-resource-text">Total Resource</span>
+                      </div>
+                      <div className="action-container">
+                        <span className="action-referesh-block">
+                          <AiOutlineCloudSync onClick={() => updateSubscriptionResource(currentElement.id)} />
+                        </span>
+                        <span className="referesh-block">
+                          <FiEdit2 onClick={(e) => handleEditOpen(currentElement.azure_credential_id)} />
+                        </span>
+                        <span className="action-delete-block">
+                          <AiFillDelete onClick={e => handleDeleteOpen(currentElement.azure_credential_id)} />
+                        </span>
+                      </div>
                     </div>
+
                   </div>
-
-                  <div className="total-resource-action">
-
-                    <div className="total-resource-block">
-                      <span className="total-resource-number">{currentElement.total_resource}</span>
-                      <span className="total-resource-text">Total Resource</span>
-                    </div>
-                    <div className="action-container">
-                      <span className="action-referesh-block">
-                        <AiOutlineCloudSync onClick={() => updateSubscriptionResource(currentElement.id)} />
-                      </span>
-                      <span className="referesh-block">
-                        <FiEdit2 onClick={(e) => handleEditOpen(currentElement.azure_credential_id)} />
-                      </span>
-                      <span className="action-delete-block">
-                        <AiFillDelete onClick={e => handleDeleteOpen(currentElement.id)} />
-                      </span>
-                    </div>
-                  </div>
-
-                </div>
+                }
               </React.Fragment>
             )
           })
@@ -410,7 +423,7 @@ const AccountManagement = () => {
                 activeTab == 1 ?
                   <EditAzureAccount
                     handleEditClose={handleEditClose}
-                    
+
                   /> :
                   activeTab == 2 ?
                     <EditAwsAccount handleEditClose={handleEditClose} /> :

@@ -9,6 +9,7 @@ import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
+import { baseUrl } from './GetAzureServices';
 
 
 const AzureSubscription = () => {
@@ -38,7 +39,7 @@ const AzureSubscription = () => {
 
   const getAzureSubscription = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_subscription/get_azure_subscription", {
+    const response = await axios.get(`${baseUrl}/azure_subscription/get_azure_subscription`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -53,7 +54,7 @@ const AzureSubscription = () => {
 
   const updateAzureSubscription = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_subscription/index", {
+    const response = await fetch(`${baseUrl}/azure_subscription/index`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),

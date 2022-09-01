@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import {useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import TopBar from '../../header/TopBar';
 import { FaArrowsAltH } from 'react-icons/fa';
-import {FiRefreshCcw, FiSearch } from 'react-icons/fi'
+import { FiRefreshCcw, FiSearch } from 'react-icons/fi'
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
+import { baseUrl } from './GetAzureServices';
 
 const columns = [
     {
@@ -25,14 +26,14 @@ const columns = [
         flex: true,
         editable: true,
     },
-   
+
     {
-      field: 'subscription',
-      headerName: 'Subscription',
-      minWidth: 162,
-      flex: true,
-      editable: true,
-  },
+        field: 'subscription',
+        headerName: 'Subscription',
+        minWidth: 162,
+        flex: true,
+        editable: true,
+    },
     {
         field: 'resource_group',
         headerName: 'Resource Group',
@@ -40,7 +41,7 @@ const columns = [
         flex: true,
         editable: true,
     },
-   
+
     {
         field: 'account_name',
         headerName: 'Account Name',
@@ -94,7 +95,7 @@ const AzureRouteTable = () => {
 
     const getAzureRouteTable = async () => {
 
-        const response = await axios.get("http://localhost:3000/api/v1/azure_route_tables/get_azure_route_table", {
+        const response = await axios.get(`${baseUrl}/azure_route_tables/get_azure_route_table`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
@@ -102,13 +103,14 @@ const AzureRouteTable = () => {
         })
 
         setIsLoading(false)
-        setAzureRouteTable(response.data.azureRouteTable)
-
+        if (response.data.status != 'No_record_find') {
+            setAzureRouteTable(response.data.azureRouteTable)
+        }
     }
 
     const updateAzureRouteTable = async () => {
         setIsLoading(true)
-        const response = await fetch("http://localhost:3000/api/v1/azure_route_tables/index", {
+        const response = await fetch(`${baseUrl}/azure_route_tables/index`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),

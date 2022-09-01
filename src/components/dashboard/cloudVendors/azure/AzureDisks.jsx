@@ -9,6 +9,7 @@ import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
+import { baseUrl } from './GetAzureServices';
 
 const columns = [
   {
@@ -41,7 +42,7 @@ const columns = [
     flex: true,
     editable: true,
   },
-  
+
   {
     field: 'resource_group',
     headerName: 'Resource Group',
@@ -49,7 +50,7 @@ const columns = [
     flex: true,
     editable: true,
   },
-  
+
   {
     field: 'account_name',
     headerName: 'Account Name',
@@ -103,7 +104,7 @@ const AzureDisks = () => {
 
   const getAzureDisks = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_disks/get_azure_disks", {
+    const response = await axios.get(`${baseUrl}/azure_disks/get_azure_disks`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -111,14 +112,15 @@ const AzureDisks = () => {
     })
 
     setIsLoading(false)
-    setAzureDisks(response.data.azureDisks)
-
+    if (response.data.status != 'No_record_find') {
+      setAzureDisks(response.data.azureDisks)
+    }
 
   }
 
   const updateAzureDisks = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_disks/index", {
+    const response = await fetch(`${baseUrl}/azure_disks/index`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),

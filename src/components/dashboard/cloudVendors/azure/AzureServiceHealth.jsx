@@ -9,6 +9,7 @@ import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
+import { baseUrl } from './GetAzureServices';
 
 const columns = [
   {
@@ -64,7 +65,7 @@ const columns = [
     minWidth: 162,
     flex: true,
     editable: true,
-    hide:true
+    hide: true
   },
 ];
 
@@ -112,7 +113,7 @@ const AzureServiceHealth = () => {
 
   const getAzureSupportsTickets = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_supports_tickets/get_azure_supports_tickets", {
+    const response = await axios.get(`${baseUrl}/azure_supports_tickets/get_azure_supports_tickets`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -120,14 +121,15 @@ const AzureServiceHealth = () => {
     })
 
     setIsLoading(false)
-    setAzureSupportsTickets(response.data.azureSupportsTickets)
-
+    if (response.data.status != 'No_record_find') {
+      setAzureSupportsTickets(response.data.azureSupportsTickets)
+    }
 
   }
 
   const updateAzureSupportsTickets = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_supports_tickets/index", {
+    const response = await fetch(`${baseUrl}/azure_supports_tickets/index`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),

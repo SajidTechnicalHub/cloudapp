@@ -12,6 +12,7 @@ import axios from 'axios';
 import { AiFillCheckCircle } from 'react-icons/ai'
 import { MdSecurity, MdDashboard } from 'react-icons/md'
 import { RiGlobeFill } from 'react-icons/ri'
+import { baseUrl } from './GetAzureServices';
 
 
 
@@ -151,7 +152,7 @@ const AzureAdvisor = () => {
 
   const getAzureRecommendation = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_recommendations/get_azure_recommendation", {
+    const response = await axios.get(`${baseUrl}/azure_recommendations/get_azure_recommendation`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -159,14 +160,16 @@ const AzureAdvisor = () => {
     })
 
     setIsLoading(false)
-    setAzureRecommendation(response.data.azureRecommendation)
+    if (response.data.status != 'No_record_find') {
+      setAzureRecommendation(response.data.azureRecommendation)
+    }
 
 
   }
 
   const updateAzureRecommendation = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_recommendations/index", {
+    const response = await fetch(`${baseUrl}/azure_recommendations/index`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),

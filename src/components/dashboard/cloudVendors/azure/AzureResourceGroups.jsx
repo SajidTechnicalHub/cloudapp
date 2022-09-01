@@ -9,6 +9,7 @@ import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
+import { baseUrl } from './GetAzureServices';
 
 const columns = [
   {
@@ -95,7 +96,7 @@ const AzureResourceGroups = () => {
 
   const getResourceGroup = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_resource_groups/get_azure_resource_groups", {
+    const response = await axios.get(`${baseUrl}/azure_resource_groups/get_azure_resource_groups`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -103,14 +104,15 @@ const AzureResourceGroups = () => {
     })
 
     setIsLoading(false)
-    setResourceGroup(response.data.razureResourceGroup)
-
+    if (response.data.status != 'No_record_find') {
+      setResourceGroup(response.data.razureResourceGroup)
+    }
 
   }
 
   const updateResourceGroup = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_resource_groups/index", {
+    const response = await fetch(`${baseUrl}/azure_resource_groups/index`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -146,7 +148,7 @@ const AzureResourceGroups = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Resource Groups ({resourceGroup.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Resource Groups ({resourceGroup?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">

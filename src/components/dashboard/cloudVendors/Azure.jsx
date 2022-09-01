@@ -22,6 +22,9 @@ import { Link } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppStateContext } from '../../Context'
 import Loading from './azure/Loading'
+import { updateAzureAccounts, baseUrl } from './azure/GetAzureServices'
+import axios from 'axios'
+
 
 const azureGeneral = [
   {
@@ -190,232 +193,49 @@ const Azure = () => {
 
   } = useContext(AppStateContext)
   const [isLoading, setIsLoading] = useState()
-
-  //////////////// fatch data from database//////////////////////////////
-  // const getVirtualNetwork = async () => {
-  //   setLoading(true);
-  //   const response = await fetch("http://localhost:3000/api/v1/azure_accounts/virtual_network", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: localStorage.getItem("token"),
-  //     },
-  //   })
-  //   const res = await response.json()
-  //   console.log(res)
-  //   setVirtualNetwork(res.data)
-  //   setLoading(false);
-  // }
-
-  //////////////// update data//////////////////////////////
-
-  const updateResourceGroups = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_resource_groups/index", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateLoadBalancer = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_load_balancer/index", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureSubscription = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_subscription/index", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureDnsZone = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_dns_zone/index", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureRouteTAble = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_route_tables/index", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureNatGateway = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_nat_gateway/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureVirtualWans = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_virtual_wans/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzurePublicIpAddress = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_public_ip_address/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureNetworkSecurityGroups = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_network_security_groups/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-
-  const updateAzureApplicationSecurityGroups = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_application_security_groups/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureStorageAccount = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_storage_accunt/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-
-  const updateAzureSupportsTickets = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_supports_tickets/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureRecommendation = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_recommendations/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-  const updateAzureVirtualMachine = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_virtual_machine/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-    const data = await response.json()
-    console.log(data)
-
-  }
-
-  const updateAzureDisks = async () => {
-    const response = await fetch("http://localhost:3000/api/v1/azure_disks/index", {
-      method: 'get',
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          // setIsLogin(true)
-          return res.json();
-        } else if (res.status == "401") {
-          // setIsLogin(false)
-          // return res.text().then((text) => Promise.reject(text));
-        }
+  // Get All Azure Account Details
+  const getAccountDetails = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/azure_accounts/azure_account_details`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
       })
-    const data = await response.json()
-    console.log(data.status)
+      // const res = await response.json()
+      console.log(response)
+      setAzureCredentails(response.data.azureCredential)
+      setAzureSubscription(response.data.azureSubscription)
+      setResourceGroup(response.data.resourceGroup)
 
+      setVirtualNetwork(response.data.virtualNetwork)
+      setLoadBalancer(response.data.loadBalancer)
+      setAzureDnsZone(response.data.azureDnsZone)
+      setAzureRouteTable(response.data.azureRouteTable)
+      setAzureNatGateway(response.data.azureNatGateway)
+      setAzureVirtualWans(response.data.azureVirtualWans)
+      setAzurePublicIpAddress(response.data.azurePublicIpAddress)
+
+      setAzureApplicationSecurityGroups(response.data.azureApplicationSecurityGroups)
+      setAzureNetworkSecurityGroups(response.data.azureNetworkSecurityGroups)
+      setAzureStorageAccount(response.data.azureStorageAccount)
+      setAzureSupportsTickets(response.data.azureSupportsTickets)
+      setAzureRecommendation(response.data.azureRecommendation)
+      setAzureVirtualMachine(response.data.azureVirtualMachine)
+      setAzureDisks(response.data.azureDisks)
+     
+      
+    }
+    catch (error) {
+      console.log(error);
+     
+    }
   }
 
-  //////////////// update data//////////////////////////////
   useEffect(() => {
-    // getVirtualNetwork()
-    // updateResourceGroups()
-    // updateAzureSubscription()
-    // updateVirtualNetwork()
-    // updateLoadBalancer();
-    // updateAzureDnsZone()
-    // updateAzureRouteTAble()
-    // updateAzureNatGateway()
-    // updateAzureVirtualWans()
-    // updateAzurePublicIpAddress()
-    // updateAzureNetworkSecurityGroups()
-    // updateAzureApplicationSecurityGroups()
-    // updateAzureStorageAccount()/cloudapp/azure/advisor
-    // updateAzureSupportsTickets()
-    // updateAzureRecommendation()
-    // updateAzureVirtualMachine()
-    // updateAzureDisks()
+    getAccountDetails()
   }, [])
+  
   return (
     <>
       <TopBar subtitle='Azure' />

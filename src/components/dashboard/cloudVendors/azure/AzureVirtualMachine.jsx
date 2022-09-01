@@ -9,6 +9,7 @@ import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
+import { baseUrl } from './GetAzureServices';
 
 const columns = [
   {
@@ -55,7 +56,7 @@ const columns = [
     flex: true,
     editable: true,
   },
-  
+
   {
     field: 'account_name',
     headerName: 'Account Name',
@@ -109,7 +110,7 @@ const AzureVirtualMachine = () => {
 
   const getAzureVirtualMachine = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_virtual_machine/get_azure_virtual_machine", {
+    const response = await axios.get(`${baseUrl}/azure_virtual_machine/get_azure_virtual_machine`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -117,14 +118,15 @@ const AzureVirtualMachine = () => {
     })
 
     setIsLoading(false)
-    setAzureVirtualMachine(response.data.azureVirtualMachine)
-
+    if (response.data.status != 'No_record_find') {
+      setAzureVirtualMachine(response.data.azureVirtualMachine)
+    }
 
   }
 
   const updateAzureVirtualMachine = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_virtual_machine/index", {
+    const response = await fetch(`${baseUrl}/azure_virtual_machine/index`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),

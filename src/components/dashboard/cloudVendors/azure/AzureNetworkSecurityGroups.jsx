@@ -9,6 +9,7 @@ import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
+import { baseUrl } from './GetAzureServices';
 
 const columns = [
   {
@@ -26,7 +27,7 @@ const columns = [
     flex: true,
     editable: true,
   },
-  
+
   {
     field: 'resource_group',
     headerName: 'Resource Group',
@@ -34,7 +35,7 @@ const columns = [
     flex: true,
     editable: true,
   },
-  
+
   {
     field: 'account_name',
     headerName: 'Account Name',
@@ -88,7 +89,7 @@ const AzureNetworkSecurityGroups = () => {
 
   const getAzureNetworkSecurityGroups = async () => {
 
-    const response = await axios.get("http://localhost:3000/api/v1/azure_network_security_groups/get_azure_network_security_grops", {
+    const response = await axios.get(`${baseUrl}/azure_network_security_groups/get_azure_network_security_grops`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -96,14 +97,15 @@ const AzureNetworkSecurityGroups = () => {
     })
 
     setIsLoading(false)
-    setAzureNetworkSecurityGroups(response.data.azureNetworkSecurityGroups)
-
+    if (response.data.status != 'No_record_find') {
+      setAzureNetworkSecurityGroups(response.data.azureNetworkSecurityGroups)
+    }
 
   }
 
   const updateAzureNetworkSecurityGroups = async () => {
     setIsLoading(true)
-    const response = await fetch("http://localhost:3000/api/v1/azure_network_security_groups/index", {
+    const response = await fetch(`${baseUrl}/azure_network_security_groups/index`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
