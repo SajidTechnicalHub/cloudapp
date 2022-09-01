@@ -13,6 +13,7 @@ import CloudNoxLogo from '../../images/CloudNoxLogo.png'
 import { Link, useNavigate } from "react-router-dom"
 import { useContext } from 'react'
 import { AppStateContext } from '../../Context';
+import { baseUrl } from '../cloudVendors/azure/GetAzureServices';
 
 
 const routes = [
@@ -148,7 +149,7 @@ const Sidebar = () => {
   //////////////Mobile View////////////////////
 
   const handleLogout = () => {
-    fetch("http://localhost:3000/api/v1/logout", {
+    fetch(`${baseUrl}/logout1`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",

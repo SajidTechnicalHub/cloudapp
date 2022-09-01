@@ -153,7 +153,7 @@ const AccountManagement = () => {
   // *****************Get Azure Credential data******************
   const handleEditOpen = async (id) => {
 
-    const response = await axios.get(`http://localhost:3000/api/v1/azure_credentials/${id}`, {
+    const response = await axios.get(`${baseUrl}/azure_credentials/${id}`, {
 
       headers: {
         "Content-Type": "application/json",
