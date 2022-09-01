@@ -68,7 +68,7 @@ const AppStateContextProvider = props => {
     catch (error) {
       console.log(error);
       setLoading(false)
-      setoAuth(true)
+      
     }
   }
 

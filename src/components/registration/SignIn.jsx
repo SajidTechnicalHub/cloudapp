@@ -5,12 +5,13 @@ import axios from 'axios';
 import { useContext } from 'react'
 import { AppStateContext } from '../Context';
 import {  baseUrl } from '../dashboard/cloudVendors/azure/GetAzureServices';
+import Loading from '../dashboard/cloudVendors/azure/Loading';
 
 const SignIn = () => {
 
   const {
     isLogin, setIsLogin,
-    loading, setLoading,
+    isLoading, setIsLoading,
     isoAuth, setoAuth,
     virtualNetwork, setVirtualNetwork,
     loadBalancer, setLoadBalancer,
@@ -72,11 +73,11 @@ const SignIn = () => {
       setAzureVirtualMachine(response.data.azureVirtualMachine)
       setAzureDisks(response.data.azureDisks)
       setoAuth(false)
-      setLoading(false)
+      
     }
     catch (error) {
       console.log(error);
-      setLoading(false)
+      
     }
   }
 
@@ -193,7 +194,7 @@ const SignIn = () => {
   const SubmitEvent = (e) => {
     e.preventDefault()
 
-
+    setIsLoading(true)
     fetch(`${baseUrl}/login`, {
       method: "post",
       headers: {
@@ -212,15 +213,18 @@ const SignIn = () => {
 
           console.log(res.headers.get("Authorization"));
           localStorage.setItem("token", res.headers.get("Authorization"));
-          setIsLogin(true)
+          setIsLoading(false)
+          
           updateAzureAccounts()
           getAccountDetails()
+          
           navigate('/cloudapp/overview')
 
           return res.json();
 
         } else {
           setLoginMessage('Invalid Email Or Password')
+          setIsLoading(false)
           return res.text().then((text) => Promise.reject(text));
         }
       })
@@ -236,6 +240,7 @@ const SignIn = () => {
           <h1 className='form-right-heading'>Cloud Insights</h1>
         </div>
         <div className="form-right-container">
+          {isLoading == true? <Loading />:<></>}
           <div className="signin-form-block">
             <span className='form-heading'> Cloud Cloud</span>
 

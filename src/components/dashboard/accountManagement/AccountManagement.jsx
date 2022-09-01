@@ -191,7 +191,7 @@ const AccountManagement = () => {
 
   const getAllAzureSubscriptionResource = async () => {
     setIsLoading(true)
-    const response = await axios.get("http://localhost:3000/api/v1/azure_accounts/update_subscription_total_resources", {
+    const response = await axios.get(`${baseUrl}/azure_accounts/update_subscription_total_resources`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useContext } from 'react'
 import { AppStateContext } from '../../../Context'
 
-export const baseUrl = 'http://localhost:3000/api/v1'
+export const baseUrl = 'https://cloudnox.herokuapp.com/api/v1'
 export const  headers = {
   "Content-Type": "application/json",
   Authorization: localStorage.getItem("token"),

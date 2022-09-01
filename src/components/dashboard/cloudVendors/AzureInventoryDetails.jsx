@@ -10,6 +10,7 @@ import { useContext } from 'react'
 import { AppStateContext } from '../../Context'
 import Loading from './azure/Loading';
 import axios from 'axios';
+import { baseUrl } from './azure/GetAzureServices';
 
 const columns = [
     {
@@ -99,7 +100,7 @@ const AzureInventoryDetails = () => {
 
     const getVirtualNetwork = async () => {
 
-        const response = await axios.get("http://localhost:3000/api/v1/azure_virtualnetworks/get_azure_virtual_network", {
+        const response = await axios.get(`${ baseUrl }/azure_virtualnetworks/get_azure_virtual_network`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
@@ -113,7 +114,7 @@ const AzureInventoryDetails = () => {
 
     const updateVirtualNetwork = async () => {
         setIsLoading(true)
-        const response = await fetch("http://localhost:3000/api/v1/azure_virtualnetworks/virtual_network_save", {
+        const response = await fetch(`${ baseUrl }/azure_virtualnetworks/virtual_network_save`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
@@ -150,7 +151,7 @@ const AzureInventoryDetails = () => {
                                 <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All VNets ({virtualNetwork.length})</span>
+                            <span className='azure-inventory-detail-vnets-text'>All VNets ({virtualNetwork?.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">
