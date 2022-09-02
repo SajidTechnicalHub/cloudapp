@@ -94,9 +94,6 @@ const EditAzureAccount = (props) => {
 
 
   const updateAzureAccounts = () =>{
-    
-  
-    
     const request1 = axios.get(`${baseUrl}/azure_resource_groups/index`,{headers:{
     "Content-Type": "application/json",
     Authorization: localStorage.getItem("token"),
@@ -217,7 +214,7 @@ const EditAzureAccount = (props) => {
           if (res.ok) {
             // props.handleEditClose() // Cancel model when update record successfully
             setEditAzureCredentialMessage('Update Record Successfully.')
-            updateAzureAccounts()
+            // updateAzureAccounts()
             getAccountDetails()
             return res.json();
           } else {

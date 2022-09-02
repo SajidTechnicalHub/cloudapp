@@ -159,7 +159,7 @@ const Sidebar = () => {
       .then((res) => {
         if (res.ok) {
           localStorage.removeItem("token");
-          setIsLogin(false)
+          
           setAzureCredentails([])
           setAzureSubscription([])
           setResourceGroup([])

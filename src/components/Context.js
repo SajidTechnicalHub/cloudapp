@@ -177,7 +177,7 @@ const AppStateContextProvider = props => {
   }
 
   useEffect(() => {
-    updateAzureAccounts()
+    // updateAzureAccounts()
     getAccountDetails()
   }, [])
 
