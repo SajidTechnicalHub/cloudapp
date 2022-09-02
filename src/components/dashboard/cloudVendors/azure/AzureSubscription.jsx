@@ -90,7 +90,7 @@ const AzureSubscription = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Subscriptions ({azureSubscription.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Subscriptions ({azureSubscription?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">

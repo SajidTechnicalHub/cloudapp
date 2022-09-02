@@ -15,7 +15,6 @@ import { RiGlobeFill } from 'react-icons/ri'
 import { baseUrl } from './GetAzureServices';
 
 
-
 const advisorTabs = [
   {
     id: 1,
@@ -184,7 +183,7 @@ const AzureAdvisor = () => {
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
-
+          navigate('/signin')
         }
 
       })
@@ -205,7 +204,7 @@ const AzureAdvisor = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Advisor Recommendation ({azureRecommendation.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Advisor Recommendation ({azureRecommendation?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">
@@ -255,7 +254,7 @@ const AzureAdvisor = () => {
                           <span className="advisor-tabs-name">{val.name}</span>
                           <span className="advisor-tabs-logo-block">
                             <span className="advisor-tab-logo">{val.logo}</span>
-                            <span className="advisor-tab-number">{azureRecommendation.length}</span>
+                            <span className="advisor-tab-number">{azureRecommendation?.length}</span>
                           </span>
                         </div> :
                         <div className="advisor-tabs-block">

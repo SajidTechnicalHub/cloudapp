@@ -155,7 +155,7 @@ const AzureStorageAccounts = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Application Sec Groups ({azureStorageAccount.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Application Sec Groups ({azureStorageAccount?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">

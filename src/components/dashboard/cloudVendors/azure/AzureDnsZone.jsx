@@ -151,7 +151,7 @@ const AzureDnsZone = () => {
                                 <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All Dns Zone ({azureDnsZone.length})</span>
+                            <span className='azure-inventory-detail-vnets-text'>All Dns Zone ({azureDnsZone?.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">

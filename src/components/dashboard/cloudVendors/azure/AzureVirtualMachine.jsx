@@ -162,7 +162,7 @@ const AzureVirtualMachine = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Virtual Machines ({azureVirtualMachine.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Virtual Machines ({azureVirtualMachine?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">

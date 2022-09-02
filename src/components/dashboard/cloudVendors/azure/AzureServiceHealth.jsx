@@ -165,7 +165,7 @@ const AzureServiceHealth = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Service Health ({azureSupportsTickets.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Service Health ({azureSupportsTickets?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">

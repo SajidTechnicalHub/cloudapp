@@ -35,11 +35,11 @@ import AzureDisks from "./components/dashboard/cloudVendors/azure/AzureDisks";
 import AzureAplicationSecurityGroup from "./components/dashboard/cloudVendors/azure/AzureAplicationSecurityGroup";
 import AzureNetworkSecurityGroups from "./components/dashboard/cloudVendors/azure/AzureNetworkSecurityGroups";
 import AzureStorageAccounts from "./components/dashboard/cloudVendors/azure/AzureStorageAccounts";
-
+import RegistrationLayout from "./components/registration/RegistrationLayout";
 
 function App() {
   const navigate = useNavigate();
-  const {loading} = useContext(AppStateContext)
+  const { loading } = useContext(AppStateContext)
   return (
     <div className="container-flude">
       {loading == true ?
@@ -49,57 +49,51 @@ function App() {
 
         </div> :
         <Routes>
-          <Route path="cloudapp" element={<DashboardLyout />} >
-            <Route index element={<Overview />} />
-            <Route path="/cloudapp/overview" element={<Overview />} />
-            <Route path="/cloudapp/AWS" element={<Aws />} />
-
-            <Route path="/cloudapp/Azure" element={<Azure />} />
-
-            {/* Azure Networking */}
-            <Route path="/cloudapp/azure/virtualNetwork" element={<AzureInventoryDetails />} />
-            <Route path="/cloudapp/azure/loadBalancer" element={<AzureLoadBalancer />} />
-            <Route path="/cloudapp/azure/dnsZone" element={<AzureDnsZone />} />
-            <Route path="/cloudapp/azure/routeTable" element={<AzureRouteTable />} />
-            <Route path="/cloudapp/azure/virtualWans" element={<AzureVirtualWans />} />
-            <Route path="/cloudapp/azure/natGateway" element={<AzureNatGateway />} />
-            <Route path="/cloudapp/azure/publicIpAddress" element={<AzurePublicIpAddress />} />
-
-            {/* Azure General */}
-            <Route path="/cloudapp/azure/advisor" element={<AzureAdvisor />} />
-            <Route path="/cloudapp/azure/resourceGroups" element={<AzureResourceGroups />} />
-            <Route path="/cloudapp/azure/serviceHealth" element={<AzureServiceHealth />} />
-            <Route path="/cloudapp/azure/subscription" element={<AzureSubscription />} />
-
-            {/* Azure Compute */}
-            <Route path="/cloudapp/azure/virtualMachine" element={<AzureVirtualMachine />} />
-            <Route path="/cloudapp/azure/disks" element={<AzureDisks />} />
-
-            {/* Azure Security */}
-            <Route path="/cloudapp/azure/applicationSecurityGroups" element={<AzureAplicationSecurityGroup />} />
-            <Route path="/cloudapp/azure/networkSecurityGroups" element={<AzureNetworkSecurityGroups />} />
-
-            {/* Azure Storage Accounts */}
-            <Route path="/cloudapp/azure/storageAccounts" element={<AzureStorageAccounts />} />
-
-            
-            <Route path="/cloudapp/GCP" element={<Gcp />} />
-            <Route path="/cloudapp/summary" element={<Summary />} />
-            <Route path="/cloudapp/reports" element={<Reports />} />
-            <Route path="/cloudapp/account-management" element={<AccountManagement />} />
-
-            
+          <Route path="cloudapp" element={<RegistrationLayout />} >
+            <Route index element={<SignIn />} />
+            <Route path="registration/signin" element={<SignIn />} />
+            <Route path="registration/signin_varification_code" element={<SignInVarificationCode />} />
+            <Route path="registration/signup" element={<SignUp />} />
+            <Route path="registration/forgot_password" element={<ForgotPassword />} />
+            <Route path="registration/varification_code" element={<VarificationCode />} />
+            <Route path="registration/update_password" element={<UpdatePassword />} />
+            <Route path="registration/request_success" element={<RequestSuccess />} />
           </Route>
 
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signin_varification_code" element={<SignInVarificationCode />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/forgot_password" element={<ForgotPassword />} />
-          <Route path="/varification_code" element={<VarificationCode />} />
-          <Route path="/update_password" element={<UpdatePassword />} />
-          <Route path="/request_success" element={<RequestSuccess />} />
+          <Route path="cloudapp/dashboard" element={<DashboardLyout />} >
+            <Route index element={<Overview />} />
+            <Route path="dashboard/overview" element={<Overview />} />
+            <Route path="dashboard/AWS" element={<Aws />} />
+            <Route path="dashboard/Azure" element={<Azure />} />
+            {/* Azure Networking */}
+            <Route path="dashboard/azure/virtualNetwork" element={<AzureInventoryDetails />} />
+            <Route path="dashboard/azure/loadBalancer" element={<AzureLoadBalancer />} />
+            <Route path="dashboard/azure/dnsZone" element={<AzureDnsZone />} />
+            <Route path="dashboard/azure/routeTable" element={<AzureRouteTable />} />
+            <Route path="dashboard/azure/virtualWans" element={<AzureVirtualWans />} />
+            <Route path="dashboard/azure/natGateway" element={<AzureNatGateway />} />
+            <Route path="dashboard/azure/publicIpAddress" element={<AzurePublicIpAddress />} />
+            {/* Azure General */}
+            <Route path="dashboard/azure/advisor" element={<AzureAdvisor />} />
+            <Route path="dashboard/azure/resourceGroups" element={<AzureResourceGroups />} />
+            <Route path="dashboard/azure/serviceHealth" element={<AzureServiceHealth />} />
+            <Route path="dashboard/azure/subscription" element={<AzureSubscription />} />
+            {/* Azure Compute */}
+            <Route path="dashboard/azure/virtualMachine" element={<AzureVirtualMachine />} />
+            <Route path="dashboard/azure/disks" element={<AzureDisks />} />
+            {/* Azure Security */}
+            <Route path="dashboard/azure/applicationSecurityGroups" element={<AzureAplicationSecurityGroup />} />
+            <Route path="dashboard/azure/networkSecurityGroups" element={<AzureNetworkSecurityGroups />} />
+            {/* Azure Storage Accounts */}
+            <Route path="dashboard/azure/storageAccounts" element={<AzureStorageAccounts />} />
+
+            <Route path="dashboard/GCP" element={<Gcp />} />
+            <Route path="dashboard/summary" element={<Summary />} />
+            <Route path="dashboard/reports" element={<Reports />} />
+            <Route path="dashboard/account-management" element={<AccountManagement />} />
 
 
+          </Route>
         </Routes>}
 
 

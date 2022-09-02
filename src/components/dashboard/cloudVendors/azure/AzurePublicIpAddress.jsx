@@ -154,7 +154,7 @@ const AzurePublicIpAddress = () => {
                                 <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All Public IpAddresses ({azurePublicIpAddress.length})</span>
+                            <span className='azure-inventory-detail-vnets-text'>All Public IpAddresses ({azurePublicIpAddress?.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">

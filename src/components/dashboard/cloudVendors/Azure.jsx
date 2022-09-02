@@ -18,7 +18,7 @@ import VirtualWANsLogo from '../../images/VirtualWANs.png'
 import NetworkSecurityGroupsLogo from '../../images/NetworkSecurityGroups.png'
 import ApplicationSecurityGroupsLogo from '../../images/ApplicationSecurityGroups.png'
 import StorageAccountsLogo from '../../images/StorageAccounts.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AppStateContext } from '../../Context'
 import Loading from './azure/Loading'
@@ -193,6 +193,8 @@ const Azure = () => {
 
   } = useContext(AppStateContext)
   const [isLoading, setIsLoading] = useState()
+  const navigate = useNavigate();
+
   // Get All Azure Account Details
   const getAccountDetails = async () => {
     try {
@@ -224,10 +226,13 @@ const Azure = () => {
       setAzureVirtualMachine(response.data.azureVirtualMachine)
       setAzureDisks(response.data.azureDisks)
      
-      
     }
     catch (error) {
       console.log(error);
+      if(error.response.status == 401){
+
+        navigate('/signin')
+       }
      
     }
   }
@@ -269,19 +274,19 @@ const Azure = () => {
                             <span className="azure-inventory-sub-groups-number">
                               {
                                 val.group_name == 'Advisor' ?
-                                  <span>{azureRecommendation.length}</span> :
+                                  <span>{azureRecommendation?.length}</span> :
                                   <span>
                                     {
                                       val.group_name == 'Resource Groups' ?
-                                        <span>{resourceGroup.length}</span> :
+                                        <span>{resourceGroup?.length}</span> :
                                         <span>
                                           {
                                             val.group_name == 'Subscriptions' ?
-                                              <span>{azureSubscription.length}</span> :
+                                              <span>{azureSubscription?.length}</span> :
                                               <span>
                                                 {
                                                   val.group_name == 'Service Health' ?
-                                                    <span>{azureSupportsTickets.length}</span> :
+                                                    <span>{azureSupportsTickets?.length}</span> :
                                                     <sapn>0</sapn>
                                                 }
                                               </span>
@@ -329,11 +334,11 @@ const Azure = () => {
                             <span className="azure-inventory-sub-groups-number">
                               {
                                 val.group_name == 'Virtual Machine' ?
-                                  <span>{azureVirtualMachine.length}</span> :
+                                  <span>{azureVirtualMachine?.length}</span> :
                                   <span>
                                     {
                                       val.group_name == 'Disks' ?
-                                      <span>{azureDisks.length}</span> :
+                                      <span>{azureDisks?.length}</span> :
                                       <span>0</span>
                                     }
                                   </span>
@@ -368,31 +373,31 @@ const Azure = () => {
                         <span className="azure-inventory-sub-groups-number">
                           {
                             val.group_name == 'Virtual Networks' ?
-                              <span>{virtualNetwork.length}</span> :
+                              <span>{virtualNetwork?.length}</span> :
                               <span>
                                 {
                                   val.group_name == 'Load Balancers' ?
-                                    <span>{loadBalancer.length}</span> :
+                                    <span>{loadBalancer?.length}</span> :
                                     <span>
                                       {
                                         val.group_name == 'DNS Zones' ?
-                                          <span>{azureDnsZone.length}</span> :
+                                          <span>{azureDnsZone?.length}</span> :
                                           <span>
                                             {
                                               val.group_name == 'Route Tables' ?
-                                                <span>{azureRouteTable.length}</span> :
+                                                <span>{azureRouteTable?.length}</span> :
                                                 <span>
                                                   {
                                                     val.group_name == 'Virtual WANs' ?
-                                                      <span>{azureVirtualWans.length}</span> :
+                                                      <span>{azureVirtualWans?.length}</span> :
                                                       <span>
                                                         {
                                                           val.group_name == 'NAT Gateways' ?
-                                                            <span>{azureNatGateway.length}</span> :
+                                                            <span>{azureNatGateway?.length}</span> :
                                                             <span>
                                                               {
                                                                 val.group_name == 'Public IP Addresses' ?
-                                                                  <span>{azurePublicIpAddress.length}</span> :
+                                                                  <span>{azurePublicIpAddress?.length}</span> :
                                                                   <sapn>0</sapn>
                                                               }
                                                             </span>
@@ -435,11 +440,11 @@ const Azure = () => {
                         <span className="azure-inventory-sub-groups-number">
                           {
                             val.group_name == 'Network Security Groups' ?
-                              <span>{azureNetworkSecurityGroups.length}</span> :
+                              <span>{azureNetworkSecurityGroups?.length}</span> :
                               <span>
                                 {
                                   val.group_name == 'Application Security Groups' ?
-                                    <span>{azureApplicationSecurityGroups.length}</span> :
+                                    <span>{azureApplicationSecurityGroups?.length}</span> :
                                     <sapn>0</sapn>
                                 }
                               </span>
@@ -470,7 +475,7 @@ const Azure = () => {
                           <span ><img src={val.group_logo} alt="" className="azure-inventory-sub-groups-logo" /> </span>
                           <span className="azure-inventory-sub-groups-name">{val.group_name}</span>
                         </div>
-                        <span className="azure-inventory-sub-groups-number">{azureStorageAccount.length}</span>
+                        <span className="azure-inventory-sub-groups-number">{azureStorageAccount?.length}</span>
                       </div>
                     </Link><br />
                   </div>

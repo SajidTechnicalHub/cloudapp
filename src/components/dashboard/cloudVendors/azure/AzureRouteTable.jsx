@@ -146,7 +146,7 @@ const AzureRouteTable = () => {
                                 <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All Route Tables ({azureRouteTable.length})</span>
+                            <span className='azure-inventory-detail-vnets-text'>All Route Tables ({azureRouteTable?.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">

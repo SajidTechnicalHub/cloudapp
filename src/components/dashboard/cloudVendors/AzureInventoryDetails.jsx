@@ -77,7 +77,7 @@ const AzureInventoryDetails = () => {
 
     const Search = (virtualNetwork) => {
 
-        return virtualNetwork.filter(
+        return virtualNetwork?.filter(
             (row) =>
                 cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
                     row.VNet_name.toLowerCase().indexOf(q) > -1 ||

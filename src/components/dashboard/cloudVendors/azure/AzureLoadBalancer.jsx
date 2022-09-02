@@ -147,7 +147,7 @@ const AzureLoadBalancer = () => {
                                 <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All LBalancer ({loadBalancer.length})</span>
+                            <span className='azure-inventory-detail-vnets-text'>All LBalancer ({loadBalancer?.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">

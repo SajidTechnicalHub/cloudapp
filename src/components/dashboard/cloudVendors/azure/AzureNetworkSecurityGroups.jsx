@@ -141,7 +141,7 @@ const AzureNetworkSecurityGroups = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Network Sec Groups ({azureNetworkSecurityGroups.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Network Sec Groups ({azureNetworkSecurityGroups?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">

@@ -83,6 +83,8 @@ const SignIn = () => {
 
   const updateAzureAccounts = () =>{
     
+  
+    
     const request1 = axios.get(`${baseUrl}/azure_resource_groups/index`,{headers:{
     "Content-Type": "application/json",
     Authorization: localStorage.getItem("token"),

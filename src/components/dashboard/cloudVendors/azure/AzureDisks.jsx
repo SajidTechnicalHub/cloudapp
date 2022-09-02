@@ -156,7 +156,7 @@ const AzureDisks = () => {
                 <FaArrowsAltH />
               </span>
 
-              <span className='azure-inventory-detail-vnets-text'>All Disks ({azureDisks.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Disks ({azureDisks?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">

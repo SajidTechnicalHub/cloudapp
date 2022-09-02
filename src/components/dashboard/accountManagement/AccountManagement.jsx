@@ -106,7 +106,7 @@ const deleteStyle = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '40%',
-  height: '50%',
+  height: '60%',
   bgcolor: 'background.paper',
   border: '1px solid #003d48',
   boxShadow: 24,

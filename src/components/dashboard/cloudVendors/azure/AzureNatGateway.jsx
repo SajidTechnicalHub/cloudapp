@@ -128,9 +128,14 @@ const AzureNatGateway = () => {
                     setIsLoading(false)
 
                 }
+                else if (res.status == "404") {
+                    
+                    setIsLoading(false)
 
+                }
+                
             })
-
+            // setIsLoading(false)
     }
 
 
@@ -147,7 +152,7 @@ const AzureNatGateway = () => {
                                 <FaArrowsAltH />
                             </span>
 
-                            <span className='azure-inventory-detail-vnets-text'>All Nat Gateways ({azureNatGateway.length})</span>
+                            <span className='azure-inventory-detail-vnets-text'>All Nat Gateways ({azureNatGateway?.length})</span>
                         </span>
                     </span>
                     <span className="azure-inventory-detail-all-vnets-block-dropdown">
