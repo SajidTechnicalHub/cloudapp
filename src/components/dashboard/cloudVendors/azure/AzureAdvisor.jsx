@@ -183,8 +183,12 @@ const AzureAdvisor = () => {
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
-          navigate('/signin')
-        }
+          navigate('/cloudapp/registration/signin')
+        }else if (res.status == "404") {
+                    
+          setIsLoading(false)
+
+      }
 
       })
 
@@ -195,7 +199,7 @@ const AzureAdvisor = () => {
   return (
     <>
       <TopBar subtitle='Azure / All Advisor Recommendation' />
-      <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
+      
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">

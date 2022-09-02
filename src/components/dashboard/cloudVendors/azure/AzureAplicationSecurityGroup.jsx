@@ -121,8 +121,12 @@ const AzureApplicationkSecurityGroups = () => {
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
+          navigate('/cloudapp/registration/signin')
+        }else if (res.status == "404") {
+                    
+          setIsLoading(false)
 
-        }
+      }
 
       })
 
@@ -133,7 +137,7 @@ const AzureApplicationkSecurityGroups = () => {
   return (
     <>
       <TopBar subtitle='Azure / All Application Sec Groups' />
-      <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
+      
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">

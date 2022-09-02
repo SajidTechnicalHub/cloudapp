@@ -31,25 +31,25 @@ const azureGeneral = [
     id: 1,
     group_name: 'Advisor',
     group_logo: AdvisorLogo,
-    route: '/cloudapp/azure/advisor'
+    route: '/cloudapp/dashboard/azure/advisor'
   },
   {
     id: 2,
     group_name: 'Resource Groups',
     group_logo: ResourceGroupsLogo,
-    route: '/cloudapp/azure/resourceGroups'
+    route: '/cloudapp/dashboard/azure/resourceGroups'
   },
   {
     id: 3,
     group_name: 'Subscriptions',
     group_logo: subscriptionGroup,
-    route: '/cloudapp/azure/subscription'
+    route: '/cloudapp/dashboard/azure/subscription'
   },
   {
     id: 4,
     group_name: 'Service Health',
     group_logo: HelpSupportLogo,
-    route: '/cloudapp/azure/serviceHealth'
+    route: '/cloudapp/dashboard/azure/serviceHealth'
   },
   {
     id: 5,
@@ -65,14 +65,14 @@ const azureCompute = [
     id: 1,
     group_name: 'Virtual Machine',
     group_logo: VirtualMachinesLogo,
-    route:'/cloudapp/azure/virtualMachine'
+    route:'/cloudapp/dashboard/azure/virtualMachine'
 
   },
   {
     id: 2,
     group_name: 'Disks',
     group_logo: DisksLogo,
-    route:'/cloudapp/azure/disks'
+    route:'/cloudapp/dashboard/azure/disks'
 
   },
 
@@ -90,49 +90,49 @@ const azureNetworking = [
     id: 1,
     group_name: 'Virtual Networks',
     group_logo: VirtualNetworksLogo,
-    route: '/cloudapp/azure/virtualNetwork',
+    route: '/cloudapp/dashboard/azure/virtualNetwork',
 
   },
   {
     id: 2,
     group_name: 'Load Balancers',
     group_logo: LoadBalancersLogo,
-    route: '/cloudapp/azure/loadBalancer',
+    route: '/cloudapp/dashboard/azure/loadBalancer',
 
   },
   {
     id: 3,
     group_name: 'DNS Zones',
     group_logo: DNSZonesLogo,
-    route: '/cloudapp/azure/dnsZone',
+    route: '/cloudapp/dashboard/azure/dnsZone',
 
   },
   {
     id: 4,
     group_name: 'Route Tables',
     group_logo: RouteTablesLogo,
-    route: '/cloudapp/azure/routeTable',
+    route: '/cloudapp/dashboard/azure/routeTable',
 
   },
   {
     id: 5,
     group_name: 'Virtual WANs',
     group_logo: VirtualWANsLogo,
-    route: '/cloudapp/azure/virtualWans',
+    route: '/cloudapp/dashboard/azure/virtualWans',
 
   },
   {
     id: 6,
     group_name: 'NAT Gateways',
     group_logo: NATGatewaysLogo,
-    route: '/cloudapp/azure/natGateway',
+    route: '/cloudapp/dashboard/azure/natGateway',
 
   },
   {
     id: 7,
     group_name: 'Public IP Addresses',
     group_logo: PublicIPAddressesLogo,
-    route: '/cloudapp/azure/publicIpAddress',
+    route: '/cloudapp/dashboard/azure/publicIpAddress',
 
   },
 
@@ -143,14 +143,14 @@ const azureSecurity = [
     id: 1,
     group_name: 'Network Security Groups',
     group_logo: ApplicationSecurityGroupsLogo,
-    route:'/cloudapp/azure/networkSecurityGroups'
+    route:'/cloudapp/dashboard/azure/networkSecurityGroups'
 
   },
   {
     id: 2,
     group_name: 'Application Security Groups',
     group_logo: NetworkSecurityGroupsLogo,
-    route:'/cloudapp/azure/applicationSecurityGroups'
+    route:'/cloudapp/dashboard/azure/applicationSecurityGroups'
 
   },
 ]
@@ -159,7 +159,7 @@ const azureStorage = [
     id: 1,
     group_name: 'Storage Accounts',
     group_logo: StorageAccountsLogo,
-    route:'/cloudapp/azure/storageAccounts'
+    route:'/cloudapp/dashboard/azure/storageAccounts'
 
   },
 ]
@@ -171,7 +171,7 @@ const azureStorage = [
 const Azure = () => {
 
   const {
-
+    isoAuth, setoAuth,
     virtualNetwork, setVirtualNetwork,
     loadBalancer, setLoadBalancer,
     azureDnsZone, setAzureDnsZone,
@@ -230,8 +230,8 @@ const Azure = () => {
     catch (error) {
       console.log(error);
       if(error.response.status == 401){
-
-        navigate('/signin')
+        setoAuth(true)
+        navigate('/cloudapp/registration/signin')
        }
      
     }

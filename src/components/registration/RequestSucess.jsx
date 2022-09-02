@@ -5,7 +5,7 @@ import successImg from '../images/success-icon.png'
 const RequestSuccess = () => {
     const navigate = useNavigate();
     const SubmitEvent = (e) => {
-        navigate('/signin')
+        navigate('/cloudapp/registration/signin')
     }
 
     return (

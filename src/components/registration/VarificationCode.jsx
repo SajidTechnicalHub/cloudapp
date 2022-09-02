@@ -26,27 +26,11 @@ const VarificationCode = () => {
     const SubmitEvent = (e) => {
         e.preventDefault()
 
-        fetch("http://localhost:3001/private/test", {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: localStorage.getItem("token"),
-            },
-        })
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                } else if (res.status == "401") {
-                    return res.text().then((text) => Promise.reject(text));
-                }
-            })
-            .then((json) => console.dir(json))
-            .catch((err) => console.error(err));
-
         setUser({
             code: '',
         })
 
-        navigate('/update_password')
+        navigate('/cloudapp/registration/update_password')
 
     }
 
@@ -93,7 +77,7 @@ const VarificationCode = () => {
                             </div>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>
-                                    <a href="/signin"><BiArrowBack />Back To Sign In</a>
+                                    <a href="/cloudapp/registration/signin"><BiArrowBack />Back To Sign In</a>
                                 </div>
                             </div>
                         </div>

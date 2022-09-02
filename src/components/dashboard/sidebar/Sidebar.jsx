@@ -18,12 +18,12 @@ import { baseUrl } from '../cloudVendors/azure/GetAzureServices';
 
 const routes = [
   {
-    path: '/cloudapp/overview',
+    path: 'overview',
     name: 'Dashboard',
     icon: <MdDashboard />
   },
   {
-    path: '/cloudapp/account-management',
+    path: 'account-management',
     name: 'Cloud Account Management',
     icon: <MdOutlineManageAccounts />
   },
@@ -38,7 +38,7 @@ const routes = [
     icon: <BiCloudUpload />
   },
   {
-    path: '/signin',
+    path: '/cloudapp/registration/signin',
     name: 'Sign In',
     icon: <BiCloudUpload />
   },
@@ -47,17 +47,17 @@ const routes = [
 ]
 const CloudVender = [
   {
-    path: '/cloudapp/Azure',
+    path: 'Azure',
     name: 'Azure Inventory',
     icon: <SiMicrosoftazure />
   },
   {
-    path: '/cloudapp/AWS',
+    path: 'AWS',
     name: 'AWS Inventory',
     icon: <FaAws />
   },
   {
-    path: '/cloudapp/GCP',
+    path: 'GCP',
     name: 'GCP Inventory',
     icon: <SiGooglecloud />
   },
@@ -66,12 +66,12 @@ const CloudVender = [
 ]
 const CloudInsights = [
   {
-    path: '/cloudapp/summary',
+    path: 'summary',
     name: 'Summary',
     icon: <MdOutlineInventory />
   },
   {
-    path: '/cloudapp/reports',
+    path: 'reports',
     name: 'Reports',
     icon: <TbReport />
   },
@@ -86,7 +86,9 @@ const mainWidthToggleShow = {
 }
 const Sidebar = () => {
 
-  const { isLogin, setIsLogin,
+  const { 
+    isLogin, setIsLogin,
+    isoAuth, setoAuth,
     setAzureCredentails,
     setAzureSubscription,
     setResourceGroup,
@@ -149,7 +151,8 @@ const Sidebar = () => {
   //////////////Mobile View////////////////////
 
   const handleLogout = () => {
-    fetch(`${baseUrl}/logout1`, {
+    setIsLogin(false)
+    fetch(`${baseUrl}/logout`, {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
@@ -159,7 +162,7 @@ const Sidebar = () => {
       .then((res) => {
         if (res.ok) {
           localStorage.removeItem("token");
-          
+          setIsLogin(false)
           setAzureCredentails([])
           setAzureSubscription([])
           setResourceGroup([])
@@ -179,7 +182,7 @@ const Sidebar = () => {
           setAzureRecommendation([])
           setAzureVirtualMachine([])
           setAzureDisks([])
-          navigate('/signin')
+          navigate('/cloudapp/registration/signin')
           // return res.json();
         } else {
           return res.json().then((json) => Promise.reject(json));
@@ -190,7 +193,7 @@ const Sidebar = () => {
         console.dir(json);
       })
       .catch((err) => console.error(err));
-    navigate('/signin')
+    navigate('/cloudapp/registration/signin')
   }
 
   return (
@@ -310,7 +313,7 @@ const Sidebar = () => {
 
               }
             </section>
-            {isLogin === true || localStorage.getItem("token") != null?
+            {isLogin == true || localStorage.getItem("token") != null?
               <span className='sidebar-link '>
                 <div className="icon"></div>
                 {isOpen && <motion.div variants={ShowAnimation}

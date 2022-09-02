@@ -72,7 +72,7 @@ const AzureResourceGroups = () => {
 
   const Search = (resourceGroup) => {
 
-    return resourceGroup.filter(
+    return resourceGroup?.filter(
       (row) =>
         cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
           row.resource_group.toLowerCase().indexOf(q) > -1 ||
@@ -127,8 +127,12 @@ const AzureResourceGroups = () => {
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
+          navigate('/cloudapp/registration/signin')
+        }else if (res.status == "404") {
+                    
+          setIsLoading(false)
 
-        }
+      }
 
       })
 

@@ -26,7 +26,7 @@ const ForgotPassword = () => {
             email: '',
         })
 
-        navigate('/varification_code')
+        navigate('/cloudapp/registration/varification_code')
 
     }
 
@@ -67,7 +67,7 @@ const ForgotPassword = () => {
                         <div className='form-buttom-container'>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>
-                                    <Link to="/signin"><BiArrowBack />Back To Sign In</Link>
+                                    <Link to="/cloudapp/registration/signin"><BiArrowBack />Back To Sign In</Link>
                                 </div>
                             </div>
                         </div>

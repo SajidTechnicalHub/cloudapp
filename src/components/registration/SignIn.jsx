@@ -218,7 +218,7 @@ const SignIn = () => {
           updateAzureAccounts()
           getAccountDetails()
           
-          navigate('/cloudapp/overview')
+          navigate('/cloudapp/dashboard/account-management')
 
           return res.json();
 
@@ -237,13 +237,14 @@ const SignIn = () => {
 
       <div className="form-container">
         <div className="form-left-container">
+        
           <h1 className='form-right-heading'>Cloud Insights</h1>
         </div>
         <div className="form-right-container">
           {isLoading == true? <Loading />:<></>}
           <div className="signin-form-block">
             <span className='form-heading'> Cloud Cloud</span>
-
+            <span className='Login-error-message'> {isoAuth == true ? 'Your are session expired! Please login.' : ''}</span>
             <span className='Login-error-message'>{loginMessage}</span>
             <form onSubmit={SubmitEvent} className='sign-in-form'>
               <div className="input-field-block ">
@@ -261,7 +262,7 @@ const SignIn = () => {
                 <span className='password-forgot-label-container'>
                   <label htmlFor="password" className="input-field-label">Password<span className='estaric'>*</span>
                   </label>
-                  <Link to='/forgot_password'>Forgot Password?</Link>
+                  <Link to='/cloudapp/registration/forgot_password'>Forgot Password?</Link>
                 </span>
                 <input type="password"
                   name="password"
@@ -285,7 +286,7 @@ const SignIn = () => {
               <div className='form-buttom-block'>
                 <span className='checkbox-field-label'>Don't have an Account?</span>
                 <div className='sign-up-block'>
-                  <Link to="/signup" className='a-underline'>Sign up and try it free</Link>
+                  <Link to="/cloudapp/registration/signup" className='a-underline'>Sign up and try it free</Link>
                   <a href="#"><BiArrowBack />Back To Home</a>
                 </div>
               </div>

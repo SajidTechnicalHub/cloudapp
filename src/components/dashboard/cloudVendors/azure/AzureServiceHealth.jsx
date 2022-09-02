@@ -144,8 +144,12 @@ const AzureServiceHealth = () => {
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
+          navigate('/cloudapp/registration/signin')
+        }else if (res.status == "404") {
+                    
+          setIsLoading(false)
 
-        }
+      }
 
       })
 

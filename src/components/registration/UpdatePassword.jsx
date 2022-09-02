@@ -35,7 +35,7 @@ const UpdatePassword = () => {
 
         if (user.password == user.confirm_password) {
             setPasswordMessage('')
-            navigate('/request_success')
+            navigate('/cloudapp/registration/request_success')
         } else {
             setPasswordMessage('Password did not match!')
         }
@@ -48,7 +48,7 @@ const UpdatePassword = () => {
         }
 
         if (user.password == user.confirm_password && user.password.length >= 8) {
-            navigate('/request_success')
+            navigate('/cloudapp/registration/request_success')
         }
 
     }

@@ -32,7 +32,7 @@ const SignInVarificationCode = () => {
             code: '',
         })
 
-        navigate('/forgot_password')
+        navigate('/cloudapp/registration/forgot_password')
 
     }
 
@@ -79,7 +79,7 @@ const SignInVarificationCode = () => {
                             </div>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>
-                                    <a href="/signin"><BiArrowBack />Back To Sign In</a>
+                                    <a href="/cloudapp/registration/signin"><BiArrowBack />Back To Sign In</a>
                                 </div>
                             </div>
                         </div>

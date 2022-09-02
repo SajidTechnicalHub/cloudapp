@@ -235,7 +235,7 @@ const updateAzureAccounts = () =>{
 
             updateAzureAccounts()
             getAccountDetails()
-            navigate('/cloudapp')
+            navigate('/cloudapp/dashboard/account-management')
             return res.json();
           } else {
             setIsLoading(false)
