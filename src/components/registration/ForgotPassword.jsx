@@ -7,9 +7,17 @@ import { useContext } from 'react'
 import { AppStateContext } from '../Context';
 import { baseUrl } from '../dashboard/cloudVendors/azure/GetAzureServices';
 import Loading from '../dashboard/cloudVendors/azure/Loading';
+import { getTimeInMinute } from './GetTime';
+
 const ForgotPassword = () => {
 
-    const { isLoading, setIsLoading, randomNumber,setoAuth } = useContext(AppStateContext)
+    const { 
+        isLoading, setIsLoading, 
+        randomNumber, setRandomNumber, 
+        andomNumberTimeInMinutes, 
+        randomNumberTimeInMinutes, setRandomNumberTimeInMinutes, 
+        setoAuth
+     } = useContext(AppStateContext)
 
     const navigate = useNavigate();
     const [btnStatus, setBtnStatus] = useState(true)
@@ -45,9 +53,12 @@ const ForgotPassword = () => {
             const data = await response.json()
             
             if (data.status == 201) {
-                setIsLoading(false)
-                navigate('/cloudapp/registration/varification_code')
                 console.log(data)
+                setIsLoading(false)
+                setRandomNumber(data.randNumber)
+                setRandomNumberTimeInMinutes(getTimeInMinute())
+                navigate('/cloudapp/registration/varification_code')
+                
             } else if (data.status == 404) {
                 setIsLoading(false)
                 setVarifyEmailMessage('Please enter your registed email address.')
