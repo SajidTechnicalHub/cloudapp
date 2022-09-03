@@ -1411,6 +1411,12 @@ main {
     align-items: center;
     justify-content: center;
 }
+.email-varify-message{
+    font-size: 12;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: red;
+}
 
 
 /* //////////////////////////Azure Inventory////////////////////// */

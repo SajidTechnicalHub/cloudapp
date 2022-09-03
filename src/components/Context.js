@@ -31,6 +31,7 @@ const AppStateContextProvider = props => {
 
   const [editAzureCredential, setEditAzureCredential] = useState([])
   
+  const randomNumber = 0
 
 
   const getAccountDetails = async () => {
@@ -189,6 +190,7 @@ const AppStateContextProvider = props => {
       isLogin, setIsLogin,
       isoAuth, setoAuth,
       isLoading, setIsLoading,
+      randomNumber,
       virtualNetwork, setVirtualNetwork,
       loadBalancer, setLoadBalancer,
       azureDnsZone, setAzureDnsZone,
