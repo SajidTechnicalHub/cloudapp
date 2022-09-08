@@ -32,6 +32,7 @@ const AppStateContextProvider = props => {
   const [editAzureCredential, setEditAzureCredential] = useState([])
   const [randomNumber, setRandomNumber] = useState(0)
   const [randomNumberTimeInMinutes, setRandomNumberTimeInMinutes] = useState(0)
+  
  
 
 
@@ -216,7 +217,6 @@ const AppStateContextProvider = props => {
       accountCredentials, setAzureCredentails,
       azureSubscription, setAzureSubscription,
       editAzureCredential, setEditAzureCredential,
-      
 
 
 

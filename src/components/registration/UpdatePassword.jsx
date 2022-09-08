@@ -4,12 +4,27 @@ import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { useNavigate } from "react-router-dom"
 import lockImg from '../images/lock.jpg'
 import { AiOutlineClose } from 'react-icons/ai';
+import { useContext } from 'react'
+import { AppStateContext } from '../Context'; 
+import { baseUrl } from '../dashboard/cloudVendors/azure/GetAzureServices';
+import Loading from '../dashboard/cloudVendors/azure/Loading';
+
+
 const UpdatePassword = () => {
+
+    const { 
+        isLoading, setIsLoading, 
+        randomNumber, setRandomNumber, 
+        setoAuth
+     } = useContext(AppStateContext)
+
+
+
     const navigate = useNavigate();
     const [passwordMessage, setPasswordMessage] = useState('')
     const [passwordLength, setPasswordLength] = useState('')
     const [passwordInfo, setPasswordInfo] = useState(false)
-
+    const [forgotPasswordUser, setForgotPasswordUser] = useState(JSON.parse( localStorage.getItem("user")))
     const [user, setUser] = useState({
         password: '',
         confirm_password: ''
@@ -24,18 +39,12 @@ const UpdatePassword = () => {
             setPasswordInfo(true)
         }
     }
-    const SubmitEvent = (e) => {
+    const SubmitEvent = async(e) => {
         e.preventDefault()
-
-
-        setUser({
-            password: '',
-            confirm_password: ''
-        })
 
         if (user.password == user.confirm_password) {
             setPasswordMessage('')
-            navigate('/cloudapp/registration/request_success')
+            // navigate('/cloudapp/registration/request_success')
         } else {
             setPasswordMessage('Password did not match!')
         }
@@ -47,8 +56,41 @@ const UpdatePassword = () => {
             setPasswordLength('Password must be contain atleast 8 characters.')
         }
 
-        if (user.password == user.confirm_password && user.password.length >= 8) {
-            navigate('/cloudapp/registration/request_success')
+        // if (user.password == user.confirm_password && user.password.length >= 8) {
+        //     navigate('/cloudapp/registration/request_success')
+        // }
+        setIsLoading(true)
+        try{
+            const response = await fetch(`${baseUrl}/reset_password/update_password`, {
+                method: "put",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: localStorage.getItem("token"),
+                },
+                body: JSON.stringify({
+                    password: user.password,
+                    email: forgotPasswordUser.email
+                }),
+            })
+            const data = await response.json()
+            
+            if (data.status == 201) {
+                console.log(data)
+                setIsLoading(false)
+                navigate('/cloudapp/registration/request_success')
+                
+            } else if (data.status == 404) {
+                setIsLoading(false)
+            }else {
+                setIsLoading(false)
+                
+            }
+    
+
+        }
+        catch(error){
+            console.log(error)
+            setIsLoading(false)
         }
 
     }

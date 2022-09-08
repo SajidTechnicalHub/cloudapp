@@ -14,11 +14,12 @@ const VarificationCode = () => {
     const {
         isLoading, setIsLoading,
         randomNumber, setRandomNumber,
+        
         randomNumberTimeInMinutes, setRandomNumberTimeInMinutes,
         setoAuth,
     } = useContext(AppStateContext)
     const [varifyCodeMessage, setVarifyCodeMessage] = useState('')
-
+    const [forgotPasswordUser, setForgotPasswordUser] = useState(JSON.parse( localStorage.getItem("user")))
     const navigate = useNavigate();
     const [btnStatus, setBtnStatus] = useState(false)
 
@@ -45,8 +46,6 @@ const VarificationCode = () => {
     const SubmitEvent = (e) => {
         e.preventDefault()
 
-        console.log(randomNumber)
-        
         if (user.code == randomNumber) {
             const currentTime = getTimeInMinute()
             if (randomNumberTimeInMinutes <= currentTime) {
@@ -59,15 +58,18 @@ const VarificationCode = () => {
         }
     }
     const resendPinCode = async ()=>{
-        console.log('resend')
+       
+        setIsLoading(true)
         try{
             const response = await fetch(`${baseUrl}/reset_password/resend_varification_code`, {
-                method: "get",
+                method: "post",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: localStorage.getItem("token"),
                 },
-                
+                body: JSON.stringify({
+                    email: forgotPasswordUser.email
+                }),
             })
             const data = await response.json()
             
@@ -76,17 +78,20 @@ const VarificationCode = () => {
                 setIsLoading(false)
                 setRandomNumber(data.randNumber)
                 setRandomNumberTimeInMinutes(getTimeInMinute())
-            } 
+            } else if(data.status == 401){
+                setIsLoading(false)
+                navigate('/cloudapp/registration/signin')
+            }
     
 
         }
         catch(error){
             console.log(error)
             setIsLoading(false)
-            if (error == `SyntaxError: Unexpected token 'S', "Signature "... is not valid JSON`) {
-                setoAuth(true)
-                navigate('/cloudapp/registration/signin')
-            }
+            // if (error == `SyntaxError: Unexpected token 'S', "Signature "... is not valid JSON`) {
+            //     setoAuth(true)
+            //     navigate('/cloudapp/registration/signin')
+            // }
         }
     }
 
@@ -124,7 +129,7 @@ const VarificationCode = () => {
                             </div>
 
                             <div className="form-submit-field ">
-                                {btnStatus == true ? <button type='submit' className='code-varify-btn'>Sign In</button> :
+                                {btnStatus == true ? <button type='submit' className='code-varify-btn'>Varify</button> :
                                     <button disabled type='submit' className='code-unvarify-btn'>Verify</button>}
                             </div>
 
@@ -132,7 +137,7 @@ const VarificationCode = () => {
                         </form>
                         <div className='form-buttom-container'>
                             <div className='form-buttom-block' style={{ marginTop: '0px' }}>
-                                <a href="#" className='a-underline' onClick={e => resendPinCode()}>Didn't received it? Resend Code</a>
+                                <span className='a-underline' onClick={e => resendPinCode()}>Didn't received it? Resend Code</span>
                             </div>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>

@@ -413,6 +413,7 @@ main {
 .a-underline:hover {
     color: #05758a !important;
     text-decoration: underline !important;
+    cursor: pointer;
 }
 
 .back-to-home a,
