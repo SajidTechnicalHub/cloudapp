@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/cloudapp/static/css/main.eb60411a.css",
-    "main.js": "/cloudapp/static/js/main.022d198a.js",
+    "main.css": "/cloudapp/static/css/main.a7ae8a61.css",
+    "main.js": "/cloudapp/static/js/main.cd53367d.js",
     "static/media/success-icon.png": "/cloudapp/static/media/success-icon.a7106fd26dcc01d2f79e.png",
     "static/media/CloudNoxLogo.png": "/cloudapp/static/media/CloudNoxLogo.d49ba4e1bc489ac74de8.png",
     "index.html": "/cloudapp/index.html",
-    "main.eb60411a.css.map": "/cloudapp/static/css/main.eb60411a.css.map",
-    "main.022d198a.js.map": "/cloudapp/static/js/main.022d198a.js.map"
+    "main.a7ae8a61.css.map": "/cloudapp/static/css/main.a7ae8a61.css.map",
+    "main.cd53367d.js.map": "/cloudapp/static/js/main.cd53367d.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb60411a.css",
-    "static/js/main.022d198a.js"
+    "static/css/main.a7ae8a61.css",
+    "static/js/main.cd53367d.js"
   ]
 }
