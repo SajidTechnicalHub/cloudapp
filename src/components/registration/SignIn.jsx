@@ -39,6 +39,8 @@ const SignIn = () => {
 
   } = useContext(AppStateContext)
 
+  // setIsLoading(false)
+
   const navigate = useNavigate();
   const [loginMessage, setLoginMessage] = useState('')
   const [user, setUser] = useState({
@@ -230,7 +232,7 @@ const SignIn = () => {
       return { ...user, [name]: value }
     })
   }
-  const SubmitEvent = async (e) => {
+  const SubmitEvent =  (e) => {
     e.preventDefault()
 
     setIsLoading(true)
@@ -251,7 +253,7 @@ const SignIn = () => {
       .then((res) => {
 
         if (res.ok) {
-
+          
           console.log(res.headers.get("Authorization"));
           localStorage.setItem("token", res.headers.get("Authorization"));
           setIsLoading(false)
@@ -270,7 +272,7 @@ const SignIn = () => {
           return res.text().then((text) => Promise.reject(text));
         }
       })
-      .then((response) => setRandomNumber(response.status.randNumber))
+      .then((response) => setRandomNumber(response.randNumber))
       .then((json) => console.dir(json))
       .catch((err) => console.error(err));
 
