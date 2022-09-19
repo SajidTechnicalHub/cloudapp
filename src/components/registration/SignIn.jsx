@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios';
@@ -232,7 +232,7 @@ const SignIn = () => {
       return { ...user, [name]: value }
     })
   }
-  const SubmitEvent =  (e) => {
+  const SubmitEvent = (e) => {
     e.preventDefault()
 
     setIsLoading(true)
@@ -253,13 +253,13 @@ const SignIn = () => {
       .then((res) => {
 
         if (res.ok) {
-          
+
           console.log(res.headers.get("Authorization"));
           localStorage.setItem("token", res.headers.get("Authorization"));
           setIsLoading(false)
 
-          updateAzureAccounts()
-          getAccountDetails()
+          // updateAzureAccounts()
+          // getAccountDetails()
           setForgotPasswordUser(res.data)
           setRandomNumberTimeInMinutes(getTimeInMinute())
           navigate('/cloudapp/registration/signin_varification_code')
@@ -277,6 +277,8 @@ const SignIn = () => {
       .catch((err) => console.error(err));
 
   }
+
+
   return (
     <>
 

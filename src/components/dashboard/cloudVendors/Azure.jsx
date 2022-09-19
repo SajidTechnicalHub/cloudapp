@@ -231,7 +231,7 @@ const Azure = () => {
       console.log(error);
       if(error.response.status == 401){
         setoAuth(true)
-        navigate('/cloudapp/registration/signin')
+        // navigate('/cloudapp/registration/signin')
        }
      
     }
