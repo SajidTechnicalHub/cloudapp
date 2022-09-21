@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import successImg from '../images/success-icon.png'
+import CloudNoxLogo from '../images/CloudNoxLogo.png'
+
+
 const RequestSuccess = () => {
     const navigate = useNavigate();
     const SubmitEvent = (e) => {
@@ -13,7 +16,7 @@ const RequestSuccess = () => {
 
             <div className="form-container">
                 <div className="form-left-container">
-                    <h1 className='form-right-heading'>Cloud Insights</h1>
+                    <img src={CloudNoxLogo} className='form-right-logo' alt="CloudNoxLogo" />
                 </div>
                 <div className="form-right-container">
                     <div className="signin-form-block">

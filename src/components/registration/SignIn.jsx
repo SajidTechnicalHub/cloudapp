@@ -7,6 +7,7 @@ import { AppStateContext } from '../Context';
 import { baseUrl } from '../dashboard/cloudVendors/azure/GetAzureServices';
 import Loading from '../dashboard/cloudVendors/azure/Loading';
 import { getTimeInMinute } from './GetTime';
+import CloudNoxLogo from '../images/CloudNoxLogo.png'
 
 
 const SignIn = () => {
@@ -275,7 +276,7 @@ const SignIn = () => {
       })
       .then((response) => setRandomNumber(response.randNumber))
       .then((json) => console.dir(json))
-      .catch((err) =>{ 
+      .catch((err) => {
         console.error(err)
         setLoginMessage(err)
       });
@@ -289,12 +290,13 @@ const SignIn = () => {
       <div className="form-container">
         <div className="form-left-container">
 
-          <h1 className='form-right-heading'>Cloud Insights</h1>
+          {/* <h1 className='form-right-heading'>Cloud Insights</h1> */}
+          <img src={CloudNoxLogo} className='form-right-logo' alt="CloudNoxLogo" />
         </div>
         <div className="form-right-container">
           {isLoading == true ? <Loading /> : <></>}
           <div className="signin-form-block">
-            <span className='form-heading'> Cloud Cloud</span>
+            <span className='form-heading'> CLOUDNOX Sign In</span>
             <span className='Login-error-message'> {isoAuth == true ? 'Your are session expired! Please login.' : ''}</span>
             <span className='Login-error-message'>{loginMessage}</span>
             <form onSubmit={SubmitEvent} className='sign-in-form'>

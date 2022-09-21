@@ -5,18 +5,18 @@ import { useNavigate } from "react-router-dom"
 import lockImg from '../images/lock.jpg'
 import { AiOutlineClose } from 'react-icons/ai';
 import { useContext } from 'react'
-import { AppStateContext } from '../Context'; 
+import { AppStateContext } from '../Context';
 import { baseUrl } from '../dashboard/cloudVendors/azure/GetAzureServices';
 import Loading from '../dashboard/cloudVendors/azure/Loading';
-
+import CloudNoxLogo from '../images/CloudNoxLogo.png'
 
 const UpdatePassword = () => {
 
-    const { 
-        isLoading, setIsLoading, 
-        randomNumber, setRandomNumber, 
+    const {
+        isLoading, setIsLoading,
+        randomNumber, setRandomNumber,
         setoAuth
-     } = useContext(AppStateContext)
+    } = useContext(AppStateContext)
 
 
 
@@ -24,7 +24,7 @@ const UpdatePassword = () => {
     const [passwordMessage, setPasswordMessage] = useState('')
     const [passwordLength, setPasswordLength] = useState('')
     const [passwordInfo, setPasswordInfo] = useState(false)
-    const [forgotPasswordUser, setForgotPasswordUser] = useState(JSON.parse( localStorage.getItem("user")))
+    const [forgotPasswordUser, setForgotPasswordUser] = useState(JSON.parse(localStorage.getItem("user")))
     const [user, setUser] = useState({
         password: '',
         confirm_password: ''
@@ -39,7 +39,7 @@ const UpdatePassword = () => {
             setPasswordInfo(true)
         }
     }
-    const SubmitEvent = async(e) => {
+    const SubmitEvent = async (e) => {
         e.preventDefault()
 
         if (user.password == user.confirm_password) {
@@ -60,7 +60,7 @@ const UpdatePassword = () => {
         //     navigate('/cloudapp/registration/request_success')
         // }
         setIsLoading(true)
-        try{
+        try {
             const response = await fetch(`${baseUrl}/reset_password/update_password`, {
                 method: "put",
                 headers: {
@@ -73,22 +73,22 @@ const UpdatePassword = () => {
                 }),
             })
             const data = await response.json()
-            
+
             if (data.status == 201) {
                 console.log(data)
                 setIsLoading(false)
                 navigate('/cloudapp/registration/request_success')
-                
+
             } else if (data.status == 404) {
                 setIsLoading(false)
-            }else {
+            } else {
                 setIsLoading(false)
-                
+
             }
-    
+
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
             setIsLoading(false)
         }
@@ -100,7 +100,7 @@ const UpdatePassword = () => {
 
             <div className="form-container">
                 <div className="form-left-container">
-                    <h1 className='form-right-heading'>Cloud Insights</h1>
+                    <img src={CloudNoxLogo} className='form-right-logo' alt="CloudNoxLogo" />
                 </div>
                 <div className="form-right-container">
                     < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
@@ -109,7 +109,7 @@ const UpdatePassword = () => {
                             <img src={lockImg} className='form-logo-img' alt="" />
                             <br />
                             <span className='update-password-heading'> Update your password</span>
-                            <span className='form-top-email-info'>Create a new password for your Cloud insights account. So, you can login to your account.</span>
+                            <span className='form-top-email-info'>Create a new password for your CLOUDNOX account. So, you can login to your account.</span>
 
                         </div>
                         {passwordInfo && <div className="password-info-container">
@@ -139,7 +139,7 @@ const UpdatePassword = () => {
                                     value={user.password}
                                     onChange={InputEvent}
                                     required="required"
-                                    placeholder='Password'
+                                    placeholder='Enter a new password'
                                 />
                                 <span className="password-message">
                                     {passwordLength}
@@ -153,7 +153,7 @@ const UpdatePassword = () => {
                                     value={user.confirm_password}
                                     onChange={InputEvent}
                                     required="required"
-                                    placeholder='Re-Type Password'
+                                    placeholder='Confirm your new password'
                                 />
                                 <span className="password-message">
                                     {passwordMessage}

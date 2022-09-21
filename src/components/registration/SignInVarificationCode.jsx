@@ -8,6 +8,7 @@ import { AppStateContext } from '../Context';
 import { baseUrl } from '../dashboard/cloudVendors/azure/GetAzureServices';
 import { getTimeInMinute } from './GetTime';
 import Loading from '../dashboard/cloudVendors/azure/Loading';
+import CloudNoxLogo from '../images/CloudNoxLogo.png'
 
 const SignInVarificationCode = () => {
     const {
@@ -96,7 +97,7 @@ const SignInVarificationCode = () => {
 
             <div className="form-container">
                 <div className="form-left-container">
-                    <h1 className='form-right-heading'>Cloud Insights</h1>
+                <img src={CloudNoxLogo} className='form-right-logo' alt="CloudNoxLogo" />
                 </div>
                 <div className="form-right-container">
                     < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
@@ -106,12 +107,12 @@ const SignInVarificationCode = () => {
                             <br />
                             {isLoading == true ? <Loading /> : <></>}
                             <span className="email-varify-message">{varifyCodeMessage}</span>
-                            <span className='form-top-email-info'>Enter the verification code to sign in to your Cloud Insights account.</span>
+                            <span className='form-top-email-info'>Enter the verification code to sign in to your CLOUDNOX account.</span>
                             <span className='form-top-code-info'>You'll receive an email that contains your 6-digit verification code.</span>
                         </div>
                         <form onSubmit={SubmitEvent} className='sign-in-form'>
                             <div className="input-field-block ">
-                                <label htmlFor="code" className="input-field-label">Varification Code<span className='estaric'>*</span></label>
+                                <label htmlFor="code" className="input-field-label">Verification Code<span className='estaric'>*</span></label>
                                 <input type="code"
                                     name="code"
                                     value={user.code}
@@ -119,7 +120,7 @@ const SignInVarificationCode = () => {
                                     onKeyUp={InputEvent}
                                     required="required"
                                     autoComplete="off"
-                                    placeholder='Enter Varification Code'
+                                    placeholder='Enter Verification Code'
                                 />
 
                             </div>
@@ -133,7 +134,7 @@ const SignInVarificationCode = () => {
                         </form>
                         <div className='form-buttom-container'>
                             <div className='form-buttom-block' style={{ marginTop: '0px' }}>
-                            <span className='a-underline' onClick={e => resendPinCode()}>Didn't received it? Resend Code</span>
+                            <span className='a-underline' onClick={e => resendPinCode()}>Didn't receive it? Resend Code</span>
                             </div>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>

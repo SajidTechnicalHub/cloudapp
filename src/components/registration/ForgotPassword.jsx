@@ -8,16 +8,17 @@ import { AppStateContext } from '../Context';
 import { baseUrl } from '../dashboard/cloudVendors/azure/GetAzureServices';
 import Loading from '../dashboard/cloudVendors/azure/Loading';
 import { getTimeInMinute } from './GetTime';
+import CloudNoxLogo from '../images/CloudNoxLogo.png'
 
 const ForgotPassword = () => {
 
-    const { 
-        isLoading, setIsLoading, 
-        randomNumber, setRandomNumber, 
-        andomNumberTimeInMinutes, 
-        randomNumberTimeInMinutes, setRandomNumberTimeInMinutes, 
+    const {
+        isLoading, setIsLoading,
+        randomNumber, setRandomNumber,
+        andomNumberTimeInMinutes,
+        randomNumberTimeInMinutes, setRandomNumberTimeInMinutes,
         setoAuth
-     } = useContext(AppStateContext)
+    } = useContext(AppStateContext)
 
     const navigate = useNavigate();
     const [btnStatus, setBtnStatus] = useState(true)
@@ -39,7 +40,7 @@ const ForgotPassword = () => {
         setBtnStatus(false) // check send email btn status
         setIsLoading(true)
 
-        try{
+        try {
             const response = await fetch(`${baseUrl}/reset_password/varify_email`, {
                 method: "post",
                 headers: {
@@ -51,7 +52,7 @@ const ForgotPassword = () => {
                 }),
             })
             const data = await response.json()
-            
+
             if (data.status == 201) {
                 console.log(data)
                 setIsLoading(false)
@@ -59,18 +60,18 @@ const ForgotPassword = () => {
                 setRandomNumber(data.randNumber)
                 setRandomNumberTimeInMinutes(getTimeInMinute())
                 navigate('/cloudapp/registration/varification_code')
-                
+
             } else if (data.status == 404) {
                 setIsLoading(false)
                 setVarifyEmailMessage('Please enter your registed email address.')
-            }else {
+            } else {
                 setIsLoading(false)
-                
+
             }
-    
+
 
         }
-        catch(error){
+        catch (error) {
             console.log(error)
             setIsLoading(false)
             // if (error == `SyntaxError: Unexpected token 'S', "Signature "... is not valid JSON`) {
@@ -78,7 +79,7 @@ const ForgotPassword = () => {
             //     navigate('/cloudapp/registration/signin')
             // }
         }
-        
+
 
     }
 
@@ -87,7 +88,7 @@ const ForgotPassword = () => {
 
             <div className="form-container">
                 <div className="form-left-container">
-                    <h1 className='form-right-heading'>Cloud Insights</h1>
+                    <img src={CloudNoxLogo} className='form-right-logo' alt="CloudNoxLogo" />
                 </div>
                 <div className="form-right-container">
                     {isLoading == true ? <Loading /> : <></>}
@@ -96,7 +97,7 @@ const ForgotPassword = () => {
                         <div className="form-top-container">
                             <img src={emailImg} className='form-logo-img' alt="" />
                             <span className="email-varify-message">{varifyEmailMessage}</span>
-                            <span className='form-top-email-info'>Enter the email address to get the verification code to reset your Cloud Insights account password.</span>
+                            <span className='form-top-email-info'>Enter the email address to get the verification code to reset your CLOUDNOX account password.</span>
                             <span className='form-top-code-info'>You'll receive an email at your email address that contains your 6-digit verification code.</span>
                         </div>
                         <form onSubmit={SubmitEvent} className='sign-in-form'>
@@ -113,7 +114,7 @@ const ForgotPassword = () => {
                             </div>
 
                             <div className="form-submit-field ">
-                                {btnStatus == true ? <button type='submit' className='form-submit-btn'>Sign In</button> :
+                                {btnStatus == true ? <button type='submit' className='form-submit-btn'>Send Verification Code</button> :
                                     <button type='submit' className='form-submit-btn-status'>Send Email</button>}
                             </div>
 

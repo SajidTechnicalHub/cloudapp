@@ -248,6 +248,10 @@ main {
     color: #fff;
 
 }
+.form-right-logo{
+    height: 350px;
+    width: 500px;
+}
 
 .signin-form-block {
     height: fit-content;
@@ -267,6 +271,7 @@ main {
     justify-content: center;
     color: #003d48;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .sign-in-form {

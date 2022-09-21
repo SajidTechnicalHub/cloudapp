@@ -7,6 +7,7 @@ import { AppStateContext } from '../Context';
 import { baseUrl } from '../dashboard/cloudVendors/azure/GetAzureServices';
 import Loading from '../dashboard/cloudVendors/azure/Loading';
 import axios from 'axios';
+import CloudNoxLogo from '../images/CloudNoxLogo.png'
 
 const SignUp = () => {
 
@@ -138,7 +139,7 @@ const getAccountDetails = async () => {
           }
         })
         .then((json) => console.dir(json))
-        .catch((err) => console.error(err));
+        .catch((err) => {console.error(err)});
 
     } else {
       setPasswordLength('Password must be contain atleast 8 characters.')
@@ -152,14 +153,14 @@ const getAccountDetails = async () => {
 
       <div className="form-container signup-container">
         <div className="form-left-container">
-          <h1 className='form-right-heading'>Cloud Insights</h1>
+        <img src={CloudNoxLogo} className='form-right-logo' alt="CloudNoxLogo" />
         </div>
 
         <div className="form-right-container">
           {isLoading == true ? <Loading /> : <></>}
           < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
           <div className="signin-form-block">
-            <span className='form-heading'> Cloud Cloud Cloud</span>
+            <span className='form-heading'> CLOUDNOX Sign Up</span>
             
             {passwordInfo && <div className="password-info-container">
 
@@ -184,7 +185,7 @@ const getAccountDetails = async () => {
             <form onSubmit={SubmitEvent} className='sign-in-form'>
             <span>{signUpMessage}</span>
               <div className="input-field-block ">
-                <label htmlFor="fname" className="input-field-label">Fist Name<span className='estaric'>*</span></label>
+                <label htmlFor="fname" className="input-field-label">First Name<span className='estaric'>*</span></label>
                 <input type="text"
                   name="fname"
                   value={user.fname}
@@ -246,11 +247,11 @@ const getAccountDetails = async () => {
               <div className='checkbox-field-block'>
                 <input type="checkbox" className='checkbox-input-field' />
                 <span className='form-privacy-policy'>
-                  <span>I've read agree to the </span>
-                  <Link to='#' className='a-underline a-color'>Cloud Insights Privacy Policy</Link>
-                  <span> lanch and the </span>
-                  <Link to='#' className='a-underline a-color'>Cloud Insights End User Agreement</Link>
-                  <span> lanch.</span>
+                  <span>I've read and agree to the </span>
+                  <Link to='#' className='a-underline a-color'>CLOUDNOX Privacy Policy</Link>
+                  <span> and the </span>
+                  <Link to='#' className='a-underline a-color'>CLOUDNOX End User Agreement.</Link>
+                 
                 </span>
               </div>
               <div className="form-submit-field ">
