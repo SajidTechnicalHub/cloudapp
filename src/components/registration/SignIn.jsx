@@ -257,7 +257,7 @@ const SignIn = () => {
           console.log(res.headers.get("Authorization"));
           localStorage.setItem("token", res.headers.get("Authorization"));
           setIsLoading(false)
-
+          setoAuth(false)
           // updateAzureAccounts()
           // getAccountDetails()
           setForgotPasswordUser(res.data)
@@ -269,12 +269,16 @@ const SignIn = () => {
         } else {
           setLoginMessage('Invalid Email Or Password')
           setIsLoading(false)
+          setoAuth(false)
           return res.text().then((text) => Promise.reject(text));
         }
       })
       .then((response) => setRandomNumber(response.randNumber))
       .then((json) => console.dir(json))
-      .catch((err) => console.error(err));
+      .catch((err) =>{ 
+        console.error(err)
+        setLoginMessage(err)
+      });
 
   }
 

@@ -160,7 +160,7 @@ const getAccountDetails = async () => {
           < AiOutlineClose onClick={() => navigate(-1)} className='form-close-window-icon' />
           <div className="signin-form-block">
             <span className='form-heading'> Cloud Cloud Cloud</span>
-            <span>{signUpMessage}</span>
+            
             {passwordInfo && <div className="password-info-container">
 
               <AiOutlineClose onClick={(e) => setPasswordInfo(false)} className='password-info-close-icon' />
@@ -182,7 +182,7 @@ const getAccountDetails = async () => {
               </span>
             </div>}
             <form onSubmit={SubmitEvent} className='sign-in-form'>
-
+            <span>{signUpMessage}</span>
               <div className="input-field-block ">
                 <label htmlFor="fname" className="input-field-label">Fist Name<span className='estaric'>*</span></label>
                 <input type="text"

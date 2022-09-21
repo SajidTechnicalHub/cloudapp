@@ -104,7 +104,7 @@ const AzureSubscription = () => {
               onChange={InputEvent}
             >
               <option >All Azure Cloud Accounts</option>
-              {accountCredentials.map((val, index) => {
+              {accountCredentials?.map((val, index) => {
                 return (
                   <React.Fragment key={val.id}>
                     <option >{val.account_name}</option>
@@ -137,7 +137,7 @@ const AzureSubscription = () => {
           <span>
             <div className="row g-5">
               {
-                azureSubscription.filter(
+                azureSubscription?.filter(
                   (row) =>
                     cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
                       row.subscription_name.toLowerCase().indexOf(q) > -1 ||
