@@ -44,7 +44,7 @@ function App() {
     <div className="container-flude">
 
       <Routes>
-        <Route path="cloudapp" element={<RegistrationLayout />} >
+        <Route path="/" element={<RegistrationLayout />} >
           <Route index element={<SignIn />} />
           <Route path="registration/signin" element={<SignIn />} />
           <Route path="registration/signin_varification_code" element={<SignInVarificationCode />} />
