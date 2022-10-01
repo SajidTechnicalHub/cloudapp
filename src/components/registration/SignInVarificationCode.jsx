@@ -49,7 +49,7 @@ const SignInVarificationCode = () => {
         if (user.code == randomNumber) {
             const currentTime = getTimeInMinute()
             if (randomNumberTimeInMinutes <= currentTime) {
-                navigate('/cloudapp/dashboard/account-management')
+                navigate('/dashboard/account-management')
             } else {
                 setVarifyCodeMessage('Your Pin Code expired!')
             }
@@ -80,7 +80,7 @@ const SignInVarificationCode = () => {
                 setRandomNumberTimeInMinutes(getTimeInMinute())
             } else if(data.status == 401){
                 setIsLoading(false)
-                navigate('/cloudapp/registration/signin')
+                navigate('/registration/signin')
             }
     
 
@@ -138,7 +138,7 @@ const SignInVarificationCode = () => {
                             </div>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>
-                                    <Link to="/cloudapp/registration/signin"><BiArrowBack />Back To Sign In</Link>
+                                    <Link to="/registration/signin"><BiArrowBack />Back To Sign In</Link>
                                 </div>
                             </div>
                         </div>

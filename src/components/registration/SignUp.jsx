@@ -131,7 +131,7 @@ const getAccountDetails = async () => {
             // setoAuth(false)
             setIsLoading(false)
             // getAccountDetails()
-            // navigate('/cloudapp/dashboard/account-management')
+            // navigate('/dashboard/account-management')
             return res.json();
           } else {
             setIsLoading(false)

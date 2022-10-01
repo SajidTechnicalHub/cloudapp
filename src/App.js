@@ -55,7 +55,7 @@ function App() {
           <Route path="registration/request_success" element={<RequestSuccess />} />
         </Route>
 
-        <Route path="cloudapp/dashboard" element={<DashboardLyout />} >
+        <Route path="/dashboard" element={<DashboardLyout />} >
           <Route index element={<Overview />} />
           <Route path="overview" element={<Overview />} />
           <Route path="AWS" element={<Aws />} />

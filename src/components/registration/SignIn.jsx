@@ -263,7 +263,7 @@ const SignIn = () => {
           // getAccountDetails()
           setForgotPasswordUser(res.data)
           setRandomNumberTimeInMinutes(getTimeInMinute())
-          navigate('/cloudapp/registration/signin_varification_code')
+          navigate('/registration/signin_varification_code')
 
           return res.json();
 
@@ -315,7 +315,7 @@ const SignIn = () => {
                 <span className='password-forgot-label-container'>
                   <label htmlFor="password" className="input-field-label">Password<span className='estaric'>*</span>
                   </label>
-                  <Link to='/cloudapp/registration/forgot_password'>Forgot Password?</Link>
+                  <Link to='/registration/forgot_password'>Forgot Password?</Link>
                 </span>
                 <input type="password"
                   name="password"
@@ -339,7 +339,7 @@ const SignIn = () => {
               <div className='form-buttom-block'>
                 <span className='checkbox-field-label'>Don't have an Account?</span>
                 <div className='sign-up-block'>
-                  <Link to="/cloudapp/registration/signup" className='a-underline'>Sign up and try it free</Link>
+                  <Link to="/registration/signup" className='a-underline'>Sign up and try it free</Link>
                   <a href="#"><BiArrowBack />Back To Home</a>
                 </div>
               </div>

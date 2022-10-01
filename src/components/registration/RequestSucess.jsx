@@ -8,7 +8,7 @@ import CloudNoxLogo from '../images/CloudNoxLogo.png'
 const RequestSuccess = () => {
     const navigate = useNavigate();
     const SubmitEvent = (e) => {
-        navigate('/cloudapp/registration/signin')
+        navigate('/registration/signin')
     }
 
     return (

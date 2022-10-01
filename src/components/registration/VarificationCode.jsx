@@ -50,7 +50,7 @@ const VarificationCode = () => {
         if (user.code == randomNumber) {
             const currentTime = getTimeInMinute()
             if (randomNumberTimeInMinutes <= currentTime) {
-                navigate('/cloudapp/registration/update_password')
+                navigate('/registration/update_password')
             } else {
                 setVarifyCodeMessage('Your Pin Code expired!')
             }
@@ -81,7 +81,7 @@ const VarificationCode = () => {
                 setRandomNumberTimeInMinutes(getTimeInMinute())
             } else if (data.status == 401) {
                 setIsLoading(false)
-                navigate('/cloudapp/registration/signin')
+                navigate('/registration/signin')
             }
 
 
@@ -91,7 +91,7 @@ const VarificationCode = () => {
             setIsLoading(false)
             // if (error == `SyntaxError: Unexpected token 'S', "Signature "... is not valid JSON`) {
             //     setoAuth(true)
-            //     navigate('/cloudapp/registration/signin')
+            //     navigate('/registration/signin')
             // }
         }
     }
@@ -142,7 +142,7 @@ const VarificationCode = () => {
                             </div>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>
-                                    <a href="/cloudapp/registration/signin"><BiArrowBack />Back To Sign In</a>
+                                    <a href="/registration/signin"><BiArrowBack />Back To Sign In</a>
                                 </div>
                             </div>
                         </div>

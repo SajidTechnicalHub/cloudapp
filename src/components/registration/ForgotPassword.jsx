@@ -59,7 +59,7 @@ const ForgotPassword = () => {
                 localStorage.setItem("user", JSON.stringify(data.user));
                 setRandomNumber(data.randNumber)
                 setRandomNumberTimeInMinutes(getTimeInMinute())
-                navigate('/cloudapp/registration/varification_code')
+                navigate('/registration/varification_code')
 
             } else if (data.status == 404) {
                 setIsLoading(false)
@@ -76,7 +76,7 @@ const ForgotPassword = () => {
             setIsLoading(false)
             // if (error == `SyntaxError: Unexpected token 'S', "Signature "... is not valid JSON`) {
             //     setoAuth(true)
-            //     navigate('/cloudapp/registration/signin')
+            //     navigate('/registration/signin')
             // }
         }
 
@@ -122,7 +122,7 @@ const ForgotPassword = () => {
                         <div className='form-buttom-container'>
                             <div className='form-buttom-block'>
                                 <div className='back-to-home'>
-                                    <Link to="/cloudapp/registration/signin"><BiArrowBack />Back To Sign In</Link>
+                                    <Link to="/registration/signin"><BiArrowBack />Back To Sign In</Link>
                                 </div>
                             </div>
                         </div>

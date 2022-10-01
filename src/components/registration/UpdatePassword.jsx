@@ -44,7 +44,7 @@ const UpdatePassword = () => {
 
         if (user.password == user.confirm_password) {
             setPasswordMessage('')
-            // navigate('/cloudapp/registration/request_success')
+            // navigate('/registration/request_success')
         } else {
             setPasswordMessage('Password did not match!')
         }
@@ -57,7 +57,7 @@ const UpdatePassword = () => {
         }
 
         // if (user.password == user.confirm_password && user.password.length >= 8) {
-        //     navigate('/cloudapp/registration/request_success')
+        //     navigate('/registration/request_success')
         // }
         setIsLoading(true)
         try {
@@ -77,7 +77,7 @@ const UpdatePassword = () => {
             if (data.status == 201) {
                 console.log(data)
                 setIsLoading(false)
-                navigate('/cloudapp/registration/request_success')
+                navigate('/registration/request_success')
 
             } else if (data.status == 404) {
                 setIsLoading(false)

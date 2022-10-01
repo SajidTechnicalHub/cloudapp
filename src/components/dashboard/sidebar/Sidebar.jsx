@@ -38,7 +38,7 @@ const routes = [
     icon: <BiCloudUpload />
   },
   {
-    path: '/cloudapp/registration/signin',
+    path: '/registration/signin',
     name: 'Sign In',
     icon: <BiCloudUpload />
   },
@@ -182,7 +182,7 @@ const Sidebar = () => {
           setAzureRecommendation([])
           setAzureVirtualMachine([])
           setAzureDisks([])
-          navigate('/cloudapp/registration/signin')
+          navigate('/registration/signin')
           // return res.json();
         } else {
           return res.json().then((json) => Promise.reject(json));
@@ -193,7 +193,7 @@ const Sidebar = () => {
         console.dir(json);
       })
       .catch((err) => console.error(err));
-    navigate('/cloudapp/registration/signin')
+    navigate('/registration/signin')
   }
 
   return (

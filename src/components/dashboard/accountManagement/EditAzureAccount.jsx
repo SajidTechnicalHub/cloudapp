@@ -224,7 +224,7 @@ const EditAzureAccount = (props) => {
         })
         .then((json) => console.dir(json))
 
-    // navigate('/cloudapp')
+    // navigate('/')
   }
 
   return (

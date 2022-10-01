@@ -141,7 +141,7 @@ const AzureVirtualMachine = () => {
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
-          navigate('/cloudapp/registration/signin')
+          navigate('/registration/signin')
         }else if (res.status == "404") {
                     
           setIsLoading(false)
