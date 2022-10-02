@@ -162,7 +162,7 @@ const AzureResourceGroups = () => {
               onChange={InputEvent}
             >
               <option >All Azure Cloud Accounts</option>
-              {accountCredentials.map((val, index) => {
+              {accountCredentials?.map((val, index) => {
                 return (
                   <React.Fragment key={val.id}>
                     <option >{val.account_name}</option>
