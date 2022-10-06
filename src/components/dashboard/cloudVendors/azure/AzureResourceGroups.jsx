@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import ResourceGroupsLogo from '../../../images/ResourceGroups.png'
 
 const columns = [
   {
@@ -148,9 +149,7 @@ const AzureResourceGroups = () => {
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-              <span className="azure-inventory-detail-vnets-logo-block">
-                <FaArrowsAltH />
-              </span>
+            <img src={ResourceGroupsLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
               <span className='azure-inventory-detail-vnets-text'>All Resource Groups ({resourceGroup?.length})</span>
             </span>

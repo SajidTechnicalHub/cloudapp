@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import LoadBalancersLogo from '../../../images/LoadBalancers.png'
 
 const columns = [
     {
@@ -127,8 +128,8 @@ const AzureLoadBalancer = () => {
                     setoAuth(true)
                     setIsLoading(false)
                     navigate('/registration/signin')
-                }else if (res.status == "404") {
-                    
+                } else if (res.status == "404") {
+
                     setIsLoading(false)
 
                 }
@@ -147,9 +148,7 @@ const AzureLoadBalancer = () => {
                 <div className="azure-inventory-detail-all-vnets-block">
                     <span className="azure-inventory-detail-all-vnets-block-heading">
                         <span className="azure-inventory-detail-vnets-block">
-                            <span className="azure-inventory-detail-vnets-logo-block">
-                                <FaArrowsAltH />
-                            </span>
+                            <img src={LoadBalancersLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
                             <span className='azure-inventory-detail-vnets-text'>All LBalancer ({loadBalancer?.length})</span>
                         </span>

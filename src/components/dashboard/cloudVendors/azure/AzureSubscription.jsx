@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import subscriptionGroup from '../../../images/Subscriptions.png'
 
 
 const AzureSubscription = () => {
@@ -63,7 +64,7 @@ const AzureSubscription = () => {
       .then((res) => {
         console.log(res)
         if (res.ok == true) {
-          setoAuth(false)
+          setoAuth(false) 
           setIsLoading(false)
           getAzureSubscription()
         } else if (res.status == "401") {
@@ -90,9 +91,7 @@ const AzureSubscription = () => {
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-              <span className="azure-inventory-detail-vnets-logo-block">
-                <FaArrowsAltH />
-              </span>
+            <img src={subscriptionGroup} alt="" className="azure-inventory-sub-groups-logo" />
 
               <span className='azure-inventory-detail-vnets-text'>All Subscriptions ({azureSubscription?.length})</span>
             </span>

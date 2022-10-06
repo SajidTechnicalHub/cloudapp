@@ -11,6 +11,7 @@ import { AppStateContext } from '../../Context'
 import Loading from './azure/Loading';
 import axios from 'axios';
 import { baseUrl } from './azure/GetAzureServices';
+import VirtualNetworksLogo from '../../images/VirtualNetworks.png'
 
 const columns = [
     {
@@ -58,7 +59,7 @@ const columns = [
 ];
 
 
-const AzureInventoryDetails = () => {
+const AzureVirtualNetworks = () => {
     const {
         virtualNetwork, setVirtualNetwork,
         accountCredentials, setAzureCredentails,
@@ -100,7 +101,7 @@ const AzureInventoryDetails = () => {
 
     const getVirtualNetwork = async () => {
 
-        const response = await axios.get(`${ baseUrl }/azure_virtualnetworks/get_azure_virtual_network`, {
+        const response = await axios.get(`${baseUrl}/azure_virtualnetworks/get_azure_virtual_network`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
@@ -114,7 +115,7 @@ const AzureInventoryDetails = () => {
 
     const updateVirtualNetwork = async () => {
         setIsLoading(true)
-        const response = await fetch(`${ baseUrl }/azure_virtualnetworks/virtual_network_save`, {
+        const response = await fetch(`${baseUrl}/azure_virtualnetworks/virtual_network_save`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: localStorage.getItem("token"),
@@ -147,9 +148,7 @@ const AzureInventoryDetails = () => {
                 <div className="azure-inventory-detail-all-vnets-block">
                     <span className="azure-inventory-detail-all-vnets-block-heading">
                         <span className="azure-inventory-detail-vnets-block">
-                            <span className="azure-inventory-detail-vnets-logo-block">
-                                <FaArrowsAltH />
-                            </span>
+                            <img src={VirtualNetworksLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
                             <span className='azure-inventory-detail-vnets-text'>All VNets ({virtualNetwork?.length})</span>
                         </span>
@@ -211,4 +210,4 @@ const AzureInventoryDetails = () => {
     )
 }
 
-export default AzureInventoryDetails
+export default AzureVirtualNetworks

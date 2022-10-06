@@ -16,7 +16,7 @@ import VarificationCode from "./components/registration/VarificationCode";
 import UpdatePassword from "./components/registration/UpdatePassword";
 import RequestSuccess from "./components/registration/RequestSucess";
 import SignInVarificationCode from "./components/registration/SignInVarificationCode";
-import AzureInventoryDetails from "./components/dashboard/cloudVendors/AzureInventoryDetails";
+import AzureVirtualNetworks from "./components/dashboard/cloudVendors/AzureVirtualNetworks";
 import CircularProgress from '@mui/material/CircularProgress';
 import { useContext } from 'react'
 import { AppStateContext } from './components/Context'
@@ -27,7 +27,7 @@ import AzureVirtualWans from "./components/dashboard/cloudVendors/azure/AzureVir
 import AzureNatGateway from "./components/dashboard/cloudVendors/azure/AzureNatGateway";
 import AzurePublicIpAddress from "./components/dashboard/cloudVendors/azure/AzurePublicIpAddress";
 import AzureAdvisor from "./components/dashboard/cloudVendors/azure/AzureAdvisor";
-import AzureServiceHealth from "./components/dashboard/cloudVendors/azure/AzureServiceHealth";
+import AzureSupportTickets from "./components/dashboard/cloudVendors/azure/AzureSupportTickets";
 import AzureSubscription from "./components/dashboard/cloudVendors/azure/AzureSubscription";
 import AzureResourceGroups from "./components/dashboard/cloudVendors/azure/AzureResourceGroups";
 import AzureVirtualMachine from "./components/dashboard/cloudVendors/azure/AzureVirtualMachine";
@@ -61,7 +61,7 @@ function App() {
           <Route path="AWS" element={<Aws />} />
           <Route path="Azure" element={<Azure />} />
           {/* Azure Networking */}
-          <Route path="azure/virtualNetwork" element={<AzureInventoryDetails />} />
+          <Route path="azure/virtualNetwork" element={<AzureVirtualNetworks />} />
           <Route path="azure/loadBalancer" element={<AzureLoadBalancer />} />
           <Route path="azure/dnsZone" element={<AzureDnsZone />} />
           <Route path="azure/routeTable" element={<AzureRouteTable />} />
@@ -71,7 +71,7 @@ function App() {
           {/* Azure General */}
           <Route path="azure/advisor" element={<AzureAdvisor />} />
           <Route path="azure/resourceGroups" element={<AzureResourceGroups />} />
-          <Route path="azure/serviceHealth" element={<AzureServiceHealth />} />
+          <Route path="azure/supportTickets" element={<AzureSupportTickets />} />
           <Route path="azure/subscription" element={<AzureSubscription />} />
           {/* Azure Compute */}
           <Route path="azure/virtualMachine" element={<AzureVirtualMachine />} />

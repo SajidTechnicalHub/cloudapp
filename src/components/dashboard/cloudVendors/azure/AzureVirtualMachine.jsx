@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import VirtualMachinesLogo from '../../../images/VirtualMachines.png'
 
 const columns = [
   {
@@ -142,11 +143,11 @@ const AzureVirtualMachine = () => {
           setoAuth(true)
           setIsLoading(false)
           navigate('/registration/signin')
-        }else if (res.status == "404") {
-                    
+        } else if (res.status == "404") {
+
           setIsLoading(false)
 
-      }
+        }
 
       })
 
@@ -162,9 +163,7 @@ const AzureVirtualMachine = () => {
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-              <span className="azure-inventory-detail-vnets-logo-block">
-                <FaArrowsAltH />
-              </span>
+              <img src={VirtualMachinesLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
               <span className='azure-inventory-detail-vnets-text'>All Virtual Machines ({azureVirtualMachine?.length})</span>
             </span>

@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import HSupportTicketsLogo from '../../../images/HelpSupport.png'
 
 const columns = [
   {
@@ -70,7 +71,7 @@ const columns = [
 ];
 
 
-const AzureServiceHealth = () => {
+const AzureSupportTickets = () => {
   const {
     azureSupportsTickets, setAzureSupportsTickets,
     accountCredentials, setAzureCredentails,
@@ -145,11 +146,11 @@ const AzureServiceHealth = () => {
           setoAuth(true)
           setIsLoading(false)
           navigate('/registration/signin')
-        }else if (res.status == "404") {
-                    
+        } else if (res.status == "404") {
+
           setIsLoading(false)
 
-      }
+        }
 
       })
 
@@ -159,17 +160,15 @@ const AzureServiceHealth = () => {
 
   return (
     <>
-      <TopBar subtitle='Azure / All Service Health' />
+      <TopBar subtitle='Azure / All Support Tickets' />
       <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-              <span className="azure-inventory-detail-vnets-logo-block">
-                <FaArrowsAltH />
-              </span>
+              <img src={HSupportTicketsLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
-              <span className='azure-inventory-detail-vnets-text'>All Service Health ({azureSupportsTickets?.length})</span>
+              <span className='azure-inventory-detail-vnets-text'>All Support Tickets ({azureSupportsTickets?.length})</span>
             </span>
           </span>
           <span className="azure-inventory-detail-all-vnets-block-dropdown">
@@ -229,4 +228,4 @@ const AzureServiceHealth = () => {
   )
 }
 
-export default AzureServiceHealth
+export default AzureSupportTickets

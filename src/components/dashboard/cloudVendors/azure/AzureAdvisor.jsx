@@ -13,6 +13,7 @@ import { AiFillCheckCircle } from 'react-icons/ai'
 import { MdSecurity, MdDashboard } from 'react-icons/md'
 import { RiGlobeFill } from 'react-icons/ri'
 import { baseUrl } from './GetAzureServices';
+import AdvisorLogo from '../../../images/Advisor.png'
 
 
 const advisorTabs = [
@@ -204,10 +205,11 @@ const AzureAdvisor = () => {
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-              <span className="azure-inventory-detail-vnets-logo-block">
+              {/* <span className="azure-inventory-detail-vnets-logo-block">
                 <FaArrowsAltH />
-              </span>
-
+              </span> */}
+              
+              <img src={AdvisorLogo} alt="" className="azure-inventory-sub-groups-logo" />
               <span className='azure-inventory-detail-vnets-text'>All Advisor Recommendation ({azureRecommendation?.length})</span>
             </span>
           </span>

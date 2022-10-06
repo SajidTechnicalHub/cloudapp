@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import ApplicationSecurityGroupsLogo from '../../../images/ApplicationSecurityGroups.png'
 
 const columns = [
   {
@@ -106,7 +107,7 @@ const AzureApplicationkSecurityGroups = () => {
   const updateAzureApplicationSecurityGroups = async () => {
     setIsLoading(true)
     const response = await fetch(`${baseUrl}/azure_application_security_groups/index`, {
-      method:'get',
+      method: 'get',
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"),
@@ -122,11 +123,11 @@ const AzureApplicationkSecurityGroups = () => {
           setoAuth(true)
           setIsLoading(false)
           navigate('/registration/signin')
-        }else if (res.status == "404") {
-                    
+        } else if (res.status == "404") {
+
           setIsLoading(false)
 
-      }
+        }
 
       })
 
@@ -137,14 +138,12 @@ const AzureApplicationkSecurityGroups = () => {
   return (
     <>
       <TopBar subtitle='Azure / All Application Sec Groups' />
-      
+
       <div className="azure-inventory-detail-container">
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-              <span className="azure-inventory-detail-vnets-logo-block">
-                <FaArrowsAltH />
-              </span>
+              <img src={ApplicationSecurityGroupsLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
               <span className='azure-inventory-detail-vnets-text'>All Application Sec Groups ({azureApplicationSecurityGroups?.length})</span>
             </span>

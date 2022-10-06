@@ -47,9 +47,9 @@ const azureGeneral = [
   },
   {
     id: 4,
-    group_name: 'Service Health',
+    group_name: 'Support Tickets',
     group_logo: HelpSupportLogo,
-    route: '/dashboard/azure/serviceHealth'
+    route: '/dashboard/azure/supportTickets'
   },
   {
     id: 5,
@@ -142,14 +142,14 @@ const azureSecurity = [
   {
     id: 1,
     group_name: 'Network Security Groups',
-    group_logo: ApplicationSecurityGroupsLogo,
+    group_logo: NetworkSecurityGroupsLogo,
     route:'/dashboard/azure/networkSecurityGroups'
 
   },
   {
     id: 2,
     group_name: 'Application Security Groups',
-    group_logo: NetworkSecurityGroupsLogo,
+    group_logo: ApplicationSecurityGroupsLogo,
     route:'/dashboard/azure/applicationSecurityGroups'
 
   },

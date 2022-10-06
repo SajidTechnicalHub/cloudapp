@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import NetworkSecurityGroupsLogo from '../../../images/NetworkSecurityGroups.png'
 
 const columns = [
   {
@@ -121,11 +122,11 @@ const AzureNetworkSecurityGroups = () => {
           setoAuth(true)
           setIsLoading(false)
           navigate('/registration/signin')
-        }else if (res.status == "404") {
-                    
+        } else if (res.status == "404") {
+
           setIsLoading(false)
 
-      }
+        }
 
       })
 
@@ -141,9 +142,7 @@ const AzureNetworkSecurityGroups = () => {
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-              <span className="azure-inventory-detail-vnets-logo-block">
-                <FaArrowsAltH />
-              </span>
+              <img src={NetworkSecurityGroupsLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
               <span className='azure-inventory-detail-vnets-text'>All Network Sec Groups ({azureNetworkSecurityGroups?.length})</span>
             </span>

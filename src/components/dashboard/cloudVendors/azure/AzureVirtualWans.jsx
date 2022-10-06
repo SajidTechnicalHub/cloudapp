@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import VirtualWANsLogo from '../../../images/VirtualWANs.png'
 
 const columns = [
     {
@@ -127,8 +128,8 @@ const AzureVirtualWans = () => {
                     setoAuth(true)
                     setIsLoading(false)
                     navigate('/registration/signin')
-                }else if (res.status == "404") {
-                    
+                } else if (res.status == "404") {
+
                     setIsLoading(false)
 
                 }
@@ -147,9 +148,7 @@ const AzureVirtualWans = () => {
                 <div className="azure-inventory-detail-all-vnets-block">
                     <span className="azure-inventory-detail-all-vnets-block-heading">
                         <span className="azure-inventory-detail-vnets-block">
-                            <span className="azure-inventory-detail-vnets-logo-block">
-                                <FaArrowsAltH />
-                            </span>
+                            <img src={VirtualWANsLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
                             <span className='azure-inventory-detail-vnets-text'>All Virtual Wans ({azureVirtualWans?.length})</span>
                         </span>

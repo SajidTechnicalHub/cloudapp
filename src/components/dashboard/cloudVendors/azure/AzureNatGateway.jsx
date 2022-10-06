@@ -10,6 +10,7 @@ import { AppStateContext } from '../../../Context'
 import Loading from './Loading';
 import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
+import NATGatewaysLogo from '../../../images/NATGateways.png'
 
 const columns = [
     {
@@ -129,13 +130,13 @@ const AzureNatGateway = () => {
                     navigate('/registration/signin')
                 }
                 else if (res.status == "404") {
-                    
+
                     setIsLoading(false)
 
                 }
-                
+
             })
-            // setIsLoading(false)
+        // setIsLoading(false)
     }
 
 
@@ -148,9 +149,7 @@ const AzureNatGateway = () => {
                 <div className="azure-inventory-detail-all-vnets-block">
                     <span className="azure-inventory-detail-all-vnets-block-heading">
                         <span className="azure-inventory-detail-vnets-block">
-                            <span className="azure-inventory-detail-vnets-logo-block">
-                                <FaArrowsAltH />
-                            </span>
+                            <img src={NATGatewaysLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
                             <span className='azure-inventory-detail-vnets-text'>All Nat Gateways ({azureNatGateway?.length})</span>
                         </span>
