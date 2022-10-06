@@ -12,7 +12,7 @@ const TopBar = (props) => {
     <div className='topbar-container'>
         <div className="topbar-heading">
             <span className="topbar-heading-text">
-                Cloud Insights: {props.subtitle}
+                CLOUDNOX: {props.subtitle}
             </span>
 
         </div>
