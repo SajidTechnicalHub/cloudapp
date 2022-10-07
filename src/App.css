@@ -1432,26 +1432,212 @@ main {
 .cloudnox-dashboard-tabs-block{
     display: flex;
     flex-direction: column;
-    padding: 2px;
-    height: 70px;
+    padding: 3px;
+    /* gap:2px; */
+    height: 90px;
     width: 200px;
     border: 2px solid #003d48;
-    cursor: pointer;
+    
     /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
+    box-shadow: 0px 6px 4px #003d48;
+    border-radius: 10px;
+}
+.cloudnox-dashboard-add-cloud-account-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    /* gap:2px; */
+    height: 90px;
+    width: 200px;
+    border: 2px solid #003d48;
+    
+    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
+    /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
+    box-shadow: 0px 6px 4px #003d48;
     border-radius: 10px;
 }
 .cloudnox-dashboard-tabs-logo-block{
     display: flex;
     justify-content: center;
 }
-.cloudnox-dashboard-tabs-logo{
+.cloudnox-dashboard-tabs-azure-logo{
     height: 30px;
     width: 70px;
+    margin-bottom: 3px;
+}
+.cloudnox-dashboard-tabs-aws-logo{
+    height: 30px;
+    width: 100px;
+    margin-bottom: 3px;
+}
+.cloudnox-dashboard-tabs-google-logo{
+    height: 25px;
+    width: 130px;
+    margin-bottom: 3px;
+}
+.cloudnox-dashboard-tabs-text-number-block{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 5px;
+    /* margin-bottom: -5px!important; */
+}
+.cloudnox-dashboard-text, .cloudnox-dashboard-number{
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.cloudnox-dashboard-text{
+    margin-left: 5px;
+}
+.dashboard-tabs-margin{
+    margin-right: 100px;
+}
+.cloudnox-dashboard-add-cloud-account-text{
+    align-items: center;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: black!important;
+}
+.cloudnox-dashboard-alert-need-block{
+    display: flex;
+    gap:10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.cloudnox-dashboard-alert-block{
+    display: flex;
+    flex-direction: column;
+    padding: 3px;
+    /* gap:2px; */
+    min-height: 150px;
+    height: fit-content;
+    width: 60%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.cloudnox-dashboard-alert-view-block{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+.cloudnox-dashboard-alert-view-heading{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.cloudnox-dashboard-alert-view-text{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+   
+}
+.cloudnox-dashboard-need-block{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    padding: 3px;
+    /* gap:2px; */
+    height: 150px;
+    width: 40%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.cloudnox-dashboard-alert-high-medium-low-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:5px;
+    margin: 10px;
+}
+.cloudnox-dashboard-alert-high-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    height: 80px;
+    width: 180px;
+    background: rgb(247, 245, 245);
+    border: 1px solid grey;
+}
+.cloudnox-dashboard-alert-high-number,
+.cloudnox-dashboard-alert-medium-number,
+.cloudnox-dashboard-alert-low-number{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.cloudnox-dashboard-alert-high-number,
+.cloudnox-dashboard-alert-high-logo{
+    color: red;
+}
+.cloudnox-dashboard-alert-medium-number,
+.cloudnox-dashboard-alert-medium-logo{
+    color: orange;
+}
+.cloudnox-dashboard-alert-low-number,
+.cloudnox-dashboard-alert-low-logo{
+    color: grey;
+}
+.cloudnox-dashboard-alert-high-logo-text-block{
+    display: flex;
+    gap:7px;
+    align-items: center;
+    margin-left: 10px;
+}
+.cloudnox-dashboard-alert-high-logo,
+.cloudnox-dashboard-alert-medium-logo,
+.cloudnox-dashboard-alert-low-logo{
+    
+    height: 15px;
+    width: 15px;
+}
+.cloudnox-dashboard-alert-high-text{
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+    font-weight: bold;
+}
+.cloudnox-dashboard-need-content-block{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    margin-left: 10px;
+}
+.cloudnox-dashboard-need-content-logo-text-block{
+    display: flex;
+    justify-content: space-between;
+    gap:10px;
+}
+.cloudnox-dashboard-need-text{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cloudnox-dashboard-need-logo{
+    height: 15px;
+    width: 15px;
+    color: blue;
 }
 
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
+    .cloudnox-dashboard-alert-need-block,
+    .cloudnox-dashboard-alert-high-medium-low-block{
+        flex-direction: column!important;
+    }
+    
+    .cloudnox-dashboard-tabs-margin-buttom{
+        margin-bottom: 10px;
+    }
+    .cloudnox-dashboard-alert-high-block,
+    .cloudnox-dashboard-need-block, 
+    .cloudnox-dashboard-tabs-block,
+    .cloudnox-dashboard-alert-block,
+    .cloudnox-dashboard-add-cloud-account-block{
+        width: 100%!important;
+    }
+    
     .azure-inventory-detail-container {
         padding-left: 0px !important;
         padding-right: 0px !important;
