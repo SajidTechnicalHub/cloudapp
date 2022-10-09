@@ -1607,7 +1607,9 @@ main {
 .cloudnox-dashboard-need-content-logo-text-block{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap:10px;
+    margin-bottom: 10px;
 }
 .cloudnox-dashboard-need-text{
     font-size: 12px;
@@ -1619,7 +1621,93 @@ main {
     width: 15px;
     color: blue;
 }
+.add-account-margin{
+    margin-left: 25px;
+}
 
+.cloudnox-dashboard-geographic-map{
+    max-height: 400px;
+    height: fit-content;
+    
+    width: 100%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+}
+.cloudnox-dashboard-geographic-map-titlebar{
+    /* height: 20px; */
+    background: rgb(234, 242, 245);
+    color: grey;
+    width: 100%;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 2px 5px;
+}
+.cloudnox-dashboard-geographic-map-block{
+    display: flex;
+    justify-content: space-between;
+}
+.cloudnox-dashboard-geographic-map-container{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cloudnox-dashboard-geographic-map-cloud-acount-container{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+.cloudnox-dashboard-geographic-map-cloud-account-name-block{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.cloudnox-dashboard-geographic-map-cloud-account-azure-checkbox{
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid grey;
+    background-color: orange;
+}
+.cloudnox-dashboard-geographic-map-cloud-account-aws-checkbox{
+    font-size: 15px;
+    padding: 5px;
+    border: 1px solid grey;
+    background-color: blue;
+}
+.cloudnox-dashboard-geographic-map-cloud-account-name{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.dashboard-geographicMap-block{
+    width: 65%;
+}
+.cloudnox-dashboard-insights-block{
+    display: flex;
+    gap: 5px;
+    min-height: 300px;
+    height: fit-content;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.cloudnox-dashboard-alert-insights-block{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    width: 50%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.cloudnox-dashboard-network-insights-block{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    width: 50%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+  
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
     .cloudnox-dashboard-alert-need-block,
@@ -1631,6 +1719,7 @@ main {
         margin-bottom: 10px;
     }
     .cloudnox-dashboard-alert-high-block,
+    .dashboard-geographicMap-block,
     .cloudnox-dashboard-need-block, 
     .cloudnox-dashboard-tabs-block,
     .cloudnox-dashboard-alert-block,

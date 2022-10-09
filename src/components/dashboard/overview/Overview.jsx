@@ -8,8 +8,30 @@ import { Link } from 'react-router-dom'
 import { IoMdAlert } from 'react-icons/io';
 import { RiAlertFill } from 'react-icons/ri';
 import { BiCommentError } from 'react-icons/bi';
+import { FaPlus, FaFileInvoice } from 'react-icons/fa';
+import { AiFillDollarCircle } from 'react-icons/ai';
+import GeographicMap from './GeographicMap'
 
-
+const WhatNeed = [
+  {
+    id: 1,
+    path: '',
+    logo: <IoMdAlert className="cloudnox-dashboard-need-logo" />,
+    text: 'See current critical security alerts',
+    path1: '',
+    logo1: <FaFileInvoice className="cloudnox-dashboard-need-logo" />,
+    text1: 'See an inventory of cloud resource'
+  },
+  {
+    id: 2,
+    path: '',
+    logo: <AiFillDollarCircle className="cloudnox-dashboard-need-logo" />,
+    text: 'Monitor your cloud spend',
+    path1: '/dashboard/account-management',
+    logo1: <FaPlus className="cloudnox-dashboard-need-logo add-account-margin " />,
+    text1: 'Add a new account'
+  }
+]
 
 const Overview = () => {
 
@@ -119,33 +141,73 @@ const Overview = () => {
                 What Do You Need To Do?
               </span>
             </div>
-            <div className="cloudnox-dashboard-need-content-block">
-              <div className="cloudnox-dashboard-need-content-logo-text-block">
+            {WhatNeed.map((val, index) => {
+              return (
+                <React.Fragment key={index}>
+                  <div className="cloudnox-dashboard-need-content-block">
+                    <div className="cloudnox-dashboard-need-content-logo-text-block">
+                      <span className="">
+                        {val.logo}
+                      </span>
+                      <Link to={val.path}>
+                        <span className="cloudnox-dashboard-need-text">
+                          {val.text}
+                        </span>
+                      </Link>
+                    </div>
 
-                <span className="">
-                  <IoMdAlert className="cloudnox-dashboard-need-logo" />
-                </span>
-                <Link to=''>
-                  <span className="cloudnox-dashboard-need-text">
-                    See current critical security alerts
-                  </span>
-                </Link>
-              </div>
+                    <div className="cloudnox-dashboard-need-content-logo-text-block">
+                      <span className="">
+                        {val.logo1}
+                      </span>
+                      <Link to={val.path1}>
+                        <span className="cloudnox-dashboard-need-text">
+                          {val.text1}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </React.Fragment>
+              )
+            })}
 
-              <div className="cloudnox-dashboard-need-content-logo-text-block">
-
-                <span className="">
-                  <IoMdAlert className="cloudnox-dashboard-need-logo" />
-                </span>
-                <Link to=''>
-                  <span className="cloudnox-dashboard-need-text">
-                    See current critical security alerts
-                  </span>
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
+
+        <div className="cloudnox-dashboard-geographic-map">
+          <span className="cloudnox-dashboard-geographic-map-titlebar">
+            Cloud Geographical Distribution
+          </span>
+          <div className='cloudnox-dashboard-geographic-map-block'>
+            <span className='cloudnox-dashboard-geographic-map-container'>
+              <GeographicMap />
+            </span>
+            <span className='cloudnox-dashboard-geographic-map-cloud-acount-container'>
+              <span className="cloudnox-dashboard-geographic-map-cloud-account-name-block">
+                <span className='cloudnox-dashboard-geographic-map-cloud-account-azure-checkbox'></span>
+                <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>Azure </span>
+              </span>
+              <span className="cloudnox-dashboard-geographic-map-cloud-account-name-block">
+                <span className='cloudnox-dashboard-geographic-map-cloud-account-aws-checkbox'></span>
+                <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>AWS </span>
+              </span>
+
+            </span>
+          </div>
+
+        </div>
+
+        <div className="cloudnox-dashboard-insights-block">
+          <div className="cloudnox-dashboard-alert-insights-block">
+          <span className="cloudnox-dashboard-geographic-map-titlebar">
+            Alert Insights
+          </span>
+          </div>
+          <div className="cloudnox-dashboard-network-insights-block">
+
+          </div>
+        </div>
+
       </div>
     </>
 
