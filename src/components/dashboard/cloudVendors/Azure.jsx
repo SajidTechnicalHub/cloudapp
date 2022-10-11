@@ -287,7 +287,7 @@ const Azure = () => {
                                                 {
                                                   val.group_name == 'Service Health' ?
                                                     <span>{azureSupportsTickets?.length}</span> :
-                                                    <sapn>0</sapn>
+                                                    <span>0</span>
                                                 }
                                               </span>
                                           }
@@ -398,7 +398,7 @@ const Azure = () => {
                                                               {
                                                                 val.group_name == 'Public IP Addresses' ?
                                                                   <span>{azurePublicIpAddress?.length}</span> :
-                                                                  <sapn>0</sapn>
+                                                                  <span>0</span>
                                                               }
                                                             </span>
                                                         }
@@ -445,7 +445,7 @@ const Azure = () => {
                                 {
                                   val.group_name == 'Application Security Groups' ?
                                     <span>{azureApplicationSecurityGroups?.length}</span> :
-                                    <sapn>0</sapn>
+                                    <span>0</span>
                                 }
                               </span>
                           }

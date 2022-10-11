@@ -66,6 +66,7 @@ const columns = [
 ];
 
 
+
 const AzureApplicationkSecurityGroups = () => {
   const {
     azureApplicationSecurityGroups, setAzureApplicationSecurityGroups,
@@ -75,7 +76,6 @@ const AzureApplicationkSecurityGroups = () => {
 
   } = useContext(AppStateContext)
 
-  console.log(azureApplicationSecurityGroups)
   const navigate = useNavigate();
   const [q, setQ] = useState("")
   const [pageSize, setPageSize] = useState(5);
@@ -83,6 +83,20 @@ const AzureApplicationkSecurityGroups = () => {
     cloud_account: 'All Azure Cloud Accounts'
 
   })
+
+  ////////////////////////Delay Time//////////////////////
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  const makeRequest = async () => {
+    // console.log('before');
+    await delay(10000);
+    getAzureApplicationSecurityGroups()
+    // console.log('after');
+    setoAuth(false)
+    setIsLoading(false)
+  }
+  ////////////////////////////////////////////////////
 
   const Search = (azureApplicationSecurityGroups) => {
 
@@ -106,6 +120,8 @@ const AzureApplicationkSecurityGroups = () => {
       return { ...cloudAccount, [name]: value }
     })
   }
+
+
 
 
   const getAzureApplicationSecurityGroups = async () => {
@@ -133,12 +149,13 @@ const AzureApplicationkSecurityGroups = () => {
         Authorization: localStorage.getItem("token"),
       },
     })
+
       .then((res) => {
         console.log(res)
         if (res.ok == true) {
-          setoAuth(false)
-          setIsLoading(false)
-          getAzureApplicationSecurityGroups()
+          makeRequest();
+          // setoAuth(false)
+          // setIsLoading(false)
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
