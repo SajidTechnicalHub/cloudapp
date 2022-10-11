@@ -30,7 +30,7 @@ const NetworkInsights = () => {
     return (
         <>
             <BarChart
-                width={450}
+                width={500}
                 height={300}
                 data={data}
                 margin={{

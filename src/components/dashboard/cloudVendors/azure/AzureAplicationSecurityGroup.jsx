@@ -12,6 +12,7 @@ import axios from 'axios';
 import { baseUrl } from './GetAzureServices';
 import ApplicationSecurityGroupsLogo from '../../../images/ApplicationSecurityGroups.png'
 
+
 const columns = [
   {
     field: 'nsg_name',
@@ -19,6 +20,24 @@ const columns = [
     minWidth: 262,
     flex: true,
     editable: true,
+  },
+  {
+    field: 'region',
+    headerName: 'region',
+    minWidth: 262,
+    flex: true,
+    editable: true,
+
+    renderCell: (cellValues) => {
+      return (
+        <>
+          {cellValues.row.region.name}
+        </>
+
+      );
+    }
+
+
   },
 
   {
@@ -56,6 +75,7 @@ const AzureApplicationkSecurityGroups = () => {
 
   } = useContext(AppStateContext)
 
+  console.log(azureApplicationSecurityGroups)
   const navigate = useNavigate();
   const [q, setQ] = useState("")
   const [pageSize, setPageSize] = useState(5);
