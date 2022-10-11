@@ -30,6 +30,7 @@
     "react-scripts": "5.0.1",
     "react-simple-maps": "^3.0.0",
     "react-tooltip": "^4.2.21",
+    "recharts": "^2.1.14",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },

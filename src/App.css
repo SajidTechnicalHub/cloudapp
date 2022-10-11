@@ -1707,6 +1707,29 @@ main {
     width: 50%;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
+.cloudnox-dashboard-network-insights-title{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+}
+.cloudnox-dashboard-network-insights-radio{
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 3px;
+    margin-right: 10px;
+}
+.cloudnox-dashboard-network-insights-radio .css-ahj2mt-MuiTypography-root{
+    font-size: 15px!important;
+    font-family: Arial, Helvetica, sans-serif;
+}
   
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {

@@ -1,4 +1,9 @@
-import React from 'react'
+import * as React from 'react';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import TopBar from '../header/TopBar'
 import Test from '../../images/Test'
 import AWSLogo from '../../images/AWSLogo.png'
@@ -11,6 +16,8 @@ import { BiCommentError } from 'react-icons/bi';
 import { FaPlus, FaFileInvoice } from 'react-icons/fa';
 import { AiFillDollarCircle } from 'react-icons/ai';
 import GeographicMap from './GeographicMap'
+import AlertInsights from './AlertInsights'
+import NetworkInsights from './NetworkInsights'
 
 const WhatNeed = [
   {
@@ -199,12 +206,31 @@ const Overview = () => {
 
         <div className="cloudnox-dashboard-insights-block">
           <div className="cloudnox-dashboard-alert-insights-block">
-          <span className="cloudnox-dashboard-geographic-map-titlebar">
-            Alert Insights
-          </span>
+            <span className="cloudnox-dashboard-geographic-map-titlebar">
+              Alert Insights
+            </span>
+            <AlertInsights />
           </div>
           <div className="cloudnox-dashboard-network-insights-block">
-
+            <span className='cloudnox-dashboard-network-insights-title'>
+              Your Environments Network Insights
+            </span>
+            <span className='cloudnox-dashboard-network-insights-radio'>
+              <FormControl>
+               
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel value="aws" control={<Radio />} label="AWS" />
+                  <FormControlLabel value="azure" control={<Radio />} label="Azure" />
+                  <FormControlLabel value="gcp" control={<Radio />} label="GCP" />
+                  
+                </RadioGroup>
+              </FormControl>
+            </span>
+            <NetworkInsights />
           </div>
         </div>
 
