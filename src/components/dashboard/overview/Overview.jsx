@@ -75,7 +75,7 @@ const Overview = () => {
   }
 
   useEffect(() => {
-    getAzureRegion()
+    getAzureRegion() // get origions
   }, [])
   
 
