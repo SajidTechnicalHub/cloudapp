@@ -189,6 +189,17 @@ const AccountManagement = () => {
     setActiveTab(id)
   }
 
+  ////////////////////////Delay Time//////////////////////
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  const makeRequest = async () => {
+    await delay(2000);
+    getAllAzureSubscriptionResource()
+    setIsLoading(false)
+  }
+  ////////////////////////////////////////////////////
+
   const getAllAzureSubscriptionResource = async () => {
     setIsLoading(true)
     const response = await axios.get(`${baseUrl}/azure_accounts/update_subscription_total_resources`, {
@@ -219,8 +230,9 @@ const AccountManagement = () => {
         }),
       })
       const data = await response.json()
-      setIsLoading(false)
       console.log(data)
+      makeRequest()
+      
     }
 
     catch (error) {

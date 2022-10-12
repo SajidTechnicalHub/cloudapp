@@ -78,7 +78,17 @@ const AzureResourceGroups = () => {
     cloud_account: 'All Azure Cloud Accounts'
 
   })
-
+  ////////////////////////Delay Time//////////////////////
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  const makeRequest = async () => {
+    await delay(10000);
+    getResourceGroup()
+    setoAuth(false)
+    setIsLoading(false)
+  }
+  ////////////////////////////////////////////////////
   const Search = (resourceGroup) => {
 
     return resourceGroup?.filter(
@@ -130,18 +140,17 @@ const AzureResourceGroups = () => {
       .then((res) => {
         console.log(res)
         if (res.ok == true) {
-          setoAuth(false)
-          setIsLoading(false)
-          getResourceGroup()
+          makeRequest()
+
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
           navigate('/registration/signin')
-        }else if (res.status == "404") {
-                    
+        } else if (res.status == "404") {
+
           setIsLoading(false)
 
-      }
+        }
 
       })
 
@@ -157,7 +166,7 @@ const AzureResourceGroups = () => {
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-            <img src={ResourceGroupsLogo} alt="" className="azure-inventory-sub-groups-logo" />
+              <img src={ResourceGroupsLogo} alt="" className="azure-inventory-sub-groups-logo" />
 
               <span className='azure-inventory-detail-vnets-text'>All Resource Groups ({resourceGroup?.length})</span>
             </span>

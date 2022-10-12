@@ -28,12 +28,12 @@ const columns = [
         editable: true,
         renderCell: (cellValues) => {
             return (
-              <>
-                {cellValues.row.region.name}
-              </>
-      
+                <>
+                    {cellValues.row.region.name}
+                </>
+
             );
-          }
+        }
     },
     {
         field: 'ip_address',
@@ -84,7 +84,17 @@ const AzurePublicIpAddress = () => {
         cloud_account: 'All Azure Cloud Accounts'
 
     })
-
+    ////////////////////////Delay Time//////////////////////
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
+    const makeRequest = async () => {
+        await delay(10000);
+        getAzurePublicIpAddress()
+        setoAuth(false)
+        setIsLoading(false)
+    }
+    ////////////////////////////////////////////////////
     const Search = (azurePublicIpAddress) => {
 
         return azurePublicIpAddress.filter(
@@ -136,9 +146,8 @@ const AzurePublicIpAddress = () => {
             .then((res) => {
                 console.log(res)
                 if (res.ok == true) {
-                    setoAuth(false)
-                    setIsLoading(false)
-                    getAzurePublicIpAddress()
+                    makeRequest()
+                    
                 } else if (res.status == "401") {
                     setoAuth(true)
                     setIsLoading(false)

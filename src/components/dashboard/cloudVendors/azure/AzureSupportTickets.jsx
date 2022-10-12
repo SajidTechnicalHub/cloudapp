@@ -87,7 +87,17 @@ const AzureSupportTickets = () => {
     cloud_account: 'All Azure Cloud Accounts'
 
   })
-
+  ////////////////////////Delay Time//////////////////////
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  const makeRequest = async () => {
+    await delay(10000);
+    getAzureSupportsTickets()
+    setoAuth(false)
+    setIsLoading(false)
+  }
+  ////////////////////////////////////////////////////
   const Search = (azureSupportsTickets) => {
 
     return azureSupportsTickets.filter(
@@ -139,9 +149,7 @@ const AzureSupportTickets = () => {
       .then((res) => {
         console.log(res)
         if (res.ok == true) {
-          setoAuth(false)
-          setIsLoading(false)
-          getAzureSupportsTickets()
+          makeRequest()
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)

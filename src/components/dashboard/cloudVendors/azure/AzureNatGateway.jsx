@@ -78,6 +78,18 @@ const AzureNatGateway = () => {
 
     })
 
+    ////////////////////////Delay Time//////////////////////
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
+    const makeRequest = async () => {
+        await delay(10000);
+        getAzureNatGateway()
+        setoAuth(false)
+        setIsLoading(false)
+    }
+    ////////////////////////////////////////////////////
+
     const Search = (azureNatGateway) => {
 
         return azureNatGateway.filter(
@@ -129,9 +141,8 @@ const AzureNatGateway = () => {
             .then((res) => {
                 console.log(res)
                 if (res.ok == true) {
-                    setoAuth(false)
-                    setIsLoading(false)
-                    getAzureNatGateway()
+                    makeRequest()
+                    
                 } else if (res.status == "401") {
                     setoAuth(true)
                     setIsLoading(false)

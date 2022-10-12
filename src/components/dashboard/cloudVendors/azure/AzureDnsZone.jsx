@@ -76,6 +76,18 @@ const AzureDnsZone = () => {
 
     })
 
+    ////////////////////////Delay Time//////////////////////
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
+    const makeRequest = async () => {
+        await delay(10000);
+        getAzureDnsZone()
+        setoAuth(false)
+        setIsLoading(false)
+    }
+    ////////////////////////////////////////////////////
+
     const Search = (azureDnsZone) => {
 
         return azureDnsZone.filter(
@@ -126,9 +138,8 @@ const AzureDnsZone = () => {
             .then((res) => {
                 console.log(res)
                 if (res.ok == true) {
-                    setoAuth(false)
-                    setIsLoading(false)
-                    getAzureDnsZone()
+                    makeRequest()
+
                 } else if (res.status == "401") {
                     setoAuth(true)
                     setIsLoading(false)

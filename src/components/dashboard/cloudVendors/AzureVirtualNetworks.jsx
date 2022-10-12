@@ -83,7 +83,17 @@ const AzureVirtualNetworks = () => {
         cloud_account: 'All Azure Cloud Accounts'
 
     })
-
+////////////////////////Delay Time//////////////////////
+const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+);
+const makeRequest = async () => {
+    await delay(10000);
+    getVirtualNetwork()
+    setoAuth(false)
+    setIsLoading(false)
+}
+////////////////////////////////////////////////////
     const Search = (virtualNetwork) => {
 
         return virtualNetwork?.filter(
@@ -132,9 +142,8 @@ const AzureVirtualNetworks = () => {
             .then((res) => {
                 console.log(res)
                 if (res.ok == true) {
-                    setoAuth(false)
-                    setIsLoading(false)
-                    getVirtualNetwork()
+                    makeRequest()
+                    
                 } else if (res.status == "401") {
                     setoAuth(true)
                     setIsLoading(false)

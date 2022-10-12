@@ -30,6 +30,18 @@ const AzureSubscription = () => {
 
   })
 
+  ////////////////////////Delay Time//////////////////////
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  const makeRequest = async () => {
+    await delay(10000);
+    getAzureSubscription()
+    setoAuth(false)
+    setIsLoading(false)
+  }
+  ////////////////////////////////////////////////////
+
   const InputEvent = (e) => {
     const { name, value } = e.target;
     setCloudAccount(() => {
@@ -64,18 +76,17 @@ const AzureSubscription = () => {
       .then((res) => {
         console.log(res)
         if (res.ok == true) {
-          setoAuth(false) 
-          setIsLoading(false)
-          getAzureSubscription()
+          makeRequest()
+
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
           navigate('/registration/signin')
-        }else if (res.status == "404") {
-                    
+        } else if (res.status == "404") {
+
           setIsLoading(false)
 
-      }
+        }
 
       })
 
@@ -91,7 +102,7 @@ const AzureSubscription = () => {
         <div className="azure-inventory-detail-all-vnets-block">
           <span className="azure-inventory-detail-all-vnets-block-heading">
             <span className="azure-inventory-detail-vnets-block">
-            <img src={subscriptionGroup} alt="" className="azure-inventory-sub-groups-logo" />
+              <img src={subscriptionGroup} alt="" className="azure-inventory-sub-groups-logo" />
 
               <span className='azure-inventory-detail-vnets-text'>All Subscriptions ({azureSubscription?.length})</span>
             </span>

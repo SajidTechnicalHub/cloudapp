@@ -27,14 +27,14 @@ const columns = [
     flex: true,
     editable: true,
     renderCell: (cellValues) => {
-        return (
-          <>
-            {cellValues.row.region.name}
-          </>
-  
-        );
-      }
-},
+      return (
+        <>
+          {cellValues.row.region.name}
+        </>
+
+      );
+    }
+  },
 
   {
     field: 'subscription',
@@ -78,6 +78,17 @@ const AzureNetworkSecurityGroups = () => {
     cloud_account: 'All Azure Cloud Accounts'
 
   })
+  ////////////////////////Delay Time//////////////////////
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  const makeRequest = async () => {
+    await delay(10000);
+    getAzureNetworkSecurityGroups()
+    setoAuth(false)
+    setIsLoading(false)
+  }
+  ////////////////////////////////////////////////////
 
   const Search = (azureNetworkSecurityGroups) => {
 
@@ -130,9 +141,8 @@ const AzureNetworkSecurityGroups = () => {
       .then((res) => {
         console.log(res)
         if (res.ok == true) {
-          setoAuth(false)
-          setIsLoading(false)
-          getAzureNetworkSecurityGroups()
+          makeRequest()
+
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)

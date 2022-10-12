@@ -28,12 +28,12 @@ const columns = [
         editable: true,
         renderCell: (cellValues) => {
             return (
-              <>
-                {cellValues.row.region.name}
-              </>
-      
+                <>
+                    {cellValues.row.region.name}
+                </>
+
             );
-          }
+        }
     },
 
     {
@@ -77,7 +77,17 @@ const AzureVirtualWans = () => {
         cloud_account: 'All Azure Cloud Accounts'
 
     })
-
+    ////////////////////////Delay Time//////////////////////
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
+    const makeRequest = async () => {
+        await delay(10000);
+        getAzureVirtualWans()
+        setoAuth(false)
+        setIsLoading(false)
+    }
+    ////////////////////////////////////////////////////
     const Search = (azureVirtualWans) => {
 
         return azureVirtualWans.filter(
@@ -129,9 +139,8 @@ const AzureVirtualWans = () => {
             .then((res) => {
                 console.log(res)
                 if (res.ok == true) {
-                    setoAuth(false)
-                    setIsLoading(false)
-                    getAzureVirtualWans()
+                    makeRequest()
+
                 } else if (res.status == "401") {
                     setoAuth(true)
                     setIsLoading(false)

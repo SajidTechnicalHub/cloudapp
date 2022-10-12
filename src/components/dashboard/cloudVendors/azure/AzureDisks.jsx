@@ -86,10 +86,21 @@ const AzureDisks = () => {
     cloud_account: 'All Azure Cloud Accounts'
 
   })
+  ////////////////////////Delay Time//////////////////////
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  const makeRequest = async () => {
+    await delay(10000);
+    getAzureDisks()
+    setoAuth(false)
+    setIsLoading(false)
+  }
+  ////////////////////////////////////////////////////
 
   const Search = (azureDisks) => {
 
-    return azureDisks.filter(
+    return azureDisks?.filter(
       (row) =>
         cloudAccount.cloud_account == 'All Azure Cloud Accounts' ?
           row.name.toLowerCase().indexOf(q) > -1 ||
@@ -138,9 +149,8 @@ const AzureDisks = () => {
       .then((res) => {
         console.log(res)
         if (res.ok == true) {
-          setoAuth(false)
-          setIsLoading(false)
-          getAzureDisks()
+          makeRequest()
+          
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)
