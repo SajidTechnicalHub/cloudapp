@@ -21,11 +21,19 @@ const columns = [
         editable: true,
     },
     {
-        field: 'gateway_region',
+        field: 'region',
         headerName: 'Region',
         minWidth: 162,
         flex: true,
         editable: true,
+        renderCell: (cellValues) => {
+            return (
+              <>
+                {cellValues.row.region.name}
+              </>
+      
+            );
+          }
     },
 
     {

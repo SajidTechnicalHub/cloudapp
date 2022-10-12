@@ -33,6 +33,14 @@ const columns = [
     minWidth: 162,
     flex: true,
     editable: true,
+    renderCell: (cellValues) => {
+      return (
+        <>
+          {cellValues.row.region.name}
+        </>
+
+      );
+    }
   },
 
 

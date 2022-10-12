@@ -23,7 +23,7 @@ const columns = [
   },
   {
     field: 'region',
-    headerName: 'region',
+    headerName: 'Region',
     minWidth: 262,
     flex: true,
     editable: true,
