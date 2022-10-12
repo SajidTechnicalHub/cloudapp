@@ -285,7 +285,7 @@ const Azure = () => {
                                               <span>{azureSubscription?.length}</span> :
                                               <span>
                                                 {
-                                                  val.group_name == 'Service Health' ?
+                                                  val.group_name == 'Support Tickets' ?
                                                     <span>{azureSupportsTickets?.length}</span> :
                                                     <span>0</span>
                                                 }

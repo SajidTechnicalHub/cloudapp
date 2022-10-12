@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -18,6 +19,13 @@ import { AiFillDollarCircle } from 'react-icons/ai';
 import GeographicMap from './GeographicMap'
 import AlertInsights from './AlertInsights'
 import NetworkInsights from './NetworkInsights'
+
+import { useContext } from 'react'
+import { AppStateContext } from '../../Context'; 
+import Loading from '../cloudVendors/azure/Loading';
+import axios from 'axios';
+import { baseUrl } from '../cloudVendors/azure/GetAzureServices';
+
 
 const WhatNeed = [
   {
@@ -41,7 +49,35 @@ const WhatNeed = [
 ]
 
 const Overview = () => {
+  const {
+    resourceGroup, setResourceGroup,
+    accountCredentials, setAzureCredentails,
+    isoAuth, setoAuth,
+    isLoading, setIsLoading,
 
+  } = useContext(AppStateContext)
+
+  const getAzureRegion = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/azure_dashboards/index`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+   
+      console.log(response)
+      
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getAzureRegion()
+  }, [])
+  
 
   return (
     <>

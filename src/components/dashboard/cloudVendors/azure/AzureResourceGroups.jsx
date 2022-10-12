@@ -106,7 +106,7 @@ const AzureResourceGroups = () => {
 
     setIsLoading(false)
     if (response.data.status != 'No_record_find') {
-      setResourceGroup(response.data.razureResourceGroup)
+      setResourceGroup(response.data.azureResourceGroup)
     }
 
   }
