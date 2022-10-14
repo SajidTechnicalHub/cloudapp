@@ -1,4 +1,9 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import { useContext } from 'react'
+import { AppStateContext } from '../../Context';
+import Loading from '../cloudVendors/azure/Loading';
+import axios from 'axios';
+import { baseUrl } from '../cloudVendors/azure/GetAzureServices';
 import {
     BarChart,
     Bar,
@@ -8,24 +13,70 @@ import {
     Tooltip,
     Legend
 } from "recharts";
-const NetworkInsights = () => {
 
-    const data = [
-        {
-            name: "VNETs",
-            value: 69,
-        },
-        {
-            name: "MSGs",
-            value: 32,
-        },
-        {
-            name: "Public IPs",
-            value: 8,
-            
-        },
+
+const NetworkInsights = () => {
+    
+    const {
         
-    ];
+        isoAuth, setoAuth,
+        isLoading, setIsLoading,
+        azureNetworkInsights, setAzureNetworkInsights
+    
+      } = useContext(AppStateContext)
+   
+
+   const [azureNetworkInsightsData, setAzureNetworkInsightsData] = useState([])
+   const [azureVirtualNetworkData, setAzureVirtualNetworkData] = useState([])
+   const [azurePublicIpAddressData, setAzurePublicIpAddressData] = useState([])
+   const [azureNetworkSecurityGroupsdata, setazureNetworkSecurityGroupsdata] = useState([])
+   console.log('data',azureNetworkInsightsData)
+   const data = [
+    {
+        name: "VNETs",
+        value: azureVirtualNetworkData,
+    },
+    {
+        name: "NSGs",
+        value: azureNetworkSecurityGroupsdata,
+    },
+    {
+        name: "Public IPs",
+        value: azurePublicIpAddressData,
+        
+    },
+    
+];
+console.log('getdta',data[0].value)
+    const getAzurenetworks = async () => {
+        try {
+          const response = await axios.get(`${baseUrl}/azure_dashboards/azure_network_insights`, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: localStorage.getItem("token"),
+            },
+          })
+    
+          console.log('networlApi',response)
+          setAzureNetworkInsightsData(response.data)
+          console.log('network', azureNetworkInsightsData)
+          setAzureVirtualNetworkData(response.data.azureVitrualNetwork)
+          setAzurePublicIpAddressData(response.data.azurePublicIpAddress)
+          setazureNetworkSecurityGroupsdata(response.data.azureNetworkSecurityGroups)
+    
+        }
+        catch (error) {
+          console.log(error);
+        }
+      }
+    
+    
+    
+      useEffect(() => {
+        getAzurenetworks() 
+        
+        
+      }, [])
 
     return (
         <>

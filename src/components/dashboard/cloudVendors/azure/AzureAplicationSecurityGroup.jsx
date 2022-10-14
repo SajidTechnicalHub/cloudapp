@@ -89,10 +89,8 @@ const AzureApplicationkSecurityGroups = () => {
     resolve => setTimeout(resolve, ms)
   );
   const makeRequest = async () => {
-    // console.log('before');
     await delay(10000);
     getAzureApplicationSecurityGroups()
-    // console.log('after');
     setoAuth(false)
     setIsLoading(false)
   }

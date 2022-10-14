@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, createContext } from "react";
 import axios from "axios";
-import {  baseUrl } from "./dashboard/cloudVendors/azure/GetAzureServices";
+import { baseUrl } from "./dashboard/cloudVendors/azure/GetAzureServices";
 
 const AppStateContext = React.createContext();
 
@@ -33,8 +33,8 @@ const AppStateContextProvider = props => {
   const [randomNumber, setRandomNumber] = useState(0)
   const [randomNumberTimeInMinutes, setRandomNumberTimeInMinutes] = useState(0)
   const [forgotPasswordUser, setForgotPasswordUser] = useState([])
- 
-
+  const [azureRegion, setAzureRegion] = useState([])
+  const [azureNetworkInsights, setAzureNetworkInsights] = useState([])
 
   const getAccountDetails = async () => {
     try {
@@ -65,19 +65,38 @@ const AppStateContextProvider = props => {
       setAzureRecommendation(response.data.azureRecommendation)
       setAzureVirtualMachine(response.data.azureVirtualMachine)
       setAzureDisks(response.data.azureDisks)
+      setAzureRegion(response.data.azureRegion)
       setoAuth(false)
       setLoading(false)
     }
     catch (error) {
       console.log(error);
       setLoading(false)
-      
+
+    }
+  }
+  const getAzureRegion = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/azure_dashboards/index`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+
+      setAzureRegion(response.data.azure_region)
+
+
+    }
+    catch (error) {
+      console.log(error);
     }
   }
 
 
   useEffect(() => {
     getAccountDetails()
+    // getAzureRegion()
   }, [])
 
 
@@ -113,7 +132,9 @@ const AppStateContextProvider = props => {
       accountCredentials, setAzureCredentails,
       azureSubscription, setAzureSubscription,
       editAzureCredential, setEditAzureCredential,
-      forgotPasswordUser, setForgotPasswordUser
+      forgotPasswordUser, setForgotPasswordUser,
+      azureRegion, setAzureRegion,
+      azureNetworkInsights, setAzureNetworkInsights
 
 
     }}>

@@ -160,7 +160,8 @@ const makeRequest = async () => {
     return (
         <>
             <TopBar subtitle='Azure / All VNets' />
-            <span className='Login-error-message'> {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
+            <span className='Login-error-message'> 
+            {isoAuth === true ? 'You are Unauthorized! Please Login.' : ''}</span>
             <div className="azure-inventory-detail-container">
                 <div className="azure-inventory-detail-all-vnets-block">
                     <span className="azure-inventory-detail-all-vnets-block-heading">

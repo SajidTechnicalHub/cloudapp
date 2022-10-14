@@ -92,17 +92,17 @@ const AzureVirtualMachine = () => {
     cloud_account: 'All Azure Cloud Accounts'
 
   })
-////////////////////////Delay Time//////////////////////
-const delay = ms => new Promise(
-  resolve => setTimeout(resolve, ms)
-);
-const makeRequest = async () => {
-  await delay(10000);
-  getAzureVirtualMachine()
-  setoAuth(false)
-  setIsLoading(false)
-}
-////////////////////////////////////////////////////
+  ////////////////////////Delay Time//////////////////////
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
+  const makeRequest = async () => {
+    await delay(10000);
+    getAzureVirtualMachine()
+    setoAuth(false)
+    setIsLoading(false)
+  }
+  ////////////////////////////////////////////////////
   const Search = (azureVirtualMachine) => {
 
     return azureVirtualMachine.filter(
@@ -155,7 +155,7 @@ const makeRequest = async () => {
         console.log(res)
         if (res.ok == true) {
           makeRequest()
-          
+
         } else if (res.status == "401") {
           setoAuth(true)
           setIsLoading(false)

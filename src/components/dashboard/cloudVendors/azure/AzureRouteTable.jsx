@@ -28,12 +28,12 @@ const columns = [
         editable: true,
         renderCell: (cellValues) => {
             return (
-              <>
-                {cellValues.row.region.name}
-              </>
-      
+                <>
+                    {cellValues.row.region.name}
+                </>
+
             );
-          }
+        }
     },
 
     {
@@ -77,17 +77,17 @@ const AzureRouteTable = () => {
         cloud_account: 'All Azure Cloud Accounts'
 
     })
-  ////////////////////////Delay Time//////////////////////
-  const delay = ms => new Promise(
-    resolve => setTimeout(resolve, ms)
-  );
-  const makeRequest = async () => {
-    await delay(10000);
-    getAzureRouteTable()
-    setoAuth(false)
-    setIsLoading(false)
-  }
-  ////////////////////////////////////////////////////
+    ////////////////////////Delay Time//////////////////////
+    const delay = ms => new Promise(
+        resolve => setTimeout(resolve, ms)
+    );
+    const makeRequest = async () => {
+        await delay(10000);
+        getAzureRouteTable()
+        setoAuth(false)
+        setIsLoading(false)
+    }
+    ////////////////////////////////////////////////////
     const Search = (azureRouteTable) => {
 
         return azureRouteTable.filter(
@@ -139,7 +139,7 @@ const AzureRouteTable = () => {
                 console.log(res)
                 if (res.ok == true) {
                     makeRequest()
-                   
+
                 } else if (res.status == "401") {
                     setoAuth(true)
                     setIsLoading(false)
