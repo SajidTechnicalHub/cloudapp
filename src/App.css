@@ -1759,6 +1759,7 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-top: 5px;
+    gap: 5px;
 }
 .cloudnox-dashboard-alert-insights-progress-high-block{
     display: flex;

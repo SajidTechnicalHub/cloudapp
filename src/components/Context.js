@@ -36,6 +36,19 @@ const AppStateContextProvider = props => {
   const [azureRegion, setAzureRegion] = useState([])
   const [azureNetworkInsights, setAzureNetworkInsights] = useState([])
 
+  ////////////////////////////dashboar/////////////////////////////// 
+
+  // HighAvailability Progress Bar
+
+  const [highAvailabilityHighProgressBar, setHighAvailabilityHighProgressBar] = useState(0)
+  const [highAvailabilityMediumProgressBar, setHighAvailabilityMediumProgressBar] = useState(0)
+  const [highAvailabilityLowProgressBar, setHighAvailabilityLowProgressBar] = useState(0)
+
+  const [highAvailabilityHighImpact, setHighAvailabilityHighImpact] = useState(0)
+  const [highAvailabilityMediumImpact, setHighAvailabilityMediumImpact] = useState(0)
+  const [highAvailabilityLowImpact, setHighAvailabilityLowImpact] = useState(0)
+
+  /////////////////////////////////////////////////////////////////////////
   const getAccountDetails = async () => {
     try {
       const response = await axios.get(`${baseUrl}/azure_accounts/azure_account_details`, {
@@ -93,9 +106,43 @@ const AppStateContextProvider = props => {
     }
   }
 
+  const setProgressBarValues = async () => {
+
+    try {
+        const response = await axios.get(`${baseUrl}/azure_dashboards/azure_impact_count`, {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token"),
+            },
+        })
+        console.log('count impact', response)
+
+        setHighAvailabilityHighImpact(response.data.highAvailabilityHighImpact)
+        setHighAvailabilityMediumImpact(response.data.highAvailabilityMediumImpact)
+        setHighAvailabilityLowImpact(response.data.highAvailabilityLowImpact)
+
+        let total = highAvailabilityHighImpact + highAvailabilityMediumImpact + highAvailabilityLowImpact;
+        let highPer = (highAvailabilityHighImpact / total) * 100;
+        let mediumPer = (highAvailabilityMediumImpact / total) * 100;
+        let lowPer = (highAvailabilityLowImpact / total) * 100;
+
+        setHighAvailabilityHighProgressBar(Math.round(highPer))
+        setHighAvailabilityLowProgressBar(Math.round(lowPer))
+        setHighAvailabilityMediumProgressBar(Math.round(mediumPer))
+    }
+    catch (error) {
+        console.log(error);
+    }
+console.log('high value',highAvailabilityHighImpact)
+console.log('medium value',highAvailabilityMediumImpact)
+console.log('low value',highAvailabilityLowImpact)
+
+}
+
 
   useEffect(() => {
     getAccountDetails()
+    setProgressBarValues()
     // getAzureRegion()
   }, [])
 
@@ -134,7 +181,16 @@ const AppStateContextProvider = props => {
       editAzureCredential, setEditAzureCredential,
       forgotPasswordUser, setForgotPasswordUser,
       azureRegion, setAzureRegion,
-      azureNetworkInsights, setAzureNetworkInsights
+      azureNetworkInsights, setAzureNetworkInsights,
+
+      // dashboard
+      highAvailabilityHighProgressBar, setHighAvailabilityHighProgressBar,
+      highAvailabilityMediumProgressBar, setHighAvailabilityMediumProgressBar,
+      highAvailabilityLowProgressBar, setHighAvailabilityLowProgressBar,
+
+      highAvailabilityHighImpact, setHighAvailabilityHighImpact,
+      highAvailabilityMediumImpact, setHighAvailabilityMediumImpact,
+      highAvailabilityLowImpact, setHighAvailabilityLowImpact,
 
 
     }}>
