@@ -58,6 +58,8 @@ const Overview = () => {
 
   } = useContext(AppStateContext)
 
+  const [isChecked, setIsChecked] = useState('azure')
+
   ////////////////////////Delay Time//////////////////////
   const delay = ms => new Promise(
     resolve => setTimeout(resolve, ms)
@@ -74,7 +76,18 @@ const Overview = () => {
     setIsLoading(true)
     makeRequest()
   }, [])
+  const handleChekbox = (val) => {
+    if (val == 'aws') {
+      setIsChecked('aws')
+    }
+    else if (val == 'azure') {
+      setIsChecked('azure')
+    }
+    else if(val == 'gcp') {
+      setIsChecked('gcp')
+    }
 
+  }
 
   return (
     <>
@@ -231,11 +244,17 @@ const Overview = () => {
               <span className='cloudnox-dashboard-geographic-map-cloud-acount-container'>
                 <span className="cloudnox-dashboard-geographic-map-cloud-account-name-block">
                   <span className='cloudnox-dashboard-geographic-map-cloud-account-azure-checkbox'></span>
-                  <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>Azure </span>
+                  <span className="cloudnox-dashboard-geographic-map-cloud-account-name-desc-block">
+                    <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>Microsoft Azure </span>
+                    <span className="cloudnox-dashboard-geographic-map-cloud-account-name-desc">7 Regions(s) across 5 Continent(s)</span>
+                  </span>
                 </span>
                 <span className="cloudnox-dashboard-geographic-map-cloud-account-name-block">
                   <span className='cloudnox-dashboard-geographic-map-cloud-account-aws-checkbox'></span>
-                  <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>AWS </span>
+                  <span className="cloudnox-dashboard-geographic-map-cloud-account-name-desc-block">
+                    <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>AWS </span>
+                    <span className="cloudnox-dashboard-geographic-map-cloud-account-name-desc">7 Regions(s) across 5 Continent(s)</span>
+                  </span>
                 </span>
 
               </span>
@@ -261,10 +280,13 @@ const Overview = () => {
                     row
                     aria-labelledby="demo-row-radio-buttons-group-label"
                     name="row-radio-buttons-group"
+                    defaultValue="azure"
+                    
                   >
-                    <FormControlLabel value="aws" control={<Radio />} label="AWS" />
-                    <FormControlLabel value="azure" control={<Radio />} label="Azure" />
-                    <FormControlLabel value="gcp" control={<Radio />} label="GCP" />
+                    <FormControlLabel value='aws' onClick={() => handleChekbox('aws')} name='aws' control={<Radio size="small"  />} label="AWS" />
+                    <FormControlLabel value='azure' onClick={() => handleChekbox('azure')} name='azure' control={<Radio size="small"  />} label="Azure" />
+                    <FormControlLabel value='gcp' onClick={() => handleChekbox('gcp')} name='gcp' control={<Radio size="small"  />} label="GCP" />
+                    
 
                   </RadioGroup>
                 </FormControl>

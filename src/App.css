@@ -1650,20 +1650,20 @@ main {
     justify-content: space-between;
 }
 .cloudnox-dashboard-geographic-map-container{
-    width: 80%;
+    width: 75%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .cloudnox-dashboard-geographic-map-cloud-acount-container{
-    width: 20%;
+    width: 25%;
     display: flex;
     flex-direction: column;
     margin-top: 30px;
 }
 .cloudnox-dashboard-geographic-map-cloud-account-name-block{
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 5px;
 }
 .cloudnox-dashboard-geographic-map-cloud-account-azure-checkbox{
@@ -1671,19 +1671,21 @@ main {
     padding: 5px;
     border: 1px solid grey;
     background-color: orange;
+    margin-top: 5px;
 }
 .cloudnox-dashboard-geographic-map-cloud-account-aws-checkbox{
     font-size: 15px;
     padding: 5px;
     border: 1px solid grey;
     background-color: blue;
+    margin-top: 5px;
 }
 .cloudnox-dashboard-geographic-map-cloud-account-name{
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
 }
 .dashboard-geographicMap-block{
-    width: 65%;
+    width: 60%;
 }
 .cloudnox-dashboard-insights-block{
     display: flex;
@@ -1730,11 +1732,106 @@ main {
     font-size: 15px!important;
     font-family: Arial, Helvetica, sans-serif;
 }
+.cloudnox-dashboard-geographic-map-cloud-account-name-desc-block{
+    display: flex;
+    flex-direction: column;
+
+}
+.cloudnox-dashboard-geographic-map-cloud-account-name-desc{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+}
+.cloudnox-dashboard-alert-insights-content-block{
+    width:96%;
+    min-height: 70px;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    gap: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.cloudnox-dashboard-alert-insights-progress-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+.cloudnox-dashboard-alert-insights-progress-high-block{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.cloudnox-dashboard-alert-insights-progress-high-text,
+.cloudnox-dashboard-alert-insights-progress-medium-text,
+.cloudnox-dashboard-alert-insights-progress-low-text{
+    padding: 3px 15px;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+    font-weight: bold;
+}
+.cloudnox-dashboard-alert-insights-progress-high-text{
+    color: red;
+    background-color: rgb(241, 216, 216);
+}
+.cloudnox-dashboard-alert-insights-progress-medium-text{
+    color: red;
+    background-color: rgb(245, 234, 234);
+}
+.cloudnox-dashboard-alert-insights-progress-low-text{
+    /* color: red; */
+    background: rgb(234, 242, 245);
+}
+.cloudnox-dashboard-alert-insights-progress-high-count{
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.cloudnox-dashboard-alert-insights-progress-insights-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+.cloudnox-dashboard-alert-insights-progress-insights-desc-count-block{
+    display: flex;
+    align-items: center;
+}
+.cloudnox-dashboard-alert-insights-progress-insights-desc-count-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cloudnox-dashboard-alert-insights-progress-insights-count{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+}
+.cloudnox-dashboard-alert-insights-progress-insights-desc{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.cloudnox-dashboard-alert-insights-content-block .progress {
+    --bs-progress-height: 0.6rem!important;
+}
+.progress-bar-title{
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
   
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
     .cloudnox-dashboard-alert-need-block,
-    .cloudnox-dashboard-alert-high-medium-low-block{
+    .cloudnox-dashboard-alert-high-medium-low-block,
+    .cloudnox-dashboard-insights-block{
         flex-direction: column!important;
     }
     
@@ -1746,7 +1843,9 @@ main {
     .cloudnox-dashboard-need-block, 
     .cloudnox-dashboard-tabs-block,
     .cloudnox-dashboard-alert-block,
-    .cloudnox-dashboard-add-cloud-account-block{
+    .cloudnox-dashboard-add-cloud-account-block,
+    .cloudnox-dashboard-network-insights-block,
+    .cloudnox-dashboard-alert-insights-block{
         width: 100%!important;
     }
     
