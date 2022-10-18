@@ -57,7 +57,8 @@ const Overview = () => {
     totalHighImpact, setTotalHighImpact,
     totalMediumImpact, setTotalMediumImpact,
     totalLowImpact, setTotalLowImpact,
-
+    azureVirtualNetworkData, setAzureVirtualNetworkData,
+    totalAzureAccounts, setTotalAzureAccounts,
 
   } = useContext(AppStateContext)
 
@@ -77,7 +78,7 @@ const Overview = () => {
 
   const getTotalImpact = async () => {
     try {
-      const response = await axios.get(`${baseUrl}/azure_dashboards/azure__total_impact_count`, {
+      const response = await axios.get(`${baseUrl}/azure_dashboards/azure_total_impact_count`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: localStorage.getItem("token"),
@@ -95,8 +96,27 @@ const Overview = () => {
     }
   }
 
+  const getTotalAzureAccounts = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/azure_dashboards/azure_total_accounts`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      console.log('total azure accounts', response)
+      setTotalAzureAccounts(response.data.totalAzureAccounts)
+
+
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     setIsLoading(true)
+    getTotalAzureAccounts()
     getTotalImpact(); 
     makeRequest();
   }, [])
@@ -133,11 +153,11 @@ const Overview = () => {
                 </div>
                 <div className="cloudnox-dashboard-tabs-text-number-block">
                   <span className="cloudnox-dashboard-text">Cloud Accounts</span>
-                  <span className="cloudnox-dashboard-number">2</span>
+                  <span className="cloudnox-dashboard-number">{totalAzureAccounts}</span>
                 </div>
                 <div className="cloudnox-dashboard-tabs-text-number-block">
                   <span className="cloudnox-dashboard-text">Virtual Networks</span>
-                  <span className="cloudnox-dashboard-number">1</span>
+                  <span className="cloudnox-dashboard-number">{azureVirtualNetworkData}</span>
                 </div>
               </div>
             </div>

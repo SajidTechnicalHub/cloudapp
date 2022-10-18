@@ -34,13 +34,16 @@ const AppStateContextProvider = props => {
   const [randomNumberTimeInMinutes, setRandomNumberTimeInMinutes] = useState(0)
   const [forgotPasswordUser, setForgotPasswordUser] = useState([])
   const [azureRegion, setAzureRegion] = useState([])
-  const [azureNetworkInsights, setAzureNetworkInsights] = useState([])
+
+  // Networks Insights Bar chart data
+  const [azureVirtualNetworkData, setAzureVirtualNetworkData] = useState([])
+  const [azurePublicIpAddressData, setAzurePublicIpAddressData] = useState([])
+  const [azureNetworkSecurityGroupsdata, setazureNetworkSecurityGroupsdata] = useState([])
 
 
   ////////////////////////////dashboar/////////////////////////////// 
 
   // HighAvailability Progress Bar
-
   const [highAvailabilityHighProgressBar, setHighAvailabilityHighProgressBar] = useState(0)
   const [highAvailabilityMediumProgressBar, setHighAvailabilityMediumProgressBar] = useState(0)
   const [highAvailabilityLowProgressBar, setHighAvailabilityLowProgressBar] = useState(0)
@@ -52,10 +55,12 @@ const AppStateContextProvider = props => {
   /////////////////////////////////////////////////////////////////////////
 
   // total impact
-
   const [totalHighImpact, setTotalHighImpact] = useState([])
   const [totalMediumImpact, setTotalMediumImpact] = useState([])
   const [totalLowImpact, setTotalLowImpact] = useState([])
+
+  // Total Azure Accounts
+  const [totalAzureAccounts, setTotalAzureAccounts ] = useState(0)
 
   const getAccountDetails = async () => {
     try {
@@ -189,7 +194,7 @@ const AppStateContextProvider = props => {
       editAzureCredential, setEditAzureCredential,
       forgotPasswordUser, setForgotPasswordUser,
       azureRegion, setAzureRegion,
-      azureNetworkInsights, setAzureNetworkInsights,
+      
 
       // dashboard
       highAvailabilityHighProgressBar, setHighAvailabilityHighProgressBar,
@@ -204,6 +209,14 @@ const AppStateContextProvider = props => {
       totalHighImpact, setTotalHighImpact,
       totalMediumImpact, setTotalMediumImpact,
       totalLowImpact, setTotalLowImpact,
+
+      // Network Insights Bar Chart Data
+      azureVirtualNetworkData, setAzureVirtualNetworkData,
+      azurePublicIpAddressData, setAzurePublicIpAddressData,
+      azureNetworkSecurityGroupsdata, setazureNetworkSecurityGroupsdata,
+
+      // Total Azure Accounts
+      totalAzureAccounts, setTotalAzureAccounts,
 
     }}>
       {props.children}
