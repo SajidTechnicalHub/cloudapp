@@ -36,6 +36,7 @@ const AppStateContextProvider = props => {
   const [azureRegion, setAzureRegion] = useState([])
   const [azureNetworkInsights, setAzureNetworkInsights] = useState([])
 
+
   ////////////////////////////dashboar/////////////////////////////// 
 
   // HighAvailability Progress Bar
@@ -49,6 +50,13 @@ const AppStateContextProvider = props => {
   const [highAvailabilityLowImpact, setHighAvailabilityLowImpact] = useState(0)
 
   /////////////////////////////////////////////////////////////////////////
+
+  // total impact
+
+  const [totalHighImpact, setTotalHighImpact] = useState([])
+  const [totalMediumImpact, setTotalMediumImpact] = useState([])
+  const [totalLowImpact, setTotalLowImpact] = useState([])
+
   const getAccountDetails = async () => {
     try {
       const response = await axios.get(`${baseUrl}/azure_accounts/azure_account_details`, {
@@ -97,7 +105,7 @@ const AppStateContextProvider = props => {
         },
       })
 
-      setAzureRegion(response.data.azure_region)
+      setAzureRegion(response.data.azureRegion)
 
 
     }
@@ -109,35 +117,35 @@ const AppStateContextProvider = props => {
   const setProgressBarValues = async () => {
 
     try {
-        const response = await axios.get(`${baseUrl}/azure_dashboards/azure_impact_count`, {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: localStorage.getItem("token"),
-            },
-        })
-        console.log('count impact', response)
+      const response = await axios.get(`${baseUrl}/azure_dashboards/azure_impact_count`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      console.log('count impact', response)
 
-        setHighAvailabilityHighImpact(response.data.highAvailabilityHighImpact)
-        setHighAvailabilityMediumImpact(response.data.highAvailabilityMediumImpact)
-        setHighAvailabilityLowImpact(response.data.highAvailabilityLowImpact)
+      setHighAvailabilityHighImpact(response.data.highAvailabilityHighImpact)
+      setHighAvailabilityMediumImpact(response.data.highAvailabilityMediumImpact)
+      setHighAvailabilityLowImpact(response.data.highAvailabilityLowImpact)
 
-        let total = highAvailabilityHighImpact + highAvailabilityMediumImpact + highAvailabilityLowImpact;
-        let highPer = (highAvailabilityHighImpact / total) * 100;
-        let mediumPer = (highAvailabilityMediumImpact / total) * 100;
-        let lowPer = (highAvailabilityLowImpact / total) * 100;
+      let total = highAvailabilityHighImpact + highAvailabilityMediumImpact + highAvailabilityLowImpact;
+      let highPer = (highAvailabilityHighImpact / total) * 100;
+      let mediumPer = (highAvailabilityMediumImpact / total) * 100;
+      let lowPer = (highAvailabilityLowImpact / total) * 100;
 
-        setHighAvailabilityHighProgressBar(Math.round(highPer))
-        setHighAvailabilityLowProgressBar(Math.round(lowPer))
-        setHighAvailabilityMediumProgressBar(Math.round(mediumPer))
+      setHighAvailabilityHighProgressBar(Math.round(highPer))
+      setHighAvailabilityLowProgressBar(Math.round(lowPer))
+      setHighAvailabilityMediumProgressBar(Math.round(mediumPer))
     }
     catch (error) {
-        console.log(error);
+      console.log(error);
     }
-console.log('high value',highAvailabilityHighImpact)
-console.log('medium value',highAvailabilityMediumImpact)
-console.log('low value',highAvailabilityLowImpact)
+    console.log('high value', highAvailabilityHighImpact)
+    console.log('medium value', highAvailabilityMediumImpact)
+    console.log('low value', highAvailabilityLowImpact)
 
-}
+  }
 
 
   useEffect(() => {
@@ -192,6 +200,10 @@ console.log('low value',highAvailabilityLowImpact)
       highAvailabilityMediumImpact, setHighAvailabilityMediumImpact,
       highAvailabilityLowImpact, setHighAvailabilityLowImpact,
 
+      // total Impact
+      totalHighImpact, setTotalHighImpact,
+      totalMediumImpact, setTotalMediumImpact,
+      totalLowImpact, setTotalLowImpact,
 
     }}>
       {props.children}

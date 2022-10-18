@@ -54,7 +54,10 @@ const Overview = () => {
     accountCredentials, setAzureCredentails,
     isoAuth, setoAuth,
     isLoading, setIsLoading,
-    azureRegion, setAzureRegion
+    totalHighImpact, setTotalHighImpact,
+    totalMediumImpact, setTotalMediumImpact,
+    totalLowImpact, setTotalLowImpact,
+
 
   } = useContext(AppStateContext)
 
@@ -72,10 +75,32 @@ const Overview = () => {
   }
   ////////////////////////////////////////////////////
 
+  const getTotalImpact = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/azure_dashboards/azure__total_impact_count`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      console.log('total impact', response)
+      setTotalHighImpact(response.data.highImpact)
+      setTotalMediumImpact(response.data.mediumImpact)
+      setTotalLowImpact(response.data.lowImpact)
+
+
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     setIsLoading(true)
-    makeRequest()
+    getTotalImpact(); 
+    makeRequest();
   }, [])
+
   const handleChekbox = (val) => {
     if (val == 'aws') {
       setIsChecked('aws')
@@ -83,7 +108,7 @@ const Overview = () => {
     else if (val == 'azure') {
       setIsChecked('azure')
     }
-    else if(val == 'gcp') {
+    else if (val == 'gcp') {
       setIsChecked('gcp')
     }
 
@@ -171,21 +196,21 @@ const Overview = () => {
               </div>
               <div className="cloudnox-dashboard-alert-high-medium-low-block">
                 <div className="cloudnox-dashboard-alert-high-block">
-                  <span className="cloudnox-dashboard-alert-high-number">30</span>
+                  <span className="cloudnox-dashboard-alert-high-number">{totalHighImpact}</span>
                   <div className="cloudnox-dashboard-alert-high-logo-text-block">
                     <BiCommentError className="cloudnox-dashboard-alert-high-logo" />
                     <span className="cloudnox-dashboard-alert-high-text">High Alerts</span>
                   </div>
                 </div>
                 <div className="cloudnox-dashboard-alert-high-block">
-                  <span className="cloudnox-dashboard-alert-medium-number">23</span>
+                  <span className="cloudnox-dashboard-alert-medium-number">{totalMediumImpact}</span>
                   <div className="cloudnox-dashboard-alert-high-logo-text-block">
                     <RiAlertFill className="cloudnox-dashboard-alert-medium-logo" />
                     <span className="cloudnox-dashboard-alert-high-text">Medium Alerts</span>
                   </div>
                 </div>
                 <div className="cloudnox-dashboard-alert-high-block">
-                  <span className="cloudnox-dashboard-alert-low-number">12</span>
+                  <span className="cloudnox-dashboard-alert-low-number">{totalLowImpact}</span>
                   <div className="cloudnox-dashboard-alert-high-logo-text-block">
                     <IoMdAlert className="cloudnox-dashboard-alert-low-logo" />
                     <span className="cloudnox-dashboard-alert-high-text">Low Alerts</span>
@@ -281,12 +306,12 @@ const Overview = () => {
                     aria-labelledby="demo-row-radio-buttons-group-label"
                     name="row-radio-buttons-group"
                     defaultValue="azure"
-                    
+
                   >
-                    <FormControlLabel value='aws' onClick={() => handleChekbox('aws')} name='aws' control={<Radio size="small"  />} label="AWS" />
-                    <FormControlLabel value='azure' onClick={() => handleChekbox('azure')} name='azure' control={<Radio size="small"  />} label="Azure" />
-                    <FormControlLabel value='gcp' onClick={() => handleChekbox('gcp')} name='gcp' control={<Radio size="small"  />} label="GCP" />
-                    
+                    <FormControlLabel value='aws' onClick={() => handleChekbox('aws')} name='aws' control={<Radio size="small" />} label="AWS" />
+                    <FormControlLabel value='azure' onClick={() => handleChekbox('azure')} name='azure' control={<Radio size="small" />} label="Azure" />
+                    <FormControlLabel value='gcp' onClick={() => handleChekbox('gcp')} name='gcp' control={<Radio size="small" />} label="GCP" />
+
 
                   </RadioGroup>
                 </FormControl>

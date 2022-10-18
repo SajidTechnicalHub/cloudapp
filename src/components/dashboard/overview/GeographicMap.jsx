@@ -154,7 +154,7 @@ const azureRegionData = [
   {
     id: 21,
     region_name: 'Central India',
-    region_api_name: 'centralindia',
+    region_api_name: "centralindia",
     coordinates: [80.0982, 23.0707]
   },
   {
@@ -218,8 +218,8 @@ const GeographicMap = () => {
 
         if (azureRegion[j] == azureRegionData[i].region_api_name) {
           match = true;
-          console.log('matched data', azureRegionData[j])
-          break;
+          console.log('matched data', azureRegionData[i].region_api_name)
+          // break;
         }
 
       }
@@ -228,7 +228,7 @@ const GeographicMap = () => {
         // setNewRegionData(azureRegionData[i])
 
       }
-
+      
     }
     setNewRegionData(newArray)
     console.log('newArray', newArray)
@@ -243,9 +243,9 @@ const GeographicMap = () => {
           Authorization: localStorage.getItem("token"),
         },
       })
-
-      setAzureRegion(response.data.azureRegion)
-
+      console.log('response region', response.data.azureRegion)
+      setAzureRegion(response.data)
+      
 
     }
     catch (error) {
@@ -256,7 +256,7 @@ const GeographicMap = () => {
 
 
   useEffect(() => {
-    // getAzureRegion() 
+    getAzureRegion() 
     setRegion()
     
   }, [])
