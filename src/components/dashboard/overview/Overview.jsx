@@ -117,7 +117,7 @@ const Overview = () => {
   useEffect(() => {
     setIsLoading(true)
     getTotalAzureAccounts()
-    getTotalImpact(); 
+    getTotalImpact();
     makeRequest();
   }, [])
 
@@ -210,7 +210,7 @@ const Overview = () => {
                 <span className="cloudnox-dashboard-alert-view-heading">
                   Alert Summary
                 </span>
-                <Link to='/'>
+                <Link to='/dashboard/summary'>
                   <span className="cloudnox-dashboard-alert-view-text">View All</span>
                 </Link>
               </div>
@@ -289,17 +289,15 @@ const Overview = () => {
               <span className='cloudnox-dashboard-geographic-map-cloud-acount-container'>
                 <span className="cloudnox-dashboard-geographic-map-cloud-account-name-block">
                   <span className='cloudnox-dashboard-geographic-map-cloud-account-azure-checkbox'></span>
-                  <span className="cloudnox-dashboard-geographic-map-cloud-account-name-desc-block">
-                    <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>Microsoft Azure </span>
-                    <span className="cloudnox-dashboard-geographic-map-cloud-account-name-desc">7 Regions(s) across 5 Continent(s)</span>
-                  </span>
+
+                  <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>Microsoft Azure </span>
+
                 </span>
                 <span className="cloudnox-dashboard-geographic-map-cloud-account-name-block">
                   <span className='cloudnox-dashboard-geographic-map-cloud-account-aws-checkbox'></span>
-                  <span className="cloudnox-dashboard-geographic-map-cloud-account-name-desc-block">
-                    <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>AWS </span>
-                    <span className="cloudnox-dashboard-geographic-map-cloud-account-name-desc">7 Regions(s) across 5 Continent(s)</span>
-                  </span>
+
+                  <span className='cloudnox-dashboard-geographic-map-cloud-account-name'>Amazon Web Services </span>
+
                 </span>
 
               </span>
