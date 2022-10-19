@@ -1876,12 +1876,50 @@ main {
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* //////////////////////////Summmary////////////////////// */
+.summary-security-description-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+    height: fit-content;
+    background: #83a5b1;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+.summary-security-description-text{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.summary-security-description-dropdown-block{
+    display: flex;
+    gap: 10px;
+        
+}
+.summary-security-description-dropdown select {
+    width: auto;
+    font-size: 12px;
+    border: 1px solid lightgrey;
+    background: white;
+    outline: none;
+    border-radius: 2px;
+    padding: 8px;
+    padding-left: 2px;
+    width: 150px;
+}
+
+/* //////////////////////////////////////////////////// */
   
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
     .cloudnox-dashboard-alert-need-block,
     .cloudnox-dashboard-alert-high-medium-low-block,
-    .cloudnox-dashboard-insights-block{
+    .cloudnox-dashboard-insights-block,
+    .summary-security-description-block,
+    .summary-security-description-dropdown-block{
         flex-direction: column!important;
     }
     
@@ -1895,7 +1933,9 @@ main {
     .cloudnox-dashboard-alert-block,
     .cloudnox-dashboard-add-cloud-account-block,
     .cloudnox-dashboard-network-insights-block,
-    .cloudnox-dashboard-alert-insights-block{
+    .cloudnox-dashboard-alert-insights-block,
+    .summary-security-description-dropdown-block,
+    .summary-security-description-dropdown{
         width: 100%!important;
     }
     

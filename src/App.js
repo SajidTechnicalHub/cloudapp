@@ -5,7 +5,7 @@ import DashboardLyout from "./components/dashboard/dashboardLayout/DashboardLyou
 import SignIn from "./components/registration/SignIn";
 import SignUp from "./components/registration/SignUp";
 import Overview from "./components/dashboard/overview/Overview";
-import Summary from "./components/dashboard/cloudInsights/Summary";
+import Summary from "./components/dashboard/cloudInsights/summary/Summary";
 import Reports from "./components/dashboard/cloudInsights/Reports";
 import AccountManagement from "./components/dashboard/accountManagement/AccountManagement";
 import Aws from './components/dashboard/cloudVendors/Aws'
@@ -36,6 +36,10 @@ import AzureAplicationSecurityGroup from "./components/dashboard/cloudVendors/az
 import AzureNetworkSecurityGroups from "./components/dashboard/cloudVendors/azure/AzureNetworkSecurityGroups";
 import AzureStorageAccounts from "./components/dashboard/cloudVendors/azure/AzureStorageAccounts";
 import RegistrationLayout from "./components/registration/RegistrationLayout";
+
+// Summary's Components
+import Security from "./components/dashboard/cloudInsights/summary/Security";
+import CostOptimization from "./components/dashboard/cloudInsights/summary/CostOptimization";
 
 function App() {
   const navigate = useNavigate();
@@ -83,7 +87,12 @@ function App() {
           <Route path="azure/storageAccounts" element={<AzureStorageAccounts />} />
 
           <Route path="GCP" element={<Gcp />} />
+
+          {/* Summary routes */}
           <Route path="summary" element={<Summary />} />
+          <Route path="summary/security" element={<Security />} />
+          <Route path="summary/cost-optimization" element={<CostOptimization />} />
+
           <Route path="reports" element={<Reports />} />
           <Route path="account-management" element={<AccountManagement />} />
         </Route>

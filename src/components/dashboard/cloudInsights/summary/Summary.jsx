@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import TopBar from '../header/TopBar'
+import TopBar from '../../header/TopBar'
 import { AiFillSecurityScan } from 'react-icons/ai'
 import { MdOutlineEdit } from 'react-icons/md'
 import { CgArrowTopRightR } from 'react-icons/cg'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react'
-import { AppStateContext } from '../../Context';
-import Loading from '../cloudVendors/azure/Loading';
+import { AppStateContext } from '../../../Context';
+import Loading from '../../cloudVendors/azure/Loading'
 import axios from 'axios';
-import { baseUrl } from '../cloudVendors/azure/GetAzureServices';
+import { baseUrl } from '../../cloudVendors/azure/GetAzureServices'
 const Summary = () => {
   const {
 
@@ -28,6 +28,7 @@ const Summary = () => {
     {
       id: 1,
       text: 'Detect threats and vulnerabilities that might lead to security breaches and improve your security posture of cloud resources.',
+      path:'/dashboard/summary/security',
       name: 'Security',
       lowImpact: 0,
       mediumImpact: 0,
@@ -40,6 +41,7 @@ const Summary = () => {
 
       id: 2,
       text: 'Optimize and reduce your overall cloud spending by removing unused or idle resources. ',
+      path:'/dashboard/summary/cost-optimization',
       name: 'Cost Optimization',
       lowImpact: 0,
       mediumImpact: 0,
@@ -51,6 +53,7 @@ const Summary = () => {
     {
       id: 3,
       text: 'To ensure and improve the continuity of your business-critical applications. Improve the speed of your applications',
+      path:'',
       name: 'Performance & Reliability',
       lowImpact: highAvailabilityLowImpact,
       mediumImpact: highAvailabilityMediumImpact,
@@ -64,6 +67,7 @@ const Summary = () => {
     {
       id: 4,
       text: 'Help you achieve process and workflow efficiency, resource manageability, and deployment best practices',
+      path:'',
       name: 'Operational Excellence',
       lowImpact: 0,
       mediumImpact: 0,
@@ -80,7 +84,7 @@ const Summary = () => {
         return (
           <React.Fragment key={index}>
             <div className="cloudnox-summary">
-              <Link to=''>
+              <Link to={val.path}>
               <div className='cloudnox-dashboard-alert-insights-content-block' style={{ padding: '10px' }}>
                 <AiFillSecurityScan fontSize='40px' color='blue' />
                 <div className="d-block w-100">
