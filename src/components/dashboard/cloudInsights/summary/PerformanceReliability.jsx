@@ -39,6 +39,15 @@ const columns = [
 ];
 
 const PerformanceReliability = () => {
+    const {
+
+        isoAuth, setoAuth,
+        isLoading, setIsLoading,
+        performanceReliabilityHighImpact, setPerformanceReliabilityHighImpact,
+        performanceReliabilityMediumImpact, setPerformanceReliabilityMediumImpact,
+        performanceReliabilityLowImpact, setPerformanceReliabilityLowImpact,
+    
+      } = useContext(AppStateContext)
     const navigate = useNavigate();
     const [q, setQ] = useState("")
     const [pageSize, setPageSize] = useState(5);
@@ -58,25 +67,25 @@ const PerformanceReliability = () => {
         {
             id: 1,
             impactText: 'Total Insights Criteria',
-            impactNumber: 20,
+            impactNumber: performanceReliabilityHighImpact+performanceReliabilityMediumImpact+performanceReliabilityLowImpact,
             resource: ''
         },
         {
             id: 2,
             impactText: 'HIGH IMPACT',
-            impactNumber: 20,
+            impactNumber: performanceReliabilityHighImpact,
             resource: 'Resources'
         },
         {
             id: 3,
             impactText: 'MEDIUM IMPACT',
-            impactNumber: 20,
+            impactNumber: performanceReliabilityMediumImpact,
             resource: 'Resources'
         },
         {
             id: 4,
             impactText: 'LOW IMPACT',
-            impactNumber: 20,
+            impactNumber: performanceReliabilityLowImpact,
             resource: 'Resources'
         }
     ]
@@ -91,7 +100,7 @@ const PerformanceReliability = () => {
                 <div className="summary-security-description-dropdown-block">
                     <span className="summary-security-description-dropdown">
                         <select
-                            name="cloud_account"
+                            name=""
                             value=''
                         // onChange={InputEvent}
                         >
@@ -109,7 +118,7 @@ const PerformanceReliability = () => {
                     </span>
                     <span className="summary-security-description-dropdown">
                         <select
-                            name="cloud_account"
+                            name=""
                             value=''
                         // onChange={InputEvent}
                         >
