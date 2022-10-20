@@ -40,6 +40,7 @@ import RegistrationLayout from "./components/registration/RegistrationLayout";
 // Summary's Components
 import Security from "./components/dashboard/cloudInsights/summary/Security";
 import CostOptimization from "./components/dashboard/cloudInsights/summary/CostOptimization";
+import PerformanceReliability from "./components/dashboard/cloudInsights/summary/PerformanceReliability";
 
 function App() {
   const navigate = useNavigate();
@@ -91,6 +92,7 @@ function App() {
           {/* Summary routes */}
           <Route path="summary" element={<Summary />} />
           <Route path="summary/security" element={<Security />} />
+          <Route path="summary/performance-reliability" element={<PerformanceReliability />} />
           <Route path="summary/cost-optimization" element={<CostOptimization />} />
 
           <Route path="reports" element={<Reports />} />

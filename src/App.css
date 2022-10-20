@@ -1179,7 +1179,10 @@ main {
     font-weight: bold;
 }
 
-.azure-inventory-detail-container .css-1jbbcbn-MuiDataGrid-columnHeaderTitle {
+/* .azure-inventory-detail-container .css-1jbbcbn-MuiDataGrid-columnHeaderTitle {
+    font-weight: bold !important;
+} */
+.css-1jbbcbn-MuiDataGrid-columnHeaderTitle {
     font-weight: bold !important;
 }
 
@@ -1877,6 +1880,7 @@ main {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
 /* //////////////////////////Summmary////////////////////// */
 .summary-security-description-block{
     display: flex;
@@ -1899,8 +1903,8 @@ main {
     gap: 10px;
         
 }
+
 .summary-security-description-dropdown select {
-    width: auto;
     font-size: 12px;
     border: 1px solid lightgrey;
     background: white;
@@ -1908,13 +1912,81 @@ main {
     border-radius: 2px;
     padding: 8px;
     padding-left: 2px;
-    width: 150px;
+    min-width: 150px;
+    width: auto;
+}
+.security-impact-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+}
+.security-impact-block{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px ;
+    width: 240px;
+    min-height: 60px;
+    height: fit-content;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.security-impact-total{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.security-impact-number-resource-block{
+    display: flex;
+    flex-direction: column;
+}
+.security-impact-resource{
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -5px;
+}
+.security-impact-number{
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.security-impact-high-text,
+.security-impact-medium-text,
+.security-impact-low-text{
+    padding: 3px 15px;
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 3px;
+    /* font-weight: bold; */
+}
+.security-impact-high-text{
+    color: red;
+    background-color: rgb(241, 216, 216);
+}
+.security-impact-medium-text{
+    color: red;
+    background-color: rgb(245, 234, 234);
+}
+.security-impact-low-text{
+    /* color: red; */
+    background: rgb(234, 242, 245);
+}
+.security-datagrid-container{
+    padding: 0px 20px 20px;
 }
 
 /* //////////////////////////////////////////////////// */
   
 /* //////////////////////////Media Queries////////////////////// */
 @media(max-width:992px) {
+  
+   
+    .cloudnox-summary .cloudnox-dashboard-alert-insights-content-block{
+        margin-left: 0px!important;
+        margin-right: 0px!important;
+        flex-direction: column!important;
+        
+    }
+    .security-impact-container, 
     .cloudnox-dashboard-alert-need-block,
     .cloudnox-dashboard-alert-high-medium-low-block,
     .cloudnox-dashboard-insights-block,
@@ -1927,16 +1999,36 @@ main {
         margin-bottom: 10px;
     }
     .cloudnox-dashboard-alert-high-block,
-    .dashboard-geographicMap-block,
+    .dashboard-geographicMap-block,.security-impact-block,
     .cloudnox-dashboard-need-block, 
     .cloudnox-dashboard-tabs-block,
     .cloudnox-dashboard-alert-block,
     .cloudnox-dashboard-add-cloud-account-block,
     .cloudnox-dashboard-network-insights-block,
     .cloudnox-dashboard-alert-insights-block,
-    .summary-security-description-dropdown-block,
-    .summary-security-description-dropdown{
+    .summary-security-description-dropdown-block{
         width: 100%!important;
+    }
+    .summary-security-description-dropdown select{
+        min-width: 280px!important;
+    }
+    .summary-security-description-dropdown-block{
+        align-items: center!important;
+        justify-content: center!important;
+        margin-top: 10px;
+    }
+    .cloudnox-summary{
+        
+        margin-left: -40px!important;
+        margin-right: -40px!important;
+    }
+    .cloudnox-dashboard-alert-insights-content-logo{
+        display: none;
+    }
+    .summary-security-description-block{
+        margin-left: -20px!important;
+        margin-right: -20px!important;
+        width: auto;
     }
     
     .azure-inventory-detail-container {

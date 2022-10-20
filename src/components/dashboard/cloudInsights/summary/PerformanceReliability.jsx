@@ -38,7 +38,7 @@ const columns = [
 
 ];
 
-const Security = () => {
+const PerformanceReliability = () => {
     const navigate = useNavigate();
     const [q, setQ] = useState("")
     const [pageSize, setPageSize] = useState(5);
@@ -83,7 +83,7 @@ const Security = () => {
 
     return (
         <>
-            <TopBar subtitle='Summary / Security' />
+            <TopBar subtitle='Summary / Performance & Reliability' />
             <div className="summary-security-description-block">
                 <span className="summary-security-description-text">
                     Detect threats and vulnerabilities that might lead to security breaches and improve your security posture of cloud resources.
@@ -179,4 +179,4 @@ const Security = () => {
     )
 }
 
-export default Security
+export default PerformanceReliability

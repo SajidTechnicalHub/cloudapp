@@ -43,14 +43,14 @@ const AppStateContextProvider = props => {
 
   ////////////////////////////dashboar/////////////////////////////// 
 
-  // HighAvailability Progress Bar
-  const [highAvailabilityHighProgressBar, setHighAvailabilityHighProgressBar] = useState(0)
-  const [highAvailabilityMediumProgressBar, setHighAvailabilityMediumProgressBar] = useState(0)
-  const [highAvailabilityLowProgressBar, setHighAvailabilityLowProgressBar] = useState(0)
+  // HighAvailability Progress Bar performanceReliability
+  const [performanceReliabilityHighProgressBar, setPerformanceReliabilityHighProgressBar] = useState(0)
+  const [performanceReliabilityMediumProgressBar, setPerformanceReliabilityMediumProgressBar] = useState(0)
+  const [performanceReliabilityLowProgressBar, setPerformanceReliabilityLowProgressBar] = useState(0)
 
-  const [highAvailabilityHighImpact, setHighAvailabilityHighImpact] = useState(0)
-  const [highAvailabilityMediumImpact, setHighAvailabilityMediumImpact] = useState(0)
-  const [highAvailabilityLowImpact, setHighAvailabilityLowImpact] = useState(0)
+  const [performanceReliabilityHighImpact, setPerformanceReliabilityHighImpact] = useState(0)
+  const [performanceReliabilityMediumImpact, setPerformanceReliabilityMediumImpact] = useState(0)
+  const [performanceReliabilityLowImpact, setPerformanceReliabilityLowImpact] = useState(0)
 
   /////////////////////////////////////////////////////////////////////////
 
@@ -130,25 +130,25 @@ const AppStateContextProvider = props => {
       })
       console.log('count impact', response)
 
-      setHighAvailabilityHighImpact(response.data.highAvailabilityHighImpact)
-      setHighAvailabilityMediumImpact(response.data.highAvailabilityMediumImpact)
-      setHighAvailabilityLowImpact(response.data.highAvailabilityLowImpact)
+      setPerformanceReliabilityHighImpact(response.data.performanceReliabilityHighImpact)
+      setPerformanceReliabilityMediumImpact(response.data.performanceReliabilityMediumImpact)
+      setPerformanceReliabilityLowImpact(response.data.performanceReliabilityLowImpact)
 
-      let total = highAvailabilityHighImpact + highAvailabilityMediumImpact + highAvailabilityLowImpact;
-      let highPer = (highAvailabilityHighImpact / total) * 100;
-      let mediumPer = (highAvailabilityMediumImpact / total) * 100;
-      let lowPer = (highAvailabilityLowImpact / total) * 100;
+      let total = performanceReliabilityHighImpact + performanceReliabilityMediumImpact + performanceReliabilityLowImpact;
+      let highPer = (performanceReliabilityHighImpact / total) * 100;
+      let mediumPer = (performanceReliabilityMediumImpact / total) * 100;
+      let lowPer = (performanceReliabilityLowImpact / total) * 100;
 
-      setHighAvailabilityHighProgressBar(Math.round(highPer))
-      setHighAvailabilityLowProgressBar(Math.round(lowPer))
-      setHighAvailabilityMediumProgressBar(Math.round(mediumPer))
+      setPerformanceReliabilityHighProgressBar(Math.round(highPer))
+      setPerformanceReliabilityLowProgressBar(Math.round(lowPer))
+      setPerformanceReliabilityMediumProgressBar(Math.round(mediumPer))
     }
     catch (error) {
       console.log(error);
     }
-    console.log('high value', highAvailabilityHighImpact)
-    console.log('medium value', highAvailabilityMediumImpact)
-    console.log('low value', highAvailabilityLowImpact)
+    console.log('high value', performanceReliabilityHighImpact)
+    console.log('medium value', performanceReliabilityMediumImpact)
+    console.log('low value', performanceReliabilityLowImpact)
 
   }
 
@@ -197,13 +197,13 @@ const AppStateContextProvider = props => {
       
 
       // dashboard
-      highAvailabilityHighProgressBar, setHighAvailabilityHighProgressBar,
-      highAvailabilityMediumProgressBar, setHighAvailabilityMediumProgressBar,
-      highAvailabilityLowProgressBar, setHighAvailabilityLowProgressBar,
+      performanceReliabilityHighProgressBar, setPerformanceReliabilityHighProgressBar,
+      performanceReliabilityMediumProgressBar, setPerformanceReliabilityMediumProgressBar,
+      performanceReliabilityLowProgressBar, setPerformanceReliabilityLowProgressBar,
 
-      highAvailabilityHighImpact, setHighAvailabilityHighImpact,
-      highAvailabilityMediumImpact, setHighAvailabilityMediumImpact,
-      highAvailabilityLowImpact, setHighAvailabilityLowImpact,
+      performanceReliabilityHighImpact, setPerformanceReliabilityHighImpact,
+      performanceReliabilityMediumImpact, setPerformanceReliabilityMediumImpact,
+      performanceReliabilityLowImpact, setPerformanceReliabilityLowImpact,
 
       // total Impact
       totalHighImpact, setTotalHighImpact,

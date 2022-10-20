@@ -14,13 +14,13 @@ const AlertInsights = () => {
 
         isoAuth, setoAuth,
         isLoading, setIsLoading,
-        highAvailabilityHighProgressBar, setHighAvailabilityHighProgressBar,
-        highAvailabilityMediumProgressBar, setHighAvailabilityMediumProgressBar,
-        highAvailabilityLowProgressBar, setHighAvailabilityLowProgressBar,
-
-        highAvailabilityHighImpact, setHighAvailabilityHighImpact,
-        highAvailabilityMediumImpact, setHighAvailabilityMediumImpact,
-        highAvailabilityLowImpact, setHighAvailabilityLowImpact,
+        performanceReliabilityHighProgressBar, setPerformanceReliabilityHighProgressBar,
+        performanceReliabilityMediumProgressBar, setPerformanceReliabilityMediumProgressBar,
+        performanceReliabilityLowProgressBar, setPerformanceReliabilityLowProgressBar,
+    
+        performanceReliabilityHighImpact, setPerformanceReliabilityHighImpact,
+        performanceReliabilityMediumImpact, setPerformanceReliabilityMediumImpact,
+        performanceReliabilityLowImpact, setPerformanceReliabilityLowImpact,
 
     } = useContext(AppStateContext)
 
@@ -35,18 +35,18 @@ const AlertInsights = () => {
             })
             console.log('count impact', response)
 
-            setHighAvailabilityHighImpact(response.data.highAvailabilityHighImpact)
-            setHighAvailabilityMediumImpact(response.data.highAvailabilityMediumImpact)
-            setHighAvailabilityLowImpact(response.data.highAvailabilityLowImpact)
+            setPerformanceReliabilityHighImpact(response.data. performanceReliabilityHighImpact)
+            setPerformanceReliabilityMediumImpact(response.data. performanceReliabilityMediumImpact)
+            setPerformanceReliabilityLowImpact(response.data. performanceReliabilityLowImpact)
 
-            let total = highAvailabilityHighImpact + highAvailabilityMediumImpact + highAvailabilityLowImpact;
-            let highPer = (highAvailabilityHighImpact / total) * 100;
-            let mediumPer = (highAvailabilityMediumImpact / total) * 100;
-            let lowPer = (highAvailabilityLowImpact / total) * 100;
+            let total =  performanceReliabilityHighImpact +  performanceReliabilityMediumImpact +  performanceReliabilityLowImpact;
+            let highPer = ( performanceReliabilityHighImpact / total) * 100;
+            let mediumPer = ( performanceReliabilityMediumImpact / total) * 100;
+            let lowPer = ( performanceReliabilityLowImpact / total) * 100;
 
-            setHighAvailabilityHighProgressBar(Math.round(highPer))
-            setHighAvailabilityLowProgressBar(Math.round(lowPer))
-            setHighAvailabilityMediumProgressBar(Math.round(mediumPer))
+            setPerformanceReliabilityHighProgressBar(Math.round(highPer))
+            setPerformanceReliabilityLowProgressBar(Math.round(lowPer))
+            setPerformanceReliabilityMediumProgressBar(Math.round(mediumPer))
         }
         catch (error) {
             console.log(error);
@@ -81,12 +81,12 @@ const AlertInsights = () => {
         {
             id: 3,
             name: 'Performance & Reliability',
-            lowImpact: highAvailabilityLowImpact,
-            mediumImpact: highAvailabilityMediumImpact,
-            highImpact: highAvailabilityHighImpact,
-            lowImpactProgressBar: highAvailabilityLowProgressBar,
-            mediumImpactProgressBar: highAvailabilityMediumProgressBar,
-            highImpactProgressBar: highAvailabilityHighProgressBar,
+            lowImpact:  performanceReliabilityLowImpact,
+            mediumImpact:  performanceReliabilityMediumImpact,
+            highImpact:  performanceReliabilityHighImpact,
+            lowImpactProgressBar:  performanceReliabilityLowProgressBar,
+            mediumImpactProgressBar:  performanceReliabilityMediumProgressBar,
+            highImpactProgressBar:  performanceReliabilityHighProgressBar,
         },
 
 

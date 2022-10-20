@@ -14,16 +14,16 @@ const Summary = () => {
 
     isoAuth, setoAuth,
     isLoading, setIsLoading,
-    highAvailabilityHighProgressBar, setHighAvailabilityHighProgressBar,
-    highAvailabilityMediumProgressBar, setHighAvailabilityMediumProgressBar,
-    highAvailabilityLowProgressBar, setHighAvailabilityLowProgressBar,
+    performanceReliabilityHighProgressBar, setPerformanceReliabilityHighProgressBar,
+    performanceReliabilityMediumProgressBar, setPerformanceReliabilityMediumProgressBar,
+    performanceReliabilityLowProgressBar, setPerformanceReliabilityLowProgressBar,
 
-    highAvailabilityHighImpact, setHighAvailabilityHighImpact,
-    highAvailabilityMediumImpact, setHighAvailabilityMediumImpact,
-    highAvailabilityLowImpact, setHighAvailabilityLowImpact,
+    performanceReliabilityHighImpact, setPerformanceReliabilityHighImpact,
+    performanceReliabilityMediumImpact, setPerformanceReliabilityMediumImpact,
+    performanceReliabilityLowImpact, setPerformanceReliabilityLowImpact,
 
   } = useContext(AppStateContext)
-
+  
   const progressBarData = [
     {
       id: 1,
@@ -53,14 +53,14 @@ const Summary = () => {
     {
       id: 3,
       text: 'To ensure and improve the continuity of your business-critical applications. Improve the speed of your applications',
-      path:'',
+      path:'/dashboard/summary/performance-reliability',
       name: 'Performance & Reliability',
-      lowImpact: highAvailabilityLowImpact,
-      mediumImpact: highAvailabilityMediumImpact,
-      highImpact: highAvailabilityHighImpact,
-      lowImpactProgressBar: highAvailabilityLowProgressBar,
-      mediumImpactProgressBar: highAvailabilityMediumProgressBar,
-      highImpactProgressBar: highAvailabilityHighProgressBar,
+      lowImpact: performanceReliabilityLowImpact,
+      mediumImpact: performanceReliabilityMediumImpact,
+      highImpact: performanceReliabilityHighImpact,
+      lowImpactProgressBar: performanceReliabilityLowProgressBar,
+      mediumImpactProgressBar: performanceReliabilityMediumProgressBar,
+      highImpactProgressBar: performanceReliabilityHighProgressBar,
     },
 
 
@@ -86,7 +86,7 @@ const Summary = () => {
             <div className="cloudnox-summary">
               <Link to={val.path}>
               <div className='cloudnox-dashboard-alert-insights-content-block' style={{ padding: '10px' }}>
-                <AiFillSecurityScan fontSize='40px' color='blue' />
+                <AiFillSecurityScan className='cloudnox-dashboard-alert-insights-content-logo' fontSize='40px' color='blue' />
                 <div className="d-block w-100">
                   <span className='progress-bar-title'>{val.name}</span><br />
                   <span className='progress-bar-title-text'>{val.text}</span>
