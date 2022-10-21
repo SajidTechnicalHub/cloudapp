@@ -6,7 +6,7 @@ import SignIn from "./components/registration/SignIn";
 import SignUp from "./components/registration/SignUp";
 import Overview from "./components/dashboard/overview/Overview";
 import Summary from "./components/dashboard/cloudInsights/summary/Summary";
-import Reports from "./components/dashboard/cloudInsights/Reports";
+import Reports from "./components/dashboard/cloudInsights/reports/Reports"; 
 import AccountManagement from "./components/dashboard/accountManagement/AccountManagement";
 import Aws from './components/dashboard/cloudVendors/Aws'
 import Azure from './components/dashboard/cloudVendors/Azure'

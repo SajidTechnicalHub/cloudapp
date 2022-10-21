@@ -44,7 +44,7 @@ const NetworkInsights = () => {
     },
 
   ];
-  console.log('getdta', data[0].value)
+  
   const getAzurenetworks = async () => {
     try {
       const response = await axios.get(`${baseUrl}/azure_dashboards/azure_network_insights`, {

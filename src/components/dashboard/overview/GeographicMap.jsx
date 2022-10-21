@@ -74,7 +74,7 @@ const azureRegionData = [
     region_api_name: 'westus3',
     coordinates: [-84.219856, 39.338692]
   },
- 
+
   {
     id: 10,
     region_name: 'France Central',
@@ -210,8 +210,6 @@ const GeographicMap = () => {
   const [newRegionData, setNewRegionData] = useState([])
 
   const setRegion = () => {
-    console.log('get api region data', azureRegion)
-
     var newArray = []
     for (var i = 0; i < azureRegionData?.length; i++) {
       var match = false;
@@ -219,7 +217,6 @@ const GeographicMap = () => {
 
         if (azureRegion[j] == azureRegionData[i].region_api_name) {
           match = true;
-          console.log('matched data', azureRegionData[i].region_api_name)
           break;
         }
 
@@ -232,8 +229,7 @@ const GeographicMap = () => {
 
     }
     setNewRegionData(newArray)
-    console.log('newArray', newArray)
-    console.log('newRegionData', newRegionData)
+
   }
 
   const getAzureRegion = async () => {
@@ -246,40 +242,12 @@ const GeographicMap = () => {
       })
       console.log('response region', response.data.azureRegion)
       setAzureRegion(response.data.azureRegion)
-      getvalue()
+      setRegion()
 
     }
     catch (error) {
       console.log(error);
     }
-  }
-
-  const getvalue = () => {
-    // for (var i = 0; i < azureRegionData?.length; i++) {
-    //   var match = false;
-    //   for (var j = 0; j < azureRegion.length; j++) {
-
-    //     if (azureRegion[j] == azureRegionData[i].region_api_name) {
-    //       match = true;
-    //       console.log('matched data', azureRegionData[i].region_api_name)
-    //       break;
-    //     }
-
-    //   }
-    //   if (match) {
-    //     newArray.push(azureRegionData[i])
-    //     // setNewRegionData(azureRegionData[i])
-
-    //   }
-
-    // }
-    azureRegion.map((val, inde) => {
-      azureRegionData.map((curr, index) => {
-        if (curr.region_api_name == val) {
-          console.log(curr.coordinates)
-        }
-      })
-    })
   }
 
   useEffect(() => {
@@ -296,9 +264,7 @@ const GeographicMap = () => {
 
   return (
     <div className="dashboard-geographicMap-block">
-      {/* {azureRegion.map((val)=>{
-            return(console.log(val))
-          })} */}
+
       <ReactTooltip>
         {content}
 
@@ -331,34 +297,7 @@ const GeographicMap = () => {
               ))
             }
           </Geographies>
-          {/* <Marker coordinates={[69.3451, 30.3753,]}>
-            <circle r={8} fill="orange" />
-          </Marker> */}
-          {azureRegion.map((val, index) => {
-            azureRegionData.map((curr, index) => {
-              if (curr.region_api_name == val) {
-                console.log(curr.region_api_name)
-                console.log(curr.coordinates)
-                return (
-                  <React.Fragment key={index}>
-                    <Marker coordinates={curr.coordinates}>
-                      <circle r={8} fill="blue" />
-                      <text
-                        textAnchor="middle"
-                        y='-15'
-                        style={{ fontSize: '20px', fill: 'grey' }}
-                      >
-                        {curr.region_name}
-                      </text>
-                    </Marker>
-                  </React.Fragment>
-                )
-              }
-            })
-          })
-          }
-
-          {/* {newRegionData?.map((region, index) => {
+          {newRegionData?.map((region, index) => {
             return (
               <React.Fragment key={index}>
                 <Marker coordinates={region.coordinates}>
@@ -373,7 +312,7 @@ const GeographicMap = () => {
                 </Marker>
               </React.Fragment>
             )
-          })} */}
+          })}
 
 
 
