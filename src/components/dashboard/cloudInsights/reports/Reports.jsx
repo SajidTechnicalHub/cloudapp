@@ -11,9 +11,13 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { baseUrl } from '../../cloudVendors/azure/GetAzureServices';
 import PdfReport from './PdfReport';
+import { PDFViewer } from '@react-pdf/renderer';
 import { VscFilePdf } from 'react-icons/vsc';
 import { MdDelete } from 'react-icons/md';
-import {GrDocumentPdf} from 'react-icons/gr'
+import { GrDocumentPdf } from 'react-icons/gr'
+import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer'
+
+
 
 // Model
 import Backdrop from '@mui/material/Backdrop';
@@ -27,13 +31,15 @@ import Typography from '@mui/material/Typography';
 const style = {
   position: 'absolute',
   top: '50%',
-  left: '50%',
+  left: '80%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  border: '1px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 2,
+  width: '40%',
+  height: '100%',
 };
 const columns = [
   {
@@ -62,13 +68,19 @@ const columns = [
     headerName: 'Reports',
     minWidth: 50,
     flex: true,
-    sorting:false,
+    sorting: false,
     renderCell: (cellValues) => {
       return (
         <>
           <div className="cloud-insights-report-block">
-            <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red'/></span>
-            <span className="cloud-insights-report-delete-icon"><MdDelete/></span>
+            <div>
+              <PDFDownloadLink document={<PdfReport />} fileName="somename.pdf">
+                {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 
+                <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span>)}
+              </PDFDownloadLink>
+            </div>
+            {/* <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span> */}
+            <span className="cloud-insights-report-delete-icon"><MdDelete /></span>
           </div>
         </>
 
@@ -78,24 +90,24 @@ const columns = [
 
 
 ];
-const RowData =[
+const RowData = [
   {
-    id:1,
-    report_name:'abc',
-    report_description:'details',
-    scope:'Azure/All Accounts'
+    id: 1,
+    report_name: 'abc',
+    report_description: 'details',
+    scope: 'Azure/All Accounts'
   },
   {
-    id:2,
-    report_name:'abc',
-    report_description:'details',
-    scope:'Azure/All Accounts'
+    id: 2,
+    report_name: 'abc',
+    report_description: 'details',
+    scope: 'Azure/All Accounts'
   },
   {
-    id:2,
-    report_name:'abc',
-    report_description:'details',
-    scope:'Azure/All Accounts'
+    id: 2,
+    report_name: 'abc',
+    report_description: 'details',
+    scope: 'Azure/All Accounts'
   },
 ]
 
@@ -137,9 +149,9 @@ const Reports = () => {
 
     return RowData.filter(
       (row) =>
-        
-          row.report_name.toLowerCase().indexOf(q) > -1 ||
-          row.report_name.indexOf(q) > -1
+
+        row.report_name.toLowerCase().indexOf(q) > -1 ||
+        row.report_name.indexOf(q) > -1
 
     );
   }
@@ -148,11 +160,15 @@ const Reports = () => {
   return (
     <>
       <TopBar subtitle='Summary / Reports' />
-      {/* <PdfReport/> */}
+      {/* <PDFViewer>
+      <PdfReport/>
+      </PDFViewer> */}
+
+
       <div className="summary-security-description-block">
         <span className="summary-security-description-text">
-          Create your reports across various Cloud Service Providers, 
-          the accounts within them, and the security, cost optimization, performance & reliability, 
+          Create your reports across various Cloud Service Providers,
+          the accounts within them, and the security, cost optimization, performance & reliability,
           and operational excellence recommendations across your cloud resources.
         </span>
       </div>
@@ -167,10 +183,10 @@ const Reports = () => {
           </div>
           <div className="referesh-container">
             <span className="referesh-block">
-              <FiRefreshCcw  />
+              <FiRefreshCcw />
             </span>
             <span className="referesh-block">
-              <FiPlus onClick={handleOpen}/>
+              <FiPlus onClick={handleOpen} />
             </span>
           </div>
         </div>
@@ -187,31 +203,32 @@ const Reports = () => {
             {...RowData}
             // components={{ Toolbar: GridToolbar }}
             disableSelectionOnClick
+            checkboxSelection
           />
         </Box>
         {/* Add Report */}
         <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-          </Box>
-        </Fade>
-      </Modal>
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <Box sx={style}>
+              <Typography id="transition-modal-title" variant="h6" component="h2">
+                Text in a modal
+              </Typography>
+              <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              </Typography>
+            </Box>
+          </Fade>
+        </Modal>
       </div>
     </>
   )
