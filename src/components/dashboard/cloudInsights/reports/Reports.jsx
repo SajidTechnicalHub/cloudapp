@@ -16,6 +16,7 @@ import { VscFilePdf } from 'react-icons/vsc';
 import { MdDelete } from 'react-icons/md';
 import { GrDocumentPdf } from 'react-icons/gr'
 import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer'
+import CreateReport from './CreateReport';
 
 
 
@@ -35,9 +36,8 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 500,
   bgcolor: 'background.paper',
-  border: '1px solid #000',
+  // border: '1px solid background: rgb(234, 242, 245)',
   boxShadow: 24,
-  p: 2,
   width: '40%',
   height: '100%',
 };
@@ -74,9 +74,10 @@ const columns = [
         <>
           <div className="cloud-insights-report-block">
             <div>
-              <PDFDownloadLink document={<PdfReport />} fileName="somename.pdf">
-                {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 
-                <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span>)}
+              {/* {console.log('cellValue', cellValues.row)} */}
+              <PDFDownloadLink document={<PdfReport abc={cellValues.row.report_name} />} fileName={cellValues.row.report_name}>
+                {({ blob, url, loading, error }) => (loading ? 'Loading document...' :
+                  <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span>)}
               </PDFDownloadLink>
             </div>
             {/* <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span> */}
@@ -93,19 +94,19 @@ const columns = [
 const RowData = [
   {
     id: 1,
-    report_name: 'abc',
+    report_name: 'azure',
     report_description: 'details',
     scope: 'Azure/All Accounts'
   },
   {
     id: 2,
-    report_name: 'abc',
+    report_name: 'aws',
     report_description: 'details',
     scope: 'Azure/All Accounts'
   },
   {
-    id: 2,
-    report_name: 'abc',
+    id: 3,
+    report_name: 'gcp',
     report_description: 'details',
     scope: 'Azure/All Accounts'
   },
@@ -161,7 +162,7 @@ const Reports = () => {
     <>
       <TopBar subtitle='Summary / Reports' />
       {/* <PDFViewer>
-      <PdfReport/>
+        <PdfReport />
       </PDFViewer> */}
 
 
@@ -220,12 +221,11 @@ const Reports = () => {
         >
           <Fade in={open}>
             <Box sx={style}>
-              <Typography id="transition-modal-title" variant="h6" component="h2">
-                Text in a modal
-              </Typography>
-              <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-              </Typography>
+             
+              <CreateReport
+              handleClose={handleClose}
+              />
+            
             </Box>
           </Fade>
         </Modal>

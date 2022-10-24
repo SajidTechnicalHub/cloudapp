@@ -121,7 +121,7 @@ const Summary = () => {
                     </span>
                   </span>
                   <span className='cloudnox-dashboard-alert-insights-progress-insights-link'>
-                    <Link to='/dashboard/summary'><CgArrowTopRightR color='blue' /></Link>
+                    <CgArrowTopRightR color='blue' />
                   </span>
                 </span>
 

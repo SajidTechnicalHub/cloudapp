@@ -2081,6 +2081,16 @@ main {
     color: red;
     cursor: pointer;
 }
+.create-report-model-container{
+    padding: 10px;
+}
+.create-report-model-title{
+    height: 50px;
+    background: rgb(234, 242, 245);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
 
 
 /* //////////////////////////Media Queries////////////////////// */

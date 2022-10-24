@@ -6,29 +6,38 @@ import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 const styles = StyleSheet.create({
     page: {
         flexDirection: 'row',
-        backgroundColor: '#E4E4E4'
+        backgroundColor: '#fff',
+        position:'relative'
     },
     section: {
         margin: 10,
         padding: 10,
         flexGrow: 1
+    },
+    pageNumber: {
+        position:'absolute',
+        fontSize:'12px',
+        bottom:30,
+        left:0,
+        right:0,
+        textAlign:'center',
+        color:'grey'
     }
 });
 
 
-const PdfReport = () => {
-
+const PdfReport = (props) => {
     return (
         <>
             <Document>
                 <Page size="A4" style={styles.page}>
                     <View style={styles.section}>
-                        <Text>Section #1</Text>
+                        <Text>Report Name: {props.abc}</Text>
                     </View>
                     <View style={styles.section}>
                         <Text>Section #2</Text>
                     </View>
-                    <Text render={({ pageNumber, totalPages }) => (
+                    <Text style={styles.pageNumber} render={({ pageNumber, totalPages }) => (
                         `${pageNumber} / ${totalPages}`
                     )} fixed />
                 </Page>

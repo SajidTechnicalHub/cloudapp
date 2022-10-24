@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { FiPlus, FiRefreshCcw, FiSearch, FiEdit2, } from 'react-icons/fi'
 import { useContext } from 'react'
@@ -10,6 +10,7 @@ import TopBar from '../../header/TopBar';
 import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { baseUrl } from '../../cloudVendors/azure/GetAzureServices';
+
 
 const columns = [
     {
@@ -28,7 +29,6 @@ const columns = [
         renderCell: (cellValues) => {
             return (
                 <>
-
                     <span className={
                         cellValues.row.impact == 'High' ? 'security-impact-high-text' :
                             cellValues.row.impact == 'Medium' ? 'security-impact-medium-text' :
@@ -36,7 +36,6 @@ const columns = [
                     }>
                         {cellValues.row.impact}
                     </span>
-
                 </>
 
             );
@@ -48,15 +47,7 @@ const columns = [
         minWidth: 300,
         flex: true,
         editable: true,
-        renderCell: (cellValues) => {
-            return (
-                <>
-                    <div >
-                        {cellValues.row.impact_value = 0}</div>
-                </>
 
-            );
-        }
     },
     {
         field: 'account_name',
@@ -68,79 +59,162 @@ const columns = [
     },
 
 ];
-
 const PerformanceReliability = () => {
     const {
 
         isoAuth, setoAuth,
         isLoading, setIsLoading,
-        performanceReliabilityHighImpact, setPerformanceReliabilityHighImpact,
-        performanceReliabilityMediumImpact, setPerformanceReliabilityMediumImpact,
-        performanceReliabilityLowImpact, setPerformanceReliabilityLowImpact,
+
         accountCredentials, setAzureCredentails,
         azureRecommendation, setAzureRecommendation,
 
+        highAvailabilityPerformanceHighImpact, setHighAvailabilityPerformanceHighImpact,
+        highAvailabilityPerformanceMediumImpact, setHighAvailabilityPerformanceMediumImpact,
+        highAvailabilityPerformanceLowImpact, setHighAvailabilityPerformanceLowImpact,
+        highAvailabilityPerformanceAllImpact, setHighAvailabilityPerformanceAllImpact,
 
     } = useContext(AppStateContext)
     const navigate = useNavigate();
     const [q, setQ] = useState("")
     const [pageSize, setPageSize] = useState(5);
-    const [cloudAccount, setCloudAccount] = useState({
-        cloud_account: 'Accounts (Default All)'
 
-    })
+    const [countHighImpact, setCountHighImpact] = useState(0)
+    const [countMediumImpact, setCountMediumImpact] = useState(0)
+    const [countLowImpact, setCountLowImpact] = useState(0)
+    const [countCloudInsightImpact, setCountCloudInsightImpact] = useState()
+
+    const [cloudAccount, setCloudAccount] = useState('Accounts (Default All)')
 
 
+    
     const impactValue = [
         {
             id: 1,
             impactText: 'Total Insights Criteria',
-            impactNumber: performanceReliabilityHighImpact + performanceReliabilityMediumImpact + performanceReliabilityLowImpact,
+            impactNumber: countCloudInsightImpact,
             resource: ''
         },
         {
             id: 2,
             impactText: 'HIGH IMPACT',
-            impactNumber: performanceReliabilityHighImpact,
+            impactNumber: highAvailabilityPerformanceHighImpact,
             resource: 'Resources'
         },
         {
             id: 3,
             impactText: 'MEDIUM IMPACT',
-            impactNumber: performanceReliabilityMediumImpact,
+            impactNumber: highAvailabilityPerformanceMediumImpact,
             resource: 'Resources'
         },
         {
             id: 4,
             impactText: 'LOW IMPACT',
-            impactNumber: performanceReliabilityLowImpact,
+            impactNumber: highAvailabilityPerformanceLowImpact,
             resource: 'Resources'
         }
     ]
 
     const InputEvent = (e) => {
         const { name, value } = e.target;
-        setCloudAccount(() => {
-            return { ...cloudAccount, [name]: value }
-        })
+        updateData(e.target.value)
+        setCloudAccount(e.target.value)
+        
     }
 
-    const Search = (azureRecommendation) => {
+    const getPerformanceReliabilityData = async () => {
+        try {
+            setIsLoading(true)
+            const response = await axios.get(`${baseUrl}/azure_dashboards/azure_single_impact_recommendations`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: localStorage.getItem("token"),
+                },
+            })
 
-        return azureRecommendation.filter(
+            setIsLoading(false)
+            console.log(response)
+            setHighAvailabilityPerformanceHighImpact(response.data.high_availability_performance_high_impact)
+            setHighAvailabilityPerformanceMediumImpact(response.data.high_availability_performance_medium_impact)
+            setHighAvailabilityPerformanceLowImpact(response.data.high_availability_performance_low_impact)
+            setHighAvailabilityPerformanceAllImpact(response.data.high_availability_performance_all_impact)
+            setCountCloudInsightImpact(response.data.high_availability_performance_total_impact)
+            console.log('avail',highAvailabilityPerformanceAllImpact)
+        }
+        catch (error) {
+            setIsLoading(false)
+            console.log(error)
+        }
+
+
+    }
+    const getSingleAccountData = async (value) => {
+        setIsLoading(true)
+        try {
+          const response = await fetch(`${baseUrl}/azure_dashboards/azure_single_account_recommendation_count`, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: localStorage.getItem("token"),
+            },
+            body: JSON.stringify({
+                account_name: value
+            }),
+          })
+          const res = await response.json()
+          console.log(res)
+          setHighAvailabilityPerformanceHighImpact(res.high_availability_performance_high_impact)
+          setHighAvailabilityPerformanceMediumImpact(res.high_availability_performance_medium_impact)
+          setHighAvailabilityPerformanceLowImpact(res.high_availability_performance_low_impact)
+          setCountCloudInsightImpact(res.high_availability_performance_total_impact)
+          
+        }
+    
+        catch (error) {
+          setIsLoading(false)
+          console.log(error)
+          if(error == `SyntaxError: Unexpected token 'S', "Signature "... is not valid JSON`){
+            navigate('/')
+          }
+        }
+      }
+    
+
+   
+
+    const Search = (highAvailabilityPerformanceAllImpact) => {
+
+        return highAvailabilityPerformanceAllImpact?.filter(
             (row) =>
-                cloudAccount.cloud_account == 'Accounts (Default All)' ?
+                cloudAccount == 'Accounts (Default All)' ?
                     row.description.toLowerCase().indexOf(q) > -1 ||
                     row.description.indexOf(q) > -1 :
 
-                    (row.account_name.toLowerCase().indexOf(cloudAccount.cloud_account) > -1 ||
-                        row.account_name.indexOf(cloudAccount.cloud_account) > -1) &&
+                    (row.account_name.toLowerCase().indexOf(cloudAccount) > -1 ||
+                        row.account_name.indexOf(cloudAccount) > -1) &&
                     (row.description.toLowerCase().indexOf(q) > -1 ||
                         row.description.indexOf(q) > -1)
 
         );
     }
 
+    const updateData =(value)=>{
+        console.log('value', value)
+        if(value == 'Accounts (Default All)'){
+            getPerformanceReliabilityData(value)
+        }else{
+            getSingleAccountData(value)
+        }
+    }
+
+    useEffect(() => {
+        // if(cloudAccount.cloud_account == 'Accounts (Default All)'){
+        //     getPerformanceReliabilityData()
+        // }else{
+        //     getSingleAccountData()
+        // }
+        getPerformanceReliabilityData()
+        
+    }, [])
 
     return (
         <>
@@ -172,7 +246,7 @@ const PerformanceReliability = () => {
                     <span className="summary-security-description-dropdown">
                         <select
                             name="cloud_account"
-                            value={cloudAccount.cloud_account}
+                            value={cloudAccount}
                             onChange={InputEvent}
 
                         >
@@ -226,16 +300,17 @@ const PerformanceReliability = () => {
             <div className="security-datagrid-container">
                 <Box sx={{ height: 400, width: '100%' }}>
                     <DataGrid
-                        rows={Search(azureRecommendation)}
+                        rows={Search(highAvailabilityPerformanceAllImpact)}
                         columns={columns}
                         pageSize={pageSize}
                         onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                         rowsPerPageOptions={[5, 10, 20]}
                         pagination
-                        {...azureRecommendation}
+                        {...highAvailabilityPerformanceAllImpact}
                         // components={{ Toolbar: GridToolbar }}
                         disableSelectionOnClick
                     />
+
                 </Box>
             </div>
         </>
