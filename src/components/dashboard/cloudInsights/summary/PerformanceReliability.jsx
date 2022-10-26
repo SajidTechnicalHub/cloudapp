@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect} from 'react';
 
-import { FiPlus, FiRefreshCcw, FiSearch, FiEdit2, } from 'react-icons/fi'
+import { FiSearch } from 'react-icons/fi'
 import { useContext } from 'react'
 import { AppStateContext } from '../../../Context';
 import axios from 'axios';
@@ -8,7 +8,7 @@ import Loading from '../../cloudVendors/azure/Loading';
 import { useNavigate } from "react-router-dom"
 import TopBar from '../../header/TopBar';
 import Box from '@mui/material/Box';
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { DataGrid} from '@mui/x-data-grid';
 import { baseUrl } from '../../cloudVendors/azure/GetAzureServices';
 
 
@@ -61,13 +61,8 @@ const columns = [
 ];
 const PerformanceReliability = () => {
     const {
-
-        isoAuth, setoAuth,
         isLoading, setIsLoading,
-
         accountCredentials, setAzureCredentails,
-        azureRecommendation, setAzureRecommendation,
-
         highAvailabilityPerformanceHighImpact, setHighAvailabilityPerformanceHighImpact,
         highAvailabilityPerformanceMediumImpact, setHighAvailabilityPerformanceMediumImpact,
         highAvailabilityPerformanceLowImpact, setHighAvailabilityPerformanceLowImpact,
@@ -77,16 +72,9 @@ const PerformanceReliability = () => {
     const navigate = useNavigate();
     const [q, setQ] = useState("")
     const [pageSize, setPageSize] = useState(5);
-
-    const [countHighImpact, setCountHighImpact] = useState(0)
-    const [countMediumImpact, setCountMediumImpact] = useState(0)
-    const [countLowImpact, setCountLowImpact] = useState(0)
     const [countCloudInsightImpact, setCountCloudInsightImpact] = useState()
-
     const [cloudAccount, setCloudAccount] = useState('Accounts (Default All)')
 
-
-    
     const impactValue = [
         {
             id: 1,
@@ -118,7 +106,7 @@ const PerformanceReliability = () => {
         const { name, value } = e.target;
         updateData(e.target.value)
         setCloudAccount(e.target.value)
-        
+
     }
 
     const getPerformanceReliabilityData = async () => {
@@ -138,7 +126,7 @@ const PerformanceReliability = () => {
             setHighAvailabilityPerformanceLowImpact(response.data.high_availability_performance_low_impact)
             setHighAvailabilityPerformanceAllImpact(response.data.high_availability_performance_all_impact)
             setCountCloudInsightImpact(response.data.high_availability_performance_total_impact)
-            console.log('avail',highAvailabilityPerformanceAllImpact)
+            console.log('avail', highAvailabilityPerformanceAllImpact)
         }
         catch (error) {
             setIsLoading(false)
@@ -150,36 +138,36 @@ const PerformanceReliability = () => {
     const getSingleAccountData = async (value) => {
         setIsLoading(true)
         try {
-          const response = await fetch(`${baseUrl}/azure_dashboards/azure_single_account_recommendation_count`, {
-            method: "post",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: localStorage.getItem("token"),
-            },
-            body: JSON.stringify({
-                account_name: value
-            }),
-          })
-          const res = await response.json()
-          console.log(res)
-          setHighAvailabilityPerformanceHighImpact(res.high_availability_performance_high_impact)
-          setHighAvailabilityPerformanceMediumImpact(res.high_availability_performance_medium_impact)
-          setHighAvailabilityPerformanceLowImpact(res.high_availability_performance_low_impact)
-          setCountCloudInsightImpact(res.high_availability_performance_total_impact)
-          
+            const response = await fetch(`${baseUrl}/azure_dashboards/azure_single_account_availability_performance_recommendation_count`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: localStorage.getItem("token"),
+                },
+                body: JSON.stringify({
+                    account_name: value
+                }),
+            })
+            const res = await response.json()
+            // console.log(res)
+            setHighAvailabilityPerformanceHighImpact(res.high_availability_performance_high_impact)
+            setHighAvailabilityPerformanceMediumImpact(res.high_availability_performance_medium_impact)
+            setHighAvailabilityPerformanceLowImpact(res.high_availability_performance_low_impact)
+            setCountCloudInsightImpact(res.high_availability_performance_total_impact)
+            setIsLoading(false)
         }
-    
-        catch (error) {
-          setIsLoading(false)
-          console.log(error)
-          if(error == `SyntaxError: Unexpected token 'S', "Signature "... is not valid JSON`){
-            navigate('/')
-          }
-        }
-      }
-    
 
-   
+        catch (error) {
+            setIsLoading(false)
+            console.log(error)
+            if (error == `SyntaxError: Unexpected token 'S', "Signature "... is not valid JSON`) {
+                navigate('/')
+            }
+        }
+    }
+
+
+
 
     const Search = (highAvailabilityPerformanceAllImpact) => {
 
@@ -197,23 +185,19 @@ const PerformanceReliability = () => {
         );
     }
 
-    const updateData =(value)=>{
+    const updateData = (value) => {
         console.log('value', value)
-        if(value == 'Accounts (Default All)'){
+        if (value == 'Accounts (Default All)') {
             getPerformanceReliabilityData(value)
-        }else{
+        } else {
             getSingleAccountData(value)
         }
     }
 
     useEffect(() => {
-        // if(cloudAccount.cloud_account == 'Accounts (Default All)'){
-        //     getPerformanceReliabilityData()
-        // }else{
-        //     getSingleAccountData()
-        // }
+       
         getPerformanceReliabilityData()
-        
+
     }, [])
 
     return (
@@ -298,20 +282,25 @@ const PerformanceReliability = () => {
                 </div>
             </div>
             <div className="security-datagrid-container">
-                <Box sx={{ height: 400, width: '100%' }}>
-                    <DataGrid
-                        rows={Search(highAvailabilityPerformanceAllImpact)}
-                        columns={columns}
-                        pageSize={pageSize}
-                        onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-                        rowsPerPageOptions={[5, 10, 20]}
-                        pagination
-                        {...highAvailabilityPerformanceAllImpact}
-                        // components={{ Toolbar: GridToolbar }}
-                        disableSelectionOnClick
-                    />
+                {isLoading == true ?
+                    <div className="loading">
+                        <Loading />
+                    </div>:
+                    <Box sx={{ height: 400, width: '100%' }}>
+                        <DataGrid
+                            rows={Search(highAvailabilityPerformanceAllImpact)}
+                            columns={columns}
+                            pageSize={pageSize}
+                            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                            rowsPerPageOptions={[5, 10, 20]}
+                            pagination
+                            {...highAvailabilityPerformanceAllImpact}
+                            // components={{ Toolbar: GridToolbar }}
+                            disableSelectionOnClick
+                        />
 
-                </Box>
+                    </Box>
+                }
             </div>
         </>
     )

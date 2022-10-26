@@ -53,7 +53,7 @@ const AppStateContextProvider = props => {
   const [performanceReliabilityLowImpact, setPerformanceReliabilityLowImpact] = useState(0)
 
   // azure_single_impact_recommendation
-  const [highAvailabilityPerformanceHighImpact, setHighAvailabilityPerformanceHighImpact] = useState(0) 
+  const [highAvailabilityPerformanceHighImpact, setHighAvailabilityPerformanceHighImpact] = useState(0)
   const [highAvailabilityPerformanceMediumImpact, setHighAvailabilityPerformanceMediumImpact] = useState(0)
   const [highAvailabilityPerformanceLowImpact, setHighAvailabilityPerformanceLowImpact] = useState(0)
   const [highAvailabilityPerformanceAllImpact, setHighAvailabilityPerformanceAllImpact] = useState([])
@@ -61,12 +61,17 @@ const AppStateContextProvider = props => {
   const [securityHighImpact, setSecurityHighImpact] = useState(0)
   const [securityMediummpact, setSecurityMediummpact] = useState(0)
   const [securityLowImpact, setSecurityLowImpact] = useState(0)
-  const [securityAllImpact, setSecurityAllImpact] = useState(0)
-  
+  const [securityAllImpact, setSecurityAllImpact] = useState([])
+
   const [costHighImpact, setCostHighImpact] = useState(0)
   const [costmediumImpact, setCostmediumImpact] = useState(0)
   const [costLowImpact, setCostLowImpact] = useState(0)
-  const [costAllImpact, setCostAllImpact] = useState(0)
+  const [costAllImpact, setCostAllImpact] = useState([])
+
+  const [operationalExcellenceHighImpact, setOperationalExcellenceHighImpact] = useState(0)
+  const [operationalExcellencemediumImpact, setOperationalExcellencemediumImpact] = useState(0)
+  const [operationalExcellenceLowImpact, setOperationalExcellenceLowImpact] = useState(0)
+  const [operationalExcellenceAllImpact, setOperationalExcellenceAllImpact] = useState([])
 
 
   /////////////////////////////////////////////////////////////////////////
@@ -77,7 +82,7 @@ const AppStateContextProvider = props => {
   const [totalLowImpact, setTotalLowImpact] = useState([])
 
   // Total Azure Accounts
-  const [totalAzureAccounts, setTotalAzureAccounts ] = useState(0)
+  const [totalAzureAccounts, setTotalAzureAccounts] = useState(0)
 
   const getAccountDetails = async () => {
     try {
@@ -211,7 +216,7 @@ const AppStateContextProvider = props => {
       editAzureCredential, setEditAzureCredential,
       forgotPasswordUser, setForgotPasswordUser,
       azureRegion, setAzureRegion,
-      
+
 
       // dashboard
       performanceReliabilityHighProgressBar, setPerformanceReliabilityHighProgressBar,
@@ -236,20 +241,25 @@ const AppStateContextProvider = props => {
       totalAzureAccounts, setTotalAzureAccounts,
 
       // azure_single_impact_recommendation
-      highAvailabilityPerformanceHighImpact, setHighAvailabilityPerformanceHighImpact, 
+      highAvailabilityPerformanceHighImpact, setHighAvailabilityPerformanceHighImpact,
       highAvailabilityPerformanceMediumImpact, setHighAvailabilityPerformanceMediumImpact,
       highAvailabilityPerformanceLowImpact, setHighAvailabilityPerformanceLowImpact,
       highAvailabilityPerformanceAllImpact, setHighAvailabilityPerformanceAllImpact,
-    
+
       securityHighImpact, setSecurityHighImpact,
       securityMediummpact, setSecurityMediummpact,
       securityLowImpact, setSecurityLowImpact,
       securityAllImpact, setSecurityAllImpact,
-      
+
       costHighImpact, setCostHighImpact,
       costmediumImpact, setCostmediumImpact,
       costLowImpact, setCostLowImpact,
       costAllImpact, setCostAllImpact,
+
+      operationalExcellenceHighImpact, setOperationalExcellenceHighImpact,
+      operationalExcellencemediumImpact, setOperationalExcellencemediumImpact,
+      operationalExcellenceLowImpact, setOperationalExcellenceLowImpact,
+      operationalExcellenceAllImpact, setOperationalExcellenceAllImpact,
 
 
     }}>

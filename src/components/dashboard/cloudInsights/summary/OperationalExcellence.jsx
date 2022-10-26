@@ -59,14 +59,14 @@ const columns = [
   },
 
 ];
-const CostOptimization = () => {
+const OperationalExcellence = () => {
   const {
     isLoading, setIsLoading,
     accountCredentials, setAzureCredentails,
-    costHighImpact, setCostHighImpact,
-    costmediumImpact, setCostmediumImpact,
-    costLowImpact, setCostLowImpact,
-    costAllImpact, setCostAllImpact,
+    operationalExcellenceHighImpact, setOperationalExcellenceHighImpact,
+    operationalExcellencemediumImpact, setOperationalExcellencemediumImpact,
+    operationalExcellenceLowImpact, setOperationalExcellenceLowImpact,
+    operationalExcellenceAllImpact, setOperationalExcellenceAllImpact,
 
 
   } = useContext(AppStateContext)
@@ -86,19 +86,19 @@ const CostOptimization = () => {
     {
       id: 2,
       impactText: 'HIGH IMPACT',
-      impactNumber: costHighImpact,
+      impactNumber: operationalExcellenceHighImpact,
       resource: 'Resources'
     },
     {
       id: 3,
       impactText: 'MEDIUM IMPACT',
-      impactNumber: costmediumImpact,
+      impactNumber: operationalExcellencemediumImpact,
       resource: 'Resources'
     },
     {
       id: 4,
       impactText: 'LOW IMPACT',
-      impactNumber: costLowImpact,
+      impactNumber: operationalExcellenceLowImpact,
       resource: 'Resources'
     }
   ]
@@ -122,12 +122,12 @@ const CostOptimization = () => {
 
       setIsLoading(false)
       console.log(response)
-      setCostHighImpact(response.data.cost_high_impact)
-      setCostmediumImpact(response.data.cost_medium_impact)
-      setCostLowImpact(response.data.cost_low_impact)
-      setCostAllImpact(response.data.cost_all_impact)
-      setCountCloudInsightImpact(response.data.cost_total_impact)
-      console.log('avail', costAllImpact)
+      setOperationalExcellenceHighImpact(response.data.operational_exellence_high_impact)
+      setOperationalExcellencemediumImpact(response.data.operational_exellence_medium_impact)
+      setOperationalExcellenceLowImpact(response.data.operational_exellence_low_impact)
+      setOperationalExcellenceAllImpact(response.data.operational_exellence_all_impact)
+      setCountCloudInsightImpact(response.data.operational_exellence_total_impact)
+      console.log('avail', operationalExcellenceAllImpact)
     }
     catch (error) {
       setIsLoading(false)
@@ -139,7 +139,7 @@ const CostOptimization = () => {
   const getSingleAccountData = async (value) => {
     setIsLoading(true)
     try {
-      const response = await fetch(`${baseUrl}/azure_dashboards/azure_single_account_cost_recommendation_count`, {
+      const response = await fetch(`${baseUrl}/azure_dashboards/azure_single_account_operational_excellence_recommendation_count`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -151,10 +151,10 @@ const CostOptimization = () => {
       })
       const res = await response.json()
       // console.log(res)
-      setCostHighImpact(res.cost_high_impact)
-      setCostmediumImpact(res.cost_medium_impact)
-      setCostLowImpact(res.cost_low_impact)
-      setCountCloudInsightImpact(res.cost_total_impact)
+      setOperationalExcellenceHighImpact(res.operational_exellence_high_impact)
+      setOperationalExcellencemediumImpact(res.operational_exellence_medium_impact)
+      setOperationalExcellenceLowImpact(res.operational_exellence_low_impact)
+      setCountCloudInsightImpact(res.operational_exellence_total_impact)
       setIsLoading(false)
     }
 
@@ -170,9 +170,9 @@ const CostOptimization = () => {
 
 
 
-  const Search = (costAllImpact) => {
+  const Search = (operationalExcellenceAllImpact) => {
 
-    return costAllImpact?.filter(
+    return operationalExcellenceAllImpact?.filter(
       (row) =>
         cloudAccount == 'Accounts (Default All)' ?
           row.description.toLowerCase().indexOf(q) > -1 ||
@@ -203,7 +203,7 @@ const CostOptimization = () => {
 
   return (
     <>
-      <TopBar subtitle='Summary / Cost Optimization' />
+      <TopBar subtitle='Summary / Operational Excellence' />
       <div className="summary-security-description-block">
         <span className="summary-security-description-text">
           Detect threats and vulnerabilities that might lead to security breaches and improve your security posture of cloud resources.
@@ -289,13 +289,13 @@ const CostOptimization = () => {
           </div> :
           <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-              rows={Search(costAllImpact)}
+              rows={Search(operationalExcellenceAllImpact)}
               columns={columns}
               pageSize={pageSize}
               onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
               rowsPerPageOptions={[5, 10, 20]}
               pagination
-              {...costAllImpact}
+              {...operationalExcellenceAllImpact}
               // components={{ Toolbar: GridToolbar }}
               disableSelectionOnClick
             />
@@ -307,4 +307,4 @@ const CostOptimization = () => {
   )
 }
 
-export default CostOptimization
+export default OperationalExcellence

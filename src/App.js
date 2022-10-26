@@ -41,6 +41,7 @@ import RegistrationLayout from "./components/registration/RegistrationLayout";
 import Security from "./components/dashboard/cloudInsights/summary/Security";
 import CostOptimization from "./components/dashboard/cloudInsights/summary/CostOptimization";
 import PerformanceReliability from "./components/dashboard/cloudInsights/summary/PerformanceReliability";
+import OperationalExcellence from "./components/dashboard/cloudInsights/summary/OperationalExcellence";
 
 function App() {
   const navigate = useNavigate();
@@ -94,6 +95,7 @@ function App() {
           <Route path="summary/security" element={<Security />} />
           <Route path="summary/performance-reliability" element={<PerformanceReliability />} />
           <Route path="summary/cost-optimization" element={<CostOptimization />} />
+          <Route path="summary/operational-excellence" element={<OperationalExcellence />} />
 
           <Route path="reports" element={<Reports />} />
           <Route path="account-management" element={<AccountManagement />} />

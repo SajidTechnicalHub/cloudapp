@@ -67,7 +67,7 @@ const Summary = () => {
     {
       id: 4,
       text: 'Help you achieve process and workflow efficiency, resource manageability, and deployment best practices',
-      path:'',
+      path:'/dashboard/summary/operational-excellence',
       name: 'Operational Excellence',
       lowImpact: 0,
       mediumImpact: 0,
