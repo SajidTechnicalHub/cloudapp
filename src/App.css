@@ -2082,7 +2082,20 @@ main {
     cursor: pointer;
 }
 .create-report-model-container{
-    padding: 10px;
+    /* padding: 10px; */
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+    gap: 10px;
+    height: 100vh;
+    overflow: auto;
+}
+.create-report-model-title-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(234, 242, 245);
+    padding-right:5px;
 }
 .create-report-model-title{
     height: 50px;
@@ -2090,6 +2103,61 @@ main {
     padding: 10px;
     display: flex;
     align-items: center;
+}
+.create-report-model-close{
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.create-report-model-input-fiels{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+.create-report-model-input-fiels input {
+    padding: 10px;
+    width: 100%;
+    font-size: 14px;
+    padding-left: 15px;
+    border: 1px solid lightgrey;
+    outline: none;
+
+}
+.create-report-model-input-fiels textarea {
+    padding: 10px;
+    width: 100%;
+    height: 100px!important;
+    font-size: 14px;
+    padding-left: 15px;
+    border: 1px solid lightgrey;
+    outline: none;
+
+}
+.create-report-model-insights-scope{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+.create-report-model-insights-scope-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 200px;
+    height: fit-content;
+    padding: 20px;
+    /* gap: 5px; */
+    background: rgb(234, 242, 245);
+    border: 2px solid rgb(210, 233, 241);
+}
+.create-report-model-insights-scope-container .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+    height: 45px;
+   
 }
 
 
