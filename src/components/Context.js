@@ -72,7 +72,7 @@ const AppStateContextProvider = props => {
   const [operationalExcellencemediumImpact, setOperationalExcellencemediumImpact] = useState(0)
   const [operationalExcellenceLowImpact, setOperationalExcellenceLowImpact] = useState(0)
   const [operationalExcellenceAllImpact, setOperationalExcellenceAllImpact] = useState([])
-
+  const [reportResponse, setReportResponse] = useState([])
 
   /////////////////////////////////////////////////////////////////////////
 
@@ -261,6 +261,7 @@ const AppStateContextProvider = props => {
       operationalExcellenceLowImpact, setOperationalExcellenceLowImpact,
       operationalExcellenceAllImpact, setOperationalExcellenceAllImpact,
 
+      reportResponse, setReportResponse
 
     }}>
       {props.children}

@@ -58,6 +58,7 @@ const CreateReport = (props) => {
     const {
         isLoading, setIsLoading,
         accountCredentials, setAzureCredentails,
+        
 
     } = useContext(AppStateContext)
     const navigate = useNavigate();
@@ -70,6 +71,7 @@ const CreateReport = (props) => {
     const [accountName, setAccountName] = React.useState(['Accounts (Default All)']);
     const [provider, setProvider] = React.useState(['Provider (Default All)']);
     const [cloudInsights, setCloudInsights] = React.useState(['Insights Categories (Default All)']);
+    
 
     const InputEvent = (e) => {
         const { name, value } = e.target;
@@ -111,62 +113,33 @@ const CreateReport = (props) => {
 
     };
 
-    const handleSaveReport = () => {
-        // alert('handle save')
-
+    const handleSaveReport = async() => {
         props.handleClose()
-        // try {
-        //     const response = await axios.post(`${baseUrl}/reports`, {
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             Authorization: localStorage.getItem("token"),
-        //         },
-        //         report: {
-        //             report_name: report.report_name,
-        //             report_des: report.report_des,
-        //             account_name: accountName,
-        //             provider: provider,
-        //             cloud_insights: cloudInsights
-        //         },
-        //     })
-        //     // const res = await response.json()
-        //     console.log(response)
-        //     setIsLoading(false)
-        // }
-        // catch (error) {
-        //     console.log(error);
-        //     setIsLoading(false)
-        // }
-
-        fetch(`${baseUrl}/reports`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: localStorage.getItem("token"),
-            },
-            body: JSON.stringify({
-                report:{
-                    report_name: report.report_name,
-                    report_des: report.report_des,
-                    account_name: accountName,
-                    provider: provider,
-                    cloud_insights: cloudInsights
-                }
-            }),
-        })
-            .then((res) => {
-                if (res.ok) {
-                    console.log(res);
-
-                    return res.json();
-                } else {
-
-                    throw new Error(res);
-                }
+       
+        try{
+           const response = await fetch(`${baseUrl}/reports`, {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: localStorage.getItem("token"),
+                },
+                body: JSON.stringify({
+                    report:{
+                        report_name: report.report_name,
+                        report_des: report.report_des,
+                        account: accountName,
+                        provider: provider,
+                        cloud_insights: cloudInsights
+                    }
+                }),
             })
-            .then((json) => console.dir(json))
-
-
+            const data = await response.json()
+            console.log(data)
+            
+        }catch(e){
+            return e
+        }
+           
     }
 
     return (
@@ -213,7 +186,7 @@ const CreateReport = (props) => {
                                 )}
                             >
                                 {/* <MenuItem value='Provider (Default All)'>Provider (Default All)</MenuItem> */}
-                                <MenuItem value='Microsift Azure'>Microsoft Azure</MenuItem>
+                                <MenuItem value='Microsoft Azure'>Microsoft Azure</MenuItem>
                             </Select>
                         </FormControl>
 

@@ -51,18 +51,26 @@ const columns = [
     editable: true,
   },
   {
-    field: 'report_description',
+    field: 'report_des',
     headerName: 'Description',
     minWidth: 50,
     flex: true,
     editable: true,
   },
   {
-    field: 'scope',
+    field: 'provider',
     headerName: 'Scope',
     minWidth: 300,
     flex: true,
     editable: true,
+    renderCell: (cellValues) => {
+      return (
+        <>
+          <span>{cellValues.row.provider}/{cellValues.row.account}/{cellValues.row.cloud_insights}</span>
+        </>
+
+      );
+    }
   },
   {
     field: 'reports',
@@ -92,26 +100,26 @@ const columns = [
 
 
 ];
-const RowData = [
-  {
-    id: 1,
-    report_name: 'azure',
-    report_description: 'details',
-    scope: 'Azure/All Accounts'
-  },
-  {
-    id: 2,
-    report_name: 'aws',
-    report_description: 'details',
-    scope: 'Azure/All Accounts'
-  },
-  {
-    id: 3,
-    report_name: 'gcp',
-    report_description: 'details',
-    scope: 'Azure/All Accounts'
-  },
-]
+// const reportResponse = [
+//   {
+//     id: 1,
+//     report_name: 'azure',
+//     report_description: 'details',
+//     scope: 'Azure/All Accounts'
+//   },
+//   {
+//     id: 2,
+//     report_name: 'aws',
+//     report_description: 'details',
+//     scope: 'Azure/All Accounts'
+//   },
+//   {
+//     id: 3,
+//     report_name: 'gcp',
+//     report_description: 'details',
+//     scope: 'Azure/All Accounts'
+//   },
+// ]
 
 const Reports = () => {
   const {
@@ -123,6 +131,7 @@ const Reports = () => {
     performanceReliabilityLowImpact, setPerformanceReliabilityLowImpact,
     accountCredentials, setAzureCredentails,
     azureRecommendation, setAzureRecommendation,
+    reportResponse, setReportResponse
 
 
   } = useContext(AppStateContext)
@@ -147,9 +156,9 @@ const Reports = () => {
     })
   }
 
-  const Search = (RowData) => {
+  const Search = (reportResponse) => {
 
-    return RowData.filter(
+    return reportResponse.filter(
       (row) =>
 
         row.report_name.toLowerCase().indexOf(q) > -1 ||
@@ -157,6 +166,28 @@ const Reports = () => {
 
     );
   }
+
+  const fetchReports = async() => {
+    try{
+       const response = await fetch(`${baseUrl}/reports`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: localStorage.getItem("token"),
+            },
+        })
+        const data = await response.json()
+        console.log(data)
+        setReportResponse(data.reports)
+        
+    }catch(e){
+        return e
+    }
+       
+}
+useEffect(() => {
+  fetchReports()
+}, [])
 
 
   return (
@@ -196,13 +227,13 @@ const Reports = () => {
       <div className="security-datagrid-container">
         <Box sx={{ height: 400, width: '100%' }}>
           <DataGrid
-            rows={Search(RowData)}
+            rows={Search(reportResponse)}
             columns={columns}
             pageSize={pageSize}
             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
             rowsPerPageOptions={[5, 10, 20]}
             pagination
-            {...RowData}
+            {...reportResponse}
             // components={{ Toolbar: GridToolbar }}
             disableSelectionOnClick
             checkboxSelection
