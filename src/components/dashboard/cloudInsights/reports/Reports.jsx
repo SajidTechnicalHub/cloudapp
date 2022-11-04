@@ -42,84 +42,8 @@ const style = {
   width: '40%',
   height: '100%',
 };
-const columns = [
-  {
-    field: 'report_name',
-    headerName: 'Report Name',
-    minWidth: 100,
-    flex: true,
-    editable: true,
-  },
-  {
-    field: 'report_des',
-    headerName: 'Description',
-    minWidth: 50,
-    flex: true,
-    editable: true,
-  },
-  {
-    field: 'provider',
-    headerName: 'Scope',
-    minWidth: 300,
-    flex: true,
-    editable: true,
-    renderCell: (cellValues) => {
-      return (
-        <>
-          <span>{cellValues.row.provider}/{cellValues.row.account}/{cellValues.row.cloud_insights}</span>
-        </>
-
-      );
-    }
-  },
-  {
-    field: 'reports',
-    headerName: 'Reports',
-    minWidth: 50,
-    flex: true,
-    sorting: false,
-    renderCell: (cellValues) => {
-      return (
-        <>
-          <div className="cloud-insights-report-block">
-            <div>
-              {/* {console.log('cellValue', cellValues.row)} */}
-              <PDFDownloadLink document={<PdfReport abc={cellValues.row.report_name} />} fileName={cellValues.row.report_name}>
-                {({ blob, url, loading, error }) => (loading ? 'Loading document...' :
-                  <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span>)}
-              </PDFDownloadLink>
-            </div>
-            {/* <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span> */}
-            <span className="cloud-insights-report-delete-icon"><MdDelete /></span>
-          </div>
-        </>
-
-      );
-    }
-  },
 
 
-];
-// const reportResponse = [
-//   {
-//     id: 1,
-//     report_name: 'azure',
-//     report_description: 'details',
-//     scope: 'Azure/All Accounts'
-//   },
-//   {
-//     id: 2,
-//     report_name: 'aws',
-//     report_description: 'details',
-//     scope: 'Azure/All Accounts'
-//   },
-//   {
-//     id: 3,
-//     report_name: 'gcp',
-//     report_description: 'details',
-//     scope: 'Azure/All Accounts'
-//   },
-// ]
 
 const Reports = () => {
   const {
@@ -146,15 +70,69 @@ const Reports = () => {
   // Handle Model
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-
-  const InputEvent = (e) => {
-    const { name, value } = e.target;
-    setCloudAccount(() => {
-      return { ...cloudAccount, [name]: value }
-    })
+  const handleClose = () => {
+    setOpen(false);
+    console.log('close event')
   }
+
+  const columns = [
+    {
+      field: 'report_name',
+      headerName: 'Report Name',
+      minWidth: 100,
+      flex: true,
+      editable: true,
+    },
+    {
+      field: 'report_des',
+      headerName: 'Description',
+      minWidth: 50,
+      flex: true,
+      editable: true,
+    },
+    {
+      field: 'provider',
+      headerName: 'Scope',
+      minWidth: 400,
+      flex: true,
+      editable: true,
+      renderCell: (cellValues) => {
+        return (
+          <>
+            <span>{cellValues.row.provider}/{cellValues.row.account}/{cellValues.row.cloud_insights}</span>
+          </>
+
+        );
+      }
+    },
+    {
+      field: 'reports',
+      headerName: 'Reports',
+      minWidth: 50,
+      flex: true,
+      sorting: false,
+      renderCell: (cellValues) => {
+        return (
+          <>
+            <div className="cloud-insights-report-block">
+              <div>
+                {/* {console.log('cellValue', cellValues.row)} */}
+                <PDFDownloadLink document={<PdfReport abc={cellValues.row.report_name} />} fileName={cellValues.row.report_name}>
+                  {({ blob, url, loading, error }) => (loading ? 'Loading document...' :
+                    <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span>)}
+                </PDFDownloadLink>
+              </div>
+              {/* <span className="cloud-insights-report-pdf-icon"><GrDocumentPdf color='red' /></span> */}
+              <span className="cloud-insights-report-delete-icon"><MdDelete onClick={() => handleDelete(cellValues.row.id)} /></span>
+            </div>
+          </>
+
+        );
+      }
+    },
+
+
+  ];
 
   const Search = (reportResponse) => {
 
@@ -167,27 +145,48 @@ const Reports = () => {
     );
   }
 
-  const fetchReports = async() => {
-    try{
-       const response = await fetch(`${baseUrl}/reports`, {
-            method: "get",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: localStorage.getItem("token"),
-            },
-        })
-        const data = await response.json()
-        console.log(data)
-        setReportResponse(data.reports)
-        
-    }catch(e){
-        return e
+  const fetchReports = async () => {
+    setIsLoading(true)
+    try {
+      const response = await fetch(`${baseUrl}/reports`, {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      const data = await response.json()
+      console.log(data)
+      setReportResponse(data.reports)
+      setIsLoading(false)
+
+    } catch (e) {
+      setIsLoading(false)
+      return e
     }
-       
-}
-useEffect(() => {
-  fetchReports()
-}, [])
+
+  }
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`${baseUrl}/reports/${id}`, {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      const data = await response.json()
+      console.log(data)
+      fetchReports()
+
+    } catch (e) {
+      return e
+    }
+
+  }
+  useEffect(() => {
+    fetchReports()
+  }, [])
 
 
   return (
@@ -216,7 +215,7 @@ useEffect(() => {
           </div>
           <div className="referesh-container">
             <span className="referesh-block">
-              <FiRefreshCcw />
+              <FiRefreshCcw onClick={fetchReports} />
             </span>
             <span className="referesh-block">
               <FiPlus onClick={handleOpen} />
@@ -225,20 +224,26 @@ useEffect(() => {
         </div>
       </div>
       <div className="security-datagrid-container">
-        <Box sx={{ height: 400, width: '100%' }}>
-          <DataGrid
-            rows={Search(reportResponse)}
-            columns={columns}
-            pageSize={pageSize}
-            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-            rowsPerPageOptions={[5, 10, 20]}
-            pagination
-            {...reportResponse}
-            // components={{ Toolbar: GridToolbar }}
-            disableSelectionOnClick
-            checkboxSelection
-          />
-        </Box>
+        {
+          isLoading == true ?
+            <div className="loading">
+              <Loading />
+            </div> :
+            <Box sx={{ height: 400, width: '100%' }}>
+              <DataGrid
+                rows={Search(reportResponse)}
+                columns={columns}
+                pageSize={pageSize}
+                onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                rowsPerPageOptions={[5, 10, 20]}
+                pagination
+                {...reportResponse}
+                // components={{ Toolbar: GridToolbar }}
+                disableSelectionOnClick
+                checkboxSelection
+              />
+            </Box>
+        }
         {/* Add Report */}
         <Modal
           aria-labelledby="transition-modal-title"
@@ -253,11 +258,12 @@ useEffect(() => {
         >
           <Fade in={open}>
             <Box sx={style}>
-             
+
               <CreateReport
-              handleClose={handleClose}
+                handleClose={handleClose}
+                fetchReports={fetchReports}
               />
-            
+
             </Box>
           </Fade>
         </Modal>

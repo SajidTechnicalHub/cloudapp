@@ -81,9 +81,7 @@ const CreateReport = (props) => {
     }
 
     const handleProviderChange = (event) => {
-        console.log('event', event)
         const { target: { value }, } = event;
-        console.log('value', value)
         if (value == '') {
             setProvider(['Provider (Default All)']);
         } else {
@@ -93,9 +91,7 @@ const CreateReport = (props) => {
     };
 
     const handleAccountsChange = (event) => {
-        console.log('event', event)
         const { target: { value }, } = event;
-        console.log('value', value)
         if (value == '') {
             setAccountName(['Accounts (Default All)']);
         } else {
@@ -115,7 +111,6 @@ const CreateReport = (props) => {
 
     const handleSaveReport = async() => {
         props.handleClose()
-       
         try{
            const response = await fetch(`${baseUrl}/reports`, {
                 method: "post",
@@ -135,6 +130,7 @@ const CreateReport = (props) => {
             })
             const data = await response.json()
             console.log(data)
+            props.fetchReports()
             
         }catch(e){
             return e
